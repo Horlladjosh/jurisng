@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" class="light h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NaijaLex | Nigerian Statutory Intelligence</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons CDN -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Geist', 'system-ui', 'sans-serif'],
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Geist', sans-serif; }
+        ::-webkit-scrollbar { width: 5px; height: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(160, 160, 160, 0.25); border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); }
+    </style>
+</head>
+<body class="bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 h-full flex antialiased selection:bg-emerald-500/20 selection:text-emerald-700 dark:selection:text-emerald-400 overflow-hidden">
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed md:static inset-y-0 left-0 -translate-x-full md:translate-x-0 w-64 bg-white dark:bg-zinc-900 border-r border-zinc-200/80 dark:border-zinc-800/80 flex flex-col justify-between p-3.5 shrink-0 select-none z-40 transition-transform duration-200 shadow-xl md:shadow-none">
+        <div class="space-y-4 flex flex-col min-h-0 flex-1">
+            
+            <!-- Brand Header -->
+            <div class="flex items-center gap-2.5 px-1 py-1 cursor-pointer" onclick="showSearchHome()">
+                <div class="w-7 h-7 rounded-md bg-emerald-600/10 border border-emerald-600/20 flex items-center justify-center text-emerald-700 dark:text-emerald-400 shrink-0">
+                    <i class="ph ph-scales text-base"></i>
+                </div>
+                <span class="font-semibold text-sm tracking-tight text-zinc-900 dark:text-white">Naija<span class="text-emerald-700 dark:text-emerald-400">Lex</span></span>
+            </div>
+
+            <!-- Primary Action Button -->
+            <button onclick="showSearchHome()" class="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs font-medium px-3 py-2.5 rounded-md transition shadow-xs">
+                <i class="ph ph-plus text-sm"></i>
+                <span>New Search</span>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="space-y-1 text-xs">
+                <button id="navLibraryBtn" onclick="showLibraryView()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-200 transition text-left">
+                    <i class="ph ph-books text-sm"></i>
+                    <span>Statutory Library (20 Acts)</span>
+                </button>
+            </nav>
+
+            <!-- Search History Section -->
+            <div class="flex flex-col flex-1 min-h-0 pt-3 border-t border-zinc-200/60 dark:border-zinc-800/60">
+                <div class="flex items-center justify-between px-2 pb-1.5 shrink-0">
+                    <span class="text-[10px] font-semibold tracking-wider text-zinc-400 dark:text-zinc-500 uppercase">Recent History</span>
+                    <button onclick="clearAllHistory()" class="text-[10px] text-zinc-400 hover:text-rose-500 transition">Clear</button>
+                </div>
+                <div id="historyList" class="flex-1 overflow-y-auto space-y-0.5 pr-0.5 text-xs"></div>
+            </div>
+        </div>
+
+        <!-- Footer & Theme Switcher -->
+        <div class="border-t border-zinc-200/60 dark:border-zinc-800/60 pt-2.5 px-1 space-y-2 shrink-0">
+            <button onclick="toggleTheme()" class="w-full flex items-center justify-between px-2 py-1.5 rounded-md text-xs text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition">
+                <span id="themeLabel">Dark Mode</span>
+                <i id="themeIcon" class="ph ph-moon text-sm text-zinc-400"></i>
+            </button>
+            <div class="text-[11px] text-zinc-400 dark:text-zinc-500 flex items-center justify-between px-2 pt-0.5">
+                <span>Nigerian Legal Engine</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Workspace Area -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative" id="workspace">
+        <!-- Mobile Top Navigation Bar -->
+        <div class="md:hidden flex items-center justify-between px-4 py-2.5 bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 shrink-0 z-10">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="showSearchHome()">
+                <div class="w-6 h-6 rounded bg-emerald-600/10 text-emerald-700 dark:text-emerald-400 flex items-center justify-center">
+                    <i class="ph ph-scales text-sm"></i>
+                </div>
+                <span class="font-semibold text-xs tracking-tight">Naija<span class="text-emerald-700 dark:text-emerald-400">Lex</span></span>
+            </div>
+            <button onclick="toggleMobileSidebar()" class="p-1 rounded-md text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                <i class="ph ph-list text-lg"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Backdrop -->
+        <div id="sidebarBackdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/40 z-30 hidden md:hidden"></div>
+        
+        <!-- Home State (Search Input) -->
+        <div id="homeHeroState" class="flex-1 flex flex-col items-center justify-center max-w-2xl w-full mx-auto px-4 py-8 space-y-6 my-auto overflow-y-auto">
+            <div class="text-center space-y-2.5 max-w-xl mx-auto">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">Search Nigerian Federal Law with Precision</h1>
+                <p class="text-zinc-500 dark:text-zinc-400 text-sm sm:text-base leading-relaxed">Grounded statutory answers, scenario routing, and direct section search across 20 core Federal Acts.</p>
+            </div>
+
+            <!-- Natural Search Input Box -->
+            <div class="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus-within:border-emerald-600/70 dark:focus-within:border-emerald-500/70 rounded-lg p-3 shadow-xs transition">
+                <form id="heroForm" class="flex flex-col gap-2.5">
+                    <textarea 
+                        id="heroInput" 
+                        rows="2" 
+                        placeholder="Describe a legal situation, scenario, or cite a specific section (e.g. maternity leave, Section 84 Evidence Act)..." 
+                        class="w-full bg-transparent border-0 text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:ring-0 focus:outline-none resize-none leading-relaxed"
+                    ></textarea>
+                    <div class="flex items-center justify-between pt-2 border-t border-zinc-100 dark:border-zinc-800/60">
+                        <span class="text-[11px] text-zinc-400 flex items-center gap-1">
+                            <i class="ph ph-corner-down-left text-xs"></i> Press Enter to search
+                        </span>
+                        <button type="button" id="heroSubmitBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-3.5 py-1.5 rounded-md text-xs transition flex items-center gap-1.5 shadow-xs">
+                            <span>Search</span>
+                            <i class="ph ph-magnifying-glass text-xs"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Categorized Search Tips & Examples -->
+            <div class="w-full space-y-3 pt-2">
+                <div class="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 text-center">Search Modes & Examples</div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                    
+                    <!-- Mode 1: Direct Citation -->
+                    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-2.5 flex flex-col justify-between gap-2 shadow-xs">
+                        <div class="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400 font-medium text-[11px]">
+                            <i class="ph ph-hash text-emerald-600 dark:text-emerald-400"></i>
+                            <span>Direct Citation</span>
+                        </div>
+                        <button type="button" onclick="triggerSearch('Section 84 Evidence Act')" class="text-left bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 border border-zinc-200/80 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 p-2 rounded-md transition">
+                            <span class="font-medium text-zinc-900 dark:text-zinc-100 block">Section 84 Evidence Act</span>
+                            <span class="text-[11px] text-zinc-400 block mt-0.5">Electronic evidence admissibility</span>
+                        </button>
+                    </div>
+
+                    <!-- Mode 2: Employment Dispute -->
+                    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-2.5 flex flex-col justify-between gap-2 shadow-xs">
+                        <div class="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400 font-medium text-[11px]">
+                            <i class="ph ph-briefcase text-emerald-600 dark:text-emerald-400"></i>
+                            <span>Employment & Labor</span>
+                        </div>
+                        <button type="button" onclick="triggerSearch('my boss fired me for taking maternity leave')" class="text-left bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 border border-zinc-200/80 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 p-2 rounded-md transition">
+                            <span class="font-medium text-zinc-900 dark:text-zinc-100 block">Maternity Dismissal</span>
+                            <span class="text-[11px] text-zinc-400 block mt-0.5">Section 54 Labour Act 1971</span>
+                        </button>
+                    </div>
+
+                    <!-- Mode 3: Police & Criminal Justice -->
+                    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-2.5 flex flex-col justify-between gap-2 shadow-xs">
+                        <div class="flex items-center gap-1.5 text-zinc-500 dark:text-zinc-400 font-medium text-[11px]">
+                            <i class="ph ph-shield-warning text-emerald-600 dark:text-emerald-400"></i>
+                            <span>Police & Rights</span>
+                        </div>
+                        <button type="button" onclick="triggerSearch('the police detained an elderly mother because her son was suspected of fraud and ran away')" class="text-left bg-zinc-50 dark:bg-zinc-950 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 border border-zinc-200/80 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 p-2 rounded-md transition">
+                            <span class="font-medium text-zinc-900 dark:text-zinc-100 block">Arrest in Lieu</span>
+                            <span class="text-[11px] text-zinc-400 block mt-0.5">Sec 7 ACJA & Sec 36 Police Act</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Thread State (Results Viewer) -->
+        <div id="threadState" class="hidden flex-1 flex flex-col h-full max-w-3xl w-full mx-auto px-4 sm:px-6">
+            <div class="flex-1 overflow-y-auto pt-6 pb-4 space-y-6 pr-1">
+                
+                <!-- Query Header -->
+                <div class="border-b border-zinc-200/80 dark:border-zinc-800/80 pb-3">
+                    <div class="text-[10px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-1 flex items-center gap-1.5">
+                        <i class="ph ph-clock-counter-clockwise text-xs"></i> Research Query
+                    </div>
+                    <h1 id="threadTitle" class="text-xl font-semibold tracking-tight text-zinc-900 dark:text-white"></h1>
+                </div>
+
+                <!-- Legal Summary Block -->
+                <div class="space-y-2">
+                    <div class="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
+                        <i class="ph ph-gavel text-sm"></i> Legal Ruling & Summary
+                    </div>
+                    <div id="answerBody" class="text-sm leading-relaxed text-zinc-800 dark:text-zinc-200 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 shadow-xs"></div>
+                </div>
+
+                <!-- Governing Provisions Cards -->
+                <div class="space-y-3 pt-2 pb-6">
+                    <div class="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 flex items-center gap-1.5">
+                        <i class="ph ph-books text-sm"></i> Governing Statutory Provisions
+                    </div>
+                    <div id="operativeSections" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <!-- Bottom Search Input -->
+            <div class="pt-2 pb-4 bg-zinc-50 dark:bg-zinc-950 border-t border-zinc-200/60 dark:border-zinc-800/60 shrink-0">
+                <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus-within:border-emerald-600/70 rounded-lg p-2 shadow-xs flex items-center gap-2">
+                    <input 
+                        type="text" 
+                        id="bottomInput" 
+                        placeholder="Search another legal scenario or section citation..." 
+                        class="w-full bg-transparent border-0 text-xs sm:text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:ring-0 focus:outline-none px-2"
+                    />
+                    <button type="button" id="bottomSubmitBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-3.5 py-1.5 rounded-md text-xs transition shrink-0 flex items-center gap-1">
+                        <span>Search</span>
+                        <i class="ph ph-magnifying-glass text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Library State (Statutory Corpus Accordion) -->
+        <div id="libraryState" class="hidden flex-1 max-w-3xl w-full mx-auto px-4 sm:px-6 py-6 space-y-5 overflow-y-auto">
+            <div class="border-b border-zinc-200/80 dark:border-zinc-800/80 pb-3">
+                <h1 class="text-xl font-semibold tracking-tight text-zinc-900 dark:text-white">Federal Statutory Corpus</h1>
+                <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">20 Core Acts of Nigerian Federal Law indexed and searchable.</p>
+            </div>
+            <div id="statuteAccordionList" class="space-y-2.5"></div>
+        </div>
+    </main>
+
+    <!-- Modal Drawer (Full Section Viewer) -->
+    <div id="modalBackdrop" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden flex items-center justify-end">
+        <div class="bg-white dark:bg-zinc-900 border-l border-zinc-200 dark:border-zinc-800 w-full max-w-2xl h-full flex flex-col shadow-xl transition-colors">
+            <div class="p-5 border-b border-zinc-200 dark:border-zinc-800 flex items-start justify-between gap-4 shrink-0">
+                <div>
+                    <div id="modalStatute" class="text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 mb-1"></div>
+                    <h2 id="modalTitle" class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-white"></h2>
+                    <div id="modalPart" class="text-xs text-zinc-500 dark:text-zinc-400 font-mono mt-0.5"></div>
+                </div>
+                <button onclick="closeModal()" class="text-zinc-400 hover:text-zinc-700 dark:hover:text-white p-1 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                    <i class="ph ph-x text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1 bg-zinc-50/50 dark:bg-zinc-950/50">
+                <div class="text-[11px] font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2">Official Statutory Text</div>
+                <div id="modalBody" class="bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800/80 rounded-lg p-5 text-sm sm:text-base leading-relaxed text-zinc-800 dark:text-zinc-200 font-serif whitespace-pre-wrap shadow-xs"></div>
+            </div>
+            <div class="p-3.5 border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex justify-between items-center shrink-0">
+                <span class="text-xs text-zinc-400">Laws of the Federation of Nigeria</span>
+                <button onclick="copyModalText()" id="copyBtn" class="bg-zinc-100 hover:bg-zinc-200/70 dark:bg-zinc-800 dark:hover:bg-zinc-700/80 text-zinc-800 dark:text-zinc-200 text-xs px-3.5 py-1.5 rounded-md font-medium transition flex items-center gap-1.5 border border-zinc-200 dark:border-zinc-700">
+                    <i class="ph ph-copy text-zinc-500"></i>
+                    <span>Copy Text</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Frontend Application Logic -->
+    <script>
+        let currentFullText = "";
+        const HISTORY_KEY = 'naijalex_search_history';
+
+        const DEFAULT_HISTORY = [
+            'my boss fired me for taking maternity leave',
+            'teacher late for class company deducts salary without agreement'
+        ];
+
+        function getSearchHistory() {
+            try { 
+                const stored = localStorage.getItem(HISTORY_KEY);
+                if (stored) return JSON.parse(stored);
+                localStorage.setItem(HISTORY_KEY, JSON.stringify(DEFAULT_HISTORY));
+                return DEFAULT_HISTORY;
+            } catch { 
+                return DEFAULT_HISTORY; 
+            }
+        }
+
+        function saveSearchQuery(query) {
+            if (!query || !query.trim()) return;
+            const q = query.trim();
+            let list = getSearchHistory().filter(item => item.toLowerCase() !== q.toLowerCase());
+            list.unshift(q);
+            if (list.length > 20) list = list.slice(0, 20);
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(list));
+            renderHistoryUI();
+        }
+
+        function deleteHistoryItem(index, e) {
+            if (e) e.stopPropagation();
+            let list = getSearchHistory();
+            list.splice(index, 1);
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(list));
+            renderHistoryUI();
+        }
+
+        function clearAllHistory() {
+            localStorage.setItem(HISTORY_KEY, JSON.stringify([]));
+            renderHistoryUI();
+        }
+
+        function renderHistoryUI() {
+            const container = document.getElementById('historyList');
+            if (!container) return;
+            const list = getSearchHistory();
+            if (list.length === 0) {
+                container.innerHTML = `<div class="text-[11px] text-zinc-400 px-2 py-2 italic">No search history yet</div>`;
+                return;
+            }
+            container.innerHTML = list.map((item, idx) => `
+                <div onclick="triggerSearch('${item.replace(/'/g, "\\'")}')" class="group flex items-center justify-between gap-1.5 px-2 py-1 rounded-md text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 cursor-pointer transition">
+                    <div class="flex items-center gap-2 truncate">
+                        <i class="ph ph-clock-counter-clockwise text-xs shrink-0 opacity-60 group-hover:text-emerald-600 dark:group-hover:text-emerald-400"></i>
+                        <span class="truncate text-[11px]">${item}</span>
+                    </div>
+                    <button onclick="deleteHistoryItem(${idx}, event)" title="Delete" class="opacity-0 group-hover:opacity-100 hover:text-rose-500 p-0.5 rounded transition shrink-0">
+                        <i class="ph ph-trash text-xs"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('sidebarBackdrop');
+            const isHidden = sidebar.classList.contains('-translate-x-full');
+            if (isHidden) {
+                sidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.add('hidden');
+            }
+        }
+
+        function initTheme() {
+            const isDark = (localStorage.getItem('juris_theme') || 'light') === 'dark';
+            document.documentElement.classList.toggle('dark', isDark);
+            const label = document.getElementById('themeLabel');
+            const icon = document.getElementById('themeIcon');
+            if (label) label.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            if (icon) icon.className = isDark ? 'ph ph-sun text-sm text-amber-400' : 'ph ph-moon text-sm text-zinc-400';
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            document.documentElement.classList.toggle('dark', !isDark);
+            localStorage.setItem('juris_theme', isDark ? 'light' : 'dark');
+            const label = document.getElementById('themeLabel');
+            const icon = document.getElementById('themeIcon');
+            if (label) label.textContent = isDark ? 'Dark Mode' : 'Light Mode';
+            if (icon) icon.className = isDark ? 'ph ph-moon text-sm text-zinc-400' : 'ph ph-sun text-sm text-amber-400';
+        }
+
+        function showSearchHome() {
+            document.getElementById('homeHeroState').classList.remove('hidden');
+            document.getElementById('threadState').classList.add('hidden');
+            document.getElementById('libraryState').classList.add('hidden');
+            document.getElementById('heroInput').value = '';
+            document.getElementById('bottomInput').value = '';
+            
+            
+            document.getElementById('navLibraryBtn').className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 hover:text-zinc-900 dark:hover:text-zinc-200 transition text-left";
+        }
+
+        async function showLibraryView() {
+            document.getElementById('homeHeroState').classList.add('hidden');
+            document.getElementById('threadState').classList.add('hidden');
+            document.getElementById('libraryState').classList.remove('hidden');
+
+            document.getElementById('navLibraryBtn').className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 font-medium text-left transition";
+            
+
+            const accordionList = document.getElementById('statuteAccordionList');
+            accordionList.innerHTML = `<div class="text-xs text-zinc-400 py-6 text-center">Loading statutory corpus...</div>`;
+            try {
+                const res = await fetch('/api/statutes');
+                const statutes = await res.json();
+                accordionList.innerHTML = statutes.map((s, idx) => `
+                    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg overflow-hidden transition shadow-xs">
+                        <div onclick="toggleActAccordion('act_${idx}', '${s.statute.replace(/'/g, "\\'")}')" class="p-3.5 flex items-center justify-between cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/40 transition select-none">
+                            <div class="flex items-center gap-3 min-w-0">
+                                <div class="w-8 h-8 rounded-md bg-emerald-600/10 border border-emerald-600/20 text-emerald-700 dark:text-emerald-400 flex items-center justify-center shrink-0">
+                                    <i class="ph ph-book-bookmark text-base"></i>
+                                </div>
+                                <div class="truncate">
+                                    <h3 class="text-xs sm:text-sm font-medium text-zinc-900 dark:text-white truncate">${s.statute}</h3>
+                                    <span class="text-[11px] text-zinc-400 font-mono">${s.total_sections} Sections Indexed</span>
+                                </div>
+                            </div>
+                            <i id="icon_act_${idx}" class="ph ph-caret-down text-zinc-400 text-sm transition-transform duration-200 shrink-0 ml-2"></i>
+                        </div>
+                        <div id="act_${idx}" class="hidden border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/40 p-3 space-y-2.5">
+                            <input type="text" placeholder="Filter sections in this Act..." oninput="filterSections('act_${idx}', this.value)" class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-md px-3 py-1.5 text-xs text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-emerald-600 w-full"/>
+                            <div id="list_act_${idx}" class="space-y-1 max-h-80 overflow-y-auto pr-1"></div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch {
+                accordionList.innerHTML = `<div class="text-xs text-rose-500 py-4 text-center">Failed to load statutes list.</div>`;
+            }
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        const cachedSectionsMap = {};
+        window.renderedSectionsStore = {};
+
+        async function toggleActAccordion(actId, statuteTitle) {
+            const container = document.getElementById(actId);
+            const icon = document.getElementById(`icon_${actId}`);
+            const listEl = document.getElementById(`list_${actId}`);
+            const isHidden = container.classList.contains('hidden');
+            container.classList.toggle('hidden', !isHidden);
+            if (icon) {
+                icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
+            if (isHidden && !cachedSectionsMap[statuteTitle]) {
+                listEl.innerHTML = `<div class="text-xs text-zinc-400 py-2">Loading sections...</div>`;
+                const res = await fetch(`/api/statute/sections?statute=${encodeURIComponent(statuteTitle)}`);
+                cachedSectionsMap[statuteTitle] = await res.json();
+                renderSections(actId, cachedSectionsMap[statuteTitle]);
+            } else if (isHidden) {
+                renderSections(actId, cachedSectionsMap[statuteTitle]);
+            }
+        }
+
+        function renderSections(actId, sections) {
+            window.renderedSectionsStore[actId] = sections;
+            document.getElementById(`list_${actId}`).innerHTML = sections.map((s, idx) => `
+                <div onclick="openSectionFromStore('${actId}', ${idx})" class="bg-white dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800/60 border border-zinc-200/70 dark:border-zinc-800 rounded-md p-2.5 transition cursor-pointer flex items-center justify-between gap-3 text-left group">
+                    <div class="flex items-center gap-2.5 truncate">
+                        <span class="font-mono text-emerald-700 dark:text-emerald-400 font-medium text-xs shrink-0">Sec ${escapeHtml(s.section_number)}</span>
+                        <span class="text-xs text-zinc-800 dark:text-zinc-200 truncate font-sans">${escapeHtml(s.section_title)}</span>
+                    </div>
+                    <i class="ph ph-arrow-right text-zinc-400 group-hover:text-emerald-600 text-xs shrink-0 transition-transform group-hover:translate-x-0.5"></i>
+                </div>
+            `).join('');
+        }
+
+        function openSectionFromStore(actId, idx) {
+            const list = window.renderedSectionsStore && window.renderedSectionsStore[actId];
+            if (list && list[idx]) {
+                const s = list[idx];
+                openModal(s.statute, s.section_number, s.section_title, s.part, s.full_text);
+            }
+        }
+
+        function filterSections(actId, query) {
+            const statuteTitle = document.getElementById(actId).previousElementSibling.querySelector('h3').textContent;
+            const sections = cachedSectionsMap[statuteTitle] || [];
+            const q = query.toLowerCase().trim();
+            renderSections(actId, q ? sections.filter(s => s.section_number.toString().toLowerCase().includes(q) || s.section_title.toLowerCase().includes(q)) : sections);
+        }
+
+        function copyCitation(btn, statute, secNum) {
+            const citation = `Section ${secNum}, ${statute}`;
+            navigator.clipboard.writeText(citation).then(() => {
+                const origHTML = btn.innerHTML;
+                btn.innerHTML = `<i class="ph ph-check text-emerald-600 dark:text-emerald-400 text-xs"></i> <span class="text-emerald-600 dark:text-emerald-400 font-medium">Copied</span>`;
+                setTimeout(() => { btn.innerHTML = origHTML; }, 2000);
+            });
+        }
+
+        function openModal(statute, secNum, secTitle, part, rawText) {
+            document.getElementById('modalStatute').textContent = statute;
+            document.getElementById('modalTitle').textContent = `Section ${secNum}: ${secTitle}`;
+            document.getElementById('modalPart').textContent = part || '';
+            document.getElementById('modalBody').textContent = rawText;
+            currentFullText = `${statute}\nSection ${secNum}: ${secTitle}\n\n${rawText}`;
+            document.getElementById('modalBackdrop').classList.remove('hidden');
+        }
+
+        function closeModal() { document.getElementById('modalBackdrop').classList.add('hidden'); }
+        function copyModalText() { 
+            navigator.clipboard.writeText(currentFullText);
+            const btn = document.getElementById('copyBtn');
+            const orig = btn.innerHTML;
+            btn.innerHTML = `<i class="ph ph-check text-emerald-600 dark:text-emerald-400"></i> <span class="text-emerald-600 dark:text-emerald-400 font-medium">Copied</span>`;
+            setTimeout(() => { btn.innerHTML = orig; }, 2000);
+        }
+
+        window.searchResultsStore = [];
+        function openSearchResultModal(idx) {
+            const r = window.searchResultsStore && window.searchResultsStore[idx];
+            if (r) {
+                openModal(r.statute, r.section_number, r.section_title, r.part, r.full_text);
+            }
+        }
+        function copySearchResultCitation(idx, btn) {
+            const r = window.searchResultsStore && window.searchResultsStore[idx];
+            if (r) {
+                copyCitation(btn, r.statute, r.section_number);
+            }
+        }
+
+        async function triggerSearch(query) {
+            if (!query || !query.trim()) return;
+            const q = query.trim();
+            saveSearchQuery(q);
+            document.getElementById('homeHeroState').classList.add('hidden');
+            document.getElementById('libraryState').classList.add('hidden');
+            document.getElementById('threadState').classList.remove('hidden');
+            document.getElementById('threadTitle').textContent = `“${q}”`;
+            document.getElementById('answerBody').innerHTML = `<p class="animate-pulse text-zinc-400 flex items-center gap-2"><i class="ph ph-circle-notch animate-spin"></i> Analyzing statutory database...</p>`;
+            document.getElementById('operativeSections').innerHTML = '';
+
+            try {
+                const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+                const data = await res.json();
+                document.getElementById('answerBody').innerHTML = `<p>${data.legal_issue || "Statutory retrieval complete."}</p>`;
+                window.searchResultsStore = data.results || [];
+                document.getElementById('operativeSections').innerHTML = window.searchResultsStore.map((r, idx) => `
+                    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 sm:p-5 space-y-3 shadow-xs">
+                        
+                        <!-- Top Header Row with Clear Flex Separation -->
+                        <div class="flex items-center justify-between gap-3 text-xs border-b border-zinc-100 dark:border-zinc-800/80 pb-2.5">
+                            <span class="font-medium text-emerald-700 dark:text-emerald-400 uppercase tracking-wider text-[11px] shrink-0">${escapeHtml(r.statute)}</span>
+                            <span class="text-zinc-400 dark:text-zinc-500 font-mono text-[11px] truncate text-right">${escapeHtml(r.part || '')}</span>
+                        </div>
+
+                        <!-- Section Title -->
+                        <h3 class="font-semibold text-sm sm:text-base text-zinc-900 dark:text-white leading-snug">Section ${escapeHtml(r.section_number)}: ${escapeHtml(r.section_title)}</h3>
+                        
+                        <!-- Text Snippet -->
+                        <div class="bg-zinc-50 dark:bg-zinc-950 border border-zinc-200/80 dark:border-zinc-800/80 rounded-md p-3.5 text-xs sm:text-sm leading-relaxed text-zinc-700 dark:text-zinc-300 font-sans">
+                            ${escapeHtml(r.snippet || r.full_text || '')}
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex items-center justify-end gap-2 pt-1">
+                            <button onclick="copySearchResultCitation(${idx}, this)" class="text-xs bg-zinc-100 hover:bg-zinc-200/70 dark:bg-zinc-800 dark:hover:bg-zinc-700/80 border border-zinc-200 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 px-3 py-1.5 rounded-md transition flex items-center gap-1.5">
+                                <i class="ph ph-copy text-xs text-zinc-500"></i>
+                                <span>Copy Citation</span>
+                            </button>
+                            <button onclick="openSearchResultModal(${idx})" class="text-xs bg-emerald-50 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/50 border border-emerald-600/20 text-emerald-700 dark:text-emerald-400 px-3 py-1.5 rounded-md font-medium transition flex items-center gap-1.5">
+                                <span>View Full Section</span>
+                                <i class="ph ph-arrow-up-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById('answerBody').innerHTML = `<p class="text-rose-500 text-xs">Error executing statutory search.</p>`;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            renderHistoryUI();
+            ['heroInput', 'bottomInput'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            triggerSearch(el.value);
+                        }
+                    });
+                }
+            });
+            ['heroSubmitBtn', 'bottomSubmitBtn'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const inputId = id === 'heroSubmitBtn' ? 'heroInput' : 'bottomInput';
+                    el.addEventListener('click', () => {
+                        const input = document.getElementById(inputId);
+                        if (input) triggerSearch(input.value);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

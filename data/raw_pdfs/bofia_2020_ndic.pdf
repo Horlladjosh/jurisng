@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" class="is-loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="xTR8gdlKHxkRKnNqJY8TAmh2D1ng0vgRPMAclTKd" />
+    <meta name="description" content="Policy frameworks, quarterly reports, annual reports, case studies, and reference material." />
+
+    <title>Publications — NDIC</title>
+
+    <link rel="icon" type="image/png" href="https://ndic.gov.ng/assets/images/favicon-01.png" />
+
+    
+
+    <link rel="stylesheet" href="https://ndic.gov.ng/css/styles.css?v=1790953388" />
+    <link rel="stylesheet" href="https://ndic.gov.ng/css/fonts.css?v=1782910867" />
+    
+    <link rel="stylesheet" href="https://ndic.gov.ng/css/public/footer.css?v=1790952741" />
+
+    
+    
+    
+    <link rel="stylesheet" href="https://ndic.gov.ng/css/public/sections-local.css?v=1791035729" />
+     <link rel="preload" as="style" href="https://ndic.gov.ng/build/assets/app-Cg5DbD6b.css" /><link rel="modulepreload" as="script" href="https://ndic.gov.ng/build/assets/app-BvRk9kiK.js" /><link rel="stylesheet" href="https://ndic.gov.ng/build/assets/app-Cg5DbD6b.css" /><script type="module" src="https://ndic.gov.ng/build/assets/app-BvRk9kiK.js"></script>  
+
+    <style>
+        .news-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(44, 46, 129, 0.3);
+            background: rgba(44, 46, 129, 0.06);
+            color: #2c2e81;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+            z-index: 5;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .news-arrow:hover {
+            background: #2c2e81;
+            border-color: #2c2e81;
+            color: #fff;
+        }
+        .news-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+        .news-arrow-prev { left: 12px; }
+        .news-arrow-next { right: 12px; }
+        .news-slide { cursor: pointer; }
+    </style>
+
+    
+    <script>
+        (function () {
+            try {
+                var s = JSON.parse(localStorage.getItem("ndic-a11y") || "{}"),
+                    c = document.documentElement.classList,
+                    k = {
+                        grayscale: ["negative-contrast"],
+                        "high-contrast": ["negative-contrast", "light-bg"],
+                        "negative-contrast": ["grayscale", "high-contrast", "light-bg"],
+                        "light-bg": ["high-contrast", "negative-contrast"],
+                    };
+                [
+                    "grayscale",
+                    "high-contrast",
+                    "negative-contrast",
+                    "light-bg",
+                    "underline-links",
+                    "readable-font",
+                ].forEach(function (f) {
+                    if (!s[f]) return;
+                    if ((k[f] || []).some(function (x) { return c.contains("a11y-" + x); })) return;
+                    c.add("a11y-" + f);
+                });
+                if (s.textSize && s.textSize !== 16)
+                    document.documentElement.style.fontSize = s.textSize + "px";
+            } catch (e) {}
+        })();
+    </script>
+
+    
+        <link rel="stylesheet" href="https://ndic.gov.ng/css/public/publications-revamp.css?v=1785972181" />
+</head>
+
+<body class="cms-page cms-template-default" data-content-type="">
+
+    
+    <div id="site-preloader" role="presentation" aria-hidden="true">
+        <div class="preloader__logo">
+            <img
+                src="https://ndic.gov.ng/assets/logo/logo_blue.png"
+                alt="NDIC"
+                width="160"
+                height="48"
+                style="max-width: 160px; height: auto"
+                draggable="false"
+            />
+        </div>
+        <div class="preloader__bar">
+            <div class="preloader__fill"></div>
+        </div>
+    </div>
+
+    
+    <nav-bar active="publications"></nav-bar>
+
+    
+    <bread-crumbs>
+    <nav class="bc-bar" aria-label="Breadcrumb">
+        <div class="ndic-container">
+            <ol class="bc-list">
+                                    <li class="bc-item">
+                                                                            <a href="/"><svg class="bc-home" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.6 12 3.4l9 7.2" /><path d="M5.6 9.4V20h12.8V9.4" /></svg>Home</a>
+                                            </li>
+                                    <li class="bc-item">
+                        <svg class="bc-sep" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>                                                    <span class="bc-current" aria-current="page">Resources</span>
+                                            </li>
+                            </ol>
+        </div>
+    </nav>
+</bread-crumbs>
+
+    
+    
+    <main id="main-content" >
+                <div class="cms-public-page">
+                    <span class="sr-only cms-page-title">Publications</span>
+        
+                                <section
+                class="cms-region cms-region-body"
+                data-region="body"
+                 data-content-updated="2026-08-05T23:23:16.000000Z"                             >
+                
+                
+                                    
+                                        
+                                                                                                        <div class="px-page">
+        <section class="px-hero">
+            <div class="px-hero-bg" aria-hidden="true"></div>
+            <div class="ndic-container px-hero-inner">
+                                    <span class="px-eyebrow" data-px-reveal>NDIC Resources</span>
+                                                    <h1 class="px-hero-title" data-px-reveal style="--px-delay: 0.08s">
+                                                    Publications,
+                                                <span class="px-grad">on the record</span>
+                    </h1>
+                                                    <p class="px-hero-sub" data-px-reveal style="--px-delay: 0.16s">Annual reports, the NDIC Quarterly, case studies and policy frameworks. Every document the Corporation publishes, free to read and download.</p>
+                                            </div>
+        </section>
+    </div>
+                                                                                                            
+                                        
+                                                                                                        <div class="px-page">
+    <section class="px-body">
+        <div class="ndic-container">
+            <div class="px-layout">
+                <aside class="ib-aside">
+                    <button type="button" class="ib-sidebar-toggle" id="pub-sidebar-toggle" aria-expanded="false" aria-controls="pub-sidebar">
+                        <span id="pub-sidebar-toggle-label">Annual Reports</span>
+                        <svg class="ib-sidebar-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+                    </button>
+                    <div class="dir-sidebar ib-sidebar" id="pub-sidebar">
+                                                    <a
+                                class="dir-tab ib-tab dir-tab--active"
+                                href="https://ndic.gov.ng/publications?category=annual-report"
+                                data-category="annual-report"
+                            >Annual Reports</a>
+                                                    <a
+                                class="dir-tab ib-tab"
+                                href="https://ndic.gov.ng/publications?category=ndic-quarterly"
+                                data-category="ndic-quarterly"
+                            >NDIC Quarterly</a>
+                                                    <a
+                                class="dir-tab ib-tab"
+                                href="https://ndic.gov.ng/publications?category=case-studies"
+                                data-category="case-studies"
+                            >Case Studies</a>
+                                                    <a
+                                class="dir-tab ib-tab"
+                                href="https://ndic.gov.ng/publications?category=policy-frameworks"
+                                data-category="policy-frameworks"
+                            >Policy Frameworks</a>
+                                                    <a
+                                class="dir-tab ib-tab"
+                                href="https://ndic.gov.ng/publications?category=others"
+                                data-category="others"
+                            >Other Publications</a>
+                                                
+                        <a class="dir-tab ib-tab" href="https://ndicdatabank.org/" target="_blank" rel="noopener">
+                            NDIC Databank
+                        </a>
+                    </div>
+                </aside>
+
+                <div class="ib-panel pub-panel">
+                    <div id="pub-list-view">
+                        <h2 class="pub-heading">
+                            <span id="pub-heading-title">Annual Reports</span>
+                            <span class="pub-heading-accent" id="pub-heading-accent">Year-end Reports &amp; Financial Statements</span>
+                        </h2>
+
+                        
+                        <div id="pub-license" class="pub-license"  hidden >
+                            <a
+                                href="https://creativecommons.org/licenses/by-nc/4.0/"
+                                target="_blank"
+                                rel="noopener license"
+                                class="pub-license-badge"
+                                aria-label="Creative Commons Attribution-NonCommercial 4.0 International License"
+                            >
+                                <img
+                                    src="/assets/images/cc-by-nc-88x31.png"
+                                    alt="Creative Commons Attribution-NonCommercial 4.0 International License"
+                                    width="88"
+                                    height="31"
+                                    loading="lazy"
+                                />
+                            </a>
+                            <p class="pub-license-text">This Journal is licensed under a Creative Commons Attribution-Non Commercial 4.0 International License.</p>
+                        </div>
+
+                        <div class="pub-toolbar">
+                            <div class="dir-search-box pub-search-box">
+                                <svg class="dir-search-icon" width="18" height="18" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15.4995 15.5288C15.8395 15.1912 16.3851 15.1912 16.7251 15.5288L18.9722 17.3432H19.0112C19.4656 17.8027 19.4657 18.5479 19.0112 19.0073C18.5567 19.4668 17.8194 19.4667 17.3647 19.0073L15.4995 16.8696C15.3234 16.6921 15.2241 16.4511 15.2241 16.1997C15.2241 15.9481 15.3232 15.7064 15.4995 15.5288ZM9.3042 1.75926C11.3051 1.75926 13.2242 2.56269 14.6392 3.99266C16.0541 5.42279 16.849 7.36274 16.8491 9.38524C16.8491 13.5971 13.4713 17.0122 9.3042 17.0122C5.13723 17.0121 1.75928 13.5971 1.75928 9.38524C1.75946 5.17357 5.13735 1.75938 9.3042 1.75926Z" fill="#2C2E81" fill-opacity="0.5"/></svg>
+                                <input id="pub-search" type="text" class="dir-search-input" placeholder="Search publications..." aria-label="Search publications" />
+                            </div>
+
+                            <div class="px-tools">
+                                
+                                <div class="pub-range" role="group" aria-label="Filter by year range">
+                                    <svg class="pub-range-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                                        <line x1="16" y1="2" x2="16" y2="6" />
+                                        <line x1="8" y1="2" x2="8" y2="6" />
+                                        <line x1="3" y1="10" x2="21" y2="10" />
+                                    </svg>
+                                    <select id="pub-year-from" class="pub-range-select" aria-label="From year">
+                                                                                    <option value="2024" >2024</option>
+                                                                                    <option value="2023" >2023</option>
+                                                                                    <option value="2022" >2022</option>
+                                                                                    <option value="2021" >2021</option>
+                                                                                    <option value="2020" >2020</option>
+                                                                                    <option value="2019" selected>2019</option>
+                                                                            </select>
+                                    <span class="pub-range-sep" aria-hidden="true">&ndash;</span>
+                                    <select id="pub-year-to" class="pub-range-select" aria-label="To year">
+                                                                                    <option value="2024" selected>2024</option>
+                                                                                    <option value="2023" >2023</option>
+                                                                                    <option value="2022" >2022</option>
+                                                                                    <option value="2021" >2021</option>
+                                                                                    <option value="2020" >2020</option>
+                                                                                    <option value="2019" >2019</option>
+                                                                            </select>
+                                </div>
+                                
+                                <button
+                                    type="button"
+                                    class="pub-sort-btn"
+                                    id="pub-sort-toggle"
+                                    aria-label="Newest first. Sort by date, activate for oldest first"
+                                >
+                                    <svg class="pub-sort-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <line x1="12" y1="4" x2="12" y2="20" />
+                                        <polyline points="6 14 12 20 18 14" />
+                                    </svg>
+                                    <span id="pub-sort-label">Newest first</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="pub-list" class="pub-list">
+                                                            <article class="pub-card">
+                                    <h3 class="pub-card-title">NDIC Annual Report 2024</h3>
+                                                                            <p class="pub-card-subtitle">Audited financial statements and operational highlights for 2024.</p>
+                                                                                                                <p class="pub-card-year">Year Published: <strong>2024</strong></p>
+                                                                        <div class="pub-card-actions">
+                                        
+                                        <a class="pub-btn pub-btn--preview" href="https://drive.google.com/file/d/1yg14ZPDMZ009AG14SwDrCY3I6cqli3CV/view?usp=drive_link" target="_blank" rel="noopener" data-action="preview" data-idx="0">
+                                            Preview Document
+                                        </a>
+                                        <a class="pub-btn pub-btn--download" href="https://drive.google.com/file/d/1yg14ZPDMZ009AG14SwDrCY3I6cqli3CV/view?usp=drive_link" target="_blank" rel="noopener" download>
+                                            Download Document
+                                        </a>
+                                    </div>
+                                </article>
+                                                            <article class="pub-card">
+                                    <h3 class="pub-card-title">NDIC Annual Report 2023</h3>
+                                                                            <p class="pub-card-subtitle">Audited financial statements and operational highlights for 2023.</p>
+                                                                                                                <p class="pub-card-year">Year Published: <strong>2023</strong></p>
+                                                                        <div class="pub-card-actions">
+                                        
+                                        <a class="pub-btn pub-btn--preview" href="/storage/cms/media/2023-preliminaries-0df1a38b-903c-4e0f-a821-4cbabd634fc6.pdf" target="_blank" rel="noopener" data-action="preview" data-idx="1">
+                                            Preview Document
+                                        </a>
+                                        <a class="pub-btn pub-btn--download" href="/storage/cms/media/2023-preliminaries-0df1a38b-903c-4e0f-a821-4cbabd634fc6.pdf" target="_blank" rel="noopener" download>
+                                            Download Document
+                                        </a>
+                                    </div>
+                                </article>
+                                                            <article class="pub-card">
+                                    <h3 class="pub-card-title">NDIC Annual Report 2022</h3>
+                                                                            <p class="pub-card-subtitle">Audited financial statements and operational highlights for 2022.</p>
+                                                                                                                <p class="pub-card-year">Year Published: <strong>2022</strong></p>
+                                                                        <div class="pub-card-actions">
+                                        
+                                        <a class="pub-btn pub-btn--preview" href="https://ndic.gov.ng/wp-content/uploads/2025/12/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf" target="_blank" rel="noopener" data-action="preview" data-idx="2">
+                                            Preview Document
+                                        </a>
+                                        <a class="pub-btn pub-btn--download" href="https://ndic.gov.ng/wp-content/uploads/2025/12/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf" target="_blank" rel="noopener" download>
+                                            Download Document
+                                        </a>
+                                    </div>
+                                </article>
+                                                            <article class="pub-card">
+                                    <h3 class="pub-card-title">NDIC Annual Report 2021</h3>
+                                                                            <p class="pub-card-subtitle">Audited financial statements and operational highlights for 2021.</p>
+                                                                                                                <p class="pub-card-year">Year Published: <strong>2021</strong></p>
+                                                                        <div class="pub-card-actions">
+                                        
+                                        <a class="pub-btn pub-btn--preview" href="https://ndic.gov.ng/wp-content/uploads/2025/12/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf" target="_blank" rel="noopener" data-action="preview" data-idx="3">
+                                            Preview Document
+                                        </a>
+                                        <a class="pub-btn pub-btn--download" href="https://ndic.gov.ng/wp-content/uploads/2025/12/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf" target="_blank" rel="noopener" download>
+                                            Download Document
+                                        </a>
+                                    </div>
+                                </article>
+                                                            <article class="pub-card">
+                                    <h3 class="pub-card-title">NDIC Annual Report 2020</h3>
+                                                                            <p class="pub-card-subtitle">Audited financial statements and operational highlights for 2020.</p>
+                                                                                                                <p class="pub-card-year">Year Published: <strong>2020</strong></p>
+                                                                        <div class="pub-card-actions">
+                                        
+                                        <a class="pub-btn pub-btn--preview" href="https://ndic.gov.ng/wp-content/uploads/2021/11/NDIC-2020-Annual-Report.pdf" target="_blank" rel="noopener" data-action="preview" data-idx="4">
+                                            Preview Document
+                                        </a>
+                                        <a class="pub-btn pub-btn--download" href="https://ndic.gov.ng/wp-content/uploads/2021/11/NDIC-2020-Annual-Report.pdf" target="_blank" rel="noopener" download>
+                                            Download Document
+                                        </a>
+                                    </div>
+                                </article>
+                                                            <article class="pub-card">
+                                    <h3 class="pub-card-title">NDIC Annual Report 2019</h3>
+                                                                            <p class="pub-card-subtitle">Audited financial statements and operational highlights for 2019.</p>
+                                                                                                                <p class="pub-card-year">Year Published: <strong>2019</strong></p>
+                                                                        <div class="pub-card-actions">
+                                        
+                                        <a class="pub-btn pub-btn--preview" href="https://ndic.gov.ng/wp-content/uploads/2020/12/2019%20Annual%20Report%20Press.pdf" target="_blank" rel="noopener" data-action="preview" data-idx="5">
+                                            Preview Document
+                                        </a>
+                                        <a class="pub-btn pub-btn--download" href="https://ndic.gov.ng/wp-content/uploads/2020/12/2019%20Annual%20Report%20Press.pdf" target="_blank" rel="noopener" download>
+                                            Download Document
+                                        </a>
+                                    </div>
+                                </article>
+                                                            <article class="pub-card">
+                                    <h3 class="pub-card-title">2023 Annual Report</h3>
+                                                                                                            <div class="pub-card-actions">
+                                        
+                                        <a class="pub-btn pub-btn--preview" href="/storage/cms/media/2023-preliminaries-0df1a38b-903c-4e0f-a821-4cbabd634fc6.pdf" target="_blank" rel="noopener" data-action="preview" data-idx="6">
+                                            Preview Document
+                                        </a>
+                                        <a class="pub-btn pub-btn--download" href="/storage/cms/media/2023-preliminaries-0df1a38b-903c-4e0f-a821-4cbabd634fc6.pdf" target="_blank" rel="noopener" download>
+                                            Download Document
+                                        </a>
+                                    </div>
+                                </article>
+                                                            <article class="pub-card">
+                                    <h3 class="pub-card-title">NDIC Act 2023</h3>
+                                                                                                            <div class="pub-card-actions">
+                                        
+                                        <a class="pub-btn pub-btn--preview" href="/storage/cms/media/ndic-act-2023-latest-14ab1a0a-82c7-4e05-9419-4b6e0afbfbc8.pdf" target="_blank" rel="noopener" data-action="preview" data-idx="7">
+                                            Preview Document
+                                        </a>
+                                        <a class="pub-btn pub-btn--download" href="/storage/cms/media/ndic-act-2023-latest-14ab1a0a-82c7-4e05-9419-4b6e0afbfbc8.pdf" target="_blank" rel="noopener" download>
+                                            Download Document
+                                        </a>
+                                    </div>
+                                </article>
+                                                    </div>
+
+                        <nav class="faq-pagination pub-pagination" id="pub-pagination" aria-label="Publications pagination"></nav>
+                    </div>
+
+                    <div id="pub-reader-view" hidden>
+                        <header class="pub-reader-header">
+                            <div class="pub-reader-titles">
+                                <h2 class="pub-reader-title" id="pub-reader-title"></h2>
+                                <p class="pub-reader-year">
+                                    Year Published:
+                                    <span class="pub-reader-year-val" id="pub-reader-year">&mdash;</span>
+                                </p>
+                            </div>
+                            <button type="button" class="pub-goback-btn" id="pub-goback">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <line x1="19" y1="12" x2="5" y2="12" />
+                                    <polyline points="12 19 5 12 12 5" />
+                                </svg>
+                                Go Back
+                            </button>
+                        </header>
+                        
+                        <div class="pub-reader-frame-wrap">
+                            <iframe id="pub-reader-iframe" class="pub-reader-iframe" title="Publication reader" src="about:blank"></iframe>
+                        </div>
+                        <div class="pub-reader-actions">
+                            <a id="pub-reader-download" class="pub-btn pub-btn--download" href="#" download>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                Download Document
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+                                                                                                            
+                                        
+                                                                                                        <p>This Journal is licensed under a&nbsp;<a target="_blank" rel="noopener noreferrer nofollow" href="https://creativecommons.org/licenses/by-nc/4.0/"><strong><em>Creative Commons Attribution-Non Commercial 4.0 International License</em></strong></a></p>
+                                                                                                    </section>
+            </div>
+    </main>
+
+    
+    <div
+    id="image-modal"
+    class="image-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="image-modal-title"
+    hidden
+>
+    <div class="image-modal__backdrop" data-close-modal></div>
+    <div class="image-modal__panel" role="document">
+        <button type="button" class="image-modal__close" data-close-modal aria-label="Close image">
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M16.8118 28.5635C16.4635 28.5635 16.1152 28.4352 15.8402 28.1602C15.3085 27.6285 15.3085 26.7485 15.8402 26.2168L26.2168 15.8402C26.7485 15.3085 27.6285 15.3085 28.1602 15.8402C28.6918 16.3718 28.6918 17.2518 28.1602 17.7835L17.7835 28.1602C17.5268 28.4352 17.1602 28.5635 16.8118 28.5635Z" fill="white" />
+                <path d="M27.1885 28.5635C26.8402 28.5635 26.4918 28.4352 26.2168 28.1602L15.8402 17.7835C15.3085 17.2518 15.3085 16.3718 15.8402 15.8402C16.3718 15.3085 17.2518 15.3085 17.7835 15.8402L28.1602 26.2168C28.6918 26.7485 28.6918 27.6285 28.1602 28.1602C27.8852 28.4352 27.5368 28.5635 27.1885 28.5635Z" fill="white" />
+                <path d="M27.4993 41.7077H16.4993C6.54435 41.7077 2.29102 37.4543 2.29102 27.4993V16.4993C2.29102 6.54435 6.54435 2.29102 16.4993 2.29102H27.4993C37.4543 2.29102 41.7077 6.54435 41.7077 16.4993V27.4993C41.7077 37.4543 37.4543 41.7077 27.4993 41.7077ZM16.4993 5.04102C8.04768 5.04102 5.04102 8.04768 5.04102 16.4993V27.4993C5.04102 35.951 8.04768 38.9577 16.4993 38.9577H27.4993C35.951 38.9577 38.9577 35.951 38.9577 27.4993V16.4993C38.9577 8.04768 35.951 5.04102 27.4993 5.04102H16.4993Z" fill="white" />
+            </svg>
+        </button>
+
+        <h3 id="image-modal-title" class="image-modal__title">The NDIC Story in Motion</h3>
+
+        <div class="image-modal__media">
+            <button type="button" class="image-modal__nav image-modal__nav--prev" data-image-prev aria-label="Previous">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+            </button>
+            <div class="image-modal__viewport">
+                <div class="image-modal__track" id="image-modal-track"></div>
+            </div>
+            <button type="button" class="image-modal__nav image-modal__nav--next" data-image-next aria-label="Next">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="9 18 15 12 9 6" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="image-modal__dots" id="image-modal-dots" role="tablist" aria-label="Choose page"></div>
+
+        
+        <a href="https://ndic.gov.ng/articles" class="image-modal__cta">See More</a>
+    </div>
+</div>
+
+    
+    <footer-bar></footer-bar>
+    <floating-action></floating-action>
+    <accessibility-widget></accessibility-widget>
+    
+    <scroll-top></scroll-top>
+
+    
+            <script>
+            window.NDIC_CMS_DATA = JSON.parse('{\u0022\\\/js\\\/data\\\/publications.json\u0022:{\u0022headings\u0022:{\u0022annual-report\u0022:{\u0022title\u0022:\u0022Annual Reports\u0022,\u0022accent\u0022:\u0022Year-end Reports \\u0026 Financial Statements\u0022},\u0022ndic-quarterly\u0022:{\u0022title\u0022:\u0022NDIC Quarterly\u0022,\u0022accent\u0022:\u0022Advancing Knowledge in Banking \\u0026 Finance\u0022},\u0022case-studies\u0022:{\u0022title\u0022:\u0022Case Studies\u0022,\u0022accent\u0022:\u0022Lessons from the Field\u0022},\u0022policy-frameworks\u0022:{\u0022title\u0022:\u0022Policy Frameworks\u0022,\u0022accent\u0022:\u0022Regulatory \\u0026 Operational Policy Documents\u0022},\u0022others\u0022:{\u0022title\u0022:\u0022Other Publications\u0022,\u0022accent\u0022:\u0022Research Notes, Guidelines \\u0026 Reference Material\u0022}},\u0022data\u0022:{\u0022annual-report\u0022:[{\u0022title\u0022:\u0022NDIC Annual Report 2024\u0022,\u0022subtitle\u0022:\u0022Audited financial statements and operational highlights for 2024.\u0022,\u0022year\u0022:2024,\u0022date\u0022:\u00222025-03-31\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/drive.google.com\\\/file\\\/d\\\/1yg14ZPDMZ009AG14SwDrCY3I6cqli3CV\\\/view?usp=drive_link\u0022},{\u0022title\u0022:\u0022NDIC Annual Report 2023\u0022,\u0022subtitle\u0022:\u0022Audited financial statements and operational highlights for 2023.\u0022,\u0022year\u0022:2023,\u0022date\u0022:\u00222024-03-28\u0022,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/2023-preliminaries-0df1a38b-903c-4e0f-a821-4cbabd634fc6.pdf\u0022},{\u0022title\u0022:\u0022NDIC Annual Report 2022\u0022,\u0022subtitle\u0022:\u0022Audited financial statements and operational highlights for 2022.\u0022,\u0022year\u0022:2022,\u0022date\u0022:\u00222023-03-30\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Annual Report 2021\u0022,\u0022subtitle\u0022:\u0022Audited financial statements and operational highlights for 2021.\u0022,\u0022year\u0022:2021,\u0022date\u0022:\u00222022-03-25\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Annual Report 2020\u0022,\u0022subtitle\u0022:\u0022Audited financial statements and operational highlights for 2020.\u0022,\u0022year\u0022:2020,\u0022date\u0022:\u00222021-03-31\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2021\\\/11\\\/NDIC-2020-Annual-Report.pdf\u0022},{\u0022title\u0022:\u0022NDIC Annual Report 2019\u0022,\u0022subtitle\u0022:\u0022Audited financial statements and operational highlights for 2019.\u0022,\u0022year\u0022:2019,\u0022date\u0022:\u00222020-04-07\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2020\\\/12\\\/2019%20Annual%20Report%20Press.pdf\u0022},{\u0022title\u0022:\u00222023 Annual Report\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/2023-preliminaries-0df1a38b-903c-4e0f-a821-4cbabd634fc6.pdf\u0022},{\u0022title\u0022:\u0022NDIC Act 2023\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/ndic-act-2023-latest-14ab1a0a-82c7-4e05-9419-4b6e0afbfbc8.pdf\u0022}],\u0022ndic-quarterly\u0022:[{\u0022title\u0022:\u0022NDIC Quarterly Vol 39 No 34\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the Fourth Quarter of 2024.\u0022,\u0022year\u0022:2024,\u0022date\u0022:\u00222024-12-20\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 39 No 33\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the Third Quarter of 2024.\u0022,\u0022year\u0022:2024,\u0022date\u0022:\u00222024-09-30\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 39 No 32\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the Second Quarter of 2024.\u0022,\u0022year\u0022:2024,\u0022date\u0022:\u00222024-06-28\u0022,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/ndic-quarterly-vol-39-no-12-2024-review-of-macroeconomic-developments-in-the-second-quarter-of-2024-109fff21-925c-4053-b64c-a93b7c001a9c.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 39 No 31\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the First Quarter of 2024.\u0022,\u0022year\u0022:2024,\u0022date\u0022:\u00222024-03-29\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 38 No 30\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the Fourth Quarter of 2023.\u0022,\u0022year\u0022:2023,\u0022date\u0022:\u00222023-12-21\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 38 No 29\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the Third Quarter of 2023.\u0022,\u0022year\u0022:2023,\u0022date\u0022:\u00222023-09-29\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 38 No 28\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the Second Quarter of 2023.\u0022,\u0022year\u0022:2023,\u0022date\u0022:\u00222023-06-30\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 38 No 27\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the First Quarter of 2023.\u0022,\u0022year\u0022:2023,\u0022date\u0022:\u00222023-03-31\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 37 No 26\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the Fourth Quarter of 2022.\u0022,\u0022year\u0022:2022,\u0022date\u0022:\u00222022-12-22\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 37 No 25\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the Third Quarter of 2022.\u0022,\u0022year\u0022:2022,\u0022date\u0022:\u00222022-09-30\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 37 No 24\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the Second Quarter of 2022.\u0022,\u0022year\u0022:2022,\u0022date\u0022:\u00222022-06-29\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Vol 37 No 23\u0022,\u0022subtitle\u0022:\u0022Review of Macroeconomic Developments in the First Quarter of 2022.\u0022,\u0022year\u0022:2022,\u0022date\u0022:\u00222022-03-31\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Submission Guidelines\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/ndic-quarterly-submission-guidelines-b63c525c-d905-466e-90a2-c6cd59c28a19.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Special Edition 2014\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/ndic-quarterly-special-edition-2014-77219bd9-adae-4784-8152-aff446dea0f5.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly September - December 2012\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/ndic-quarterly-september-december-2017-e6bbe97a-2ba0-423f-a0ef-7c7cda693623.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly September-December 2013\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/ndic-quarterly-september-december-2013-b8a3111c-6822-4ce4-a604-f23fdc9a2824.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly September 2010\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/ndic-quarterly-september-2010-6e852afc-42a8-4ddc-97bc-02b78b0922f5.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly March June 2014\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/ndic-quarterly-march-june-2014-b25020a9-98e7-413d-9c92-112b31c2ea70.pdf\u0022},{\u0022title\u0022:\u0022NDIC Quarterly Journal Repository Policy\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/ndic-quarterly-journal-repository-policy-6bf888c0-cad8-4ea5-861f-c1f87bd85093.pdf\u0022},{\u0022title\u0022:\u0022March - June 2020\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/march-june20201-2-1ddb93b3-aa23-40b3-9475-b4cf54cd5d22.pdf\u0022},{\u0022title\u0022:\u0022March - June 2015\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/mar-jun20151-2-c2df8a6f-b0aa-4cde-a2fa-8cea40af8d1a.pdf\u0022},{\u0022title\u0022:\u0022March - June 2018\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/mar-jun20181-2-e4117f6b-1d51-434b-96c9-acef2875dc26.pdf\u0022},{\u0022title\u0022:\u0022March-June 2017\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/march-june20171-2-1-e32039e2-5e6a-4b35-9417-ef5a0ad8b4b6.pdf\u0022},{\u0022title\u0022:\u0022FINANCIAL DEVELOPMENT AND ENERGY CONSUMPTION NEXUS IN NIGERIA\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/financial-development-and-energy-consumption-nexus-in-nigeria-556cde4f-294b-4d78-a964-9bbde835e445.pdf\u0022},{\u0022title\u0022:\u0022Financial Condition and Performance of Deposit Money Banks in Third Quarter 2023\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/financial-condition-and-performance-of-deposit-money-banks-in-third-quarter-2023-2bc972fc-1daa-4a19-986f-42a0f2734669.pdf\u0022},{\u0022title\u0022:\u0022Financial Condition and Performance of Deposit Money Banks in the Fourth Quarter 2023\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/financial-condition-and-performance-of-deposit-money-banks-in-the-fourth-quarter-2023-7ffa989c-cb37-42b3-9658-96885fed4c53.pdf\u0022},{\u0022title\u0022:\u0022Activities of the NDIC in the Third Quarter 2023\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/activities-of-the-ndic-in-the-third-quarter-2023-dafab603-9962-4e4a-bf81-25f5e0491e44.pdf\u0022},{\u0022title\u0022:\u0022Activities of the NDIC in the Second Quarter 2023\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/activities-of-the-ndic-in-the-second-quarter-2023-460420a0-b6ed-4bed-9811-dab34bab65a3.pdf\u0022},{\u0022title\u0022:\u0022Activities of the NDIC in the Fourth Quarter 2023\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/activities-of-the-ndic-in-the-fourth-quarter-2023-9339d7f2-67b1-4d08-b66a-ecbfb83eb384.pdf\u0022},{\u0022title\u0022:\u00222024 -1st and 2nd Quarterly Journal\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/ndic-quarterly-1st-2nd-2024-compiled-fe745757-9ad6-483f-b8a9-03c1163f1b05.pdf\u0022}],\u0022case-studies\u0022:[{\u0022title\u0022:\u0022Heritage Bank Resolution Case Study\u0022,\u0022subtitle\u0022:\u0022Lessons from the orderly liquidation and depositor reimbursement process.\u0022,\u0022year\u0022:2024,\u0022date\u0022:\u00222024-11-15\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Microfinance Sector Stress Review\u0022,\u0022subtitle\u0022:\u0022Examining stress patterns across the microfinance subsector.\u0022,\u0022year\u0022:2023,\u0022date\u0022:\u00222023-08-09\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Premium Structure Reform — Retrospective\u0022,\u0022subtitle\u0022:\u0022Reviewing the impact of the 2018 premium structure reforms.\u0022,\u0022year\u0022:2022,\u0022date\u0022:\u00222022-05-16\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Mobile Money Operator Supervision\u0022,\u0022subtitle\u0022:\u0022Early lessons supervising PSBs and mobile money operators.\u0022,\u0022year\u0022:2021,\u0022date\u0022:\u00222021-10-02\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2020\\\/08\\\/FRAMEWORK-FOR-THE-ESTABLISHMENT-OF-PASS-THROUGH-DEPOSIT-INSURANCE-FOR-SUBSCRIBERS-OF-MOBILE-MONEY-OPERATORS-IN-NIGERIA.pdf\u0022}],\u0022policy-frameworks\u0022:[{\u0022title\u0022:\u0022Deposit Insurance Framework\u0022,\u0022subtitle\u0022:\u0022Core policy document outlining coverage rules and operational procedures.\u0022,\u0022year\u0022:2024,\u0022date\u0022:\u00222024-10-12\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Bank Resolution Policy\u0022,\u0022subtitle\u0022:\u0022Framework for resolving failing insured institutions in an orderly manner.\u0022,\u0022year\u0022:2024,\u0022date\u0022:\u00222024-06-04\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Risk-Based Supervision Guidelines\u0022,\u0022subtitle\u0022:\u0022Supervisory approach prioritising institutions by risk profile.\u0022,\u0022year\u0022:2023,\u0022date\u0022:\u00222023-11-22\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Premium Assessment Framework\u0022,\u0022subtitle\u0022:\u0022Methodology for computing annual insurance premiums from insured banks.\u0022,\u0022year\u0022:2023,\u0022date\u0022:\u00222023-07-18\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Depositor Payout Procedure\u0022,\u0022subtitle\u0022:\u0022Standard operating procedure for reimbursing depositors of closed banks.\u0022,\u0022year\u0022:2022,\u0022date\u0022:\u00222022-09-05\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Anti-Money Laundering Policy\u0022,\u0022subtitle\u0022:\u0022NDIC\\u0027s AML\\\/CFT compliance policy for insured institutions.\u0022,\u0022year\u0022:2022,\u0022date\u0022:\u00222022-03-14\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Whistleblower Policy\u0022,\u0022subtitle\u0022:\u0022Procedure for reporting misconduct and protecting whistleblowers.\u0022,\u0022year\u0022:2021,\u0022date\u0022:\u00222021-12-01\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Integrated Service Charter 2023\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/integrated-service-charter-2023-480bb73a-119c-47d5-ba3a-341e4aa4dc3d.pdf\u0022},{\u0022title\u0022:\u0022Guidelines on Financial and Technical Assistance to Insured Institutions\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/framework-for-the-establishment-of-pass-through-deposit-insurance-for-subscribers-of-mobile-money-operators-in-nigeria-8d36309b-b48e-4f52-b320-1f602bfbf9b9.pdf\u0022},{\u0022title\u0022:\u0022Framework for Pass-Through Deposit Insurance for Mobile Money Subscribers\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/framework-for-the-establishment-of-pass-through-deposit-insurance-for-subscribers-of-mobile-money-operators-in-nigeria-8d36309b-b48e-4f52-b320-1f602bfbf9b9.pdf\u0022},{\u0022title\u0022:\u0022Examiner\\u0027s Code of Conduct\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/code-of-conduct-for-examiners-0739b5b0-a913-4bc8-9751-cb9cd7042302.pdf\u0022},{\u0022title\u0022:\u0022BCMS Policy\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/bcms-policy-6dc0ce56-d3d5-4788-91a7-a93f7806ac32.pdf\u0022},{\u0022title\u0022:\u0022Approved Revised Framework for DPAS of NDIC\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/approved-revised-framework-for-dpas-of-ndic-b2e16da5-12f0-4bff-a9d4-fed8abf0e0c9.pdf\u0022}],\u0022others\u0022:[{\u0022title\u0022:\u0022Deposit Insurance Awareness Booklet\u0022,\u0022subtitle\u0022:\u0022Consumer-facing explainer on coverage limits and eligibility.\u0022,\u0022year\u0022:2024,\u0022date\u0022:\u00222024-04-10\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022NDIC Public Engagement Report\u0022,\u0022subtitle\u0022:\u0022Summary of depositor engagement and public sensitisation activities.\u0022,\u0022year\u0022:2023,\u0022date\u0022:\u00222023-12-05\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Research Note: Financial Inclusion\u0022,\u0022subtitle\u0022:\u0022Selected working notes on financial inclusion metrics and coverage.\u0022,\u0022year\u0022:2022,\u0022date\u0022:\u00222022-07-21\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/ndic.gov.ng\\\/wp-content\\\/uploads\\\/2025\\\/12\\\/NDIC-Quarterly-Vol-39-No-34-2024-%E2%80%93-Review-of-Macroeconomic-Developments-in-the-Fourth-Quarter-of-2024.pdf\u0022},{\u0022title\u0022:\u0022Test Speech\u0022,\u0022subtitle\u0022:\u0022test summary\u0022,\u0022year\u0022:2021,\u0022date\u0022:\u00222021-01-01\u0022,\u0022pdfUrl\u0022:\u0022https:\\\/\\\/docs.google.com\\\/document\\\/d\\\/1TIH2cIfspiPqN19K3uPHq6XjL0f5ayx0Kf2iaHytThk\\\/edit?tab=t.0\u0022},{\u0022title\u0022:\u0022NDIC 25th Anniversary\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022#\u0022},{\u0022title\u0022:\u0022Issues in Funding DIS\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/issues-in-funding-of-dis-b2f57bc0-7408-47a8-ab0a-e248fc0462cc.pdf\u0022},{\u0022title\u0022:\u002230 Years of Deposit Insurance in Nigeria\u0022,\u0022subtitle\u0022:\u0022\u0022,\u0022year\u0022:null,\u0022date\u0022:null,\u0022pdfUrl\u0022:\u0022\\\/storage\\\/cms\\\/media\\\/30-years-of-deposit-insurance-in-nigeria-0648c8ac-94d1-4092-9b0f-2607c2914cac.pdf\u0022}]}}}');
+        </script>
+                <script>
+            window.__NDIC_NAV__ = JSON.parse('{\u0022primary\u0022:{\u0022id\u0022:1,\u0022name\u0022:\u0022Primary Navigation\u0022,\u0022slug\u0022:\u0022primary\u0022,\u0022location\u0022:\u0022header\u0022,\u0022items\u0022:[{\u0022id\u0022:1,\u0022label\u0022:\u0022About NDIC\u0022,\u0022url\u0022:\u0022\\\/about\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022image\u0022:\u0022\\\/assets\\\/images\\\/hero-building.webp\u0022,\u0022description\u0022:\u0022Established in 1988, NDIC is Nigeria\\u0027s statutory deposit insurer, safeguarding depositors and promoting confidence in the financial system through sound regulatory oversight.\u0022},\u0022children\u0022:[{\u0022id\u0022:2,\u0022label\u0022:\u0022Overview\u0022,\u0022url\u0022:\u0022\\\/about#overview\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Who we are and what we do\u0022}},{\u0022id\u0022:3,\u0022label\u0022:\u0022Our History\u0022,\u0022url\u0022:\u0022\\\/about#history\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022From 1988 to present day\u0022}},{\u0022id\u0022:4,\u0022label\u0022:\u0022Vision, Mission \\u0026 Values\u0022,\u0022url\u0022:\u0022\\\/about#vision\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022The principles that guide NDIC\u0022}},{\u0022id\u0022:5,\u0022label\u0022:\u0022Mandate, Powers \\u0026 Functions\u0022,\u0022url\u0022:\u0022\\\/our-mandate\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Our statutory role and responsibilities\u0022}},{\u0022id\u0022:7,\u0022label\u0022:\u0022Organisation Structure\u0022,\u0022url\u0022:\u0022\\\/about#orgchart\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Departments \\u0026 reporting lines\u0022}},{\u0022id\u0022:6,\u0022label\u0022:\u0022Leadership \\u0026 Governance\u0022,\u0022url\u0022:\u0022\\\/about#board\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Board, MD \\u0026 executive team\u0022}},{\u0022id\u0022:8,\u0022label\u0022:\u0022Directorate \\u0026 Zonal Offices\u0022,\u0022url\u0022:\u0022\\\/directorate\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Departmental directors \\u0026 regional controllers\u0022}}]},{\u0022id\u0022:9,\u0022label\u0022:\u0022Your Protection\u0022,\u0022url\u0022:\u0022\\\/our-mandate\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022image\u0022:\u0022\\\/assets\\\/images\\\/shield-protection.webp\u0022,\u0022description\u0022:\u0022NDIC guarantees deposits up to the maximum covered limit per depositor per bank. Understand your coverage, monitor your bank\\u0027s status, and know your rights if a bank fails.\u0022},\u0022children\u0022:[{\u0022id\u0022:10,\u0022label\u0022:\u0022Deposit Guarantee\u0022,\u0022url\u0022:\u0022\\\/your-protection#deposit-guarantee\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022icon_svg\u0022:null,\u0022link_type\u0022:\u0022anchor\u0022,\u0022menu_type\u0022:\u0022sub\u0022,\u0022updated_by\u0022:\u0022NDIC Super Admin\u0022,\u0022description\u0022:\u0022Coverage limits \\u0026 eligible deposits\u0022}},{\u0022id\u0022:11,\u0022label\u0022:\u0022Bank Supervision\u0022,\u0022url\u0022:\u0022\\\/our-mandate?section=bank-supervision\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022How we monitor insured institutions\u0022}},{\u0022id\u0022:12,\u0022label\u0022:\u0022Failure Resolution\u0022,\u0022url\u0022:\u0022\\\/our-mandate?section=failure-resolution\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Steps taken when a bank is in distress\u0022}},{\u0022id\u0022:75,\u0022label\u0022:\u0022Bank Liquidation\u0022,\u0022url\u0022:\u0022\\\/our-mandate?section=bank-liquidation\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Orderly closure of failed banks \\u0026 settlement of claims\u0022}}]},{\u0022id\u0022:13,\u0022label\u0022:\u0022Your Claim\u0022,\u0022url\u0022:\u0022\\\/your-claims\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022image\u0022:\u0022\\\/assets\\\/images\\\/news-handshake.webp\u0022,\u0022description\u0022:\u0022If your bank has been closed by the CBN, NDIC will reimburse your insured deposits. Use the guides and forms below to file your claim quickly and correctly.\u0022},\u0022children\u0022:[{\u0022id\u0022:14,\u0022label\u0022:\u0022Guide to Filing a Claim\u0022,\u0022url\u0022:\u0022\\\/your-claims#how-to-file\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Step-by-step instructions for claimants\u0022}},{\u0022id\u0022:15,\u0022label\u0022:\u0022Complaint Form\u0022,\u0022url\u0022:\u0022\\\/your-claims?form=complaint#submit-a-claim\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Lodge a formal complaint with NDIC\u0022}},{\u0022id\u0022:16,\u0022label\u0022:\u0022Depositor\\u0027s Form\u0022,\u0022url\u0022:\u0022\\\/your-claims?form=depositor#submit-a-claim\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Claim form for individual depositors\u0022}},{\u0022id\u0022:17,\u0022label\u0022:\u0022Creditor\\u0027s Form\u0022,\u0022url\u0022:\u0022\\\/your-claims?form=creditor#submit-a-claim\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Claim form for institutional creditors\u0022}},{\u0022id\u0022:18,\u0022label\u0022:\u0022Shareholder\\u0027s Form\u0022,\u0022url\u0022:\u0022\\\/your-claims?form=shareholder#submit-a-claim\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Claim form for bank shareholders\u0022}}]},{\u0022id\u0022:19,\u0022label\u0022:\u0022Who We Cover\u0022,\u0022url\u0022:\u0022\\\/insured-banks\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[],\u0022children\u0022:[]},{\u0022id\u0022:20,\u0022label\u0022:\u0022Media\u0022,\u0022url\u0022:\u0022\\\/media\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[],\u0022children\u0022:[{\u0022id\u0022:21,\u0022label\u0022:\u0022News\u0022,\u0022url\u0022:\u0022\\\/news\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Latest NDIC news \\u0026 press releases\u0022}},{\u0022id\u0022:22,\u0022label\u0022:\u0022Articles\u0022,\u0022url\u0022:\u0022\\\/articles\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Expert insights \\u0026 opinion pieces\u0022}},{\u0022id\u0022:23,\u0022label\u0022:\u0022Gallery\u0022,\u0022url\u0022:\u0022\\\/gallery\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Photos from events \\u0026 ceremonies\u0022}},{\u0022id\u0022:24,\u0022label\u0022:\u0022Videos\u0022,\u0022url\u0022:\u0022\\\/videos\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Speeches, seminars \\u0026 documentaries\u0022}}]},{\u0022id\u0022:25,\u0022label\u0022:\u0022Resources\u0022,\u0022url\u0022:\u0022\\\/publications\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022image\u0022:\u0022\\\/assets\\\/images\\\/news-handshake.webp\u0022,\u0022description\u0022:\u0022Access NDIC\\u0027s policy frameworks, quarterly reviews, and annual reports - essential resources on deposit insurance, financial stability, and the Corporation\\u0027s stewardship.\u0022},\u0022children\u0022:[{\u0022id\u0022:28,\u0022label\u0022:\u0022Annual Reports\u0022,\u0022url\u0022:\u0022\\\/publications?category=annual-report\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Year-end reports \\u0026 financial statements\u0022}},{\u0022id\u0022:27,\u0022label\u0022:\u0022Quarterly Journals\u0022,\u0022url\u0022:\u0022\\\/publications\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:8,\u0022metadata\u0022:{\u0022icon_svg\u0022:null,\u0022link_type\u0022:\u0022page\u0022,\u0022menu_type\u0022:\u0022sub\u0022,\u0022updated_by\u0022:\u0022NDIC Super Admin\u0022,\u0022description\u0022:\u0022Quarterly research \\u0026 analytical journal\u0022}},{\u0022id\u0022:29,\u0022label\u0022:\u0022Case Studies\u0022,\u0022url\u0022:\u0022\\\/publications?category=case-studies\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Lessons from the field\u0022}},{\u0022id\u0022:26,\u0022label\u0022:\u0022Policy Frameworks\u0022,\u0022url\u0022:\u0022\\\/publications?category=policy-frameworks\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Regulatory \\u0026 operational policy documents\u0022}},{\u0022id\u0022:30,\u0022label\u0022:\u0022Other Publications\u0022,\u0022url\u0022:\u0022\\\/publications?category=others\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022description\u0022:\u0022Research notes \\u0026 reference material\u0022}}]}]},\u0022footer\u0022:{\u0022id\u0022:2,\u0022name\u0022:\u0022Footer Navigation\u0022,\u0022slug\u0022:\u0022footer\u0022,\u0022location\u0022:\u0022footer\u0022,\u0022items\u0022:[{\u0022id\u0022:31,\u0022label\u0022:\u0022Corporate\u0022,\u0022url\u0022:\u0022\\\/about\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[],\u0022children\u0022:[{\u0022id\u0022:32,\u0022label\u0022:\u0022Mandate\u0022,\u0022url\u0022:\u0022\\\/our-mandate\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:33,\u0022label\u0022:\u0022Governance\u0022,\u0022url\u0022:\u0022\\\/about#board\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:37,\u0022label\u0022:\u0022Zonal Offices\u0022,\u0022url\u0022:\u0022\\\/directorate#zonal\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:{\u0022icon_svg\u0022:null,\u0022link_type\u0022:\u0022anchor\u0022,\u0022menu_type\u0022:\u0022footer\u0022,\u0022updated_by\u0022:\u0022NDIC Super Admin\u0022,\u0022description\u0022:null}},{\u0022id\u0022:63,\u0022label\u0022:\u0022Freedom of Information (FOI)\u0022,\u0022url\u0022:\u0022\\\/freedom-of-information\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:60,\u0022label\u0022:\u0022Information Security Policy Statement\u0022,\u0022url\u0022:\u0022\\\/information-security-policy-statement\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:61,\u0022label\u0022:\u0022Integrated Management Systems Policy Statement\u0022,\u0022url\u0022:\u0022\\\/integrated-management-systems-policy-statement\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:62,\u0022label\u0022:\u0022Business Continuity Management Policy\u0022,\u0022url\u0022:\u0022\\\/business-continuity-management-policy\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]}]},{\u0022id\u0022:68,\u0022label\u0022:\u0022Related Websites\u0022,\u0022url\u0022:null,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[],\u0022children\u0022:[{\u0022id\u0022:69,\u0022label\u0022:\u0022NDIC Academy\u0022,\u0022url\u0022:\u0022https:\\\/\\\/academy.ndic.gov.ng\\\/\u0022,\u0022target\u0022:\u0022_blank\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:70,\u0022label\u0022:\u0022International Association of Deposit Insurers (IADI)\u0022,\u0022url\u0022:\u0022https:\\\/\\\/www.iadi.org\\\/en\\\/\u0022,\u0022target\u0022:\u0022_blank\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:71,\u0022label\u0022:\u0022Africa Regional Committee (ARC IADI)\u0022,\u0022url\u0022:\u0022https:\\\/\\\/www.iadi.org\\\/en\\\/arc\\\/\u0022,\u0022target\u0022:\u0022_blank\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:72,\u0022label\u0022:\u0022Financial Services Regulation Coordinating Committee (FSRCC)\u0022,\u0022url\u0022:\u0022https:\\\/\\\/fsrcc.gov.ng\\\/\u0022,\u0022target\u0022:\u0022_blank\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]}]},{\u0022id\u0022:38,\u0022label\u0022:\u0022Resources\u0022,\u0022url\u0022:\u0022\\\/publications\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[],\u0022children\u0022:[{\u0022id\u0022:39,\u0022label\u0022:\u0022Claims\u0022,\u0022url\u0022:\u0022\\\/your-claims\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:40,\u0022label\u0022:\u0022Institutions\u0022,\u0022url\u0022:\u0022\\\/insured-banks\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:41,\u0022label\u0022:\u0022Helpdesk\u0022,\u0022url\u0022:\u0022\\\/helpdesk\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:42,\u0022label\u0022:\u0022FAQs\u0022,\u0022url\u0022:\u0022\\\/faq\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:43,\u0022label\u0022:\u0022Resources\u0022,\u0022url\u0022:\u0022\\\/publications\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:73,\u0022label\u0022:\u0022Corporate Social Responsibility\u0022,\u0022url\u0022:\u0022\\\/corporate-social-responsibility\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:74,\u0022label\u0022:\u0022NDIC Databank\u0022,\u0022url\u0022:\u0022https:\\\/\\\/ndicdatabank.org\\\/\u0022,\u0022target\u0022:\u0022_blank\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]}]},{\u0022id\u0022:44,\u0022label\u0022:\u0022Quick Access\u0022,\u0022url\u0022:\u0022\\\/about\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[],\u0022children\u0022:[{\u0022id\u0022:45,\u0022label\u0022:\u0022About\u0022,\u0022url\u0022:\u0022\\\/about\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:46,\u0022label\u0022:\u0022Protection\u0022,\u0022url\u0022:\u0022\\\/our-mandate\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:47,\u0022label\u0022:\u0022Annual Reports\u0022,\u0022url\u0022:\u0022\\\/publications?category=annual-report\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:77,\u0022label\u0022:\u0022Closed Banks\u0022,\u0022url\u0022:\u0022\\\/closed-financial-institutions\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:39,\u0022metadata\u0022:{\u0022icon_svg\u0022:null,\u0022link_type\u0022:\u0022page\u0022,\u0022menu_type\u0022:\u0022footer\u0022,\u0022updated_by\u0022:\u0022NDIC Super Admin\u0022,\u0022description\u0022:null}},{\u0022id\u0022:48,\u0022label\u0022:\u0022News\u0022,\u0022url\u0022:\u0022\\\/news\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]},{\u0022id\u0022:49,\u0022label\u0022:\u0022Contact\u0022,\u0022url\u0022:\u0022\\\/contact\u0022,\u0022target\u0022:\u0022_self\u0022,\u0022page_id\u0022:null,\u0022metadata\u0022:[]}]}]},\u0022settings\u0022:{\u0022contact_address\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022Plot 447\\\/448 Constitution Avenue, Central Business District, Abuja.\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022contact_email\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022info@ndic.gov.ng\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022contact_phone\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022(01) 2719010\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022footer_copyright\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022© 2026 Nigeria Deposit Insurance Corporation. All rights reserved.\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022footer_legal_links\u0022:{\u0022value\u0022:{\u0022items\u0022:[{\u0022url\u0022:\u0022\\\/sitemap\u0022,\u0022label\u0022:\u0022Sitemap\u0022},{\u0022url\u0022:\u0022\\\/whistle-blowing-program\u0022,\u0022label\u0022:\u0022Whistle Blowing\u0022},{\u0022url\u0022:\u0022\\\/privacy-policy\u0022,\u0022label\u0022:\u0022Privacy Policy\u0022}]},\u0022group\u0022:\u0022public_site\u0022},\u0022site_name\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022Nigeria Deposit Insurance Corporation\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022site_tagline\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022Protecting Depositors. Strengthening Confidence.\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022social_email\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022https:\\\/\\\/mail.ndic.gov.ng\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022social_facebook\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022https:\\\/\\\/facebook.com\\\/NDICNigeria\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022social_instagram\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022https:\\\/\\\/instagram.com\\\/NDICNigeria\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022social_linkedin\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022https:\\\/\\\/linkedin.com\\\/company\\\/ndic-nigeria\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022social_tiktok\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022https:\\\/\\\/www.tiktok.com\\\/@ndicnigeria\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022social_twitter\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022https:\\\/\\\/twitter.com\\\/NDICNigeria\u0022},\u0022group\u0022:\u0022public_site\u0022},\u0022social_youtube\u0022:{\u0022value\u0022:{\u0022text\u0022:\u0022https:\\\/\\\/www.youtube.com\\\/channel\\\/UC5SHDrUEAHiCzul4zrwT8PA\u0022},\u0022group\u0022:\u0022public_site\u0022}}}');
+        </script>
+        <script src="https://ndic.gov.ng/js/navbar.js?v=1789900749" defer></script>
+    <script src="https://ndic.gov.ng/js/footer.js?v=1791032217" defer></script>
+        <script src="https://ndic.gov.ng/js/cms-forms.js?v=1791039677" defer></script>
+    <script src="https://ndic.gov.ng/js/public.js?v=1791042067" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    
+    
+    <script src="https://ndic-widget.peekahq.co/widget.js"></script>
+
+    
+    <!-- Google Anaytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9881RVJF0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9881RVJF0W');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en" class="light h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JurisNG | Nigerian Statutory Intelligence</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Newsreader (Editorial Serif), Plus Jakarta Sans (UI), JetBrains Mono (Citations) -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons CDN -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace']
+                    },
+                    colors: {
+                        parchment: {
+                            50: '#fdfcf9',
+                            100: '#f8f7f4',
+                            200: '#f1ede6',
+                            300: '#e4dfd5',
+                            400: '#d5ccba',
+                            500: '#baaea0'
+                        },
+                        spruce: {
+                            50: '#eef6f3',
+                            100: '#daf0e7',
+                            200: '#b6e1d1',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#156a52',
+                            600: '#0d533f',
+                            700: '#094131',
+                            800: '#063024',
+                            900: '#04221a',
+                            950: '#021610'
+                        },
+                        brass: {
+                            50: '#fdfaf2',
+                            100: '#fbf3e0',
+                            200: '#f5e3bc',
+                            300: '#fde68a',
+                            400: '#fbbf24',
+                            500: '#b88226',
+                            600: '#9c6d1d',
+                            700: '#7d5414',
+                            800: '#5e3e0d',
+                            900: '#451a03'
+                        },
+                        ink: {
+                            50: '#f6f6f6',
+                            100: '#e7e6e5',
+                            500: '#69645d',
+                            700: '#38342f',
+                            800: '#23201d',
+                            900: '#171513',
+                            950: '#0f0e0c'
+                        },
+                        midnight: {
+                            800: '#222630',
+                            850: '#181b22',
+                            900: '#13161c',
+                            950: '#0e1014'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-editorial { font-family: 'Newsreader', Georgia, serif; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(150, 140, 125, 0.28); border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.16); }
+        
+        /* Warm paper texture subtle highlight */
+        .paper-card {
+            background-color: #ffffff;
+            border: 1px solid #e4dfd5;
+            box-shadow: 0 1px 3px rgba(27, 24, 21, 0.03);
+        }
+        .dark .paper-card {
+            background-color: #181b22;
+            border-color: #262a34;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-[#f8f7f4] dark:bg-[#0e1014] text-ink-900 dark:text-gray-100 h-full flex antialiased selection:bg-spruce-100 selection:text-spruce-800 dark:selection:bg-spruce-900 dark:selection:text-spruce-100 overflow-hidden">
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed md:static inset-y-0 left-0 -translate-x-full md:translate-x-0 w-64 bg-[#f1ede6]/80 dark:bg-[#13161c] border-r border-[#e4dfd5] dark:border-[#262a34] flex flex-col justify-between p-4 shrink-0 select-none z-40 transition-transform duration-200 shadow-2xl md:shadow-none backdrop-blur-xs">
+        <div class="space-y-4 flex flex-col min-h-0 flex-1">
+            
+            <!-- Brand Header with Nigerian Coat/Scales Emblem -->
+            <div class="flex items-center gap-2.5 px-1 py-1 cursor-pointer" onclick="showSearchHome()">
+                <div class="w-8 h-8 rounded-md bg-spruce-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                    <i class="ph ph-scales text-lg"></i>
+                </div>
+                <div>
+                    <div class="font-bold text-sm tracking-tight text-ink-900 dark:text-white flex items-center gap-0.5">
+                        <span>Juris</span><span class="text-spruce-600 dark:text-spruce-400 font-bold">NG</span>
+                    </div>
+                    <div class="text-[10px] uppercase font-semibold tracking-wider text-brass-700 dark:text-brass-400 font-mono">Federal Law Engine</div>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="space-y-1 text-xs font-medium">
+                <button id="navHomeBtn" onclick="showSearchHome()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-md bg-white dark:bg-[#181b22] text-spruce-700 dark:text-spruce-300 border border-[#e4dfd5] dark:border-spruce-500/40 shadow-xs text-left transition font-semibold cursor-pointer">
+                    <i class="ph ph-magnifying-glass text-sm"></i>
+                    <span>Statutory Search</span>
+                </button>
+                <button id="navLibraryBtn" onclick="showLibraryView()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-ink-700 dark:text-gray-300 hover:bg-white/80 dark:hover:bg-[#181b22]/80 text-left transition cursor-pointer">
+                    <i class="ph ph-books text-sm"></i>
+                    <span id="sidebarLibraryLabel">Statutory Library (126 Acts)</span>
+                </button>
+                <button id="navFeedbackBtn" onclick="openFeedbackModal()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-ink-700 dark:text-gray-300 hover:bg-white/80 dark:hover:bg-[#181b22]/80 text-left transition cursor-pointer">
+                    <i class="ph ph-chat-teardrop-dots text-sm text-brass-600 dark:text-amber-400"></i>
+                    <span>Report Bug / Reach Out</span>
+                </button>
+            </nav>
+
+            <!-- Search History Section -->
+            <div class="flex flex-col flex-1 min-h-0 pt-3 border-t border-[#e4dfd5] dark:border-[#262a34]">
+                <div class="flex items-center justify-between px-2 pb-1.5 shrink-0">
+                    <span class="text-[10px] font-semibold tracking-wider text-ink-500 dark:text-gray-400 uppercase font-mono">Recent History</span>
+                    <button onclick="clearAllHistory()" class="text-[10px] text-ink-500 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 transition cursor-pointer">Clear</button>
+                </div>
+                <div id="historyList" class="flex-1 overflow-y-auto space-y-1 pr-0.5 text-xs"></div>
+            </div>
+        </div>
+
+        <!-- Unified Bottom Sidebar (Gazette Feeds & Theme, No Chopped Dividers) -->
+        <div class="border-t border-[#e4dfd5] dark:border-[#262a34] pt-3 px-1 space-y-2.5 shrink-0">
+            <!-- Gazette Live Feed Indicator -->
+            <div class="flex items-center justify-between px-1">
+                <div class="flex items-center gap-1.5 min-w-0">
+                    <span class="relative flex h-2 w-2 shrink-0">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-spruce-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-spruce-600 dark:bg-spruce-400"></span>
+                    </span>
+                    <span id="watcherStatusText" class="text-[10px] text-ink-600 dark:text-gray-300 font-mono truncate">126 Federal Statutes monitored</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                    <span id="watcherBadge" class="inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-bold bg-spruce-100 text-spruce-800 dark:bg-spruce-900/80 dark:text-spruce-200 dark:border dark:border-spruce-700">Active</span>
+                    <button onclick="triggerWatcherCheck(this)" id="watcherScanBtn" title="Sync with Gazette Feeds" class="p-1 rounded hover:bg-white dark:hover:bg-[#181b22] text-ink-400 dark:text-gray-400 hover:text-spruce-600 dark:hover:text-spruce-300 transition cursor-pointer">
+                        <i class="ph ph-arrows-clockwise text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Theme Switcher & Discrete Links -->
+            <div class="flex items-center justify-between px-1 text-xs">
+                <button onclick="toggleTheme()" class="flex items-center gap-1.5 text-ink-600 dark:text-gray-300 hover:text-ink-900 dark:hover:text-white transition cursor-pointer font-medium text-[11px]">
+                    <i id="themeIcon" class="ph ph-moon text-xs text-ink-500 dark:text-amber-400"></i>
+                    <span id="themeLabel">Dark Mode</span>
+                </button>
+                <div class="flex items-center gap-1.5 text-[10px] text-ink-400 dark:text-gray-400 font-mono">
+                    <button onclick="openFeedbackModal()" class="hover:text-ink-900 dark:hover:text-white underline underline-offset-2 transition cursor-pointer">
+                        Reach Out
+                    </button>
+                    <span>•</span>
+                    <button onclick="openDisclaimerModal()" class="hover:text-ink-900 dark:hover:text-white underline underline-offset-2 transition cursor-pointer">
+                        Terms
+                    </button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Workspace Area -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative" id="workspace">
+        <!-- Mobile Top Navigation Bar -->
+        <div class="md:hidden flex items-center justify-between px-4 py-3 bg-[#f1ede6] dark:bg-[#13161c] border-b border-[#e4dfd5] dark:border-[#262a34] shrink-0 z-10">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="showSearchHome()">
+                <div class="w-7 h-7 rounded bg-spruce-600 text-white flex items-center justify-center">
+                    <i class="ph ph-scales text-sm"></i>
+                </div>
+                <span class="font-bold text-xs tracking-tight">Juris<span class="text-spruce-600 dark:text-spruce-400 font-bold">NG</span></span>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <button onclick="openFeedbackModal()" title="Report Bug / Reach Out" class="p-1.5 rounded-md text-ink-600 dark:text-gray-300 hover:bg-white dark:hover:bg-[#181b22] transition flex items-center gap-1">
+                    <i class="ph ph-chat-teardrop-dots text-base text-brass-600 dark:text-amber-400"></i>
+                </button>
+                <button onclick="toggleMobileSidebar()" class="p-1.5 rounded-md text-ink-700 dark:text-gray-200 hover:bg-white dark:hover:bg-[#181b22] transition">
+                    <i class="ph ph-list text-lg"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Backdrop -->
+        <div id="sidebarBackdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/40 z-30 hidden md:hidden"></div>
+        
+        <!-- Home State (Search Input) -->
+        <div id="homeHeroState" class="flex-1 flex flex-col justify-between max-w-3xl w-full mx-auto px-4 sm:px-6 overflow-y-auto">
+            
+            <div class="flex-1 flex flex-col items-center justify-center space-y-6 my-auto py-8">
+                <!-- Title & Subtitle -->
+                <div class="text-center space-y-2.5 max-w-2xl mx-auto">
+                    <h1 class="text-3xl sm:text-4xl lg:text-[44px] font-editorial font-bold tracking-tight text-ink-900 dark:text-white leading-[1.18]">
+                        Search Nigerian Federal Law
+                    </h1>
+                    <p id="heroSubtitle" class="text-xs sm:text-sm text-ink-500 dark:text-gray-300 max-w-md mx-auto leading-relaxed">
+                        Primary statutory retrieval and direct section citations across 126 Federal Acts.
+                    </p>
+                </div>
+
+                <!-- Modern Single-Row Search Bar with Inline Arrow Button -->
+                <div class="w-full max-w-2xl mx-auto paper-card rounded-2xl p-2 sm:p-2.5 transition-all focus-within:ring-2 focus-within:ring-spruce-600/20 focus-within:border-spruce-600 dark:focus-within:border-spruce-400 dark:bg-[#181b22] dark:border-[#262a34] shadow-sm">
+                    <form id="heroForm" class="flex items-center gap-2" onsubmit="event.preventDefault(); triggerSearch(document.getElementById('heroInput').value);">
+                        <div class="pl-2.5 text-ink-400 dark:text-gray-400 flex items-center shrink-0">
+                            <i class="ph ph-magnifying-glass text-lg"></i>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="heroInput" 
+                            placeholder="Ask a legal scenario or cite a section (e.g. Labour Act §54, CAMA)..." 
+                            class="w-full bg-transparent border-0 text-sm sm:text-base text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-400 focus:ring-0 focus:outline-none py-1.5 px-1 font-sans"
+                        />
+                        <button type="submit" id="heroSubmitBtn" aria-label="Search" class="w-9 h-9 rounded-xl bg-spruce-600 hover:bg-spruce-700 active:bg-spruce-800 text-white flex items-center justify-center transition shrink-0 shadow-xs group cursor-pointer">
+                            <i class="ph ph-arrow-up text-base font-bold group-hover:-translate-y-0.5 transition-transform"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- 3 Varied Archetype Pills (Clean, Understated) -->
+                <div class="flex flex-wrap items-center justify-center gap-2 pt-0.5">
+                    <button type="button" onclick="triggerSearch('late for class company deducts salary without agreement')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition flex items-center gap-1.5 shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
+                        <i class="ph ph-chat-circle-dots text-spruce-600 dark:text-spruce-300 text-xs"></i>
+                        <span>Salary deductions without consent</span>
+                    </button>
+
+                    <button type="button" onclick="triggerSearch('Section 84 Evidence Act 2011')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition flex items-center gap-1.5 shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
+                        <i class="ph ph-hash text-brass-600 dark:text-amber-400 text-xs"></i>
+                        <span>Section 84 Evidence Act</span>
+                    </button>
+
+                    <button type="button" onclick="triggerSearch('Section 13 Nigeria Startup Act labeling incentives')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition flex items-center gap-1.5 shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
+                        <i class="ph ph-briefcase text-spruce-600 dark:text-spruce-300 text-xs"></i>
+                        <span>Startup tax incentives</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Anchored Clean Legal Notice at Viewport Bottom -->
+            <div class="py-3 text-[11px] text-ink-500 dark:text-gray-400 text-center flex flex-wrap items-center justify-center gap-1.5 shrink-0">
+                <i class="ph ph-shield-check text-xs text-brass-600 dark:text-amber-400"></i>
+                <span>Automated Statutory Intelligence • Not Formal Legal Advice • <span onclick="openDisclaimerModal()" class="underline underline-offset-2 font-medium text-spruce-700 dark:text-spruce-300 cursor-pointer">Terms & Notice</span> • <span onclick="openFeedbackModal()" class="underline underline-offset-2 font-medium text-brass-700 dark:text-amber-400 cursor-pointer">Report Bug / Reach Out</span></span>
+            </div>
+        </div>
+
+        <!-- Thread State (Results Viewer) -->
+        <div id="threadState" class="hidden flex-1 flex flex-col h-full max-w-3xl w-full mx-auto px-4 sm:px-6">
+            <div class="flex-1 overflow-y-auto pt-6 pb-4 space-y-6 pr-1">
+                
+                <!-- Query Header -->
+                <div class="border-b border-[#e4dfd5] dark:border-[#262a34] pb-3 flex items-center justify-between gap-4">
+                    <div>
+                        <div class="text-[10px] font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-300 mb-0.5 font-mono flex items-center gap-1.5">
+                            <i class="ph ph-clock-counter-clockwise text-xs"></i> Research Query
+                        </div>
+                        <h1 id="threadTitle" class="text-lg sm:text-xl font-editorial font-bold tracking-tight text-ink-900 dark:text-white"></h1>
+                    </div>
+                    <button onclick="showSearchHome()" class="text-xs text-ink-500 dark:text-gray-300 hover:text-spruce-700 dark:hover:text-spruce-300 font-medium shrink-0 flex items-center gap-1">
+                        <i class="ph ph-arrow-counter-clockwise"></i> New Search
+                    </button>
+                </div>
+
+                <!-- Legal Summary Block -->
+                <div class="space-y-2">
+                    <div class="text-xs font-semibold uppercase tracking-wider text-spruce-700 dark:text-spruce-300 flex items-center gap-1.5 font-mono">
+                        <i class="ph ph-gavel text-sm"></i> Statutory Determination & Analysis
+                    </div>
+                    <div id="answerBody" class="text-sm sm:text-base leading-relaxed text-ink-900 dark:text-gray-100 font-editorial paper-card rounded-lg p-5"></div>
+                </div>
+
+                <!-- Governing Provisions Cards -->
+                <div class="space-y-3 pt-2 pb-6">
+                    <div class="text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-300 flex items-center gap-1.5 font-mono">
+                        <i class="ph ph-books text-sm"></i> Primary Statutory Enactments
+                    </div>
+                    <div id="operativeSections" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <!-- Bottom Search Input -->
+            <div class="pt-2 pb-3 bg-[#f8f7f4] dark:bg-[#0e1014] border-t border-[#e4dfd5] dark:border-[#262a34] shrink-0 space-y-1.5">
+                <div class="paper-card rounded-lg p-2 flex items-center gap-2 focus-within:border-spruce-600">
+                    <input 
+                        type="text" 
+                        id="bottomInput" 
+                        placeholder="Search another legal scenario or section citation..." 
+                        class="w-full bg-transparent border-0 text-xs sm:text-sm text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-400 focus:ring-0 focus:outline-none px-2 font-sans"
+                    />
+                    <button type="button" id="bottomSubmitBtn" class="bg-spruce-600 hover:bg-spruce-700 text-white font-semibold px-4 py-1.5 rounded-md text-xs transition shrink-0 flex items-center gap-1 cursor-pointer">
+                        <span>Search</span>
+                        <i class="ph ph-magnifying-glass text-xs"></i>
+                    </button>
+                </div>
+                <div class="text-[10px] text-ink-500 dark:text-gray-300 text-center flex flex-wrap items-center justify-center gap-1.5">
+                    <i class="ph ph-shield-check text-xs text-brass-600 dark:text-amber-400"></i>
+                    <span>Automated Statutory Information • <span onclick="openDisclaimerModal()" class="underline underline-offset-2 cursor-pointer">Disclaimer & Usage Notice</span> • <span onclick="openFeedbackModal()" class="underline underline-offset-2 text-brass-700 dark:text-amber-400 cursor-pointer font-medium">Report Bug / Feedback</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Library State: Document-First Legal Corpus -->
+        <div id="libraryState" class="hidden flex-1 w-full h-full flex flex-col overflow-hidden bg-[#f8f7f4] dark:bg-[#0e1014]">
+            
+            <!-- SUB-VIEW 1: All Statutes Directory / Catalog -->
+            <div id="libraryCatalogView" class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 space-y-5 overflow-y-auto">
+                <div class="border-b border-[#e4dfd5] dark:border-[#262a34] pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <div>
+                        <h1 class="text-2xl font-editorial font-bold tracking-tight text-ink-900 dark:text-white">Federal Statutory Corpus</h1>
+                        <p id="librarySubtitle" class="text-xs text-ink-500 dark:text-gray-400 mt-0.5">126 Federal Statutes & Official Gazettes (9,903 indexed sections) compiled from primary enactments.</p>
+                    </div>
+                </div>
+
+                <!-- Instant Library Search & Category Filters -->
+                <div class="space-y-2.5">
+                    <div class="paper-card rounded-lg p-2.5 flex items-center gap-2 focus-within:border-spruce-600 dark:bg-[#181b22]">
+                        <i class="ph ph-magnifying-glass text-ink-400 dark:text-gray-400 ml-1"></i>
+                        <input 
+                            type="text" 
+                            id="libraryFilterInput" 
+                            placeholder="Filter across 126 Federal Statutes (e.g. CAMA, Evidence, Labour, BOFIA, Tax)..." 
+                            oninput="filterStatutesCorpus(this.value)"
+                            class="w-full bg-transparent border-0 text-xs text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-400 focus:ring-0 focus:outline-none"
+                        />
+                    </div>
+
+                    <!-- Category Filter Pills -->
+                    <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-[11px] font-medium select-none" id="categoryPillContainer">
+                        <button onclick="setCategoryFilter('all', this)" class="cat-pill px-2.5 py-1 rounded-md bg-spruce-600 text-white font-semibold shrink-0 transition cursor-pointer">All (126)</button>
+                        <button onclick="setCategoryFilter('commercial', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Corporate & CAMA</button>
+                        <button onclick="setCategoryFilter('finance', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Banking & Securities</button>
+                        <button onclick="setCategoryFilter('labor', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Labour & Employment</button>
+                        <button onclick="setCategoryFilter('criminal', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Police & Criminal Law</button>
+                        <button onclick="setCategoryFilter('tax', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Taxation & Revenue</button>
+                        <button onclick="setCategoryFilter('maritime', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Maritime & Ports</button>
+                        <button onclick="setCategoryFilter('courts', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Judicature & Procedure</button>
+                        <button onclick="setCategoryFilter('regional', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Regional Commissions</button>
+                    </div>
+                </div>
+
+                <!-- Clean, uncluttered list of statutes -->
+                <div id="statuteMasterList" class="space-y-2"></div>
+            </div>
+
+            <!-- SUB-VIEW 2: Dedicated Single Act Reader Workspace -->
+            <div id="libraryActView" class="hidden flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 space-y-5 overflow-y-auto">
+                <!-- Clean Back Navigation -->
+                <div class="flex items-center justify-between">
+                    <button onclick="backToLibraryCatalog()" class="text-xs font-semibold text-spruce-700 dark:text-spruce-400 hover:text-spruce-900 dark:hover:text-white flex items-center gap-1.5 transition cursor-pointer py-1 px-2.5 rounded-md hover:bg-[#f1ede6] dark:hover:bg-[#222630]">
+                        <i class="ph ph-arrow-left text-sm"></i>
+                        <span>All 126 Federal Statutes</span>
+                    </button>
+                    <span class="text-[11px] font-mono text-ink-500 dark:text-gray-400">Laws of the Federation of Nigeria</span>
+                </div>
+
+                <!-- Act Header -->
+                <div class="border-b border-[#e4dfd5] dark:border-[#262a34] pb-4 space-y-1">
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-spruce-700 dark:text-spruce-400 font-mono">Primary Federal Enactment</span>
+                    <h1 id="actViewTitle" class="text-2xl sm:text-3xl font-editorial font-bold text-ink-900 dark:text-white leading-tight"></h1>
+                    <div class="flex items-center gap-2 text-xs text-ink-500 dark:text-gray-400 font-mono pt-1">
+                        <span id="actViewSectionCount" class="font-semibold text-spruce-700 dark:text-spruce-400"></span>
+                        <span>•</span>
+                        <span>Official Gazette Index</span>
+                    </div>
+                </div>
+
+                <!-- Single, focused Search Filter for this Act -->
+                <div class="paper-card rounded-lg p-2.5 flex items-center gap-2 focus-within:border-spruce-600 dark:bg-[#181b22]">
+                    <i class="ph ph-magnifying-glass text-ink-400 dark:text-gray-400 ml-1"></i>
+                    <input 
+                        type="text" 
+                        id="actSectionFilterInput" 
+                        placeholder="Filter sections in this Act (e.g. 14, jurisdiction, appeal, quorum)..." 
+                        oninput="filterSectionsInActView(this.value)"
+                        class="w-full bg-transparent border-0 text-xs text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-400 focus:ring-0 focus:outline-none"
+                    />
+                </div>
+
+                <!-- Clean, dignified Arrangement of Sections (Table of Contents) -->
+                <div id="actViewSectionsList" class="divide-y divide-[#e4dfd5] dark:divide-[#262a34] border border-[#e4dfd5] dark:border-[#262a34] rounded-xl bg-white dark:bg-[#181b22] overflow-hidden shadow-xs">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Drawer (Full Section Viewer with Prev / Next Navigation) -->
+    <div id="modalBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-end">
+        <div class="bg-[#f8f7f4] dark:bg-[#13161c] border-l border-[#e4dfd5] dark:border-[#262a34] w-full max-w-2xl h-full flex flex-col shadow-2xl transition-colors">
+            
+            <!-- Modal Header (Clean Reading View without Redundant Buttons) -->
+            <div class="p-5 border-b border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex items-start justify-between gap-4 shrink-0">
+                <div class="min-w-0 flex-1">
+                    <div id="modalStatute" class="text-xs font-bold uppercase tracking-wider text-spruce-700 dark:text-spruce-300 mb-1 font-mono truncate"></div>
+                    <h2 id="modalTitle" class="text-base sm:text-lg font-editorial font-bold text-ink-900 dark:text-white leading-snug"></h2>
+                    <div id="modalPart" class="text-xs text-ink-500 dark:text-gray-300 font-mono mt-0.5"></div>
+                </div>
+                <button onclick="closeModal()" class="text-ink-400 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white p-1.5 rounded-md hover:bg-[#f1ede6] dark:hover:bg-[#222630] transition shrink-0 cursor-pointer">
+                    <i class="ph ph-x text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Navigation Bar for Adjacent Sections -->
+            <div class="px-5 py-2.5 bg-[#f1ede6]/60 dark:bg-[#181b22]/60 border-b border-[#e4dfd5] dark:border-[#262a34] flex items-center justify-between text-xs shrink-0 font-medium">
+                <button id="modalPrevBtn" onclick="navigateAdjacentSection(-1)" class="flex items-center gap-1 text-ink-600 dark:text-gray-200 hover:text-spruce-700 dark:hover:text-spruce-300 disabled:opacity-40 disabled:pointer-events-none transition cursor-pointer">
+                    <i class="ph ph-arrow-left"></i>
+                    <span>Previous Section</span>
+                </button>
+                <span id="modalSectionCounter" class="text-[11px] font-mono text-ink-500 dark:text-gray-300 text-center truncate px-2"></span>
+                <button id="modalNextBtn" onclick="navigateAdjacentSection(1)" class="flex items-center gap-1 text-ink-600 dark:text-gray-200 hover:text-spruce-700 dark:hover:text-spruce-300 disabled:opacity-40 disabled:pointer-events-none transition cursor-pointer">
+                    <span>Next Section</span>
+                    <i class="ph ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Statutory Text Body -->
+            <div class="p-6 overflow-y-auto flex-1 bg-[#f8f7f4] dark:bg-[#0e1014]">
+                <div class="text-[10px] font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-300 mb-2 font-mono">Official Statutory Text</div>
+                <div id="modalBody" class="paper-card rounded-xl p-6 text-sm sm:text-base leading-relaxed text-ink-900 dark:text-gray-100 font-editorial whitespace-pre-wrap"></div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex justify-between items-center shrink-0">
+                <span class="text-xs font-mono text-ink-500 dark:text-gray-300">Laws of the Federation of Nigeria</span>
+                <button onclick="copyModalText()" id="copyBtn" class="bg-[#f1ede6] hover:bg-[#e4dfd5] dark:bg-[#222630] dark:hover:bg-[#262a34] text-ink-900 dark:text-gray-200 text-xs px-4 py-2 rounded-md font-semibold transition flex items-center gap-1.5 border border-[#e4dfd5] dark:border-[#262a34]">
+                    <i class="ph ph-copy text-ink-500 dark:text-gray-300"></i>
+                    <span>Copy Full Section</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reach Out / Bug Report Modal Dialog -->
+    <div id="feedbackModalBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4" onclick="if(event.target === this) closeFeedbackModal()">
+        <div class="bg-[#f8f7f4] dark:bg-[#13161c] border border-[#e4dfd5] dark:border-[#262a34] w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-colors">
+            
+            <!-- Header -->
+            <div class="p-5 border-b border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex items-start justify-between gap-4 shrink-0">
+                <div class="space-y-1">
+                    <div class="text-[10px] font-bold uppercase tracking-wider text-spruce-700 dark:text-spruce-300 font-mono flex items-center gap-1.5">
+                        <i class="ph ph-chat-teardrop-dots text-sm text-brass-600 dark:text-amber-400"></i>
+                        <span>Direct Support & Issue Reporting</span>
+                    </div>
+                    <h2 class="text-xl font-editorial font-bold text-ink-900 dark:text-white">Reach Out / Report a Bug</h2>
+                    <p class="text-xs text-ink-500 dark:text-gray-400">Found an issue, OCR typo, or have a suggestion? We'll review it immediately.</p>
+                </div>
+                <button type="button" onclick="closeFeedbackModal()" class="text-ink-400 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white p-1.5 rounded-md hover:bg-[#f1ede6] dark:hover:bg-[#222630] transition cursor-pointer">
+                    <i class="ph ph-x text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Form Body -->
+            <form id="feedbackForm" onsubmit="handleFeedbackSubmit(event)" class="p-5 overflow-y-auto space-y-4 text-xs font-sans">
+                
+                <!-- Status Banner (Hidden by default) -->
+                <div id="feedbackStatusBanner" class="hidden p-3 rounded-lg text-xs flex items-start gap-2"></div>
+
+                <!-- Category Selector -->
+                <div>
+                    <label for="feedbackCategory" class="block text-ink-700 dark:text-gray-300 font-semibold mb-1 text-[11px] uppercase tracking-wide font-mono">
+                        Topic Category
+                    </label>
+                    <select 
+                        id="feedbackCategory" 
+                        class="w-full bg-white dark:bg-[#181b22] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs cursor-pointer"
+                    >
+                        <option value="Bug Report" class="bg-white dark:bg-[#181b22] text-ink-900 dark:text-gray-100">Bug / Technical Issue</option>
+                        <option value="Statute Text / Typo Issue" class="bg-white dark:bg-[#181b22] text-ink-900 dark:text-gray-100">Statute Text / Typo Error</option>
+                        <option value="Missing Statute / Amendment" class="bg-white dark:bg-[#181b22] text-ink-900 dark:text-gray-100">Missing Statute / Section</option>
+                        <option value="General Query / Feedback" class="bg-white dark:bg-[#181b22] text-ink-900 dark:text-gray-100">General Feedback / Inquiry</option>
+                    </select>
+                </div>
+
+                <!-- Email & Name Row -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-ink-700 dark:text-gray-300 font-semibold mb-1 text-[11px] uppercase tracking-wide font-mono">
+                            Your Email <span class="text-rose-500">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="feedbackEmail" 
+                            required 
+                            placeholder="you@example.com" 
+                            class="w-full bg-white dark:bg-[#181b22] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs"
+                        />
+                    </div>
+                    <div>
+                        <label class="block text-ink-700 dark:text-gray-300 font-semibold mb-1 text-[11px] uppercase tracking-wide font-mono">
+                            Your Name (Optional)
+                        </label>
+                        <input 
+                            type="text" 
+                            id="feedbackName" 
+                            placeholder="e.g. Barrister Tunde" 
+                            class="w-full bg-white dark:bg-[#181b22] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs"
+                        />
+                    </div>
+                </div>
+
+                <!-- Statute / Section Reference -->
+                <div>
+                    <label class="block text-ink-700 dark:text-gray-300 font-semibold mb-1 text-[11px] uppercase tracking-wide font-mono">
+                        Statute or Citation Reference (Optional)
+                    </label>
+                    <input 
+                        type="text" 
+                        id="feedbackStatuteRef" 
+                        placeholder="e.g. Labour Act Sec 56 or CFRN Sec 84" 
+                        class="w-full bg-white dark:bg-[#181b22] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs"
+                    />
+                </div>
+
+                <!-- Anti-bot Honeypot Field (Invisible to human users) -->
+                <input type="text" id="feedbackHoneypot" name="user_website_url_check" class="hidden" tabindex="-1" autocomplete="off" style="display:none !important;" />
+
+                <!-- Description / Message -->
+                <div>
+                    <label class="block text-ink-700 dark:text-gray-300 font-semibold mb-1 text-[11px] uppercase tracking-wide font-mono">
+                        Details / Message <span class="text-rose-500">*</span>
+                    </label>
+                    <textarea 
+                        id="feedbackMessage" 
+                        rows="4" 
+                        required 
+                        placeholder="Please describe the bug, the query you performed, or what needs fixing..." 
+                        class="w-full bg-white dark:bg-[#181b22] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs resize-y"
+                    ></textarea>
+                </div>
+
+                <!-- Action Footer -->
+                <div class="pt-2 flex items-center justify-end gap-2 border-t border-[#e4dfd5] dark:border-[#262a34]">
+                    <button type="button" onclick="closeFeedbackModal()" class="px-3.5 py-1.5 text-xs text-ink-600 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white transition font-medium cursor-pointer">
+                        Cancel
+                    </button>
+                    <button type="submit" id="feedbackSubmitBtn" class="bg-spruce-600 hover:bg-spruce-700 text-white font-semibold px-4 py-2 rounded-lg text-xs transition shadow-xs flex items-center gap-1.5 cursor-pointer disabled:opacity-50">
+                        <i class="ph ph-paper-plane-right text-xs"></i>
+                        <span id="feedbackSubmitBtnText">Submit Query</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Drawer (Disclaimer & Terms of Use) -->
+    <div id="disclaimerModalBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-end">
+        <div class="bg-[#f8f7f4] dark:bg-[#13161c] border-l border-[#e4dfd5] dark:border-[#262a34] w-full max-w-2xl h-full flex flex-col shadow-2xl transition-colors">
+            <div class="p-5 border-b border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex items-start justify-between gap-4 shrink-0">
+                <div>
+                    <div class="text-xs font-bold uppercase tracking-wider text-brass-700 dark:text-amber-400 mb-1 flex items-center gap-1.5 font-mono">
+                        <i class="ph ph-shield-check text-sm"></i>
+                        <span>Statutory Governance Notice</span>
+                    </div>
+                    <h2 class="text-xl font-editorial font-bold text-ink-900 dark:text-white">Legal Disclaimer & Terms of Use</h2>
+                    <div class="text-xs text-ink-500 dark:text-gray-300 mt-0.5">Applicable across the Federal Republic of Nigeria</div>
+                </div>
+                <button onclick="closeDisclaimerModal()" class="text-ink-400 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white p-1.5 rounded-md hover:bg-[#f1ede6] dark:hover:bg-[#222630] transition">
+                    <i class="ph ph-x text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto flex-1 bg-[#f8f7f4] dark:bg-[#0e1014] space-y-4 text-xs sm:text-sm text-ink-800 dark:text-gray-200 leading-relaxed font-editorial">
+                
+                <!-- Key Notice Banner -->
+                <div class="p-4 bg-brass-100/70 dark:bg-amber-950/40 border border-brass-200 dark:border-amber-800/60 rounded-lg text-brass-900 dark:text-amber-200 text-xs font-sans flex items-start gap-2.5">
+                    <i class="ph ph-scales text-lg text-brass-700 dark:text-amber-400 shrink-0 mt-0.5"></i>
+                    <div>
+                        <strong class="font-bold block mb-0.5">Automated Research Tool — Not Legal Advice:</strong>
+                        JurisNG indexes official Federal Statutes and Gazettes for informational and statutory research purposes. It is NOT a law firm, does NOT practice law, and does NOT provide formal legal representation or legal opinions.
+                    </div>
+                </div>
+
+                <!-- Section 1 -->
+                <div class="paper-card rounded-lg p-4 space-y-1.5">
+                    <h3 class="font-bold text-ink-900 dark:text-white text-sm font-sans flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-spruce-100 text-spruce-700 dark:bg-spruce-900 dark:text-spruce-300 text-xs flex items-center justify-center font-bold">1</span>
+                        No Attorney-Client Relationship
+                    </h3>
+                    <p class="text-ink-600 dark:text-gray-300 text-xs sm:text-sm">
+                        Using this software or its API does <strong>not</strong> create a Legal Practitioner–Client relationship under the <strong>Legal Practitioners Act (Cap. L11, Laws of the Federation of Nigeria 2004)</strong> or the Rules of Professional Conduct for Legal Practitioners.
+                    </p>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="paper-card rounded-lg p-4 space-y-1.5">
+                    <h3 class="font-bold text-ink-900 dark:text-white text-sm font-sans flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-spruce-100 text-spruce-700 dark:bg-spruce-900 dark:text-spruce-300 text-xs flex items-center justify-center font-bold">2</span>
+                        Requirement to Consult Licensed Counsel
+                    </h3>
+                    <p class="text-ink-600 dark:text-gray-300 text-xs sm:text-sm">
+                        Legal outcomes depend on unique factual contexts, high court practice directions, and Supreme Court precedent. For active litigation, police bail, property transactions, or criminal charges, always instruct a Legal Practitioner called to the Nigerian Bar and enrolled at the Supreme Court of Nigeria.
+                    </p>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="paper-card rounded-lg p-4 space-y-1.5">
+                    <h3 class="font-bold text-ink-900 dark:text-white text-sm font-sans flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-spruce-100 text-spruce-700 dark:bg-spruce-900 dark:text-spruce-300 text-xs flex items-center justify-center font-bold">3</span>
+                        Public Domain Government Enactments
+                    </h3>
+                    <p class="text-ink-600 dark:text-gray-300 text-xs sm:text-sm">
+                        All primary legislative texts and Federal Gazettes indexed in this database are official public enactments compiled in accordance with the <strong>Copyright Act, 2022</strong>.
+                    </p>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="paper-card rounded-lg p-4 space-y-1.5">
+                    <h3 class="font-bold text-ink-900 dark:text-white text-sm font-sans flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-spruce-100 text-spruce-700 dark:bg-spruce-900 dark:text-spruce-300 text-xs flex items-center justify-center font-bold">4</span>
+                        Limitation of Liability
+                    </h3>
+                    <p class="text-ink-600 dark:text-gray-300 text-xs sm:text-sm">
+                        To the fullest extent permitted by Nigerian law, JurisNG disclaims all liability for commercial decisions, administrative filings, or procedural steps taken solely in reliance on automated search results.
+                    </p>
+                </div>
+
+            </div>
+            
+            <div class="p-4 border-t border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex justify-between items-center shrink-0">
+                <span class="text-xs text-ink-500 dark:text-gray-300 font-mono">Federal Republic of Nigeria</span>
+                <button onclick="closeDisclaimerModal()" class="bg-spruce-600 hover:bg-spruce-700 text-white text-xs px-5 py-2 rounded-md font-semibold transition shadow-xs">
+                    I Understand & Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Onboarding First-Time Agreement Modal (Requires Consent on First Visit) -->
+    <div id="onboardingModalBackdrop" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-[#f8f7f4] dark:bg-[#13161c] border border-[#e4dfd5] dark:border-[#262a34] w-full max-w-lg rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
+            
+            <!-- Crest / Emblem Header -->
+            <div class="text-center space-y-2">
+                <div class="w-12 h-12 rounded-xl bg-spruce-600 text-white mx-auto flex items-center justify-center shadow-md">
+                    <i class="ph ph-scales text-2xl"></i>
+                </div>
+                <h2 class="text-2xl font-editorial font-bold text-ink-900 dark:text-white">Welcome to JurisNG</h2>
+                <p class="text-xs text-ink-500 dark:text-gray-300 max-w-sm mx-auto">
+                    Nigerian Statutory Intelligence & Research Platform indexing 126 Federal Acts and official gazettes.
+                </p>
+            </div>
+
+            <!-- Agreement Highlights Box -->
+            <div class="paper-card rounded-xl p-4 space-y-3 text-xs leading-relaxed text-ink-700 dark:text-gray-300">
+                <div class="font-semibold text-ink-900 dark:text-white text-xs uppercase tracking-wider font-mono flex items-center gap-1.5 text-brass-700 dark:text-amber-400">
+                    <i class="ph ph-info text-sm"></i> Terms of Use & Legal Notice
+                </div>
+                <ul class="space-y-2 list-disc list-inside">
+                    <li><strong>Informational Research Tool:</strong> JurisNG does NOT provide formal legal advice or representation.</li>
+                    <li><strong>No Attorney-Client Relationship:</strong> Use does not create a lawyer-client relationship under the <em>Legal Practitioners Act (Cap. L11)</em>.</li>
+                    <li><strong>Consult Counsel:</strong> For disputes or active matters, consult an enrolled Nigerian Legal Practitioner.</li>
+                    <li><strong>Public Enactments:</strong> Indexed under the <em>Copyright Act 2022</em> and <em>NDPA 2023</em>.</li>
+                </ul>
+            </div>
+
+            <!-- Agreement Action -->
+            <div class="space-y-3 pt-2">
+                <button onclick="acceptOnboardingTerms()" class="w-full bg-spruce-600 hover:bg-spruce-700 active:bg-spruce-800 text-white font-semibold py-3 rounded-lg text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-md">
+                    <i class="ph ph-check-circle text-base"></i>
+                    <span>I Accept the Terms & Agree to Proceed</span>
+                </button>
+                <div class="text-[11px] text-center text-ink-400 dark:text-gray-400">
+                    Your consent will be saved in this browser. You can review terms anytime from the sidebar.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Frontend Application Logic -->
+    <script>
+        let currentFullText = "";
+        let currentStatuteSections = [];
+        let currentSectionIdx = 0;
+        let currentActiveStatute = "";
+        let currentActiveSecNum = "";
+        let selectedStatuteTitle = "";
+        let currentDetailSections = [];
+        let allStatutesCache = [];
+        let activeCategoryFilter = 'all';
+        
+        const TERMS_AGREED_KEY = 'jurisng_terms_agreed_v1';
+        const HISTORY_KEY = 'jurisng_search_history';
+
+        const STATUTE_CATEGORIES = {
+            commercial: ['companies', 'startup', 'competition', 'consumer', 'patents', 'trade marks', 'venture capital'],
+            finance: ['banks', 'investments and securities', 'amcon', 'deposit insurance', 'mortgage', 'insurance', 'secured transactions', 'money laundering', 'sovereign investment'],
+            labor: ['labour', 'employees', 'trade unions', 'trade disputes', 'pension', 'factories', 'social insurance'],
+            criminal: ['administration of criminal justice', 'police', 'criminal code', 'penal code', 'cybercrimes', 'terrorism', 'proceeds of crime', 'drug law', 'quarantine'],
+            tax: ['companies income tax', 'personal income tax', 'value added tax', 'stamp duties', 'capital gains'],
+            maritime: ['admiralty', 'cabotage', 'maritime', 'ports authority', 'marine insurance', 'merchant shipping'],
+            courts: ['constitution', 'supreme court', 'court of appeal', 'federal high court', 'national industrial court', 'sheriffs', 'evidence', 'legal practitioners', 'oaths'],
+            regional: ['north-central', 'north-west', 'south-east', 'south-south', 'south-west', 'niger delta']
+        };
+
+        const DEFAULT_HISTORY = [];
+
+        /* Check first-time user consent */
+        function checkOnboardingConsent() {
+            const agreed = localStorage.getItem(TERMS_AGREED_KEY);
+            if (!agreed) {
+                document.getElementById('onboardingModalBackdrop').classList.remove('hidden');
+            }
+        }
+
+        function acceptOnboardingTerms() {
+            localStorage.setItem(TERMS_AGREED_KEY, new Date().toISOString());
+            document.getElementById('onboardingModalBackdrop').classList.add('hidden');
+        }
+
+        function getSearchHistory() {
+            try { 
+                const stored = localStorage.getItem(HISTORY_KEY);
+                if (stored) return JSON.parse(stored);
+                return [];
+            } catch { 
+                return []; 
+            }
+        }
+
+        function saveSearchQuery(query) {
+            if (!query || !query.trim()) return;
+            const q = query.trim();
+            let list = getSearchHistory().filter(item => item.toLowerCase() !== q.toLowerCase());
+            list.unshift(q);
+            if (list.length > 20) list = list.slice(0, 20);
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(list));
+            renderHistoryUI();
+        }
+
+        function deleteHistoryItem(index, e) {
+            if (e) e.stopPropagation();
+            let list = getSearchHistory();
+            list.splice(index, 1);
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(list));
+            renderHistoryUI();
+        }
+
+        function clearAllHistory() {
+            localStorage.setItem(HISTORY_KEY, JSON.stringify([]));
+            renderHistoryUI();
+        }
+
+        function renderHistoryUI() {
+            const container = document.getElementById('historyList');
+            if (!container) return;
+            const list = getSearchHistory();
+            if (list.length === 0) {
+                container.innerHTML = `<div class="text-[11px] text-ink-500 dark:text-gray-300 px-2 py-2 italic font-mono">No search history yet</div>`;
+                return;
+            }
+            container.innerHTML = list.map((item, idx) => `
+                <div onclick="triggerSearch('${item.replace(/'/g, "\\'")}')" class="group flex items-center justify-between gap-1.5 px-2.5 py-1.5 rounded-md text-ink-700 dark:text-gray-300 hover:text-ink-900 dark:hover:text-white hover:bg-white dark:hover:bg-[#181b22] cursor-pointer transition border border-transparent hover:border-[#e4dfd5] dark:hover:border-[#262a34]">
+                    <div class="flex items-center gap-2 truncate">
+                        <i class="ph ph-clock-counter-clockwise text-xs shrink-0 text-ink-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-300"></i>
+                        <span class="truncate text-[11px]">${escapeHtml(item)}</span>
+                    </div>
+                    <button onclick="deleteHistoryItem(${idx}, event)" title="Delete" class="opacity-0 group-hover:opacity-100 text-ink-400 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 p-0.5 rounded transition shrink-0">
+                        <i class="ph ph-trash text-xs"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function toggleMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('sidebarBackdrop');
+            const isHidden = sidebar.classList.contains('-translate-x-full');
+            if (isHidden) {
+                sidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.add('hidden');
+            }
+        }
+
+        function initTheme() {
+            const isDark = (localStorage.getItem('juris_theme') || 'light') === 'dark';
+            document.documentElement.classList.toggle('dark', isDark);
+            const label = document.getElementById('themeLabel');
+            const icon = document.getElementById('themeIcon');
+            if (label) label.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            if (icon) icon.className = isDark ? 'ph ph-sun text-sm text-brass-500' : 'ph ph-moon text-sm text-ink-500';
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            document.documentElement.classList.toggle('dark', !isDark);
+            localStorage.setItem('juris_theme', isDark ? 'light' : 'dark');
+            const label = document.getElementById('themeLabel');
+            const icon = document.getElementById('themeIcon');
+            if (label) label.textContent = isDark ? 'Dark Mode' : 'Light Mode';
+            if (icon) icon.className = isDark ? 'ph ph-moon text-sm text-ink-500' : 'ph ph-sun text-sm text-brass-500';
+        }
+
+        function showSearchHome() {
+            document.getElementById('homeHeroState').classList.remove('hidden');
+            document.getElementById('threadState').classList.add('hidden');
+            document.getElementById('libraryState').classList.add('hidden');
+            document.getElementById('heroInput').value = '';
+            document.getElementById('bottomInput').value = '';
+            
+            document.getElementById('navHomeBtn').className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md bg-white dark:bg-[#181b22] text-spruce-700 dark:text-spruce-300 border border-[#e4dfd5] dark:border-spruce-500/40 shadow-xs text-left transition font-semibold";
+            document.getElementById('navLibraryBtn').className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-ink-700 dark:text-gray-300 hover:bg-white/80 dark:hover:bg-[#181b22]/80 text-left transition font-medium";
+        }
+
+        async function showLibraryView() {
+            document.getElementById('homeHeroState').classList.add('hidden');
+            document.getElementById('threadState').classList.add('hidden');
+            document.getElementById('libraryState').classList.remove('hidden');
+
+            document.getElementById('navHomeBtn').className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-ink-700 dark:text-gray-300 hover:bg-white/80 dark:hover:bg-[#181b22]/80 text-left transition font-medium";
+            document.getElementById('navLibraryBtn').className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md bg-white dark:bg-[#181b22] text-spruce-700 dark:text-spruce-300 border border-[#e4dfd5] dark:border-spruce-500/40 shadow-xs text-left transition font-semibold";
+            
+            backToLibraryCatalog();
+
+            if (allStatutesCache.length === 0) {
+                const masterList = document.getElementById('statuteMasterList');
+                if (masterList) masterList.innerHTML = `<div class="text-xs text-ink-500 dark:text-gray-400 py-6 text-center font-mono animate-pulse">Loading statutory corpus...</div>`;
+                try {
+                    const res = await fetch('/api/statutes');
+                    allStatutesCache = await res.json();
+                    renderStatutesList(allStatutesCache);
+                } catch {
+                    if (masterList) masterList.innerHTML = `<div class="text-xs text-rose-600 py-4 text-center">Failed to load statutes list.</div>`;
+                }
+            } else {
+                renderStatutesList(allStatutesCache);
+            }
+        }
+
+        function renderStatutesList(statutes) {
+            const masterList = document.getElementById('statuteMasterList');
+            if (!masterList) return;
+            if (!statutes || statutes.length === 0) {
+                masterList.innerHTML = `<div class="text-xs text-ink-500 dark:text-gray-400 py-12 text-center font-mono">No matching statutes found.</div>`;
+                return;
+            }
+            masterList.innerHTML = statutes.map((s) => `
+                <div onclick="openActDedicatedView('${s.statute.replace(/'/g, "\\'")}', null)" 
+                     class="paper-card rounded-xl p-4 cursor-pointer transition flex items-center justify-between gap-4 hover:border-spruce-600 dark:hover:border-spruce-500 group select-none">
+                    <div class="min-w-0 flex-1">
+                        <h3 class="text-sm sm:text-base font-semibold text-ink-900 dark:text-white truncate font-editorial group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition-colors">${escapeHtml(s.statute)}</h3>
+                        <span class="text-xs text-ink-500 dark:text-gray-400 font-mono mt-0.5 block">${s.total_sections} Indexed Sections</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs text-spruce-700 dark:text-spruce-400 font-semibold group-hover:translate-x-1 transition-transform shrink-0">
+                        <span>Explore Act</span>
+                        <i class="ph ph-arrow-right text-xs"></i>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function openActDedicatedView(statuteTitle, sectionNumberToHighlight) {
+            if (!statuteTitle) return;
+            selectedStatuteTitle = statuteTitle;
+
+            // Switch from catalog directory to dedicated act document
+            const catalogView = document.getElementById('libraryCatalogView');
+            const actView = document.getElementById('libraryActView');
+            if (catalogView) catalogView.classList.add('hidden');
+            if (actView) actView.classList.remove('hidden');
+
+            const titleEl = document.getElementById('actViewTitle');
+            if (titleEl) titleEl.textContent = statuteTitle;
+            const filterInput = document.getElementById('actSectionFilterInput');
+            if (filterInput) filterInput.value = '';
+
+            const countEl = document.getElementById('actViewSectionCount');
+            if (countEl) countEl.textContent = 'Loading sections...';
+
+            const sectionsContainer = document.getElementById('actViewSectionsList');
+            if (sectionsContainer) {
+                sectionsContainer.innerHTML = `<div class="text-xs text-ink-500 dark:text-gray-400 py-12 text-center font-mono flex items-center justify-center gap-2"><i class="ph ph-circle-notch animate-spin text-spruce-600 dark:text-spruce-300 text-base"></i><span>Loading arrangement of sections...</span></div>`;
+            }
+
+            // Load sections from cache or API
+            let sections = cachedSectionsMap[statuteTitle];
+            if (!sections) {
+                try {
+                    const res = await fetch(`/api/statute/sections?statute=${encodeURIComponent(statuteTitle)}`);
+                    sections = await res.json();
+                    cachedSectionsMap[statuteTitle] = sections;
+                } catch (err) {
+                    console.error('Failed to load sections for', statuteTitle, err);
+                    if (sectionsContainer) sectionsContainer.innerHTML = `<div class="text-xs text-rose-600 py-8 text-center font-mono">Failed to load sections for this statute.</div>`;
+                    return;
+                }
+            }
+
+            currentDetailSections = sections;
+            if (countEl) countEl.textContent = `${sections.length} Indexed Sections`;
+
+            renderSectionsInActView(sections, sectionNumberToHighlight);
+        }
+
+        function renderSectionsInActView(sections, sectionNumberToHighlight) {
+            const container = document.getElementById('actViewSectionsList');
+            if (!container) return;
+
+            if (!sections || sections.length === 0) {
+                container.innerHTML = `<div class="text-xs text-ink-500 dark:text-gray-400 py-8 text-center font-mono">No matching sections found in this Act.</div>`;
+                return;
+            }
+
+            container.innerHTML = sections.map((s, idx) => {
+                const secSanitized = String(s.section_number).replace(/[^a-zA-Z0-9_-]/g, '_');
+                return `
+                <div id="act_sec_${secSanitized}" 
+                     onclick="openSectionFromActView(${idx})" 
+                     class="p-3.5 hover:bg-[#f1ede6]/60 dark:hover:bg-[#222630] transition cursor-pointer flex items-center justify-between gap-4 group">
+                    <div class="flex items-baseline gap-3.5 min-w-0">
+                        <span class="font-mono text-xs font-bold text-spruce-700 dark:text-spruce-400 w-16 shrink-0">Sec ${escapeHtml(s.section_number)}</span>
+                        <span class="text-xs sm:text-sm text-ink-900 dark:text-gray-100 font-editorial leading-snug group-hover:text-spruce-800 dark:group-hover:text-white">${escapeHtml(s.section_title)}</span>
+                    </div>
+                    <i class="ph ph-arrow-up-right text-xs text-ink-400 dark:text-gray-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-300 shrink-0 transition-transform group-hover:translate-x-0.5"></i>
+                </div>
+                `;
+            }).join('');
+
+            if (sectionNumberToHighlight) {
+                const secSanitized = String(sectionNumberToHighlight).replace(/[^a-zA-Z0-9_-]/g, '_');
+                const secEl = document.getElementById(`act_sec_${secSanitized}`);
+                if (secEl) {
+                    secEl.scrollIntoView({ behavior: 'auto', block: 'center' });
+                    secEl.classList.add('bg-spruce-100/70', 'dark:bg-spruce-950/70', 'ring-2', 'ring-spruce-600');
+                    setTimeout(() => {
+                        secEl.classList.remove('bg-spruce-100/70', 'dark:bg-spruce-950/70', 'ring-2', 'ring-spruce-600');
+                    }, 2500);
+                }
+            }
+        }
+
+        function filterSectionsInActView(query) {
+            if (!currentDetailSections || currentDetailSections.length === 0) return;
+            const q = query.toLowerCase().trim();
+            if (!q) {
+                renderSectionsInActView(currentDetailSections, null);
+                return;
+            }
+            const filtered = currentDetailSections.filter(s => 
+                String(s.section_number).toLowerCase().includes(q) || 
+                (s.section_title && s.section_title.toLowerCase().includes(q))
+            );
+            renderSectionsInActView(filtered, null);
+        }
+
+        function openSectionFromActView(idx) {
+            if (!currentDetailSections || !currentDetailSections[idx]) return;
+            currentStatuteSections = currentDetailSections;
+            currentSectionIdx = idx;
+            const s = currentDetailSections[idx];
+            currentActiveStatute = s.statute;
+            currentActiveSecNum = s.section_number;
+            openModal(s.statute, s.section_number, s.section_title, s.part, s.full_text);
+        }
+
+        function backToLibraryCatalog() {
+            const catalogView = document.getElementById('libraryCatalogView');
+            const actView = document.getElementById('libraryActView');
+            if (actView) actView.classList.add('hidden');
+            if (catalogView) catalogView.classList.remove('hidden');
+        }
+
+        function filterStatutesCorpus(query) {
+            const q = query.toLowerCase().trim();
+            let filtered = allStatutesCache;
+            
+            if (activeCategoryFilter !== 'all' && STATUTE_CATEGORIES[activeCategoryFilter]) {
+                const keywords = STATUTE_CATEGORIES[activeCategoryFilter];
+                filtered = filtered.filter(s => {
+                    const st = s.statute.toLowerCase();
+                    return keywords.some(k => st.includes(k));
+                });
+            }
+            
+            if (q) {
+                filtered = filtered.filter(s => s.statute.toLowerCase().includes(q));
+            }
+            renderStatutesList(filtered);
+        }
+
+        function setCategoryFilter(category, btn) {
+            activeCategoryFilter = category;
+            document.querySelectorAll('.cat-pill').forEach(p => {
+                p.className = 'cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer';
+            });
+            if (btn) {
+                btn.className = 'cat-pill px-2.5 py-1 rounded-md bg-spruce-600 text-white font-semibold shrink-0 transition cursor-pointer shadow-xs';
+            }
+            const searchVal = document.getElementById('libraryFilterInput').value;
+            filterStatutesCorpus(searchVal);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        const cachedSectionsMap = {};
+        window.renderedSectionsStore = {};
+
+        function copyCitation(btn, statute, secNum) {
+            const citation = `Section ${secNum}, ${statute}`;
+            navigator.clipboard.writeText(citation).then(() => {
+                const origHTML = btn.innerHTML;
+                btn.innerHTML = `<i class="ph ph-check text-spruce-600 dark:text-spruce-300 text-xs"></i> <span class="text-spruce-600 dark:text-spruce-300 font-semibold">Copied</span>`;
+                setTimeout(() => { btn.innerHTML = origHTML; }, 2000);
+            });
+        }
+
+        function openModal(statute, secNum, secTitle, part, rawText) {
+            currentActiveStatute = statute;
+            currentActiveSecNum = secNum;
+            document.getElementById('modalStatute').textContent = statute;
+            document.getElementById('modalTitle').textContent = `Section ${secNum}: ${secTitle}`;
+            document.getElementById('modalPart').textContent = part || '';
+            document.getElementById('modalBody').textContent = rawText;
+            currentFullText = `${statute}\nSection ${secNum}: ${secTitle}\n\n${rawText}`;
+            
+            // Update Adjacent Navigation Buttons
+            const prevBtn = document.getElementById('modalPrevBtn');
+            const nextBtn = document.getElementById('modalNextBtn');
+            const counterEl = document.getElementById('modalSectionCounter');
+            
+            if (currentStatuteSections && currentStatuteSections.length > 0) {
+                prevBtn.disabled = currentSectionIdx <= 0;
+                nextBtn.disabled = currentSectionIdx >= currentStatuteSections.length - 1;
+                counterEl.textContent = `Section ${secNum} (${currentSectionIdx + 1} of ${currentStatuteSections.length})`;
+            } else {
+                prevBtn.disabled = true;
+                nextBtn.disabled = true;
+                counterEl.textContent = `Section ${secNum}`;
+            }
+            
+            document.getElementById('modalBackdrop').classList.remove('hidden');
+        }
+
+        function closeModal() { document.getElementById('modalBackdrop').classList.add('hidden'); }
+        
+        function openDisclaimerModal() {
+            document.getElementById('disclaimerModalBackdrop').classList.remove('hidden');
+        }
+
+        function closeDisclaimerModal() {
+            document.getElementById('disclaimerModalBackdrop').classList.add('hidden');
+        }
+
+        function openFeedbackModal(category = 'Bug Report', statuteRef = '') {
+            const backdrop = document.getElementById('feedbackModalBackdrop');
+            if (!backdrop) return;
+            
+            const banner = document.getElementById('feedbackStatusBanner');
+            if (banner) {
+                banner.className = 'hidden';
+                banner.innerHTML = '';
+            }
+            
+            if (category) {
+                const catSelect = document.getElementById('feedbackCategory');
+                if (catSelect) {
+                    catSelect.value = category;
+                    if (!catSelect.value) {
+                        catSelect.selectedIndex = 0;
+                    }
+                }
+            }
+            
+            const refInput = document.getElementById('feedbackStatuteRef');
+            if (refInput) {
+                refInput.value = statuteRef || '';
+            }
+            
+            backdrop.classList.remove('hidden');
+            setTimeout(() => {
+                const emailInput = document.getElementById('feedbackEmail');
+                if (emailInput && !emailInput.value) emailInput.focus();
+            }, 100);
+        }
+
+        function closeFeedbackModal() {
+            const backdrop = document.getElementById('feedbackModalBackdrop');
+            if (backdrop) backdrop.classList.add('hidden');
+        }
+
+        async function handleFeedbackSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('feedbackSubmitBtn');
+            const btnText = document.getElementById('feedbackSubmitBtnText');
+            const banner = document.getElementById('feedbackStatusBanner');
+            
+            const category = document.getElementById('feedbackCategory')?.value || 'Bug Report';
+            const email = document.getElementById('feedbackEmail')?.value.trim();
+            const name = document.getElementById('feedbackName')?.value.trim();
+            const statuteRef = document.getElementById('feedbackStatuteRef')?.value.trim();
+            const message = document.getElementById('feedbackMessage')?.value.trim();
+            
+            const botCheck = document.getElementById('feedbackHoneypot')?.value || '';
+
+            if (!email || !message) return;
+            
+            btn.disabled = true;
+            btnText.innerHTML = '<i class="ph ph-circle-notch animate-spin text-xs"></i> Sending...';
+            
+            try {
+                const resp = await fetch('/api/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        category: category,
+                        email: email,
+                        name: name,
+                        statute_reference: statuteRef,
+                        message: message,
+                        bot_check: botCheck
+                    })
+                });
+                
+                const data = await resp.json();
+                
+                if (resp.ok && data.success) {
+                    banner.className = 'p-3 rounded-lg text-xs flex items-start gap-2 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-200';
+                    banner.innerHTML = `<i class="ph ph-check-circle text-base text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5"></i><div><strong>Report Submitted!</strong><br>${data.message || 'Thank you for helping us improve JurisNG.'}</div>`;
+                    banner.classList.remove('hidden');
+                    
+                    document.getElementById('feedbackMessage').value = '';
+                    
+                    setTimeout(() => {
+                        closeFeedbackModal();
+                    }, 2200);
+                } else {
+                    banner.className = 'p-3 rounded-lg text-xs flex items-start gap-2 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-200';
+                    banner.innerHTML = `<i class="ph ph-warning-circle text-base text-rose-600 dark:text-rose-400 shrink-0 mt-0.5"></i><div><strong>Submission Notice:</strong><br>${data.detail || data.message || 'An error occurred while submitting.'}</div>`;
+                    banner.classList.remove('hidden');
+                }
+            } catch (err) {
+                banner.className = 'p-3 rounded-lg text-xs flex items-start gap-2 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-200';
+                banner.innerHTML = `<i class="ph ph-warning-circle text-base text-rose-600 dark:text-rose-400 shrink-0 mt-0.5"></i><div>Network error: Could not reach the server. Please try again.</div>`;
+                banner.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btnText.innerHTML = 'Submit Query';
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeDisclaimerModal();
+                closeFeedbackModal();
+            }
+        });
+
+        function copyModalText() { 
+            navigator.clipboard.writeText(currentFullText);
+            const btn = document.getElementById('copyBtn');
+            const orig = btn.innerHTML;
+            btn.innerHTML = `<i class="ph ph-check text-spruce-600 dark:text-spruce-300"></i> <span class="text-spruce-600 dark:text-spruce-300 font-semibold">Copied Section</span>`;
+            setTimeout(() => { btn.innerHTML = orig; }, 2000);
+        }
+
+        window.searchResultsStore = [];
+        async function openSearchResultModal(idx) {
+            const r = window.searchResultsStore && window.searchResultsStore[idx];
+            if (!r) return;
+            
+            currentActiveStatute = r.statute;
+            currentActiveSecNum = r.section_number;
+            
+            // Immediately open modal with the clicked section text
+            currentStatuteSections = [];
+            currentSectionIdx = 0;
+            openModal(r.statute, r.section_number, r.section_title, r.part, r.full_text);
+
+            const counterEl = document.getElementById('modalSectionCounter');
+            const prevBtn = document.getElementById('modalPrevBtn');
+            const nextBtn = document.getElementById('modalNextBtn');
+
+            if (counterEl) counterEl.innerHTML = `<span class="animate-pulse text-spruce-600 dark:text-spruce-400">Loading statutory context...</span>`;
+            if (prevBtn) prevBtn.disabled = true;
+            if (nextBtn) nextBtn.disabled = true;
+
+            try {
+                let sections = cachedSectionsMap[r.statute];
+                if (!sections) {
+                    const res = await fetch(`/api/statute/sections?statute=${encodeURIComponent(r.statute)}`);
+                    sections = await res.json();
+                    cachedSectionsMap[r.statute] = sections;
+                }
+
+                // If modal is still open displaying this statute, link adjacent navigation
+                if (currentActiveStatute === r.statute && sections && sections.length > 0) {
+                    currentStatuteSections = sections;
+                    const matchIdx = sections.findIndex(s => String(s.section_number).trim() === String(r.section_number).trim());
+                    if (matchIdx !== -1) {
+                        currentSectionIdx = matchIdx;
+                        if (prevBtn) prevBtn.disabled = matchIdx <= 0;
+                        if (nextBtn) nextBtn.disabled = matchIdx >= sections.length - 1;
+                        if (counterEl) counterEl.textContent = `Section ${r.section_number} (${matchIdx + 1} of ${sections.length})`;
+                    } else {
+                        if (counterEl) counterEl.textContent = `Section ${r.section_number}`;
+                    }
+                }
+            } catch (err) {
+                console.warn('Could not load adjacent sections for statute', err);
+                if (counterEl) counterEl.textContent = `Section ${r.section_number}`;
+            }
+        }
+
+        function findStatuteIndex(statuteTitle) {
+            if (!allStatutesCache || allStatutesCache.length === 0) return -1;
+            const clean = (str) => (str || '').toLowerCase().replace(/[^a-z0-9]/g, ' ').replace(/\s+/g, ' ').trim();
+            const target = clean(statuteTitle);
+            
+            let idx = allStatutesCache.findIndex(s => clean(s.statute) === target);
+            if (idx !== -1) return idx;
+
+            idx = allStatutesCache.findIndex(s => {
+                const c = clean(s.statute);
+                return c.includes(target) || target.includes(c);
+            });
+            if (idx !== -1) return idx;
+
+            const stopWords = ['act', 'federal', 'republic', 'nigeria', 'laws', 'federation', 'cap', 'the', 'and', 'of'];
+            const targetTokens = target.split(' ').filter(w => w.length > 3 && !stopWords.includes(w));
+            if (targetTokens.length > 0) {
+                idx = allStatutesCache.findIndex(s => {
+                    const c = clean(s.statute);
+                    return targetTokens.every(tok => c.includes(tok));
+                });
+            }
+            return idx;
+        }
+
+        async function openActInLibrary(statuteTitle, sectionNumber) {
+            closeModal();
+            document.getElementById('homeHeroState').classList.add('hidden');
+            document.getElementById('threadState').classList.add('hidden');
+            document.getElementById('libraryState').classList.remove('hidden');
+
+            document.getElementById('navHomeBtn').className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-ink-700 dark:text-gray-300 hover:bg-white/80 dark:hover:bg-[#181b22]/80 text-left transition font-medium";
+            document.getElementById('navLibraryBtn').className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md bg-white dark:bg-[#181b22] text-spruce-700 dark:text-spruce-300 border border-[#e4dfd5] dark:border-spruce-500/40 shadow-xs text-left transition font-semibold";
+
+            if (allStatutesCache.length === 0) {
+                try {
+                    const res = await fetch('/api/statutes');
+                    allStatutesCache = await res.json();
+                } catch (e) {
+                    console.error('Failed to load statutes cache:', e);
+                }
+            }
+
+            const idx = findStatuteIndex(statuteTitle);
+            const targetStatute = (idx !== -1 && allStatutesCache[idx]) ? allStatutesCache[idx].statute : statuteTitle;
+            await openActDedicatedView(targetStatute, sectionNumber);
+        }
+        function copySearchResultCitation(idx, btn) {
+            const r = window.searchResultsStore && window.searchResultsStore[idx];
+            if (r) {
+                copyCitation(btn, r.statute, r.section_number);
+            }
+        }
+
+        async function triggerSearch(query) {
+            if (!query || !query.trim()) return;
+            const q = query.trim();
+            saveSearchQuery(q);
+            document.getElementById('homeHeroState').classList.add('hidden');
+            document.getElementById('libraryState').classList.add('hidden');
+            document.getElementById('threadState').classList.remove('hidden');
+            document.getElementById('threadTitle').textContent = `“${q}”`;
+            document.getElementById('answerBody').innerHTML = `<p class="animate-pulse text-ink-500 dark:text-gray-300 flex items-center gap-2 font-mono text-xs"><i class="ph ph-circle-notch animate-spin text-spruce-600 dark:text-spruce-300"></i> Analyzing federal statutory database...</p>`;
+            document.getElementById('operativeSections').innerHTML = '';
+
+            try {
+                const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+                const data = await res.json();
+                document.getElementById('answerBody').innerHTML = `<p>${data.legal_issue || "Statutory retrieval complete."}</p>`;
+                window.searchResultsStore = data.results || [];
+                document.getElementById('operativeSections').innerHTML = window.searchResultsStore.map((r, idx) => `
+                    <div class="paper-card rounded-xl p-5 space-y-3">
+                        
+                        <!-- Top Header Row -->
+                        <div class="flex items-center justify-between gap-3 text-xs border-b border-[#e4dfd5] dark:border-[#262a34] pb-2.5">
+                            <span class="font-bold text-spruce-700 dark:text-spruce-300 uppercase tracking-wider text-[11px] font-mono shrink-0">${escapeHtml(r.statute)}</span>
+                            <span class="text-ink-500 dark:text-gray-300 font-mono text-[10px] truncate text-right">${escapeHtml(r.part || '')}</span>
+                        </div>
+
+                        <!-- Section Title -->
+                        <h3 class="font-bold text-base sm:text-lg text-ink-900 dark:text-white leading-snug font-editorial">Section ${escapeHtml(r.section_number)}: ${escapeHtml(r.section_title)}</h3>
+                        
+                        <!-- Text Snippet -->
+                        <div class="bg-[#f8f7f4] dark:bg-[#0e1014] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg p-4 text-xs sm:text-sm leading-relaxed text-ink-800 dark:text-gray-200 font-editorial">
+                            ${escapeHtml(r.snippet || r.full_text || '')}
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex items-center justify-end gap-2 pt-1 flex-wrap">
+                            <button onclick="copySearchResultCitation(${idx}, this)" class="text-xs bg-[#f1ede6] hover:bg-[#e4dfd5] dark:bg-[#222630] dark:hover:bg-[#262a34] border border-[#e4dfd5] dark:border-[#262a34] text-ink-900 dark:text-gray-200 px-3 py-1.5 rounded-md font-semibold transition flex items-center gap-1.5 cursor-pointer">
+                                <i class="ph ph-copy text-xs text-ink-500 dark:text-gray-300"></i>
+                                <span>Copy Citation</span>
+                            </button>
+                            <button onclick="openActInLibrary('${r.statute.replace(/'/g, "\\'")}', '${r.section_number}')" class="text-xs bg-[#f1ede6] hover:bg-[#e4dfd5] dark:bg-[#222630] dark:hover:bg-[#262a34] border border-[#e4dfd5] dark:border-[#262a34] text-ink-900 dark:text-gray-200 px-3 py-1.5 rounded-md font-semibold transition flex items-center gap-1.5 cursor-pointer" title="Explore full Act in Statutory Library">
+                                <i class="ph ph-books text-xs text-ink-500 dark:text-gray-300"></i>
+                                <span>Open Full Act</span>
+                            </button>
+                            <button onclick="openSearchResultModal(${idx})" class="text-xs bg-spruce-100 dark:bg-spruce-900/60 hover:bg-spruce-200 dark:hover:bg-spruce-900 border border-spruce-600/30 dark:border-spruce-700 text-spruce-800 dark:text-spruce-200 px-3 py-1.5 rounded-md font-semibold transition flex items-center gap-1.5 cursor-pointer">
+                                <span>Read Full Section</span>
+                                <i class="ph ph-arrow-up-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                document.getElementById('answerBody').innerHTML = `<p class="text-rose-600 text-xs font-mono">Error executing statutory search.</p>`;
+            }
+        }
+
+        async function loadStatuteStats() {
+            try {
+                const res = await fetch('/api/statutes');
+                const statutes = await res.json();
+                allStatutesCache = statutes;
+                const totalActs = statutes.length;
+                const totalSections = statutes.reduce((acc, s) => acc + (s.total_sections || 0), 0);
+                
+                const sidebarEl = document.getElementById('sidebarLibraryLabel');
+                if (sidebarEl) sidebarEl.textContent = `Statutory Library (${totalActs} Acts)`;
+
+                const heroEl = document.getElementById('heroSubtitle');
+                if (heroEl) heroEl.textContent = `Primary statutory retrieval and direct section citations across ${totalActs} Federal Acts.`;
+
+                const libEl = document.getElementById('librarySubtitle');
+                if (libEl) libEl.textContent = `${totalActs} Federal Statutes & Official Gazettes (${totalSections.toLocaleString()} indexed sections) compiled from primary enactments.`;
+            } catch (err) {
+                console.warn('Could not load dynamic statute stats', err);
+            }
+        }
+
+        async function loadWatcherStatus() {
+            try {
+                const res = await fetch('/api/watcher/status');
+                const data = await res.json();
+                const textEl = document.getElementById('watcherStatusText');
+                const badgeEl = document.getElementById('watcherBadge');
+                
+                if (data.last_checked) {
+                    const date = new Date(data.last_checked);
+                    const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                    if (textEl) {
+                        textEl.textContent = `${data.indexed_statutes_count || 126} Acts Synced • ${timeStr}`;
+                    }
+                } else {
+                    if (textEl) {
+                        textEl.textContent = `${data.indexed_statutes_count || 126} Federal Statutes monitored.`;
+                    }
+                }
+                if (badgeEl) {
+                    badgeEl.className = "inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-bold bg-spruce-100 text-spruce-800 dark:bg-spruce-900/80 dark:text-spruce-200 dark:border dark:border-spruce-700";
+                    badgeEl.textContent = "Active";
+                }
+            } catch (err) {
+                console.warn('Could not load watcher status', err);
+            }
+        }
+
+        async function triggerWatcherCheck(btn) {
+            if (!btn) btn = document.getElementById('watcherScanBtn');
+            const origHTML = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = `<i class="ph ph-arrows-clockwise animate-spin text-xs"></i>`;
+            }
+            
+            const textEl = document.getElementById('watcherStatusText');
+            const badgeEl = document.getElementById('watcherBadge');
+            if (textEl) textEl.textContent = "Scanning official gazette feeds...";
+            
+            try {
+                const res = await fetch('/api/watcher/check', { method: 'POST' });
+                const data = await res.json();
+                
+                const changes = (data.new_enactments_count || 0) + (data.amendments_count || 0);
+                if (changes > 0) {
+                    if (textEl) textEl.textContent = `⚡ ${changes} updates found & dispatched`;
+                    if (badgeEl) {
+                        badgeEl.className = "inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-bold bg-brass-100 text-brass-800 dark:bg-amber-950/80 dark:text-amber-300 dark:border dark:border-amber-700";
+                        badgeEl.textContent = "Updates";
+                    }
+                } else {
+                    if (textEl) textEl.textContent = `${data.total_indexed_statutes || 126} Statutes synchronized`;
+                    if (badgeEl) {
+                        badgeEl.className = "inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-bold bg-spruce-100 text-spruce-800 dark:bg-spruce-900/80 dark:text-spruce-200 dark:border dark:border-spruce-700";
+                        badgeEl.textContent = "Up to Date";
+                    }
+                }
+                
+                if (btn) {
+                    btn.innerHTML = `<i class="ph ph-check text-spruce-600 dark:text-spruce-300 text-xs"></i>`;
+                    setTimeout(() => {
+                        btn.innerHTML = origHTML;
+                        btn.disabled = false;
+                        loadWatcherStatus();
+                    }, 3000);
+                }
+                loadStatuteStats();
+            } catch (err) {
+                if (textEl) textEl.textContent = "Feed scan issue. Click to retry.";
+                if (btn) {
+                    btn.innerHTML = `<i class="ph ph-warning text-rose-600 text-xs"></i>`;
+                    setTimeout(() => {
+                        btn.innerHTML = origHTML;
+                        btn.disabled = false;
+                    }, 3000);
+                }
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            checkOnboardingConsent();
+            renderHistoryUI();
+            loadStatuteStats();
+            loadWatcherStatus();
+            
+            ['heroInput', 'bottomInput'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            triggerSearch(el.value);
+                        }
+                    });
+                }
+            });
+            ['heroSubmitBtn', 'bottomSubmitBtn'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const inputId = id === 'heroSubmitBtn' ? 'heroInput' : 'bottomInput';
+                    el.addEventListener('click', () => {
+                        const input = document.getElementById(inputId);
+                        if (input) triggerSearch(input.value);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

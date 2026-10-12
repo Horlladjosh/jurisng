@@ -1,0 +1,48 @@
+{
+  "statute_id": "trustee_investments_act",
+  "title": "Trustee Investments Act",
+  "short_title": "Trustee Investments Act",
+  "year": 1957,
+  "jurisdiction": "Federal Republic of Nigeria",
+  "gazette_number": "Laws of the Federation of Nigeria, Cap. T22, LFN 2004",
+  "enactment_date": "1957",
+  "description": "An Act to facilitate the investment of trust and other funds in Nigeria in locally issued securities.",
+  "total_sections": 5,
+  "sections": [
+    {
+      "section_number": "1",
+      "section_title": "Short title",
+      "part": "General Provisions",
+      "full_text": "The Nigerian Coal Corporation.",
+      "searchable_chunk": "Trustee Investments Act - Section 1: Short title\nGeneral Provisions\nThe Nigerian Coal Corporation."
+    },
+    {
+      "section_number": "2",
+      "section_title": "Securities to which the Act applies",
+      "part": "General Provisions",
+      "full_text": "Section 2 of the Trustee Investments Act.",
+      "searchable_chunk": "Trustee Investments Act - Section 2: Securities to which the Act applies\nGeneral Provisions\nSection 2 of the Trustee Investments Act."
+    },
+    {
+      "section_number": "3",
+      "section_title": "Securities in which trustee may invest",
+      "part": "General Provisions",
+      "full_text": "(1) Without prejudice to the enabling provisions of any other law, a trustee may, under the powers of this Act, invest in any of the securities specified or referred to in section 2 of this Act.\n(2) The power conferred by subsection (1) of this section shall be exercised according to the discretion of the trustee, but subject to any consent or direction required by the instrument, if any, creating the trust or by law with respect to the investment of the trust funds.",
+      "searchable_chunk": "Trustee Investments Act - Section 3: Securities in which trustee may invest\nGeneral Provisions\n(1) Without prejudice to the enabling provisions of any other law, a trustee may, under the powers of this Act, invest in any of the securities specified or referred to in section 2 of this Act.\n(2) The power conferred by subsection (1) of this section shall be exercised according to the discretion of the trustee, but subject to any consent or direction required by the instrument, if any, creating the trust or by law with respect to the investment of the trust funds."
+    },
+    {
+      "section_number": "4",
+      "section_title": "Cessation of authorisation of investment",
+      "part": "General Provisions",
+      "full_text": "A trustee shall not be liable for breach of trust by reason only of his continuing to hold an investment which has at any time ceased to be an investment authorised by the provisions of this Act.",
+      "searchable_chunk": "Trustee Investments Act - Section 4: Cessation of authorisation of investment\nGeneral Provisions\nA trustee shall not be liable for breach of trust by reason only of his continuing to hold an investment which has at any time ceased to be an investment authorised by the provisions of this Act."
+    },
+    {
+      "section_number": "5",
+      "section_title": "Power to make regulations",
+      "part": "General Provisions",
+      "full_text": "The Minister of the Government of the Federation responsible for finance may by regulations provide for the application of this Act, subject to such additions, alterations or omissions as may be specified by the regulations-\n(a) in cases where a company is amalgamated with or acquired or controlled by or has its business taken over by another company;\n(b) in cases where shares are issued in place of the payment of the whole or part of any dividend, and the regulations may make different provision for different circumstances.\nSCHEDULE\n[Section 2 (1) (c).]\n1. The Nigerian Coal Corporation.\n2. The National Electric Power Authority.\n3. The Nigerian Ports Authority.\n4. The Nigerian Railway Corporation.",
+      "searchable_chunk": "Trustee Investments Act Sec 5: Power to make regulations. The Minister of the Government of the Federation responsible for finance may by regulations provide for the application of this Act, subject to such additions, alterations or omissions as may be speci"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+"""
+Ground-truth Table of Contents Manifest for Value Added Tax Act (Cap. V1 LFN).
+Parsed directly from Federal Republic of Nigeria Official Statutes.
+Total Sections: 48 sections across 6 Parts (Sections 1-13, 13A, 14-47).
+"""
+
+def get_manifest():
+    return {
+        '1': {'part': 'PART I - Imposition, etc., of Value Added Tax', 'section_title': 'Imposition, etc., of Value Added Tax.'},
+        '2': {'part': 'PART I - Imposition, etc., of Value Added Tax', 'section_title': 'Taxable goods and services.'},
+        '3': {'part': 'PART I - Imposition, etc., of Value Added Tax', 'section_title': 'Goods and services exempt.'},
+        '4': {'part': 'PART I - Imposition, etc., of Value Added Tax', 'section_title': 'Rate of tax.'},
+        '5': {'part': 'PART I - Imposition, etc., of Value Added Tax', 'section_title': 'Value of taxable goods and services.'},
+        '6': {'part': 'PART I - Imposition, etc., of Value Added Tax', 'section_title': 'Value of imported goods.'},
+        '7': {'part': 'PART II - Administration', 'section_title': 'Administration of the tax.'},
+        '8': {'part': 'PART II - Administration', 'section_title': 'Registration.'},
+        '9': {'part': 'PART II - Administration', 'section_title': 'Registration by Government Ministries, etc., as agents of the Board.'},
+        '10': {'part': 'PART II - Administration', 'section_title': 'Registration by non-resident companies.'},
+        '11': {'part': 'PART II - Administration', 'section_title': 'Records and accounts.'},
+        '12': {'part': 'PART III - Returns, remittances, recovery and refund of tax', 'section_title': 'Payment of tax by taxable person.'},
+        '13': {'part': 'PART III - Returns, remittances, recovery and refund of tax', 'section_title': 'Remission of tax collected by Government Ministries, etc.'},
+        '13A': {'part': 'PART III - Returns, remittances, recovery and refund of tax', 'section_title': 'Tax invoice.'},
+        '14': {'part': 'PART III - Returns, remittances, recovery and refund of tax', 'section_title': 'Collection of tax by taxable person.'},
+        '15': {'part': 'PART III - Returns, remittances, recovery and refund of tax', 'section_title': 'Taxable person to render returns.'},
+        '16': {'part': 'PART III - Returns, remittances, recovery and refund of tax', 'section_title': 'Remission of tax.'},
+        '17': {'part': 'PART III - Returns, remittances, recovery and refund of tax', 'section_title': 'Allowable input tax, etc.'},
+        '18': {'part': 'PART III - Returns, remittances, recovery and refund of tax', 'section_title': 'Effect of failure to render returns.'},
+        '19': {'part': 'PART III - Returns, remittances, recovery and refund of tax', 'section_title': 'Effect of non-remittance of tax.'},
+        '20': {'part': 'PART III - Returns, remittances, recovery and refund of tax', 'section_title': 'Recovery of tax.'},
+        '21': {'part': 'PART IV - Value Added Tax Technical Committee', 'section_title': 'Establishment and composition of the Value Added Tax Technical Committee.'},
+        '22': {'part': 'PART IV - Value Added Tax Technical Committee', 'section_title': 'Functions.'},
+        '23': {'part': 'PART IV - Value Added Tax Technical Committee', 'section_title': 'Proceedings.'},
+        '24': {'part': 'PART IV - Value Added Tax Technical Committee', 'section_title': 'Staff.'},
+        '25': {'part': 'PART V - Offences and penalties', 'section_title': 'Furnishing of false document, etc.'},
+        '26': {'part': 'PART V - Offences and penalties', 'section_title': 'Evasion of tax.'},
+        '27': {'part': 'PART V - Offences and penalties', 'section_title': 'Failure to make attribution.'},
+        '28': {'part': 'PART V - Offences and penalties', 'section_title': 'Failure to notify change of address.'},
+        '29': {'part': 'PART V - Offences and penalties', 'section_title': 'Failure to issue tax invoice.'},
+        '30': {'part': 'PART V - Offences and penalties', 'section_title': 'Resisting, etc., an authorised officer.'},
+        '31': {'part': 'PART V - Offences and penalties', 'section_title': 'Issuing of tax invoice by an unauthorised person.'},
+        '32': {'part': 'PART V - Offences and penalties', 'section_title': 'Failure to register.'},
+        '33': {'part': 'PART V - Offences and penalties', 'section_title': 'Failure to keep proper records and accounts.'},
+        '34': {'part': 'PART V - Offences and penalties', 'section_title': 'Failure to collect tax.'},
+        '35': {'part': 'PART V - Offences and penalties', 'section_title': 'Failure to submit returns.'},
+        '36': {'part': 'PART V - Offences and penalties', 'section_title': 'Aiding and abetting commission of offence, etc.'},
+        '37': {'part': 'PART V - Offences and penalties', 'section_title': 'Offence by body corporate, etc.'},
+        '38': {'part': 'PART VI - Miscellaneous', 'section_title': 'Powers of Minister to vary Schedules.'},
+        '39': {'part': 'PART VI - Miscellaneous', 'section_title': 'Power of inspection.'},
+        '40': {'part': 'PART VI - Miscellaneous', 'section_title': 'Distribution of revenue.'},
+        '41': {'part': 'PART VI - Miscellaneous', 'section_title': 'Appointment of agent for manufacturer or importer.'},
+        '42': {'part': 'PART VI - Miscellaneous', 'section_title': 'Signification.'},
+        '43': {'part': 'PART VI - Miscellaneous', 'section_title': 'Forms.'},
+        '44': {'part': 'PART VI - Miscellaneous', 'section_title': 'Regulations.'},
+        '45': {'part': 'PART VI - Miscellaneous', 'section_title': 'Repeal.'},
+        '46': {'part': 'PART VI - Miscellaneous', 'section_title': 'Interpretation.'},
+        '47': {'part': 'PART VI - Miscellaneous', 'section_title': 'Short title.'}
+    }

@@ -1,0 +1,333 @@
+  0: EVIDENCE ACT, 2011
+  1: ARRANGEMENT OF SECTIONS
+  2: SECTION:
+  3: I-
+  4: PART GENERAL
+  5: Evidence may be given of facts in issue and relevant facts.
+  6: o Evidence in accordance with section I generally admissible.
+  7: 3 Admissibility of evidence under other legislation.
+  8: PART JI- RELEVANCY
+  9: 4 Relevance of facts forming part of same transaction.
+ 10: 5 Facts which are the occasion, cause or effect or facts in issue.
+ 11: 6 Motive, preparation and previous or sub-sequent conduct.
+ 12: 7 Facts necessary to explain or introduce relevant facts.
+ 13: 8 Things said or done by conspirator in reference to common intention.
+ 14: 9 When facts not otherwise relevant become relevant.
+ 15: ]0 Certain facts relevant in proceedings for damages.
+ 16: II Facts showing existence of state of mind, body or bodily feeling.
+ 17: I:::
+ 18: Facts bearing on question whether act was accidental or intentional.
+ 19: jJ Existence of course ofbus.ness. when relevant.
+ 20: PART HI·- RELEVANO: AND ADMISSlIllLITY OF C~;j{TA{N EVJnPWE
+ 21: 14 Discretion to exclude improperly obtained evidence.
+ 22: ]5 Matters court to take into account under section ]4.
+ 23: J 6 What customs admissible.
+ 24: 17 Judicial notice of custom.
+ 25: [8 Evidence of customs.
+ 26: J 9 Relevant facts as to how matter alleged to be custom understood ..
+ 27: 20 Admission defined.
+ 28: 21 Admission by privies.
+ 29: 22 Admissions by persons whose position must be proved as against party to
+ 30: suit.
+ 31: 23 Admissions by persons expressly referred to by party to suit.
+ 32: 24 Proof of admissions against persons making them, and by or on their behal C
+ 33: 25 When oral admissions as to contents of documents are relevant.
+ 34: 26 Admissions in civil cases, when relevant.
+ 35: 27 Admissions conclusive proof; but may be stop.
+ 36: 110t
+ 37: 28 Confession defined.
+ 38: 29 When confession is relevant.
+ 39: 30 Facts discovered in consequence of information given by defendant.
+ 40: 3I Confession otherwise relevant not to become irrelevant because of promise
+ 41: of secrecy, etc.
+ 42: 32 Evidence in other proceedings amounting to a confession is admissible.
+ 43: 33 What evidence to be given when statement forms part of a conversation,
+ 44: document, book or series of letters or papers.
+ 45: 34 Weight to be attached to admissible statements.
+ 46: 35 Acts of possession and enjoyment of land may be evidence.
+ 47: 36 Evidence of scienter upon charge of receiving stolen property.
+ 48: I'ART IV - HEARSAY, OPINION AN]} CHARACTER EVIDENCE: RICLEVANCE
+ 49: AN]} ADMISSIBILITY
+ 50: 37 Hearsay defined.
+ 51: 38 Hearsay rule.
+ 52: 39 Statements by persons who cannot be called as witnesses.
+ 53: 40 Statements relating to cause of death.
+ 54: 41 Statements made in the course of business.
+ 55: 42 Statement against interest of maker with special knowledge.
+ 56: 43 Statements of opinions as to public right or custom and matters of general
+ 57: interest.
+ 58: 44 Statements relating to rile existence of a relationship.
+ 59: 45 Declarations by testators.
+ 60: 46 Admissibility of certain evidence for proving, in subsequent proceeding, the
+ 61: truth of facts stated in it.
+ 62: 47 When statement made under any criminal procedure legislation may be used
+ 63: in evidence.
+ 64: 48 Statement of defendant at preliminary investigation or coroner's inquest.
+ 65: 49 Admission ofwritten statements of investigating police officers in certain
+ 66: cases.
+ 67: 50 Absence of public officers.
+ 68: 51 Statements made in special circumstances entries in books of account.
+ 69: 52 Entry in public records made in performance of duty.
+ 70: 53 Statements in maps, charts and plans.
+ 71: S4 Statement as to fact of public nature contained in certain acts or
+ 72: notifications.
+ 73: 55 Certificates of specified government officers to be sufficient evidence in all
+ 74: criminal cases.
+ 75: 56 Certificates of Central Bank officers as evidence in criminal cases.
+ 76: 57 Service of certificates on other party before hearing,
+ 77: 58 Genuineness of certificates to be presumed,
+ 78: 59 Previous judgments admissible to bar a second suit or trial.
+ 79: 60 Admissibility of certain Judgments in certain jurisdictions,
+ 80: 61 Admissibility and effect ofjudgments other than those mentioned in section
+ 81: 60,
+ 82: 62 Judgment, etc, other than those mentioned in sections 59 to 61, when
+ 83: admissible,
+ 84: in
+ 85: 63 Conviction as evidence civil proceedings,
+ 86: 64 Fraud or collusion in obtaining judgment, or non-jurisdiction of court, may
+ 87: be proved,
+ 88: 65
+ 89: Judgment conclusive in favour of judge,
+ 90: 66 Family or communal tradition admissible in land cases,
+ 91: 67 Opinion inadmissible except as provided in this Act.
+ 92: 68 Opinions of experts, when admissible,
+ 93: 69 Opinions as to foreign law,
+ 94: 70 Opinions as to customary law and custom,
+ 95: 7]
+ 96: Facts bearing upon opinions of experts,
+ 97: 72 Opinion as to handwriting, when admissible,
+ 98: 73 Opinion as to existence of "general custom or right" when admissible,
+ 99: 74 Opinions as to usages and tenets, when admissible,
+100: 7S Opinion on relationship, when admissible,
+101: 76 Grounds of opinion when admissible,
+102: 77
+103: Character defined,
+104: 78 In civil cases, evidence of character generally inadmissible.
+105: 79 Character as affecting damages,
+106: 80 In libel and slander, notice must be given of evidence of character,
+107: 81 In criminal cases evidence of good character admissible,
+108: 82 Evidence of character of the accused in criminal proceedings,
+109: V --
+110: PAHT DOCUMENTAHY EVIDENCE
+111: 83 Admissibil ity of documentary evidence as to facts in issue,
+112: 84 Admissibility of statement in document produced by computers,
+113: 85 Proof of contents of documents.
+114: 86 Primary evidence.
+115: 87 Secondary evidence,
+116: 88 Proof of documents by primary evidence,
+117: 89 Cases in which secondary evidence relating to document.
+118: 90 Nature of secondary evidence admissible under section 89,
+119: 91 Rules as to notice to produce.
+120: 92 Proof that bank has made returns or been duly licensed,
+121: 93 Proof of signature and handwriting and electronic signature.
+122: 94 Identification of person signing a document.
+123: 9S Evidence of sealing and delivery of a document.
+124: 96 Proof of instrument to the validity of which attestation is necessary.
+125: 97 Admission of execution by part to attested document.
+126: 98 Cases in which proof of execution or of handwriting unnecessary.
+127: 99 Proof when attesting witness denies the execution.
+128: 100 Proof of document not required by law to be attested.
+129: 101 Comparison of signature, writing, seal or finger impressions with others
+130: admitted or proved.
+131: 102 Public documents.
+132: 103 Private documents.
+133: 104 Certified copies of public documents.
+134: 105 Proof of documents by production of certified copies.
+135: 106 Proof of other official documents.
+136: 107 COUltmay order proof by affidavit.
+137: 108 Affidavit to be filled.
+138: 109 Affidavit sworn in Nigeria.
+139: J 10 Proof of document not required by law to be attested.
+140: J 1J Proof of seal and signature.
+141: I 12 Affidavit not to be sworn before certain persons.
+142: 113 Affidavit defective in form.
+143: I )4 Amendment and re-swearing of affidavit.
+144: 115 Contents of affidavits.
+145: J J 6 Conflicting affidavits,
+146: ] ]7 Form of affidavits.
+147: 1] 8 Provisions as to altered affidavit.
+148: I 19 Jurat.
+149: 120 Declaration without oath may be taken.
+150: PART VI -PROOF
+151: 121 Proofoffacts.
+152: 122 Facts of which COUltmust take judicial notice need not to proved.
+153: 123 Facts admitted need to be proved.
+154: J 24 Facts of common knowledge need not be proved.
+155: PART VII - ORAL EVIDENCE AND THE INSPECTION OF REAL EVIDENCE
+156: 125 Proof of facts by oral evidence.
+157: 126 Oral evidence must be direct.
+158: 127 Inspection when oral evidence refers to real evidence.
+159: PART VIII .- EXCLlJSION OF ORAL BY DOCUMENTAHV EVJl)ENCE
+160: 128 Evidence of terms of judgments, contracts, grants and other dispositions of
+161: property reduced to a documentary form.
+162: 129 Evidence as to interpretation of documents.
+163: 130 Application of this Part.
+164: os
+165: PART IX - PRODUCTION AND EFFECT EVll)ENCE
+166: 131 Burden of proof.
+167: ]32 On whom burden of proof lies.
+168: 133 Burden of proof in civil cases.
+169: ]34 Standard of proof in civil cases.
+170: 135 Standard of proof where comm ission of crime in issue and burden where
+171: guilt of crime, etc. asserted.
+172: 136 Burden of proof as to particular fact.
+173: 137 Standard of proof where burden of proving fact, etc. placed on defendant by
+174: law.
+175: ]38 Burden of proving fact necessary to be proved to make evidence admissible.
+176: ]39
+177: Burden of proof in criminal cases.
+178: ]40 Proof of facts especially within knowledge.
+179: ]41 Exceptions need not be proved by prosecution.
+180: ]42 Burden of proof as to relationship in the case of partners, landlord and
+181: tenant, principal and agent.
+182: 143 Burden of proof as to ownership.
+183: ]44 Proof' ofgood faith in transactions where one party is in relation of active
+184: confidence.
+185: PART X -- PRESUMPTIONS AND ESTOPPEL
+186: ]45 Rules as to presumptions by the court.
+187: 146 Presumption as to genuineness of certified copies.
+188: i-17 Presumption as to documents produced as record f evidence.
+189: 0
+190: 148 Presumption as to gazettes, newspapers, Acts of the National Assembly and
+191: other documents.
+192: 149 Presumption as to document admissible in other countries without proof or
+193: seal or signature.
+194: ]50 Presumption as to powers of attorney.
+195: ]51 Presumption as to public maps and charts.
+196: 152 Presumption as to books.
+197: ]53 Presumption as to telegraphic and electronic messages.
+198: 154 Presumption as to due execution of documents not produced.
+199: 155 Presumption as to handwriting, etc. in documents twenty years old.
+200: Proper custody defined.
+201: 156
+202: 157 Presumption as to date of documents.
+203: 158 Presumption as to stamp of a document.
+204: 159 Presumption as to sealing and delivery.
+205: 160 Presumption as to alternative.
+206: 161 Presumption as to age of parties to a conveyance or instrument.
+207: 162 Presumption as to statements in documents twenty years old.
+208: 163 Presumption as to deeds of corporation.
+209: 164 Presumption of death fr0111seven years absence and other facts.
+210: 165 Presumption of legitimacy.
+211: 166 Presumption of marriage.
+212: 167 Court may presume existence of certain facts.
+213: 168 Presumptions of regularity and of deeds to complete title.
+214: 169 Estoppel.
+215: 170 Estoppel of tenant; and of licensee of person in possession.
+216: 171 Estoppel of bailee, agent and licensee.
+217: 172 Estoppel of person signing Act of lading.
+218: J73 Judgment conclusive of facts forming ground of judgment.
+219: 174 Effect of j udgment not pleaded as estoppel.
+220: PART XI - WITNESSES
+221: 175 Who may testify.
+222: 176 Dumb witnesses.
+223: 177 Cases in which banker or officers representing other financial institutions
+224: not compellable to produce books.
+225: in Parties to civil suits and their wives or husbands.
+226: 179 Competence in criminal cases.
+227: 180 Competence of person charged to give evidence
+228: 181 Comment on failure by defendant to give evidence.
+229: 182 Evidence by husband or wife, when compellable.
+230: 183 Witness not to be compellable to incriminate himself.
+231: 184 Production of title deeds or other documents of witness not a party.
+232: 185 Production of documents which another person could refuse to produce.
+233: 186 Evidence by spouse as to adultery.
+234: 187 Communications during marriage.
+235: 188 Compellability, of justices etc. or the persons before whom the proceeding is
+236: being held.
+237: 189 Restriction on disclosure as to source of information in respect of
+238: commission of offences.
+239: 190 Evidence as to affairs of State.
+240: 191 Official communication.
+241: 192 Professional communication between client and Icgal practitioner.
+242: Section 192 to apply to interpreters and clerks.
+243: 193
+244: 194 Privilege not waived by volunteering evidence.
+245: 195 Confidential communication with legal advisers.
+246: 196 Statements in documents marked "without prejudice".
+247: 197 Corroboration in actions for breach of promise of marriage.
+248: 198 Accomplice.
+249: 199 Co-defendant not an accomplice.
+250: 200 Number of witnesses.
+251: 20J Treason and treasonable offences.
+252: 202 Evidence on charge of perjury.
+253: 203 Exceeding speed limit.
+254: 204 Sedition.
+255: 205 PART XII -TAKING OF ORAL EVIDENCE AND EXAMINATION OF
+256: WITNESSES
+257: Oral evidence to be on oath or affirmation.
+258: 206 Witness to be cautioned before giving oral evidence.
+259: 207
+260: Absence of religious belief does not invalidate oath.
+261: 208 Cases in which evidence not given upon oath may be received.
+262: 209 Unsworn evidence of a child.
+263: 2JO Order of production and examination of witnesses.
+264: 2 J I Court to decide as to admission of evidence.
+265: 2J2 Ordering witnesses out of court,
+266: 213 Preventing communication with witnesses.
+267: 214 Examination-in-chief, cross-examination and re-examination.
+268: 215 Order and direction of examination.
+269: ::16 Cross-examination by co-defendant ofprosecution witness.
+270: 217
+271: Cross-examination by-co-defendant of witness called by a defendant.
+272: 218 Production of documents without giving evidence.
+273: 219 Cross-examination of person called to produce a document.
+274: 220
+275: Witnesses to character.
+276: 221 Leading question.
+277: 222 Evidence as to matters in writing.
+278: Question lawful in cross-examination.
+279: 223
+280: 224 Court to decide whether question shall be asked and when a witness may be
+281: compelled to answer.
+282: 225 Question not to be asked without reasonable grounds.
+283: 226 Procedure of court in case of question being asked without reasonable
+284: grounds.
+285: 227 Indecent and scandalous questions.
+286: 228 Questions intended to insult or annoy.
+287: 229 Exclusion of evidence to contradict answers to questions testing veracity.
+288: 230 How far a party may discredit his own witness.
+289: 231 Proof of contradictory statement of hostile witness.
+290: 232 Cross-examination as to previous statements in writing.
+291: 233 Impeaching credit of witness.
+292: 234 Special restrictions in respect of permissible evidence in trial for sexual
+293: offences.
+294: 235 Evidence of witness impeaching credit.
+295: 236 Questions tending to render evidence of relevant fact more probable,
+296: admissible.
+297: 237 Former statements of witness may be proved to show consistency.
+298: 238 What matters may be proved in connection with proved statement relevant
+299: under sections 40 t050.
+300: 239 Refreshing memory.
+301: Testimony to facts stated in document mentioned in section 239.
+302: 240
+303: 241 Right of adverse party as to writing used to refresh memory.
+304: 242 Production of documents.
+305: 243 Exclusion of evidence on grounds of public interest.
+306: 244 Giving as evidence document called for and produced on notice.
+307: 245 Using, as evidence a, of document production of which was refused on
+308: notice.
+309: 246 Judge's power to put questions or order production of documents, etc.
+310: 247 Power of assessors to put questions.
+311: XII] --
+312: PART EVIDENCE OF PREVIOUS CONVICTION
+313: 248 Proof of previous conviction.
+314: 249 Proof of previous conviction outside Nigeria.
+315: 250 Additional mode of proof in criminal proceedings of a previous conviction.
+316: PART XIV - WRONGFUL ADMISSION AND REJECTION OF EVIDENCE
+317: 251 Wrongful admission or exclusion of evidence.
+318: XV -
+319: PART SERVICE AND EXECUTION THROUGH-OUT NIGERIA OF
+320: PROCESS TO COMPEL THE ATTENDANCE OF WITNESSES BEFORE COlJRTS
+321: OF THE STATES AND THE FEDERAL CAPITAL TEHRITORY, ABU.IA AND TilE
+322: 252 FEDERAL HIGH COURT
+323: Interpretation of "Court" in this part.
+324: 253 Subpoena or witness summons may be served in another state.
+325: 254 Orders for production ofprisoners.
+326: XVI -
+327: PART MISCELLANEOUS AND SUPPLEMENTAL
+328: 255 Regulations.
+329: 256 Application.
+330: 257 Repeal.
+331: 258 Interpretation.
+332: 259 Citation.
