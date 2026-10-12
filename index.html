@@ -1034,7 +1034,13 @@
             document.getElementById('modalStatute').textContent = statute;
             document.getElementById('modalTitle').textContent = `Section ${secNum}: ${secTitle}`;
             document.getElementById('modalPart').textContent = part || '';
-            document.getElementById('modalBody').textContent = rawText;
+            
+            const modalBody = document.getElementById('modalBody');
+            if (modalBody) {
+                modalBody.textContent = rawText;
+                if (modalBody.parentElement) modalBody.parentElement.scrollTop = 0;
+            }
+            
             currentFullText = `${statute}\nSection ${secNum}: ${secTitle}\n\n${rawText}`;
             
             // Update Adjacent Navigation Buttons
@@ -1043,19 +1049,41 @@
             const counterEl = document.getElementById('modalSectionCounter');
             
             if (currentStatuteSections && currentStatuteSections.length > 0) {
-                prevBtn.disabled = currentSectionIdx <= 0;
-                nextBtn.disabled = currentSectionIdx >= currentStatuteSections.length - 1;
-                counterEl.textContent = `Section ${secNum} (${currentSectionIdx + 1} of ${currentStatuteSections.length})`;
+                if (prevBtn) prevBtn.disabled = currentSectionIdx <= 0;
+                if (nextBtn) nextBtn.disabled = currentSectionIdx >= currentStatuteSections.length - 1;
+                if (counterEl) counterEl.textContent = `Section ${secNum} (${currentSectionIdx + 1} of ${currentStatuteSections.length})`;
             } else {
-                prevBtn.disabled = true;
-                nextBtn.disabled = true;
-                counterEl.textContent = `Section ${secNum}`;
+                if (prevBtn) prevBtn.disabled = true;
+                if (nextBtn) nextBtn.disabled = true;
+                if (counterEl) counterEl.textContent = `Section ${secNum}`;
             }
             
             document.getElementById('modalBackdrop').classList.remove('hidden');
         }
 
         function closeModal() { document.getElementById('modalBackdrop').classList.add('hidden'); }
+
+        function navigateAdjacentSection(direction) {
+            if (!currentStatuteSections || currentStatuteSections.length === 0) return;
+            const targetIdx = currentSectionIdx + direction;
+            if (targetIdx < 0 || targetIdx >= currentStatuteSections.length) return;
+            
+            currentSectionIdx = targetIdx;
+            const s = currentStatuteSections[targetIdx];
+            if (!s) return;
+            
+            currentActiveStatute = s.statute;
+            currentActiveSecNum = s.section_number;
+            
+            openModal(s.statute, s.section_number, s.section_title, s.part, s.full_text);
+            
+            // Keep background act view in sync if open
+            const secSanitized = String(s.section_number).replace(/[^a-zA-Z0-9_-]/g, '_');
+            const secEl = document.getElementById(`act_sec_${secSanitized}`);
+            if (secEl) {
+                secEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
         
         function openDisclaimerModal() {
             document.getElementById('disclaimerModalBackdrop').classList.remove('hidden');
@@ -1167,6 +1195,16 @@
                 closeModal();
                 closeDisclaimerModal();
                 closeFeedbackModal();
+            } else if (e.key === 'ArrowLeft') {
+                const modal = document.getElementById('modalBackdrop');
+                if (modal && !modal.classList.contains('hidden')) {
+                    navigateAdjacentSection(-1);
+                }
+            } else if (e.key === 'ArrowRight') {
+                const modal = document.getElementById('modalBackdrop');
+                if (modal && !modal.classList.contains('hidden')) {
+                    navigateAdjacentSection(1);
+                }
             }
         });
 
