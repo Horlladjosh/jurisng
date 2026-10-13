@@ -757,10 +757,14 @@ def get_sitemap():
 </urlset>"""
     return Response(content=content, media_type="application/xml")
 
-@app.get("/", response_class=HTMLResponse)
+@app.api_route("/", methods=["GET", "HEAD"], response_class=HTMLResponse)
 def web_dashboard():
     with open("index.html", "r", encoding="utf-8") as f:
         return f.read()
+
+@app.api_route("/health", methods=["GET", "HEAD"])
+def health_check():
+    return {"status": "ok"}
 
 if __name__ == "__main__":
     import uvicorn
