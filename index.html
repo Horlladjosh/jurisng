@@ -98,7 +98,7 @@
 <body class="bg-[#f8f7f4] dark:bg-[#0e1014] text-ink-900 dark:text-gray-100 h-full flex antialiased selection:bg-spruce-100 selection:text-spruce-800 dark:selection:bg-spruce-900 dark:selection:text-spruce-100 overflow-hidden">
 
     <!-- Sidebar Navigation -->
-    <aside id="sidebar" class="fixed md:static inset-y-0 left-0 -translate-x-full md:translate-x-0 w-64 bg-[#f1ede6]/80 dark:bg-[#13161c] border-r border-[#e4dfd5] dark:border-[#262a34] flex flex-col justify-between p-4 shrink-0 select-none z-40 transition-transform duration-200 shadow-2xl md:shadow-none backdrop-blur-xs">
+    <aside id="sidebar" class="fixed md:static inset-y-0 left-0 -translate-x-full md:translate-x-0 w-64 bg-[#f1ede6] dark:bg-[#13161c] border-r border-[#e4dfd5] dark:border-[#262a34] flex flex-col justify-between p-4 shrink-0 select-none z-40 transition-transform duration-200 shadow-2xl md:shadow-none">
         <div class="space-y-4 flex flex-col min-h-0 flex-1">
             
             <!-- Brand Header with Nigerian Coat/Scales Emblem -->
@@ -125,8 +125,8 @@
                     <span id="sidebarLibraryLabel">Statutory Library (126 Acts)</span>
                 </button>
                 <button id="navFeedbackBtn" onclick="openFeedbackModal()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-ink-700 dark:text-gray-300 hover:bg-white/80 dark:hover:bg-[#181b22]/80 text-left transition cursor-pointer">
-                    <i class="ph ph-chat-teardrop-dots text-sm text-brass-600 dark:text-amber-400"></i>
-                    <span>Report Bug / Reach Out</span>
+                    <i class="ph ph-bug text-sm text-brass-600 dark:text-amber-400"></i>
+                    <span>Report a Bug</span>
                 </button>
             </nav>
 
@@ -167,7 +167,7 @@
                 </button>
                 <div class="flex items-center gap-1.5 text-[10px] text-ink-400 dark:text-gray-400 font-mono">
                     <button onclick="openFeedbackModal()" class="hover:text-ink-900 dark:hover:text-white underline underline-offset-2 transition cursor-pointer">
-                        Reach Out
+                        Report a Bug
                     </button>
                     <span>•</span>
                     <button onclick="openDisclaimerModal()" class="hover:text-ink-900 dark:hover:text-white underline underline-offset-2 transition cursor-pointer">
@@ -181,19 +181,20 @@
     <!-- Main Workspace Area -->
     <main class="flex-1 flex flex-col h-full overflow-hidden relative" id="workspace">
         <!-- Mobile Top Navigation Bar -->
-        <div class="md:hidden flex items-center justify-between px-4 py-3 bg-[#f1ede6] dark:bg-[#13161c] border-b border-[#e4dfd5] dark:border-[#262a34] shrink-0 z-10">
+        <div class="md:hidden flex items-center justify-between px-4 py-2.5 bg-[#f1ede6] dark:bg-[#13161c] border-b border-[#e4dfd5] dark:border-[#262a34] shrink-0 z-10">
             <div class="flex items-center gap-2 cursor-pointer" onclick="showSearchHome()">
-                <div class="w-7 h-7 rounded bg-spruce-600 text-white flex items-center justify-center">
+                <div class="w-7 h-7 rounded bg-spruce-600 text-white flex items-center justify-center shadow-2xs">
                     <i class="ph ph-scales text-sm"></i>
                 </div>
                 <span class="font-bold text-xs tracking-tight">Juris<span class="text-spruce-600 dark:text-spruce-400 font-bold">NG</span></span>
             </div>
-            <div class="flex items-center gap-1.5">
-                <button onclick="openFeedbackModal()" title="Report Bug / Reach Out" class="p-1.5 rounded-md text-ink-600 dark:text-gray-300 hover:bg-white dark:hover:bg-[#181b22] transition flex items-center gap-1">
-                    <i class="ph ph-chat-teardrop-dots text-base text-brass-600 dark:text-amber-400"></i>
+            <div class="flex items-center gap-2">
+                <button onclick="showLibraryView()" title="Browse Statutory Library" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white dark:bg-[#181b22] text-spruce-800 dark:text-spruce-200 border border-[#e4dfd5] dark:border-[#262a34] text-xs font-semibold shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer">
+                    <i class="ph ph-books text-sm text-spruce-600 dark:text-spruce-400"></i>
+                    <span>Library</span>
                 </button>
-                <button onclick="toggleMobileSidebar()" class="p-1.5 rounded-md text-ink-700 dark:text-gray-200 hover:bg-white dark:hover:bg-[#181b22] transition">
-                    <i class="ph ph-list text-lg"></i>
+                <button onclick="toggleMobileSidebar()" aria-label="Open Menu" class="p-1.5 rounded-lg text-ink-700 dark:text-gray-200 hover:bg-white dark:hover:bg-[#181b22] transition cursor-pointer">
+                    <i class="ph ph-list text-xl"></i>
                 </button>
             </div>
         </div>
@@ -204,10 +205,10 @@
         <!-- Home State (Search Input) -->
         <div id="homeHeroState" class="flex-1 flex flex-col justify-between max-w-3xl w-full mx-auto px-4 sm:px-6 overflow-y-auto">
             
-            <div class="flex-1 flex flex-col items-center justify-center space-y-6 my-auto py-8">
+            <div class="flex-1 flex flex-col items-center justify-center space-y-4 sm:space-y-6 my-auto py-4 sm:py-8">
                 <!-- Title & Subtitle -->
-                <div class="text-center space-y-2.5 max-w-2xl mx-auto">
-                    <h1 class="text-3xl sm:text-4xl lg:text-[44px] font-editorial font-bold tracking-tight text-ink-900 dark:text-white leading-[1.18]">
+                <div class="text-center space-y-2 max-w-2xl mx-auto">
+                    <h1 class="text-2xl sm:text-4xl lg:text-[44px] font-editorial font-bold tracking-tight text-ink-900 dark:text-white leading-[1.18]">
                         Search Nigerian Federal Law
                     </h1>
                     <p id="heroSubtitle" class="text-xs sm:text-sm text-ink-500 dark:text-gray-300 max-w-md mx-auto leading-relaxed">
@@ -233,29 +234,37 @@
                     </form>
                 </div>
 
-                <!-- 3 Varied Archetype Pills (Clean, Understated) -->
+                <!-- Suggestions (2 on Mobile, 3 on Tablet/Desktop, No Icons) -->
                 <div class="flex flex-wrap items-center justify-center gap-2 pt-0.5">
-                    <button type="button" onclick="triggerSearch('late for class company deducts salary without agreement')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition flex items-center gap-1.5 shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
-                        <i class="ph ph-chat-circle-dots text-spruce-600 dark:text-spruce-300 text-xs"></i>
-                        <span>Salary deductions without consent</span>
+                    <button type="button" onclick="triggerSearch('late for class company deducts salary without agreement')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
+                        Salary deductions without consent
                     </button>
 
-                    <button type="button" onclick="triggerSearch('Section 84 Evidence Act 2011')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition flex items-center gap-1.5 shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
-                        <i class="ph ph-hash text-brass-600 dark:text-amber-400 text-xs"></i>
-                        <span>Section 84 Evidence Act</span>
+                    <button type="button" onclick="triggerSearch('Section 84 Evidence Act 2011')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
+                        Section 84 Evidence Act
                     </button>
 
-                    <button type="button" onclick="triggerSearch('Section 13 Nigeria Startup Act labeling incentives')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition flex items-center gap-1.5 shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
-                        <i class="ph ph-briefcase text-spruce-600 dark:text-spruce-300 text-xs"></i>
-                        <span>Startup tax incentives</span>
+                    <button type="button" onclick="triggerSearch('Section 13 Nigeria Startup Act labeling incentives')" class="hidden sm:inline-flex px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
+                        Startup tax incentives
                     </button>
                 </div>
             </div>
 
-            <!-- Anchored Clean Legal Notice at Viewport Bottom -->
-            <div class="py-3 text-[11px] text-ink-500 dark:text-gray-400 text-center flex flex-wrap items-center justify-center gap-1.5 shrink-0">
-                <i class="ph ph-shield-check text-xs text-brass-600 dark:text-amber-400"></i>
-                <span>Automated Statutory Intelligence • Not Formal Legal Advice • <span onclick="openDisclaimerModal()" class="underline underline-offset-2 font-medium text-spruce-700 dark:text-spruce-300 cursor-pointer">Terms & Notice</span> • <span onclick="openFeedbackModal()" class="underline underline-offset-2 font-medium text-brass-700 dark:text-amber-400 cursor-pointer">Report Bug / Reach Out</span></span>
+            <!-- Anchored Clean Legal Notice at Viewport Bottom (Text Above, Links Below) -->
+            <div class="py-3 sm:py-4 text-center flex flex-col items-center justify-center gap-1.5 shrink-0 text-[11px] text-ink-500 dark:text-gray-400">
+                <div class="flex items-center justify-center gap-1.5">
+                    <i class="ph ph-shield-check text-xs text-brass-600 dark:text-amber-400 shrink-0"></i>
+                    <span>Automated Statutory Intelligence • Not Formal Legal Advice</span>
+                </div>
+                <div class="flex items-center justify-center gap-2 text-[11px]">
+                    <button type="button" onclick="openDisclaimerModal()" class="underline underline-offset-2 font-medium text-spruce-700 dark:text-spruce-300 hover:text-spruce-900 dark:hover:text-white transition cursor-pointer">
+                        Terms & Notice
+                    </button>
+                    <span>•</span>
+                    <button type="button" onclick="openFeedbackModal()" class="underline underline-offset-2 font-medium text-brass-700 dark:text-amber-400 hover:text-brass-800 dark:hover:text-amber-300 transition cursor-pointer">
+                        Report a Bug
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -307,9 +316,16 @@
                         <i class="ph ph-magnifying-glass text-xs"></i>
                     </button>
                 </div>
-                <div class="text-[10px] text-ink-500 dark:text-gray-300 text-center flex flex-wrap items-center justify-center gap-1.5">
-                    <i class="ph ph-shield-check text-xs text-brass-600 dark:text-amber-400"></i>
-                    <span>Automated Statutory Information • <span onclick="openDisclaimerModal()" class="underline underline-offset-2 cursor-pointer">Disclaimer & Usage Notice</span> • <span onclick="openFeedbackModal()" class="underline underline-offset-2 text-brass-700 dark:text-amber-400 cursor-pointer font-medium">Report Bug / Feedback</span></span>
+                <div class="py-1 text-center flex flex-col items-center justify-center gap-1 text-[10px] text-ink-500 dark:text-gray-400">
+                    <div class="flex items-center justify-center gap-1">
+                        <i class="ph ph-shield-check text-xs text-brass-600 dark:text-amber-400 shrink-0"></i>
+                        <span>Automated Statutory Intelligence • Not Formal Legal Advice</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2">
+                        <button type="button" onclick="openDisclaimerModal()" class="underline underline-offset-2 text-spruce-700 dark:text-spruce-300 hover:text-spruce-900 dark:hover:text-white transition cursor-pointer">Terms & Notice</button>
+                        <span>•</span>
+                        <button type="button" onclick="openFeedbackModal()" class="underline underline-offset-2 text-brass-700 dark:text-amber-400 hover:text-brass-800 dark:hover:text-amber-300 transition font-medium cursor-pointer">Report a Bug</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -444,7 +460,7 @@
         </div>
     </div>
 
-    <!-- Reach Out / Bug Report Modal Dialog -->
+    <!-- Report a Bug Modal Dialog -->
     <div id="feedbackModalBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4" onclick="if(event.target === this) closeFeedbackModal()">
         <div class="bg-[#f8f7f4] dark:bg-[#13161c] border border-[#e4dfd5] dark:border-[#262a34] w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-colors">
             
@@ -452,10 +468,10 @@
             <div class="p-5 border-b border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex items-start justify-between gap-4 shrink-0">
                 <div class="space-y-1">
                     <div class="text-[10px] font-bold uppercase tracking-wider text-spruce-700 dark:text-spruce-300 font-mono flex items-center gap-1.5">
-                        <i class="ph ph-chat-teardrop-dots text-sm text-brass-600 dark:text-amber-400"></i>
-                        <span>Direct Support & Issue Reporting</span>
+                        <i class="ph ph-bug text-sm text-brass-600 dark:text-amber-400"></i>
+                        <span>Direct Issue & Bug Reporting</span>
                     </div>
-                    <h2 class="text-xl font-editorial font-bold text-ink-900 dark:text-white">Reach Out / Report a Bug</h2>
+                    <h2 class="text-xl font-editorial font-bold text-ink-900 dark:text-white">Report a Bug</h2>
                     <p class="text-xs text-ink-500 dark:text-gray-400">Found an issue, OCR typo, or have a suggestion? We'll review it immediately.</p>
                 </div>
                 <button type="button" onclick="closeFeedbackModal()" class="text-ink-400 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white p-1.5 rounded-md hover:bg-[#f1ede6] dark:hover:bg-[#222630] transition cursor-pointer">
@@ -549,7 +565,7 @@
                     </button>
                     <button type="submit" id="feedbackSubmitBtn" class="bg-spruce-600 hover:bg-spruce-700 text-white font-semibold px-4 py-2 rounded-lg text-xs transition shadow-xs flex items-center gap-1.5 cursor-pointer disabled:opacity-50">
                         <i class="ph ph-paper-plane-right text-xs"></i>
-                        <span id="feedbackSubmitBtnText">Submit Query</span>
+                        <span id="feedbackSubmitBtnText">Submit Report</span>
                     </button>
                 </div>
             </form>
@@ -788,6 +804,13 @@
             }
         }
 
+        function closeMobileSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('sidebarBackdrop');
+            if (sidebar) sidebar.classList.add('-translate-x-full');
+            if (backdrop) backdrop.classList.add('hidden');
+        }
+
         function initTheme() {
             const isDark = (localStorage.getItem('juris_theme') || 'light') === 'dark';
             document.documentElement.classList.toggle('dark', isDark);
@@ -808,6 +831,7 @@
         }
 
         function showSearchHome() {
+            closeMobileSidebar();
             document.getElementById('homeHeroState').classList.remove('hidden');
             document.getElementById('threadState').classList.add('hidden');
             document.getElementById('libraryState').classList.add('hidden');
@@ -819,6 +843,7 @@
         }
 
         async function showLibraryView() {
+            closeMobileSidebar();
             document.getElementById('homeHeroState').classList.add('hidden');
             document.getElementById('threadState').classList.add('hidden');
             document.getElementById('libraryState').classList.remove('hidden');
@@ -1321,6 +1346,7 @@
         async function triggerSearch(query) {
             if (!query || !query.trim()) return;
             const q = query.trim();
+            closeMobileSidebar();
             saveSearchQuery(q);
             document.getElementById('homeHeroState').classList.add('hidden');
             document.getElementById('libraryState').classList.add('hidden');
