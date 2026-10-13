@@ -12,7 +12,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional, Tuple
 from fastapi import FastAPI, Query, HTTPException, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, FileResponse, Response
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
@@ -721,6 +721,41 @@ def api_submit_feedback(payload: FeedbackPayload, request: Request):
         "email_sent": email_sent,
         "submission_id": submission_id
     }
+
+@app.get("/favicon.ico")
+@app.get("/favicon.svg")
+def get_favicon():
+    if os.path.exists("favicon.svg"):
+        return FileResponse("favicon.svg", media_type="image/svg+xml")
+    return Response(status_code=404)
+
+@app.get("/og-image.png")
+def get_og_image():
+    if os.path.exists("og-image.png"):
+        return FileResponse("og-image.png", media_type="image/png")
+    return Response(status_code=404)
+
+@app.get("/robots.txt", response_class=Response)
+def get_robots():
+    content = "User-agent: *\nAllow: /\nSitemap: https://jurisng.horlladjosh.com/sitemap.xml\n"
+    return Response(content=content, media_type="text/plain")
+
+@app.get("/sitemap.xml", response_class=Response)
+def get_sitemap():
+    content = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://jurisng.horlladjosh.com/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://jurisng.horlladjosh.com/terms</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>"""
+    return Response(content=content, media_type="application/xml")
 
 @app.get("/", response_class=HTMLResponse)
 def web_dashboard():
