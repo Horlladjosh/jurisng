@@ -141,5 +141,21 @@ This document provides a comprehensive, date-stamped chronological history of th
     14. *NBC Act:* Restored title for Section 25 ("Conditions for application for licence (Third Schedule)").
   * **Automated Regression Prevention:** Upgraded `verify_extraction_fidelity.py` with custom SQLite `is_generic_title` regex functions to continuously enforce zero generic or untitled sections across all 10,114 sections.
 
+---
 
-
+### Milestone 12: Text Fidelity, Dehyphenation & Typography Sanitation Across Regulatory Statutes (October 14, 2026)
+* **Date:** 14 October 2026
+* **Corpus Size:** 134 Federal Statutes (10,114 verified sections)
+* **What Happened:**
+  * **Food and Drugs Act (Cap. F32, LFN 2004) Total Re-Extraction:**
+    * Re-extracted all 22 substantive sections using high-fidelity PyMuPDF (`fitz`), resolving PyPDF2 font kerning artifacts that broke words across internal spaces (`cert ain`, `dr ugs`, `cosme tic`, `m anufac ture`, `wh ich`, `s hall`).
+    * Dehyphenated broken lines across column splits (e.g., `addi-tive`, `adver-tisement`, `pro-duced`).
+    * Rejoined mid-sentence line breaks into flowing legal prose while preserving proper indentation and dedicated line breaks for numbered subsections `(1)`, paragraphs `(a)`, and subparagraphs `(i)`.
+    * Formatted Section 21 (Interpretation) so every defined term (`"analyst"`, `"cosmetic"`, `"device"`, `"drug"`, `"food"`, `"insanitary conditions"`, `"inspecting officer"`, `"label"`, `"Minister"`, `"package"`, `"prescribed"`, `"regulations"`, `"selling"`) opens on a clean dedicated line.
+    * Decoupled trailing Schedules and Subsidiary Legislation notes that had leaked into Section 22's substantive text.
+    * Assigned authoritative statutory Parts across all 22 sections: *Part I: Food, Drugs, Cosmetics and Devices* (Sec 1–13), *Part II: Forfeiture* (Sec 14), *Part III: Advisory Council* (Sec 15), *Part IV: Regulations* (Sec 16), *Part V: Penalties and Legal Proceedings* (Sec 17–20), and *Part VI: General* (Sec 21–22).
+  * **Corpus-Wide Kerning & Word-Spacing Audit:**
+    * Audited all 134 statutes for intra-word splitting.
+    * Remediated **Firearms Act** (all 38 sections re-extracted with PyMuPDF, official Parts assigned, zero split words).
+    * Remediated minor kerning splits in **FCCPA 2018** (Sec 34, 68, 87, 88, 99), **Motor Vehicles (Third Party Insurance) Act** (Sec 11, 16, 23), and **NAFDAC Act** (Sec 10, 20).
+    * Result: **0 split words or kerning anomalies across all 10,114 sections** in the entire library.
