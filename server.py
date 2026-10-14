@@ -562,6 +562,19 @@ LEGAL_DOMAINS = [
         'target_statutes': ['Criminal Code Act', 'Penal Code (Northern States) Federal Provisions Act, 1960'],
         'primary_terms': ['offences in relation to witchcraft and juju', 'directing etc unlawful trial by ordeal', 'unlawful trial by ordeal'],
         'determination': "Under Section 210 of the Criminal Code Act (and Section 216 of the Penal Code), representing oneself to be a witch, accusing or threatening to accuse any person of witchcraft, or making, selling, using, or possessing any juju, drug, or charm intended to compel or prevent any person from acting lawfully is a criminal misdemeanour punishable by two years imprisonment. Furthermore, directing or participating in an unlawful trial by ordeal is a felony punishable by up to ten years imprisonment, or the death penalty where death results under Section 208."
+    },
+    {
+        'id': 'traffic_road_safety_pedestrian',
+        'keywords': [
+            'crossing the road', 'crossing road', 'crossing expressway', 'cross the road', 
+            'cross expressway', 'pedestrian', 'pedestrian bridge', 'footbridge', 'jaywalking', 
+            'traffic light', 'traffic offence', 'traffic offense', 'frsc', 'road safety', 
+            'road marshal', 'speed limit', 'driving without licence', 'driving without license', 
+            'highway safety', 'obstruction of highway', 'federal highway', 'lastma', 'vio'
+        ],
+        'target_statutes': ['FRSC Act', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
+        'primary_terms': ['highways safe', 'powers of the Corps', 'right to personal liberty', 'freedom of movement', 'written law', 'pedestrian'],
+        'determination': "Under Section 11 of the Federal Road Safety Commission (FRSC) Act, the Corps is empowered to regulate highway safety for motorists and other road users. While state environmental and highway traffic regulations mandate using designated pedestrian overhead bridges to avoid traffic hazards, Section 36(12) and Section 35 of the 1999 Constitution strictly mandate that no citizen may be arrested or penalised unless the alleged offence is explicitly defined in a written law, and any detention or extortion without formal charge is unconstitutional."
     }
 ]
 
@@ -574,7 +587,8 @@ LEGAL_VOCABULARY = [
     'landlord', 'tenant', 'evict', 'eviction', 'premises', 'copyright', 
     'infringement', 'trademark', 'patent', 'counterfeit', 'pension', 'cheque', 
     'bounced', 'defamation', 'cyberstalking', 'extortion', 'bribe', 'bribery', 
-    'gratification', 'kidnapping', 'assault', 'admiralty', 'mining', 'witchcraft', 'juju'
+    'gratification', 'kidnapping', 'assault', 'admiralty', 'mining', 'witchcraft', 'juju',
+    'pedestrian', 'highway', 'traffic', 'bridge'
 ]
 
 NIGERIAN_COLLOQUIALISMS = {
@@ -606,7 +620,15 @@ NIGERIAN_COLLOQUIALISMS = {
     'ritual killing': 'murder homicide human parts criminal charms',
     'blood money': 'murder human parts criminal charms',
     'japa scam': 'advance fee fraud travel scam visa fraud',
-    'japa agent': 'advance fee fraud travel scam visa fraud'
+    'japa agent': 'advance fee fraud travel scam visa fraud',
+    'crossing the road': 'pedestrian highway safety pedestrian bridge FRSC Act',
+    'crossing road': 'pedestrian highway safety pedestrian bridge FRSC Act',
+    'crossing expressway': 'pedestrian highway safety pedestrian bridge FRSC Act',
+    'pedestrian bridge': 'pedestrian footbridge highway crossing FRSC Act',
+    'jaywalking': 'pedestrian crossing highway traffic FRSC Act',
+    'kai': 'task force environmental sanitation arbitrary arrest personal liberty',
+    'lastma': 'traffic enforcement road safety personal liberty',
+    'vio': 'vehicle inspection road safety'
 }
 
 def normalize_query(query: str) -> str:
@@ -644,7 +666,7 @@ def classify_legal_intent(scenario: str) -> Optional[dict]:
                     score += 6
             else:
                 if re.search(r'\b' + re.escape(kw) + r'\b', search_text):
-                    if kw in ['bribe', 'bribery', 'extortion', 'gratification', 'steal', 'stealing', 'theft', 'divorce', 'custody', 'freeze', 'pnd', 'evict', 'landlord', 'tenant', 'copyright', 'juju', 'witchcraft', 'cheque', 'pension']:
+                    if kw in ['bribe', 'bribery', 'extortion', 'gratification', 'steal', 'stealing', 'theft', 'divorce', 'custody', 'freeze', 'pnd', 'evict', 'landlord', 'tenant', 'copyright', 'juju', 'witchcraft', 'cheque', 'pension', 'pedestrian', 'frsc', 'highway']:
                         score += 8
                     else:
                         score += 3
@@ -752,6 +774,11 @@ def retrieve_candidate_pool(conn, plan: dict, raw_query: str) -> list:
                 title_low = r[2].lower()
                 if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations']:
                     continue
+                # Disambiguate financial cheque crossings from pedestrian/physical road crossings
+                if ('crossing' in title_low or 'crossings' in title_low) and (r[0] == 'Bills of Exchange Act' or 'cheque' in title_low or 'check' in title_low):
+                    financial_terms = {'cheque', 'check', 'bank', 'banking', 'bill', 'drawer', 'payee', 'account', 'finance', 'payment', 'endorse', 'negotiable', 'funds', 'credit'}
+                    if not any(ft in raw_query.lower() for ft in financial_terms):
+                        continue
                 score = 35 + sum(15 for other in tokens if other in title_low)
                 title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
                 key = (title, str(r[1]))
@@ -770,6 +797,12 @@ def retrieve_candidate_pool(conn, plan: dict, raw_query: str) -> list:
             for r in cursor.fetchall():
                 if r[0] in PERIPHERAL_STATUTES:
                     continue
+                title_low = r[2].lower()
+                # Disambiguate financial cheque crossings from pedestrian/physical road crossings
+                if ('crossing' in title_low or 'crossings' in title_low) and (r[0] == 'Bills of Exchange Act' or 'cheque' in title_low or 'check' in title_low):
+                    financial_terms = {'cheque', 'check', 'bank', 'banking', 'bill', 'drawer', 'payee', 'account', 'finance', 'payment', 'endorse', 'negotiable', 'funds', 'credit'}
+                    if not any(ft in raw_query.lower() for ft in financial_terms):
+                        continue
                 title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
                 key = (title, str(r[1]))
                 if key not in scored:
