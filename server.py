@@ -165,21 +165,52 @@ def make_clean_snippet(text: str, max_chars: int = 240) -> str:
     clean = re.sub(r'\s+', ' ', text).strip()
     return clean if len(clean) <= max_chars else clean[:max_chars].rstrip() + "..."
 
+QUERY_CACHE = {}
+QUOTA_COOLDOWN_UNTIL = 0.0
+
 def call_gemini(prompt: str, response_json: bool = False) -> str:
+    global QUOTA_COOLDOWN_UNTIL
     if not API_KEY or API_KEY.startswith("your-actual"): return ""
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key={API_KEY}"
+    if time.time() < QUOTA_COOLDOWN_UNTIL:
+        return ""
+        
+    cache_key = f"{response_json}:{prompt.strip()}"
+    if cache_key in QUERY_CACHE:
+        return QUERY_CACHE[cache_key]
+        
     headers = {"Content-Type": "application/json", "x-goog-api-key": API_KEY}
-    payload = {"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"temperature": 0.0, "maxOutputTokens": 800}}
-    if response_json: payload["generationConfig"]["responseMimeType"] = "application/json"
-    try:
-        res = requests.post(url, json=payload, headers=headers, timeout=10)
-        if res.status_code == 200:
-            data = res.json()
-            candidates = data.get("candidates", [])
-            if candidates and "content" in candidates[0]:
-                return candidates[0]["content"]["parts"][0]["text"].strip()
-    except Exception as e:
-        print(f"[!] Gemini Request Exception: {e}")
+    payload = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "temperature": 0.1,
+            "maxOutputTokens": 2048
+        }
+    }
+    if response_json:
+        payload["generationConfig"]["responseMimeType"] = "application/json"
+        
+    models_to_try = ["gemini-3.5-flash-lite", "gemini-3.5-flash", "gemini-flash-latest"]
+    for model_name in models_to_try:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={API_KEY}"
+        try:
+            res = requests.post(url, json=payload, headers=headers, timeout=6)
+            if res.status_code == 200:
+                data = res.json()
+                candidates = data.get("candidates", [])
+                if candidates and "content" in candidates[0]:
+                    parts = candidates[0]["content"].get("parts", [])
+                    if parts and "text" in parts[0]:
+                        ans = parts[0]["text"].strip()
+                        if ans:
+                            QUERY_CACHE[cache_key] = ans
+                            return ans
+            elif res.status_code == 429:
+                QUOTA_COOLDOWN_UNTIL = time.time() + 60.0
+                break
+            elif res.status_code == 503:
+                continue
+        except Exception:
+            continue
     return ""
 
 def check_deterministic_heuristics(query: str, conn) -> Optional[dict]:
@@ -356,66 +387,424 @@ def check_direct_citation(query: str, conn) -> list:
         return [{"statute": "Constitution of the Federal Republic of Nigeria 1999 (as amended)", "section_number": row[1], "section_title": row[2], "part": row[3], "snippet": make_clean_snippet(row[4]), "full_text": row[4]}]
     return []
 
-def analyze_and_route(scenario: str) -> dict:
-    prompt = f"Analyze this user case scenario: '{scenario}'. Return JSON ONLY: {{\"legal_answer\": \"string\", \"target_statutes\": [\"string\"], \"legal_phrases\": [\"string\"], \"keyword_stems\": [\"string\"]}}"
-    raw = call_gemini(prompt, response_json=True)
-    try:
-        if raw: return json.loads(raw)
-    except: pass
+STOP_WORDS = {
+    'can', 'could', 'what', 'is', 'are', 'the', 'for', 'in', 'to', 'my', 'without', 
+    'under', 'law', 'nigeria', 'nigerian', 'does', 'have', 'has', 'please', 'tell', 
+    'me', 'about', 'and', 'with', 'from', 'a', 'an', 'that', 'this', 'there', 'who', 
+    'whom', 'whose', 'why', 'when', 'where', 'how', 'any', 'all', 'you', 'your', 'be',
+    'which', 'should', 'would', 'will', 'say', 'says', 'into', 'over', 'been'
+}
+
+PERIPHERAL_STATUTES = {
+    'South-East Dev Comm Act', 'South-West Dev Comm Act', 'North-Central Dev Comm Act', 
+    'North-West Dev Comm Act', 'South-South Dev Comm Act', 'NIMET Act', 'RMRDC Act', 
+    'NCMD Act', 'Social Work Practitioners Act', 'Acts Authentication Act', 'Treaties Procedure Act'
+}
+
+LEGAL_DOMAINS = [
+    {
+        'id': 'banking_finance_freezing',
+        'keywords': ['freeze', 'freezing', 'frozen', 'bank account', 'post no debit', 'pnd', 'bvn', 'bank', 'banks', 'bofia', 'financial institution', 'cbn'],
+        'target_statutes': ['EFCC Act', 'Money Laundering (Prevention and Prohibition) Act, 2022', 'BOFIA', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
+        'primary_terms': ['freezing order', 'bank account', 'freeze', 'surveillance of bank accounts', 'freezing order on banks'],
+        'determination': "Under Nigerian law, law enforcement agencies (such as the Police, EFCC, or ICPC) lack legal authority to unilaterally freeze a citizen's bank account or place a 'Post-No-Debit' (PND) without a valid ex-parte order granted by a court of competent jurisdiction upon sworn affidavit showing reasonable suspicion of financial crimes (EFCC Act s. 34; Money Laundering Act s. 15). Unlawful account freezing violates the constitutional right to property under Section 44 of the 1999 Constitution."
+    },
+    {
+        'id': 'theft_stealing_robbery',
+        'keywords': ['steal', 'stealing', 'stole', 'theft', 'thief', 'robbery', 'shoplifting', 'pickpocket', 'penalty for stealing', 'punishment for stealing', 'stolen property'],
+        'target_statutes': ['Criminal Code Act', 'Penal Code (Northern States) Federal Provisions Act, 1960'],
+        'primary_terms': ['punishment of stealing', 'definition of stealing', 'stealing', 'theft', 'stolen'],
+        'determination': "Under Nigerian criminal jurisprudence (Criminal Code Act ss. 383 & 390 in Southern States, and Penal Code in Northern States), a person who fraudulently takes or converts another person's property commits the offence of stealing. The general punishment for stealing under Section 390 of the Criminal Code is imprisonment for three years, with aggravated penalties (up to 7 or 14 years) where the theft involves employers, public servants, or high-value testamentary assets."
+    },
+    {
+        'id': 'family_divorce_custody',
+        'keywords': ['divorce', 'custody', 'child custody', 'dissolution of marriage', 'maintenance', 'alimony', 'matrimonial', 'separation', 'child support', 'wife custody', 'father custody'],
+        'target_statutes': ['Matrimonial Causes Act', "Child's Rights Act"],
+        'primary_terms': ['powers of court in custody', 'ground for dissolution of marriage', 'custody', 'dissolution of marriage', 'welfare of children', 'paramount consideration'],
+        'determination': "Under Section 15 of the Matrimonial Causes Act, a petition for dissolution of marriage requires establishing that the marriage has broken down irretrievably. In all proceedings concerning child custody, guardianship, or maintenance (Section 71 of the Matrimonial Causes Act and Section 1 of the Child's Rights Act), Nigerian courts are statutorily mandated to treat the best interests and welfare of the child as the paramount consideration."
+    },
+    {
+        'id': 'labour_employment_wages',
+        'keywords': ['boss', 'sack', 'sacked', 'fire', 'fired', 'dismiss', 'dismissal', 'salary', 'wages', 'unpaid', 'employment', 'severance', 'resignation', 'redundancy', 'worker', 'contract of employment'],
+        'target_statutes': ['Labour Act, 1971', "Employees' Compensation Act, 2010"],
+        'primary_terms': ['termination of contracts by notice', 'contracts general', 'written particulars of terms of employment', 'wages', 'redundancy', 'maternity leave'],
+        'determination': "Under Section 11 of the Labour Act 1971, contracts of employment may only be terminated by giving statutory notice or payment in lieu of notice proportional to tenure. Furthermore, Section 5 strictly prohibits arbitrary salary deductions without formal consent or statutory authorization, and Section 54 renders dismissal during maternity leave null and void."
+    },
+    {
+        'id': 'landlord_tenant_premises',
+        'keywords': ['landlord', 'tenant', 'evict', 'eviction', 'quit notice', 'notice to quit', 'rent', 'tenant rent', 'premises', 'pack out', 'throw out belongings', 'lock tenant'],
+        'target_statutes': ['Constitution of the Federal Republic of Nigeria 1999 (as amended)', 'Land Use Act 1978', 'Sheriffs and Civil Process Act'],
+        'primary_terms': ['notice to quit', 'recovery of premises', 'possession', 'execution of warrants of possession', 'right to property'],
+        'determination': "Under Nigerian law, self-help by a landlord (including changing door locks, disconnecting utilities, or forcibly ejecting a tenant) is illegal and constitutes a civil wrong and trespass. A landlord must strictly follow due process: serving a statutory Notice to Quit, followed by a 7-day Notice of Owner's Intention to Apply to Recover Possession, and securing a formal Judgment and Warrant of Possession executed only by court bailiffs/sheriffs."
+    },
+    {
+        'id': 'police_powers_arrest_search',
+        'keywords': ['police arrest', 'arrested without warrant', 'search phone', 'search without warrant', 'illegal arrest', 'station bail', 'bail is free', 'detained more than', 'detention without court', 'handcuff', 'torture', 'police officer', 'police station', 'suspect'],
+        'target_statutes': ['Nigeria Police Act, 2020', 'Administration of Criminal Justice Act, 2015', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
+        'primary_terms': ['rights of arrested person', 'mode of arrest', 'release on bail', 'search of arrested suspect', 'right to personal liberty'],
+        'determination': "Under Section 35 of the 1999 Constitution, Section 6 of ACJA 2015, and Section 35 of the Nigeria Police Act 2020, an arrested citizen has the constitutional right to remain silent, consult legal counsel immediately, and receive free bail where the offence is bailable. Section 32 of the Police Act expressly prohibits arrests in civil or contractual debt disputes, and searches of personal phones or premises require lawful reasonable suspicion or a valid search warrant."
+    },
+    {
+        'id': 'corporate_cac_registration',
+        'keywords': ['register company', 'register a company', 'register business', 'cac', 'incorporation', 'form a company', 'share capital', 'directors', 'shareholders', 'annual returns', 'company formation', 'company', 'companies', 'register'],
+        'target_statutes': ['Companies and Allied Matters Act, 2020'],
+        'primary_terms': ['right to form a company', 'registration documents', 'registration', 'incorporation', 'formation of company'],
+        'determination': "Under Section 18 of the Companies and Allied Matters Act (CAMA) 2020, one or more persons may form and incorporate a private company with the Corporate Affairs Commission (CAC). CAMA 2020 permits single-member companies and removes mandatory common seals, requiring electronic submission of articles, identity particulars of directors, and compliance verification under Section 36."
+    },
+    {
+        'id': 'intellectual_property_copyright',
+        'keywords': ['copyright', 'song', 'music', 'album', 'pirated', 'infringement', 'film', 'plagiarism', 'trademark', 'patent', 'counterfeit', 'intellectual property'],
+        'target_statutes': ['Copyright Act, 2022', 'Trade Marks Act', 'Patents and Designs Act'],
+        'primary_terms': ['infringement of copyright', 'action for infringement', 'criminal liability', 'works eligible for copyright'],
+        'determination': "Under Sections 36 and 37 of the Copyright Act 2022, unauthorized reproduction, distribution, broadcast, or commercial exploitation of eligible artistic, musical, or audiovisual works constitutes actionable infringement. The copyright owner is entitled to damages, injunctions, and accounting for profits, while commercial piracy carries severe criminal liability under Section 44."
+    },
+    {
+        'id': 'cybercrime_fraud_data',
+        'keywords': ['cybercrime', 'hack', 'hacking', 'online fraud', 'phishing', 'scam', 'impersonation', 'cyberstalking', 'data protection', 'privacy breach', 'defraud'],
+        'target_statutes': ['Cybercrimes (Prohibition, Prevention, etc.) Act, 2015', 'Cybercrimes (Prohibition, Prevention, etc) (Amendment) Act, 2024', 'Nigeria Data Protection Act, 2023', 'Advance Fee Fraud Act'],
+        'primary_terms': ['identity theft', 'cyberstalking', 'computer systems', 'data subject rights', 'advance fee fraud'],
+        'determination': "Under Section 22 and Section 24 of the Cybercrimes Act 2015 (as amended 2024), cyber harassment, unauthorized computer system access, identity theft, and fraudulent electronic transmissions carry stringent terms of imprisonment. Furthermore, the Nigeria Data Protection Act 2023 imposes civil and regulatory penalties for unlawful processing of citizen personal data."
+    },
+    {
+        'id': 'corruption_bribery_extortion',
+        'keywords': ['bribe', 'bribery', 'extortion', 'checkpoint bribe', 'kickback', 'corrupt officer', 'gratification', 'corrupt practice', 'demand money officer', 'icpc'],
+        'target_statutes': ['Corrupt Practices (ICPC) Act', 'Nigeria Police Act, 2020', 'Code of Conduct Act', 'Criminal Code Act'],
+        'primary_terms': ['gratification by an official', 'corrupt demand', 'bribery of public officer', 'extortion'],
+        'determination': "Under Sections 12, 14, and 21 of the Corrupt Practices and Other Related Offences Act (ICPC Act) and Section 98 of the Criminal Code, demanding or accepting bribes or gratification by a public or police officer is a corrupt felony punishable by up to 7 years imprisonment. Section 91 of the Police Act 2020 additionally provides for summary disciplinary dismissal and criminal prosecution."
+    },
+    {
+        'id': 'consumer_protection',
+        'keywords': ['fake product', 'damaged goods', 'refuse refund', 'consumer rights', 'fccpc', 'misleading advertisement', 'expired food', 'substandard goods', 'consumer protection'],
+        'target_statutes': ['Federal Competition and Consumer Protection Act, 2018'],
+        'primary_terms': ['consumer rights', 'misleading representations', 'liability for defective goods', 'refund', 'unfair trade'],
+        'determination': "Under the Federal Competition and Consumer Protection Act (FCCPA) 2018, consumers possess an enforceable statutory right to goods of merchantable quality, honest labeling, and immediate refund or replacement for defective products. Sections 130 and 136 strictly prohibit unfair trade practices and misleading representations."
+    },
+    {
+        'id': 'taxation_revenue',
+        'keywords': ['tax', 'taxes', 'personal income tax', 'paye', 'company income tax', 'vat', 'tax evasion', 'firs', 'withholding tax', 'stamp duty'],
+        'target_statutes': ['Personal Income Tax Act', 'Companies Income Tax Act', 'Value Added Tax Act', 'Stamp Duties Act'],
+        'primary_terms': ['charge of tax', 'deduction of tax', 'payment of tax', 'penalties'],
+        'determination': "Federal and State tax administration in Nigeria is governed by the Personal Income Tax Act (PITA for individuals/PAYE), Companies Income Tax Act (CITA for corporate profits), and the Value Added Tax Act. Arbitrary or double taxation is prohibited, and tax assessments must strictly adhere to statutory notices and appeal tribunals."
+    },
+    {
+        'id': 'electoral_law',
+        'keywords': ['election', 'vote', 'voters card', 'bvas', 'inec', 'rigging', 'polling unit', 'electoral offence', 'presidential election', 'gubernatorial election'],
+        'target_statutes': ['Electoral Act 2022'],
+        'primary_terms': ['voters card', 'accreditation of voters', 'counting of votes', 'offences in relation to voting'],
+        'determination': "Electoral administration and voting procedures in Nigeria are governed by the Electoral Act 2022. Section 47 mandates electronic voter accreditation (BVAS), and Part VII establishes severe criminal penalties (fines and imprisonment) for electoral offences, vote buying, tampering with ballot boxes, or falsification of results."
+    },
+    {
+        'id': 'fundamental_human_rights',
+        'keywords': ['human rights', 'fundamental rights', 'freedom of speech', 'freedom of expression', 'protest', 'peaceful assembly', 'freedom of religion', 'discrimination', 'right to life', 'unlawful detention'],
+        'target_statutes': ['Constitution of the Federal Republic of Nigeria 1999 (as amended)', 'National Human Rights Commission Act'],
+        'primary_terms': ['right to personal liberty', 'right to fair hearing', 'right to freedom of expression and the press', 'right to peaceful assembly and association', 'right to freedom of thought, conscience and religion'],
+        'determination': "Chapter IV (Sections 33 to 46) of the 1999 Constitution of the Federal Republic of Nigeria guarantees the fundamental human rights of every citizen, including personal liberty (s. 35), fair hearing (s. 36), privacy (s. 37), freedom of expression (s. 39), and peaceful assembly (s. 40). Any infringement is directly actionable before the High Court under the Fundamental Rights (Enforcement Procedure) Rules."
+    },
+    {
+        'id': 'pension_retirement',
+        'keywords': ['pension', 'rsa', 'retirement savings', 'pencom', 'pension withdrawal', 'lose job before 50', 'lost job before 50', 'retirement benefits'],
+        'target_statutes': ['Pension Reform Act'],
+        'primary_terms': ['withdrawal from retirement savings account', 'retirement benefits', 'retirement savings account and remittance', 'supervision of retirement benefits'],
+        'determination': "Under Section 7(2) and Section 16 of the Pension Reform Act 2014, an employee under the age of 50 who is disengaged from employment and remains unemployed after four months is statutorily entitled to withdraw up to 25% of the balance in their Retirement Savings Account (RSA)."
+    },
+    {
+        'id': 'dishonoured_cheques',
+        'keywords': ['bounced cheque', 'dishonoured cheque', 'bad cheque', 'dud cheque', 'cheque bounced', 'bounced check', 'dishonoured check'],
+        'target_statutes': ['Dishonoured Cheques Act', 'Bills of Exchange Act'],
+        'primary_terms': ['offences in relation to dishonoured cheques', 'cheque defined', 'liability of drawer', 'notice of dishonour'],
+        'determination': "Under Section 1 of the Dishonoured Cheques (Offences) Act, issuing a dud or bounced cheque without sufficient credit or an agreed overdraft is a strict criminal offence punishable by up to two years imprisonment for individuals, or substantial fines for corporations. Additionally, the holder in due course may enforce civil debt recovery under the Bills of Exchange Act."
+    },
+    {
+        'id': 'defamation_online_cyberstalking',
+        'keywords': ['defamation', 'defamed', 'slander', 'libel', 'cyberstalking', 'online insult', 'twitter defamation', 'instagram insult', 'character assassination', 'insulting online', 'insulting a politician'],
+        'target_statutes': ['Cybercrimes (Prohibition, Prevention, etc.) Act, 2015', 'Criminal Code Act'],
+        'primary_terms': ['cyberstalking', 'definition of defamatory matter', 'publication of defamatory matter', 'punishment for defamation'],
+        'determination': "Under Section 24 of the Cybercrimes Act 2015 (as amended 2024), transmitting or publishing electronic messages that are grossly offensive or intended to harass, intimidate, or assassinate another person's character constitutes cyberstalking, punishable by fine or imprisonment. Furthermore, Section 373 of the Criminal Code Act provides for criminal prosecution and civil damages for defamation."
+    },
+    {
+        'id': 'criminal_bail_capital_offences',
+        'keywords': ['grant bail', 'bail on armed robbery', 'bail for armed robbery', 'bail for murder', 'capital offence', 'bail conditions', 'admitted to bail', 'remand in custody', 'bail armed robbery'],
+        'target_statutes': ['Administration of Criminal Justice Act, 2015', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
+        'primary_terms': ['bail where a suspect is charged with capital offence', 'general entitlement to bail', 'release on bail of a suspect arrested without warrant', 'conditions of recognizance'],
+        'determination': "Under Section 161 of the Administration of Criminal Justice Act (ACJA) 2015, a court generally lacks jurisdiction to grant bail to persons charged with capital offences (such as armed robbery or murder), except under extraordinary circumstances such as documented life-threatening ill-health or unreasonable delay in trial. In non-capital matters, bail is a constitutional right under Section 35 of the 1999 Constitution and Section 158 of ACJA."
+    },
+    {
+        'id': 'domestic_violence_gender',
+        'keywords': ['domestic violence', 'husband beating wife', 'beating wife', 'wife beating', 'marital assault', 'battered wife', 'gender violence', 'assault wife', 'assault husband'],
+        'target_statutes': ['Criminal Code Act', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)', "Child's Rights Act"],
+        'primary_terms': ['punishment of assault', 'assault occasioning harm', 'dignity of human person', 'protection against violence'],
+        'determination': "Under Nigerian law, physical abuse or battery of a spouse constitutes a criminal offence of assault occasioning actual bodily harm under Sections 351 and 355 of the Criminal Code Act. Any custom or traditional belief that permits physical chastisement is unconstitutional and void under Section 34 of the 1999 Constitution guaranteeing the right to dignity of the human person."
+    },
+    {
+        'id': 'digital_privacy_phone_search',
+        'keywords': ['search phone', 'police took my iphone', 'unlocked my phone', 'police unlocked', 'searched my phone', 'phone at checkpoint', 'laptop search', 'phone at tollgate'],
+        'target_statutes': ['Constitution of the Federal Republic of Nigeria 1999 (as amended)', 'Nigeria Police Act, 2020', 'Cybercrimes (Prohibition, Prevention, etc.) Act, 2015'],
+        'primary_terms': ['right to private and family life', 'privacy of citizens', 'search of arrested suspect', 'unlawful seizure'],
+        'determination': "Under Section 37 of the 1999 Constitution, the privacy of citizens, their homes, correspondence, telephone conversations, and digital data is inviolable. Law enforcement officers have no statutory authority to stop citizens at checkpoints and demand access to their personal smartphones, laptops, or biometric locks without a valid search warrant issued by a court of competent jurisdiction upon reasonable suspicion of crime."
+    },
+    {
+        'id': 'minerals_mining',
+        'keywords': ['mining', 'illegal mining', 'gold mining', 'minerals', 'mineral resources', 'cadastre', 'zamfara gold'],
+        'target_statutes': ['Minerals and Mining Act'],
+        'primary_terms': ['illegal mining', 'possession and ownership of minerals', 'prohibition of exploration without licence'],
+        'determination': "Under Section 1 of the Nigerian Minerals and Mining Act, the entire property in and control of all mineral resources in Nigeria is vested exclusively in the Federal Government. Conducting exploration or mining activities without a valid lease or licence from the Federal Ministry of Solid Minerals is an offence punishable by severe fines, forfeiture, and imprisonment under Section 131."
+    },
+    {
+        'id': 'admiralty_shipping',
+        'keywords': ['admiralty', 'ship arrested', 'vessel arrested', 'maritime', 'cargo damage', 'cabotage', 'lagos port', 'seaman'],
+        'target_statutes': ['Admiralty Jurisdiction Act', 'Cabotage Act'],
+        'primary_terms': ['extent of the admiralty jurisdiction', 'mode of exercise of admiralty jurisdiction', 'arrest of ship'],
+        'determination': "The Federal High Court exercises exclusive admiralty jurisdiction over maritime claims, ship mortgages, carriage of goods by sea, and arrest of vessels in rem under Section 1 and Section 5 of the Admiralty Jurisdiction Act."
+    },
+    {
+        'id': 'witchcraft_juju_charms',
+        'keywords': ['juju', 'witchcraft', 'voodoo', 'trial by ordeal', 'charm', 'charms', 'native medicine', 'black magic'],
+        'target_statutes': ['Criminal Code Act', 'Penal Code (Northern States) Federal Provisions Act, 1960'],
+        'primary_terms': ['offences in relation to witchcraft and juju', 'directing etc unlawful trial by ordeal', 'unlawful trial by ordeal'],
+        'determination': "Under Section 210 of the Criminal Code Act (and Section 216 of the Penal Code), representing oneself to be a witch, accusing or threatening to accuse any person of witchcraft, or making, selling, using, or possessing any juju, drug, or charm intended to compel or prevent any person from acting lawfully is a criminal misdemeanour punishable by two years imprisonment. Furthermore, directing or participating in an unlawful trial by ordeal is a felony punishable by up to ten years imprisonment, or the death penalty where death results under Section 208."
+    }
+]
+
+import difflib
+
+LEGAL_VOCABULARY = [
+    'police', 'arrest', 'detain', 'warrant', 'bail', 'freeze', 'freezing', 
+    'bank', 'account', 'divorce', 'custody', 'marriage', 'steal', 'stealing', 
+    'theft', 'employer', 'salary', 'wages', 'dismissal', 'termination', 
+    'landlord', 'tenant', 'evict', 'eviction', 'premises', 'copyright', 
+    'infringement', 'trademark', 'patent', 'counterfeit', 'pension', 'cheque', 
+    'bounced', 'defamation', 'cyberstalking', 'extortion', 'bribe', 'bribery', 
+    'gratification', 'kidnapping', 'assault', 'admiralty', 'mining', 'witchcraft', 'juju'
+]
+
+NIGERIAN_COLLOQUIALISMS = {
+    'juju': 'witchcraft juju',
+    'voodoo': 'witchcraft juju',
+    'native doctor': 'witchcraft juju trial by ordeal',
+    'yahoo': 'cybercrime advance fee fraud online scam',
+    'yahoo boy': 'cybercrime advance fee fraud online scam',
+    '419': 'advance fee fraud obtaining false pretences',
+    'throw my load': 'landlord evict recovery of premises notice to quit',
+    'pack my load': 'landlord evict recovery of premises notice to quit',
+    'throw my things': 'landlord evict recovery of premises notice to quit',
+    'oga': 'employer boss labour act',
+    'feeding money': 'maintenance child support child rights matrimonial causes',
+    'school fees': 'maintenance child welfare child rights',
+    'dud cheque': 'dishonoured cheque bounced cheque',
+    'dud check': 'dishonoured cheque bounced cheque',
+    'pnd': 'post no debit freezing order bank account',
+    'tollgate': 'checkpoint police stop and search',
+    'pos failed': 'consumer protection refund electronic fund transfer',
+    'atm ate': 'consumer protection refund electronic fund transfer',
+    'agbero': 'tout extortion demand with menaces thuggery',
+    'area boys': 'extortion breach of peace touts',
+    'one chance': 'robbery transit theft armed robbery',
+    'ajagungbale': 'land grabber forcible entry trespass malicious damage',
+    'land grabbers': 'forcible entry trespass recovery of possession',
+    'cultist': 'unlawful society confraternity felony',
+    'cultism': 'unlawful society confraternity',
+    'ritual killing': 'murder homicide human parts criminal charms',
+    'blood money': 'murder human parts criminal charms',
+    'japa scam': 'advance fee fraud travel scam visa fraud',
+    'japa agent': 'advance fee fraud travel scam visa fraud'
+}
+
+def normalize_query(query: str) -> str:
+    q_low = query.lower()
+    expanded = []
+    for col, repl in NIGERIAN_COLLOQUIALISMS.items():
+        if col in q_low:
+            expanded.extend(repl.split())
+            
+    words = re.findall(r'[a-zA-Z]{4,}', q_low)
+    corrected = []
+    for w in words:
+        if w in LEGAL_VOCABULARY:
+            corrected.append(w)
+        else:
+            close = difflib.get_close_matches(w, LEGAL_VOCABULARY, n=1, cutoff=0.75)
+            corrected.append(close[0] if close else w)
+            
+    norm_q = ' '.join(corrected)
+    if expanded:
+        norm_q += ' ' + ' '.join(expanded)
+    return norm_q
+
+def classify_legal_intent(scenario: str) -> Optional[dict]:
     q_low = scenario.lower()
-    target = []
-    phrases = []
-    stems = [w for w in re.findall(r'[a-zA-Z]{4,}', q_low) if w not in {'with', 'this', 'that', 'from', 'what', 'have', 'were'}]
+    norm_q = normalize_query(scenario)
+    search_text = f"{q_low} {norm_q}"
+    best_dom = None
+    best_score = 0
+    for dom in LEGAL_DOMAINS:
+        score = 0
+        for kw in dom['keywords']:
+            if ' ' in kw:
+                if kw in search_text:
+                    score += 6
+            else:
+                if re.search(r'\b' + re.escape(kw) + r'\b', search_text):
+                    if kw in ['bribe', 'bribery', 'extortion', 'gratification', 'steal', 'stealing', 'theft', 'divorce', 'custody', 'freeze', 'pnd', 'evict', 'landlord', 'tenant', 'copyright', 'juju', 'witchcraft', 'cheque', 'pension']:
+                        score += 8
+                    else:
+                        score += 3
+        if score > best_score and score >= 3:
+            best_score = score
+            best_dom = dom
+    return best_dom
+
+def analyze_and_route(scenario: str) -> dict:
+    baseline = classify_legal_intent(scenario)
+    target_stats = list(baseline['target_statutes']) if baseline else []
+    phrases = list(baseline['primary_terms']) if baseline else []
+    answer = baseline['determination'] if baseline else ""
     
-    if any(k in q_low for k in ['boy', 'child', 'minor', 'juvenile', 'kid']):
-        target.append("Child's Rights Act, 2003")
-        phrases.append("child justice")
-    if any(k in q_low for k in ['arrest', 'detain', 'police', 'custody', 'station', 'officer']):
-        target.extend(["Nigeria Police Act, 2020", "Administration of Criminal Justice Act, 2015"])
-        phrases.extend(["rights of arrested person", "mode of arrest"])
-    if any(k in q_low for k in ['fired', 'salary', 'maternity', 'wages', 'work', 'employer']):
-        target.append("Labour Act, 1971")
-    
-    answer = "Under Nigerian Federal Law, arrests must strictly comply with constitutional safeguards, police procedure, and child justice administration." if any(k in q_low for k in ['arrest', 'police', 'child', 'boy']) else ""
-    
-    return {"legal_answer": answer, "target_statutes": list(set(target)), "legal_phrases": phrases, "keyword_stems": stems[:6]}
+    if API_KEY and not API_KEY.startswith("your-actual"):
+        prompt = (
+            f"You are an expert Nigerian legal scholar. Analyze this scenario: '{scenario}'. "
+            f"Return JSON ONLY with keys:\n"
+            f"- 'legal_answer': (authoritative 2-3 sentence legal determination under Nigerian Federal Law)\n"
+            f"- 'target_statutes': (list of exact Nigerian Federal Acts governing this matter)\n"
+            f"- 'legal_phrases': (list of key statutory phrases to locate operative sections)"
+        )
+        raw = call_gemini(prompt, response_json=True)
+        if raw:
+            try:
+                parsed = json.loads(raw)
+                gemini_ans = parsed.get("legal_answer", "").strip()
+                if gemini_ans:
+                    answer = gemini_ans
+                gemini_stats = parsed.get("target_statutes", [])
+                if isinstance(gemini_stats, list) and gemini_stats:
+                    target_stats = list(dict.fromkeys(target_stats + gemini_stats))
+                gemini_phrases = parsed.get("legal_phrases", [])
+                if isinstance(gemini_phrases, list) and gemini_phrases:
+                    phrases = list(dict.fromkeys(phrases + gemini_phrases))
+            except Exception:
+                pass
+                
+    if not answer:
+        answer = "Governing statutory provisions retrieved across certified Federal Republic of Nigeria enactments."
+        
+    return {
+        "legal_answer": answer,
+        "target_statutes": target_stats,
+        "legal_phrases": phrases
+    }
 
 def retrieve_candidate_pool(conn, plan: dict, raw_query: str) -> list:
     cursor = conn.cursor()
-    candidates = {}
-    expanded = expand_query_stems(raw_query)
-    phrases = [f'"{p}"' for p in plan.get("legal_phrases", []) if p]
-    terms = list(set(phrases + expanded))
-    fts_query = " OR ".join(terms) if terms else f'"{raw_query}"'
-    for stat in plan.get("target_statutes", []):
-        short = "Constitution" if "Constitution" in stat else stat.split(",")[0].split("(")[0].strip()
-        try:
-            cursor.execute("SELECT statute_title, section_number, section_title, part, snippet(sections_fts, 4, '⟦', '⟧', '...', 25), bm25(sections_fts), full_text FROM sections_fts WHERE statute_title LIKE ? AND sections_fts MATCH ? ORDER BY rank LIMIT 5;", (f"%{short}%", fts_query))
+    tokens = [w for w in re.findall(r'[a-zA-Z]{3,}', raw_query.lower()) if w not in STOP_WORDS]
+    target_stats = plan.get("target_statutes", [])
+    primary_terms = plan.get("legal_phrases", []) or tokens
+    scored = {}
+    
+    # 1. Search within target statutes if identified
+    if target_stats:
+        for stat in target_stats:
+            short = stat.split(',')[0].split('(')[0].strip()
+            cursor.execute(
+                "SELECT statute_title, section_number, section_title, full_text FROM sections_fts WHERE statute_title LIKE ?;", 
+                (f"%{short}%",)
+            )
             for r in cursor.fetchall():
-                title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
-                candidates[(title, str(r[1]))] = {"statute": title, "section_number": r[1], "section_title": r[2], "part": r[3], "snippet": r[4], "full_text": r[6]}
-        except: pass
-    if not candidates:
-        try:
-            cursor.execute("SELECT statute_title, section_number, section_title, part, snippet(sections_fts, 4, '⟦', '⟧', '...', 25), bm25(sections_fts), full_text FROM sections_fts WHERE sections_fts MATCH ? ORDER BY rank LIMIT 6;", (fts_query,))
+                title_low = r[2].lower()
+                text_low = r[3].lower()
+                score = 0
+                
+                # Penalize administrative sections
+                if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations', 'savings']:
+                    score -= 40
+                if 're-registration' in title_low and not any('re-registration' in tk for tk in tokens):
+                    score -= 25
+                    
+                # High boost for exact key phrases in section title
+                for pt in primary_terms:
+                    pt_low = pt.lower()
+                    if pt_low in title_low:
+                        score += 70
+                    elif pt_low in text_low:
+                        score += 15
+                        
+                # Boost for query tokens in section title
+                for tk in tokens:
+                    tk_low = tk.lower()
+                    if tk_low in title_low:
+                        score += 30
+                    elif tk_low in text_low:
+                        score += 4
+                        
+                if score > 15:
+                    title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
+                    clean_snip = make_clean_snippet(r[3], 260)
+                    scored[(title, str(r[1]))] = (score, title, r[1], r[2], clean_snip, r[3])
+                    
+    # 2. Search title matches across all non-peripheral statutes if needed
+    if len(scored) < 3 and tokens:
+        for tk in tokens[:3]:
+            cursor.execute(
+                "SELECT statute_title, section_number, section_title, full_text FROM sections_fts WHERE section_title LIKE ? LIMIT 15;",
+                (f"%{tk}%",)
+            )
             for r in cursor.fetchall():
+                if r[0] in PERIPHERAL_STATUTES:
+                    continue
+                title_low = r[2].lower()
+                if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations']:
+                    continue
+                score = 35 + sum(15 for other in tokens if other in title_low)
                 title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
-                candidates[(title, str(r[1]))] = {"statute": title, "section_number": r[1], "section_title": r[2], "part": r[3], "snippet": r[4], "full_text": r[6]}
-        except: pass
-    return list(candidates.values())
+                key = (title, str(r[1]))
+                if key not in scored or scored[key][0] < score:
+                    clean_snip = make_clean_snippet(r[3], 260)
+                    scored[key] = (score, title, r[1], r[2], clean_snip, r[3])
+                    
+    # 3. FTS fallback if still under 3 results
+    if len(scored) < 3 and tokens:
+        fts_query = " AND ".join(tokens[:2]) if len(tokens) >= 2 else (tokens[0] if tokens else f'"{raw_query}"')
+        try:
+            cursor.execute(
+                "SELECT statute_title, section_number, section_title, full_text FROM sections_fts WHERE sections_fts MATCH ? ORDER BY rank LIMIT 10;",
+                (fts_query,)
+            )
+            for r in cursor.fetchall():
+                if r[0] in PERIPHERAL_STATUTES:
+                    continue
+                title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
+                key = (title, str(r[1]))
+                if key not in scored:
+                    clean_snip = make_clean_snippet(r[3], 260)
+                    scored[key] = (10, title, r[1], r[2], clean_snip, r[3])
+        except Exception:
+            pass
+            
+    ranked = sorted(scored.values(), key=lambda x: x[0], reverse=True)
+    return [
+        {
+            "statute": item[1],
+            "section_number": item[2],
+            "section_title": item[3],
+            "part": "",
+            "snippet": item[4],
+            "full_text": item[5]
+        }
+        for item in ranked[:3]
+    ]
 
 @app.get("/api/search")
 def api_search(q: str = Query(...)):
     if not DB_PATH.exists(): raise HTTPException(status_code=500, detail="Database not found")
     conn = sqlite3.connect(DB_PATH)
-    if direct := check_direct_citation(q, conn):
+    norm_q = normalize_query(q)
+    if direct := (check_direct_citation(q, conn) or check_direct_citation(norm_q, conn)):
         conn.close()
         return {"query": q, "legal_issue": f"Direct statutory match verified for Section {direct[0]['section_number']} of {direct[0]['statute']}.", "results": direct}
-    if rule := check_deterministic_heuristics(q, conn):
+    if rule := (check_deterministic_heuristics(q, conn) or check_deterministic_heuristics(norm_q, conn)):
         conn.close()
         return rule
     plan = analyze_and_route(q)
-    candidates = retrieve_candidate_pool(conn, plan, q)
+    combined_query = f"{q} {norm_q}"
+    candidates = retrieve_candidate_pool(conn, plan, combined_query)
     conn.close()
     return {"query": q, "legal_issue": plan.get("legal_answer", "Governing statutory provisions retrieved."), "results": candidates[:3]}
 
