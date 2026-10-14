@@ -684,9 +684,13 @@ def analyze_and_route(scenario: str) -> dict:
     if API_KEY and not API_KEY.startswith("your-actual"):
         prompt = (
             f"You are an expert Nigerian legal scholar. Analyze this scenario: '{scenario}'. "
+            f"Select from certified Nigerian Federal enactments (such as: CFRN 1999, Criminal Code Act, Penal Code, "
+            f"Administration of Criminal Justice Act, Nigeria Police Act 2020, CAMA 2020, Labour Act, "
+            f"Matrimonial Causes Act, Child's Rights Act, EFCC Act, Cybercrimes Act, FRSC Act, BOFIA, "
+            f"Copyright Act, FCCPA, Pension Reform Act, Land Use Act, Dishonoured Cheques Act, etc.).\n"
             f"Return JSON ONLY with keys:\n"
             f"- 'legal_answer': (authoritative 2-3 sentence legal determination under Nigerian Federal Law)\n"
-            f"- 'target_statutes': (list of exact Nigerian Federal Acts governing this matter)\n"
+            f"- 'target_statutes': (list of exact Nigerian Federal Acts from the above corpus governing this matter)\n"
             f"- 'legal_phrases': (list of key statutory phrases to locate operative sections)"
         )
         raw = call_gemini(prompt, response_json=True)
@@ -772,8 +776,15 @@ def retrieve_candidate_pool(conn, plan: dict, raw_query: str) -> list:
                 if r[0] in PERIPHERAL_STATUTES:
                     continue
                 title_low = r[2].lower()
+                text_low = r[3].lower()
                 if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations']:
                     continue
+                # Systemic homonym barrier: if query contains 2+ keywords, a match on an isolated word
+                # in a section title MUST have at least one other query keyword in the section text or title
+                if len(tokens) >= 2:
+                    other_tokens = [ot for ot in tokens if ot != tk]
+                    if not any(ot in title_low or ot in text_low for ot in other_tokens):
+                        continue
                 # Disambiguate financial cheque crossings from pedestrian/physical road crossings
                 if ('crossing' in title_low or 'crossings' in title_low) and (r[0] == 'Bills of Exchange Act' or 'cheque' in title_low or 'check' in title_low):
                     financial_terms = {'cheque', 'check', 'bank', 'banking', 'bill', 'drawer', 'payee', 'account', 'finance', 'payment', 'endorse', 'negotiable', 'funds', 'credit'}
