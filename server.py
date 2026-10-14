@@ -140,7 +140,7 @@ app = FastAPI(
     version="1.0.0",
     description="""
 ### Nigerian Legal Intelligence & Statutory Retrieval API
-JurisNG indexes 126 certified Federal Statutes and Official Gazettes (9,903 verified sections) across the Federal Republic of Nigeria.
+JurisNG indexes 128 certified Federal Statutes and Official Gazettes (9,959 verified sections) across the Federal Republic of Nigeria.
 
 ---
 **⚠️ LEGAL DISCLAIMER & TERMS OF USE:**
@@ -418,10 +418,21 @@ LEGAL_DOMAINS = [
     },
     {
         'id': 'family_divorce_custody',
-        'keywords': ['divorce', 'custody', 'child custody', 'dissolution of marriage', 'maintenance', 'alimony', 'matrimonial', 'separation', 'child support', 'wife custody', 'father custody'],
-        'target_statutes': ['Matrimonial Causes Act', "Child's Rights Act"],
-        'primary_terms': ['powers of court in custody', 'ground for dissolution of marriage', 'custody', 'dissolution of marriage', 'welfare of children', 'paramount consideration'],
-        'determination': "Under Section 15 of the Matrimonial Causes Act, a petition for dissolution of marriage requires establishing that the marriage has broken down irretrievably. In all proceedings concerning child custody, guardianship, or maintenance (Section 71 of the Matrimonial Causes Act and Section 1 of the Child's Rights Act), Nigerian courts are statutorily mandated to treat the best interests and welfare of the child as the paramount consideration."
+        'keywords': [
+            'divorce', 'custody', 'child custody', 'dissolution of marriage', 'maintenance', 
+            'alimony', 'matrimonial', 'separation', 'child support', 'wife custody', 
+            'father custody', 'marriage', 'marry', 'marriage registry', 'marriage certificate', 
+            'celebration of marriage', 'licensed place of worship', 'court wedding', 'bigamy', 
+            'caveat', 'banns of marriage', 'special licence'
+        ],
+        'target_statutes': ['Marriage Act', 'Matrimonial Causes Act', "Child's Rights Act"],
+        'primary_terms': [
+            'celebration of marriage', 'marriage in place of worship', 'caveat', 
+            'marriage certificate', 'bigamy', 'powers of court in custody', 
+            'ground for dissolution of marriage', 'custody', 'dissolution of marriage', 
+            'welfare of children', 'paramount consideration'
+        ],
+        'determination': "Under the Marriage Act (Cap. M6 LFN 2004), a statutory marriage in Nigeria must be celebrated in a registered registrar's office or a licensed place of worship after due notice or grant of special licence, with issuance of a certified certificate of marriage; contracting a second marriage while married under the Act constitutes criminal bigamy. For dissolution of marriage, Section 15 of the Matrimonial Causes Act requires establishing that the marriage has broken down irretrievably. In all proceedings concerning child custody, guardianship, or maintenance (Section 71 of the Matrimonial Causes Act and Section 1 of the Child's Rights Act), Nigerian courts are statutorily mandated to treat the best interests and welfare of the child as the paramount consideration."
     },
     {
         'id': 'labour_employment_wages',
@@ -570,11 +581,17 @@ LEGAL_DOMAINS = [
             'cross expressway', 'pedestrian', 'pedestrian bridge', 'footbridge', 'jaywalking', 
             'traffic light', 'traffic offence', 'traffic offense', 'frsc', 'road safety', 
             'road marshal', 'speed limit', 'driving without licence', 'driving without license', 
-            'highway safety', 'obstruction of highway', 'federal highway', 'lastma', 'vio'
+            'highway safety', 'obstruction of highway', 'federal highway', 'lastma', 'vio',
+            'causing death by dangerous driving', 'reckless driving', 'dangerous driving',
+            'highway obstruction', 'damage to federal highway', 'traffic on federal highway'
         ],
-        'target_statutes': ['FRSC Act', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
-        'primary_terms': ['highways safe', 'powers of the Corps', 'right to personal liberty', 'freedom of movement', 'written law', 'pedestrian'],
-        'determination': "Under Section 11 of the Federal Road Safety Commission (FRSC) Act, the Corps is empowered to regulate highway safety for motorists and other road users. While state environmental and highway traffic regulations mandate using designated pedestrian overhead bridges to avoid traffic hazards, Section 36(12) and Section 35 of the 1999 Constitution strictly mandate that no citizen may be arrested or penalised unless the alleged offence is explicitly defined in a written law, and any detention or extortion without formal charge is unconstitutional."
+        'target_statutes': ['Federal Highways Act', 'FRSC Act', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
+        'primary_terms': [
+            'causing death by dangerous driving on federal highway', 'reckless driving on federal highway', 
+            'power to regulate traffic', 'highways safe', 'powers of the Corps', 
+            'right to personal liberty', 'freedom of movement', 'written law', 'pedestrian'
+        ],
+        'determination': "Under the Federal Highways Act (Cap. F13 LFN 2004) and Section 11 of the Federal Road Safety Commission (FRSC) Act, the regulation and safety of federal highways are strictly overseen by designated authorities. Causing death or bodily injury by dangerous, reckless, or negligent driving on a federal highway is a serious criminal offence (Sections 5 and 6 of the Federal Highways Act). While traffic laws and regulations mandate designated lane usage and pedestrian overhead bridges, Section 36(12) and Section 35 of the 1999 Constitution guarantee that no citizen may be arrested, penalised, or extorted without formal written legal authority."
     }
 ]
 
@@ -588,7 +605,7 @@ LEGAL_VOCABULARY = [
     'infringement', 'trademark', 'patent', 'counterfeit', 'pension', 'cheque', 
     'bounced', 'defamation', 'cyberstalking', 'extortion', 'bribe', 'bribery', 
     'gratification', 'kidnapping', 'assault', 'admiralty', 'mining', 'witchcraft', 'juju',
-    'pedestrian', 'highway', 'traffic', 'bridge'
+    'pedestrian', 'highway', 'traffic', 'bridge', 'wedding', 'bigamy', 'registry'
 ]
 
 NIGERIAN_COLLOQUIALISMS = {
@@ -628,7 +645,11 @@ NIGERIAN_COLLOQUIALISMS = {
     'jaywalking': 'pedestrian crossing highway traffic FRSC Act',
     'kai': 'task force environmental sanitation arbitrary arrest personal liberty',
     'lastma': 'traffic enforcement road safety personal liberty',
-    'vio': 'vehicle inspection road safety'
+    'vio': 'vehicle inspection road safety',
+    'court wedding': 'marriage act celebration of marriage registrar certificate',
+    'registry wedding': 'marriage act registrar celebration certificate',
+    'road accident': 'federal highways dangerous driving frsc',
+    'hit and run': 'federal highways dangerous reckless driving accident frsc'
 }
 
 def normalize_query(query: str) -> str:

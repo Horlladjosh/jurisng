@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JurisNG | Nigerian Statutory Intelligence & Federal Law Search</title>
-    <meta name="description" content="Instant statutory search across 126 Nigerian Federal Acts. Primary statutory retrieval, direct section citations, and arrangement of sections.">
-    <meta name="keywords" content="Nigerian law, Nigerian statutes, CAMA 2020, Evidence Act, Nigerian constitution, Nigerian legal engine, laws of the federation of nigeria, statutory research, legal intelligence">
+    <meta name="description" content="Instant statutory search across 128 Nigerian Federal Acts. Primary statutory retrieval, direct section citations, and arrangement of sections.">
+    <meta name="keywords" content="Nigerian law, Nigerian statutes, CAMA 2020, Evidence Act, Nigerian constitution, Nigerian legal engine, laws of the federation of nigeria, statutory research, legal intelligence, Marriage Act, Federal Highways Act">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://jurisng.horlladjosh.com/">
 
     <!-- OpenGraph / Social Sharing (Facebook, LinkedIn, WhatsApp, Slack) -->
     <meta property="og:site_name" content="JurisNG">
     <meta property="og:title" content="JurisNG | Nigerian Statutory Intelligence">
-    <meta property="og:description" content="Primary statutory retrieval across 126 Nigerian Federal Acts. Search CAMA, Evidence Act, Labour Act, Police Act, and more.">
+    <meta property="og:description" content="Primary statutory retrieval across 128 Nigerian Federal Acts. Search CAMA, Evidence Act, Labour Act, Police Act, Marriage Act, Federal Highways Act, and more.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jurisng.horlladjosh.com/">
     <meta property="og:image" content="https://jurisng.horlladjosh.com/og-image.png">
@@ -25,7 +25,7 @@
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="JurisNG | Nigerian Statutory Intelligence">
-    <meta name="twitter:description" content="Search Nigerian Federal Law across 126 Acts with direct section citations. Free, fast, primary enactments.">
+    <meta name="twitter:description" content="Search Nigerian Federal Law across 128 Acts with direct section citations. Free, fast, primary enactments.">
     <meta name="twitter:image" content="https://jurisng.horlladjosh.com/og-image.png">
     <meta name="twitter:image:alt" content="JurisNG - Nigerian Federal Law Engine">
 
@@ -41,7 +41,7 @@
       "@type": "WebApplication",
       "name": "JurisNG",
       "url": "https://jurisng.horlladjosh.com/",
-      "description": "Primary statutory retrieval and direct section citations across 126 Nigerian Federal Acts.",
+      "description": "Primary statutory retrieval and direct section citations across 128 Nigerian Federal Acts.",
       "applicationCategory": "LegalApplication",
       "operatingSystem": "All",
       "inLanguage": "en-NG",
@@ -191,7 +191,7 @@
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-spruce-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-spruce-600 dark:bg-spruce-400"></span>
                     </span>
-                    <span id="watcherStatusText" class="text-[10px] text-ink-600 dark:text-gray-300 font-mono truncate">126 Federal Statutes monitored</span>
+                    <span id="watcherStatusText" class="text-[10px] text-ink-600 dark:text-gray-300 font-mono truncate">128 Federal Statutes monitored</span>
                 </div>
                 <div class="flex items-center gap-1.5">
                     <span id="watcherBadge" class="inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-bold bg-spruce-100 text-spruce-800 dark:bg-spruce-900/80 dark:text-spruce-200 dark:border dark:border-spruce-700">Active</span>
@@ -253,7 +253,7 @@
                         Search Nigerian Federal Law
                     </h1>
                     <p id="heroSubtitle" class="text-xs sm:text-sm text-ink-500 dark:text-gray-300 max-w-md mx-auto leading-relaxed">
-                        Primary statutory retrieval and direct section citations across 126 Federal Acts.
+                        Primary statutory retrieval and direct section citations across 128 Federal Acts.
                     </p>
                 </div>
 
@@ -294,7 +294,7 @@
                 <div class="pt-2 sm:pt-3 text-center text-xs text-ink-500 dark:text-gray-400">
                     <span>Or browse the complete</span>
                     <button type="button" onclick="showLibraryView()" class="font-semibold text-spruce-700 dark:text-spruce-400 hover:text-spruce-900 dark:hover:text-spruce-200 underline underline-offset-2 transition cursor-pointer ml-1">
-                        Statutory Library (126 Acts, 9,903 Sections)
+                        Statutory Library (128 Acts, 9,959 Sections)
                     </button>
                 </div>
             </div>
@@ -366,7 +366,7 @@
                 <div class="border-b border-[#e5e7eb] dark:border-[#262a34] pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                     <div>
                         <h1 class="text-2xl font-editorial font-bold tracking-tight text-ink-900 dark:text-white">Federal Statutory Corpus</h1>
-                        <p id="librarySubtitle" class="text-xs text-ink-500 dark:text-gray-400 mt-0.5">126 Federal Statutes & Official Gazettes (9,903 indexed sections) compiled from primary enactments.</p>
+                        <p id="librarySubtitle" class="text-xs text-ink-500 dark:text-gray-400 mt-0.5">128 Federal Statutes & Official Gazettes (9,959 indexed sections) compiled from primary enactments.</p>
                     </div>
                 </div>
 
@@ -377,7 +377,7 @@
                         <input 
                             type="text" 
                             id="libraryFilterInput" 
-                            placeholder="Filter across 126 Federal Statutes (e.g. CAMA, Evidence, Labour, BOFIA, Tax)..." 
+                            placeholder="Filter across 128 Federal Statutes (e.g. CAMA, Evidence, Labour, BOFIA, Tax)..." 
                             oninput="filterStatutesCorpus(this.value)"
                             class="w-full bg-transparent border-0 text-xs text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-400 focus:ring-0 focus:outline-none"
                         />
@@ -385,11 +385,12 @@
 
                     <!-- Category Filter Pills -->
                     <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-[11px] font-medium select-none" id="categoryPillContainer">
-                        <button onclick="setCategoryFilter('all', this)" class="cat-pill px-2.5 py-1 rounded-md bg-spruce-600 text-white font-semibold shrink-0 transition cursor-pointer">All (126)</button>
+                        <button onclick="setCategoryFilter('all', this)" class="cat-pill px-2.5 py-1 rounded-md bg-spruce-600 text-white font-semibold shrink-0 transition cursor-pointer">All (128)</button>
                         <button onclick="setCategoryFilter('commercial', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Corporate & CAMA</button>
                         <button onclick="setCategoryFilter('finance', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Banking & Securities</button>
                         <button onclick="setCategoryFilter('labor', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Labour & Employment</button>
                         <button onclick="setCategoryFilter('criminal', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Police & Criminal Law</button>
+                        <button onclick="setCategoryFilter('family', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Family & Marriage</button>
                         <button onclick="setCategoryFilter('tax', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Taxation & Revenue</button>
                         <button onclick="setCategoryFilter('maritime', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Maritime & Ports</button>
                         <button onclick="setCategoryFilter('courts', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Judicature & Procedure</button>
@@ -406,7 +407,7 @@
                 <!-- Clean Back Navigation -->
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-3">
                     <button onclick="backToLibraryCatalog()" class="text-xs font-semibold text-spruce-700 dark:text-spruce-400 hover:text-spruce-900 dark:hover:text-white transition cursor-pointer py-1 px-2.5 rounded-md hover:bg-[#f3f4f6] dark:hover:bg-[#222630]">
-                        <span>← All 126 Federal Statutes</span>
+                        <span>← All 128 Federal Statutes</span>
                     </button>
                     <span class="text-[11px] font-mono text-ink-500 dark:text-gray-400 px-1">Laws of the Federation of Nigeria</span>
                 </div>
@@ -692,7 +693,7 @@
                 </div>
                 <h2 class="text-2xl font-editorial font-bold text-ink-900 dark:text-white">Welcome to JurisNG</h2>
                 <p class="text-xs text-ink-500 dark:text-gray-300 max-w-sm mx-auto">
-                    Nigerian Statutory Intelligence & Research Platform indexing 126 Federal Acts and official gazettes.
+                    Nigerian Statutory Intelligence & Research Platform indexing 128 Federal Acts and official gazettes.
                 </p>
             </div>
 
@@ -741,7 +742,8 @@
             commercial: ['companies', 'startup', 'competition', 'consumer', 'patents', 'trade marks', 'venture capital'],
             finance: ['banks', 'investments and securities', 'amcon', 'deposit insurance', 'mortgage', 'insurance', 'secured transactions', 'money laundering', 'sovereign investment'],
             labor: ['labour', 'employees', 'trade unions', 'trade disputes', 'pension', 'factories', 'social insurance'],
-            criminal: ['administration of criminal justice', 'police', 'criminal code', 'penal code', 'cybercrimes', 'terrorism', 'proceeds of crime', 'drug law', 'quarantine'],
+            criminal: ['administration of criminal justice', 'police', 'criminal code', 'penal code', 'cybercrimes', 'terrorism', 'proceeds of crime', 'drug law', 'quarantine', 'highways'],
+            family: ['marriage', 'matrimonial', 'child'],
             tax: ['companies income tax', 'personal income tax', 'value added tax', 'stamp duties', 'capital gains'],
             maritime: ['admiralty', 'cabotage', 'maritime', 'ports authority', 'marine insurance', 'merchant shipping'],
             courts: ['constitution', 'supreme court', 'court of appeal', 'federal high court', 'national industrial court', 'sheriffs', 'evidence', 'legal practitioners', 'oaths'],
@@ -1486,11 +1488,11 @@
                     const date = new Date(data.last_checked);
                     const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                     if (textEl) {
-                        textEl.textContent = `${data.indexed_statutes_count || 126} Acts Synced • ${timeStr}`;
+                        textEl.textContent = `${data.indexed_statutes_count || 128} Acts Synced • ${timeStr}`;
                     }
                 } else {
                     if (textEl) {
-                        textEl.textContent = `${data.indexed_statutes_count || 126} Federal Statutes monitored.`;
+                        textEl.textContent = `${data.indexed_statutes_count || 128} Federal Statutes monitored.`;
                     }
                 }
                 if (badgeEl) {
@@ -1526,7 +1528,7 @@
                         badgeEl.textContent = "Updates";
                     }
                 } else {
-                    if (textEl) textEl.textContent = `${data.total_indexed_statutes || 126} Statutes synchronized`;
+                    if (textEl) textEl.textContent = `${data.total_indexed_statutes || 128} Statutes synchronized`;
                     if (badgeEl) {
                         badgeEl.className = "inline-flex items-center px-1.5 py-0.2 rounded text-[9px] font-bold bg-spruce-100 text-spruce-800 dark:bg-spruce-900/80 dark:text-spruce-200 dark:border dark:border-spruce-700";
                         badgeEl.textContent = "Up to Date";

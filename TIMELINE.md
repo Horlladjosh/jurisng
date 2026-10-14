@@ -1,6 +1,6 @@
 # JurisNG Engineering Timeline & Development History
 
-This document provides a comprehensive, date-stamped chronological history of the **JurisNG** platform (formerly *Nigerian Law Engine / NaijaLex*), tracing the journey from the early experiments with isolated scripts and 10–12 statutes to a production-grade statutory intelligence engine indexing 126 federal enactments.
+This document provides a comprehensive, date-stamped chronological history of the **JurisNG** platform (formerly *Nigerian Law Engine / NaijaLex*), tracing the journey from the early experiments with isolated scripts and 10–12 statutes to a production-grade statutory intelligence engine indexing 128 federal enactments (9,959 verified sections).
 
 ---
 
@@ -87,3 +87,16 @@ This document provides a comprehensive, date-stamped chronological history of th
   * **Competitive Intelligence Discovery:** Discovered the existing `naijalex.com` platform (registered March 2026 on Vercel/Supabase). Proactively averted brand confusion, trademark friction, and SEO overlap.
   * **Rebranding to JurisNG:** Renamed platform, logos, disclaimers, OpenAPI documentation, and email pipes to **JurisNG** (`jurisng.horlladjosh.com`).
   * **Security Hardening:** Implemented HTTP security headers (`X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`), an invisible anti-bot honeypot, and IP rate limiting on feedback endpoints.
+
+---
+
+### Milestone 9: The 128 Statute Milestone — Federal Highways Act & Marriage Act Ingestion (October 14, 2026)
+* **Date:** 14 October 2026
+* **Corpus Size:** 128 Federal Statutes (9,959 sections)
+* **What Happened:**
+  * **Federal Highways Act Ingestion:** Downloaded official Gazette PDF (`data/raw_pdfs/federal_highways_act.pdf`), cleanly extracted all 29 substantive sections with 100% valid titles, zero placeholders, and strict fidelity.
+  * **Marriage Act Ingestion:** Downloaded official Gazette PDF (`data/raw_pdfs/marriage_act.pdf`), cleanly extracted all 55 sections with 100% valid titles and complete statutory text covering celebration of marriage, certificates, caveats, and bigamy offences.
+  * **Zero-Defect Verification:** Audited entire 128-statute library via `verify_extraction_fidelity.py` with 100% precision across all 9,959 sections in both SQLite and FTS5.
+  * **Domain Ontology & Query Expansion:** Enhanced family law ontology (`family_divorce_custody`) and road traffic ontology (`traffic_road_safety_pedestrian`) in `server.py` with colloquialisms (`court wedding`, `road accident`, `hit and run`).
+  * **UI Library Expansion:** Added dedicated "Family & Marriage" category filter pill in `index.html` and synchronized all counters.
+
