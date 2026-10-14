@@ -70,10 +70,10 @@
                     },
                     colors: {
                         parchment: {
-                            50: '#fdfcf9',
-                            100: '#f8f7f4',
-                            200: '#f1ede6',
-                            300: '#e4dfd5',
+                            50: '#ffffff',
+                            100: '#fafafa',
+                            200: '#f3f4f6',
+                            300: '#e5e7eb',
                             400: '#d5ccba',
                             500: '#baaea0'
                         },
@@ -133,7 +133,7 @@
         /* Warm paper texture subtle highlight */
         .paper-card {
             background-color: #ffffff;
-            border: 1px solid #e4dfd5;
+            border: 1px solid #e5e7eb;
             box-shadow: 0 1px 3px rgba(27, 24, 21, 0.03);
         }
         .dark .paper-card {
@@ -143,10 +143,10 @@
         }
     </style>
 </head>
-<body class="bg-[#f8f7f4] dark:bg-[#0e1014] text-ink-900 dark:text-gray-100 h-full flex antialiased selection:bg-spruce-100 selection:text-spruce-800 dark:selection:bg-spruce-900 dark:selection:text-spruce-100 overflow-hidden">
+<body class="bg-[#fafafa] dark:bg-[#0e1014] text-ink-900 dark:text-gray-100 h-full flex antialiased selection:bg-spruce-100 selection:text-spruce-800 dark:selection:bg-spruce-900 dark:selection:text-spruce-100 overflow-hidden">
 
     <!-- Sidebar Navigation -->
-    <aside id="sidebar" class="fixed md:static inset-y-0 left-0 -translate-x-full md:translate-x-0 w-64 bg-[#f1ede6] dark:bg-[#13161c] border-r border-[#e4dfd5] dark:border-[#262a34] flex flex-col justify-between p-4 shrink-0 select-none z-40 transition-transform duration-200 shadow-2xl md:shadow-none">
+    <aside id="sidebar" class="fixed md:static inset-y-0 left-0 -translate-x-full md:translate-x-0 w-64 bg-[#f3f4f6] dark:bg-[#13161c] border-r border-[#e5e7eb] dark:border-[#262a34] flex flex-col justify-between p-4 shrink-0 select-none z-40 transition-transform duration-200 shadow-2xl md:shadow-none">
         <div class="space-y-4 flex flex-col min-h-0 flex-1">
             
             <!-- Brand Header with Nigerian Coat/Scales Emblem -->
@@ -162,20 +162,18 @@
                 </div>
             </div>
 
-            <!-- Navigation Actions (Streamlined Option A) -->
-            <div class="space-y-1.5">
-                <button id="navHomeBtn" onclick="showSearchHome()" class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-spruce-600 hover:bg-spruce-700 active:bg-spruce-800 text-white text-xs font-semibold shadow-xs transition cursor-pointer">
-                    <i class="ph ph-plus text-xs font-bold"></i>
+            <!-- Navigation Actions -->
+            <div class="space-y-1.5" id="sidebarNavActions">
+                <button id="navHomeBtn" onclick="showSearchHome()" class="hidden w-full flex items-center justify-center px-3.5 py-2 rounded-lg bg-spruce-600 hover:bg-spruce-700 active:bg-spruce-800 text-white text-xs font-semibold shadow-xs transition cursor-pointer text-center">
                     <span>New Search</span>
                 </button>
-                <button id="navLibraryBtn" onclick="showLibraryView()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-ink-700 dark:text-gray-300 hover:bg-white/80 dark:hover:bg-[#181b22]/80 text-left transition cursor-pointer text-xs font-medium">
-                    <i class="ph ph-books text-sm"></i>
-                    <span id="sidebarLibraryLabel">Statutory Library (126 Acts)</span>
+                <button id="navLibraryBtn" onclick="showLibraryView()" class="w-full flex items-center justify-center px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 dark:hover:border-spruce-400 text-ink-900 dark:text-white hover:text-spruce-700 dark:hover:text-spruce-300 transition cursor-pointer text-xs font-semibold shadow-2xs hover:shadow-xs text-center">
+                    <span>Browse Statutory Library</span>
                 </button>
             </div>
 
             <!-- Search History Section -->
-            <div class="flex flex-col flex-1 min-h-0 pt-3 border-t border-[#e4dfd5] dark:border-[#262a34]">
+            <div class="flex flex-col flex-1 min-h-0 pt-3 border-t border-[#e5e7eb] dark:border-[#262a34]">
                 <div class="flex items-center justify-between px-2 pb-1.5 shrink-0">
                     <span class="text-[10px] font-semibold tracking-wider text-ink-500 dark:text-gray-400 uppercase font-mono">Recent History</span>
                     <button onclick="clearAllHistory()" class="text-[10px] text-ink-500 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 transition cursor-pointer">Clear</button>
@@ -185,7 +183,7 @@
         </div>
 
         <!-- Unified Bottom Sidebar (Gazette Feeds & Theme, No Chopped Dividers) -->
-        <div class="border-t border-[#e4dfd5] dark:border-[#262a34] pt-3 px-1 space-y-2.5 shrink-0">
+        <div class="border-t border-[#e5e7eb] dark:border-[#262a34] pt-3 px-1 space-y-2.5 shrink-0">
             <!-- Gazette Live Feed Indicator -->
             <div class="flex items-center justify-between px-1">
                 <div class="flex items-center gap-1.5 min-w-0">
@@ -225,7 +223,7 @@
     <!-- Main Workspace Area -->
     <main class="flex-1 flex flex-col h-full overflow-hidden relative" id="workspace">
         <!-- Mobile Top Navigation Bar -->
-        <div class="md:hidden flex items-center justify-between px-4 py-2.5 bg-[#f1ede6] dark:bg-[#13161c] border-b border-[#e4dfd5] dark:border-[#262a34] shrink-0 z-10">
+        <div class="md:hidden flex items-center justify-between px-4 py-2.5 bg-[#f3f4f6] dark:bg-[#13161c] border-b border-[#e5e7eb] dark:border-[#262a34] shrink-0 z-10">
             <div class="flex items-center gap-2 cursor-pointer" onclick="showSearchHome()">
                 <div class="w-7 h-7 rounded bg-spruce-600 text-white flex items-center justify-center shadow-2xs">
                     <i class="ph ph-scales text-sm"></i>
@@ -233,8 +231,7 @@
                 <span class="font-bold text-xs tracking-tight">Juris<span class="text-spruce-600 dark:text-spruce-400 font-bold">NG</span></span>
             </div>
             <div class="flex items-center gap-2">
-                <button onclick="showLibraryView()" title="Browse Statutory Library" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white dark:bg-[#181b22] text-spruce-800 dark:text-spruce-200 border border-[#e4dfd5] dark:border-[#262a34] text-xs font-semibold shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer">
-                    <i class="ph ph-books text-sm text-spruce-600 dark:text-spruce-400"></i>
+                <button onclick="showLibraryView()" title="Browse Statutory Library" class="px-3 py-1.5 rounded-lg bg-white dark:bg-[#181b22] text-spruce-800 dark:text-spruce-200 border border-[#e5e7eb] dark:border-[#262a34] text-xs font-semibold shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer">
                     <span>Library</span>
                 </button>
                 <button onclick="toggleMobileSidebar()" aria-label="Open Menu" class="p-1.5 rounded-lg text-ink-700 dark:text-gray-200 hover:bg-white dark:hover:bg-[#181b22] transition cursor-pointer">
@@ -280,129 +277,31 @@
 
                 <!-- Suggestions (2 on Mobile, 3 on Tablet/Desktop, No Icons) -->
                 <div class="flex flex-wrap items-center justify-center gap-2 pt-0.5">
-                    <button type="button" onclick="triggerSearch('late for class company deducts salary without agreement')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
+                    <button type="button" onclick="triggerSearch('late for class company deducts salary without agreement')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f3f4f6] dark:hover:bg-[#222630] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
                         Salary deductions without consent
                     </button>
 
-                    <button type="button" onclick="triggerSearch('Section 84 Evidence Act 2011')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
+                    <button type="button" onclick="triggerSearch('Section 84 Evidence Act 2011')" class="px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f3f4f6] dark:hover:bg-[#222630] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
                         Section 84 Evidence Act
                     </button>
 
-                    <button type="button" onclick="triggerSearch('Section 13 Nigeria Startup Act labeling incentives')" class="hidden sm:inline-flex px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f1ede6] dark:hover:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
+                    <button type="button" onclick="triggerSearch('Section 13 Nigeria Startup Act labeling incentives')" class="hidden sm:inline-flex px-3.5 py-1.5 rounded-full bg-white dark:bg-[#181b22] hover:bg-[#f3f4f6] dark:hover:bg-[#222630] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-100 text-xs font-medium transition shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 cursor-pointer">
                         Startup tax incentives
                     </button>
                 </div>
 
-                <!-- Featured Primary Enactments Grid (Pronounced Statutory Corpus) -->
-                <div class="w-full max-w-2xl mx-auto pt-2 sm:pt-4">
-                    <div class="flex items-center justify-between px-1 mb-2.5">
-                        <div class="flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-spruce-600 dark:bg-spruce-400"></span>
-                            <span class="text-[11px] font-mono uppercase tracking-wider font-semibold text-ink-500 dark:text-gray-400">Key Federal Enactments</span>
-                        </div>
-                        <button type="button" onclick="showLibraryView()" class="text-[11px] font-mono font-medium text-spruce-700 dark:text-spruce-400 hover:text-spruce-900 dark:hover:text-spruce-200 flex items-center gap-1 transition cursor-pointer">
-                            <span>Browse All 126 Acts</span>
-                            <i class="ph ph-arrow-right text-[10px]"></i>
-                        </button>
-                    </div>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5">
-                        <!-- 1. CAMA 2020 -->
-                        <div onclick="openActFromHome('Companies and Allied Matters Act, 2020')" class="paper-card rounded-xl p-3 sm:p-3.5 hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer flex flex-col justify-between gap-2 group shadow-2xs hover:shadow-xs">
-                            <div class="flex items-start justify-between gap-1.5">
-                                <span class="text-xs sm:text-[13px] font-semibold text-ink-900 dark:text-white group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition-colors leading-tight">
-                                    CAMA 2020
-                                </span>
-                                <i class="ph ph-arrow-up-right text-xs text-ink-400 dark:text-gray-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 mt-0.5"></i>
-                            </div>
-                            <div class="text-[11px] text-ink-500 dark:text-gray-400 font-mono">
-                                870 Sections
-                            </div>
-                        </div>
-
-                        <!-- 2. Evidence Act 2011 -->
-                        <div onclick="openActFromHome('Evidence Act, 2011')" class="paper-card rounded-xl p-3 sm:p-3.5 hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer flex flex-col justify-between gap-2 group shadow-2xs hover:shadow-xs">
-                            <div class="flex items-start justify-between gap-1.5">
-                                <span class="text-xs sm:text-[13px] font-semibold text-ink-900 dark:text-white group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition-colors leading-tight">
-                                    Evidence Act, 2011
-                                </span>
-                                <i class="ph ph-arrow-up-right text-xs text-ink-400 dark:text-gray-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 mt-0.5"></i>
-                            </div>
-                            <div class="text-[11px] text-ink-500 dark:text-gray-400 font-mono">
-                                259 Sections
-                            </div>
-                        </div>
-
-                        <!-- 3. Constitution 1999 -->
-                        <div onclick="openActFromHome('Constitution of the Federal Republic of Nigeria 1999 (as amended)')" class="paper-card rounded-xl p-3 sm:p-3.5 hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer flex flex-col justify-between gap-2 group shadow-2xs hover:shadow-xs">
-                            <div class="flex items-start justify-between gap-1.5">
-                                <span class="text-xs sm:text-[13px] font-semibold text-ink-900 dark:text-white group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition-colors leading-tight">
-                                    1999 Constitution
-                                </span>
-                                <i class="ph ph-arrow-up-right text-xs text-ink-400 dark:text-gray-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 mt-0.5"></i>
-                            </div>
-                            <div class="text-[11px] text-ink-500 dark:text-gray-400 font-mono">
-                                320 Sections
-                            </div>
-                        </div>
-
-                        <!-- 4. Labour Act -->
-                        <div onclick="openActFromHome('Labour Act, 1971')" class="paper-card rounded-xl p-3 sm:p-3.5 hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer flex flex-col justify-between gap-2 group shadow-2xs hover:shadow-xs">
-                            <div class="flex items-start justify-between gap-1.5">
-                                <span class="text-xs sm:text-[13px] font-semibold text-ink-900 dark:text-white group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition-colors leading-tight">
-                                    Labour Act
-                                </span>
-                                <i class="ph ph-arrow-up-right text-xs text-ink-400 dark:text-gray-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 mt-0.5"></i>
-                            </div>
-                            <div class="text-[11px] text-ink-500 dark:text-gray-400 font-mono">
-                                92 Sections
-                            </div>
-                        </div>
-
-                        <!-- 5. Police Act 2020 -->
-                        <div onclick="openActFromHome('Nigeria Police Act, 2020')" class="paper-card rounded-xl p-3 sm:p-3.5 hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer flex flex-col justify-between gap-2 group shadow-2xs hover:shadow-xs">
-                            <div class="flex items-start justify-between gap-1.5">
-                                <span class="text-xs sm:text-[13px] font-semibold text-ink-900 dark:text-white group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition-colors leading-tight">
-                                    Police Act, 2020
-                                </span>
-                                <i class="ph ph-arrow-up-right text-xs text-ink-400 dark:text-gray-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 mt-0.5"></i>
-                            </div>
-                            <div class="text-[11px] text-ink-500 dark:text-gray-400 font-mono">
-                                142 Sections
-                            </div>
-                        </div>
-
-                        <!-- 6. Startup Act -->
-                        <div onclick="openActFromHome('Nigeria Startup Act')" class="paper-card rounded-xl p-3 sm:p-3.5 hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer flex flex-col justify-between gap-2 group shadow-2xs hover:shadow-xs">
-                            <div class="flex items-start justify-between gap-1.5">
-                                <span class="text-xs sm:text-[13px] font-semibold text-ink-900 dark:text-white group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition-colors leading-tight">
-                                    Nigeria Startup Act
-                                </span>
-                                <i class="ph ph-arrow-up-right text-xs text-ink-400 dark:text-gray-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0 mt-0.5"></i>
-                            </div>
-                            <div class="text-[11px] text-ink-500 dark:text-gray-400 font-mono">
-                                48 Sections
-                            </div>
-                        </div>
-                    </div>
+                <!-- Discrete Alternative Browse Link (No Pill, No Border, Distinct from Search Tags) -->
+                <div class="pt-2 sm:pt-3 text-center text-xs text-ink-500 dark:text-gray-400">
+                    <span>Or browse the complete</span>
+                    <button type="button" onclick="showLibraryView()" class="font-semibold text-spruce-700 dark:text-spruce-400 hover:text-spruce-900 dark:hover:text-spruce-200 underline underline-offset-2 transition cursor-pointer ml-1">
+                        Statutory Library (126 Acts, 9,903 Sections)
+                    </button>
                 </div>
             </div>
 
-            <!-- Anchored Clean Legal Notice at Viewport Bottom (Text Above, Links Below) -->
-            <div class="py-3 sm:py-4 text-center flex flex-col items-center justify-center gap-1.5 shrink-0 text-[11px] text-ink-500 dark:text-gray-400">
-                <div class="flex items-center justify-center gap-1.5">
-                    <i class="ph ph-shield-check text-xs text-brass-600 dark:text-amber-400 shrink-0"></i>
-                    <span>Automated Statutory Intelligence • Not Formal Legal Advice</span>
-                </div>
-                <div class="flex items-center justify-center gap-2 text-[11px]">
-                    <button type="button" onclick="openDisclaimerModal()" class="underline underline-offset-2 font-medium text-spruce-700 dark:text-spruce-300 hover:text-spruce-900 dark:hover:text-white transition cursor-pointer">
-                        Terms & Notice
-                    </button>
-                    <span>•</span>
-                    <button type="button" onclick="openFeedbackModal()" class="underline underline-offset-2 font-medium text-brass-700 dark:text-amber-400 hover:text-brass-800 dark:hover:text-amber-300 transition cursor-pointer">
-                        Report a Bug
-                    </button>
-                </div>
+            <!-- Clean Legal Notice at Viewport Bottom -->
+            <div class="py-3 sm:py-4 text-center shrink-0 text-[11px] text-ink-400 dark:text-gray-400 font-mono">
+                Automated Statutory Intelligence • Not Formal Legal Advice
             </div>
         </div>
 
@@ -411,37 +310,37 @@
             <div class="flex-1 overflow-y-auto pt-6 pb-4 space-y-6 pr-1">
                 
                 <!-- Query Header -->
-                <div class="border-b border-[#e4dfd5] dark:border-[#262a34] pb-3 flex items-center justify-between gap-4">
+                <div class="border-b border-[#e5e7eb] dark:border-[#262a34] pb-4 flex items-center justify-between gap-4">
                     <div>
-                        <div class="text-[10px] font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-300 mb-0.5 font-mono flex items-center gap-1.5">
-                            <i class="ph ph-clock-counter-clockwise text-xs"></i> Research Query
+                        <div class="text-[10px] font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-400 mb-1 font-mono">
+                            Research Query
                         </div>
-                        <h1 id="threadTitle" class="text-lg sm:text-xl font-editorial font-bold tracking-tight text-ink-900 dark:text-white"></h1>
+                        <h1 id="threadTitle" class="text-xl sm:text-2xl font-editorial font-bold tracking-tight text-ink-900 dark:text-white"></h1>
                     </div>
-                    <button onclick="showSearchHome()" class="text-xs text-ink-500 dark:text-gray-300 hover:text-spruce-700 dark:hover:text-spruce-300 font-medium shrink-0 flex items-center gap-1">
-                        <i class="ph ph-arrow-counter-clockwise"></i> New Search
+                    <button onclick="showSearchHome()" class="px-3.5 py-2 rounded-lg bg-spruce-600 hover:bg-spruce-700 active:bg-spruce-800 text-white text-xs font-semibold shadow-xs transition cursor-pointer shrink-0">
+                        New Search
                     </button>
                 </div>
 
                 <!-- Legal Summary Block -->
                 <div class="space-y-2">
-                    <div class="text-xs font-semibold uppercase tracking-wider text-spruce-700 dark:text-spruce-300 flex items-center gap-1.5 font-mono">
-                        <i class="ph ph-gavel text-sm"></i> Statutory Determination & Analysis
+                    <div class="text-xs font-semibold uppercase tracking-wider text-spruce-700 dark:text-spruce-300 font-mono">
+                        Statutory Determination & Analysis
                     </div>
                     <div id="answerBody" class="text-sm sm:text-base leading-relaxed text-ink-900 dark:text-gray-100 font-editorial paper-card rounded-lg p-5"></div>
                 </div>
 
                 <!-- Governing Provisions Cards -->
                 <div class="space-y-3 pt-2 pb-6">
-                    <div class="text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-300 flex items-center gap-1.5 font-mono">
-                        <i class="ph ph-books text-sm"></i> Primary Statutory Enactments
+                    <div class="text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-400 font-mono">
+                        Primary Statutory Enactments
                     </div>
                     <div id="operativeSections" class="space-y-3"></div>
                 </div>
             </div>
 
             <!-- Bottom Search Input -->
-            <div class="pt-2 pb-3 bg-[#f8f7f4] dark:bg-[#0e1014] border-t border-[#e4dfd5] dark:border-[#262a34] shrink-0 space-y-1.5">
+            <div class="pt-2 pb-3 bg-[#fafafa] dark:bg-[#0e1014] border-t border-[#e5e7eb] dark:border-[#262a34] shrink-0 space-y-1.5">
                 <div class="paper-card rounded-lg p-2 flex items-center gap-2 focus-within:border-spruce-600">
                     <input 
                         type="text" 
@@ -449,31 +348,22 @@
                         placeholder="Search another legal scenario or section citation..." 
                         class="w-full bg-transparent border-0 text-xs sm:text-sm text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-400 focus:ring-0 focus:outline-none px-2 font-sans"
                     />
-                    <button type="button" id="bottomSubmitBtn" class="bg-spruce-600 hover:bg-spruce-700 text-white font-semibold px-4 py-1.5 rounded-md text-xs transition shrink-0 flex items-center gap-1 cursor-pointer">
-                        <span>Search</span>
-                        <i class="ph ph-magnifying-glass text-xs"></i>
+                    <button type="button" id="bottomSubmitBtn" class="bg-spruce-600 hover:bg-spruce-700 text-white font-semibold px-4 py-1.5 rounded-md text-xs transition shrink-0 cursor-pointer">
+                        Search
                     </button>
                 </div>
-                <div class="py-1 text-center flex flex-col items-center justify-center gap-1 text-[10px] text-ink-500 dark:text-gray-400">
-                    <div class="flex items-center justify-center gap-1">
-                        <i class="ph ph-shield-check text-xs text-brass-600 dark:text-amber-400 shrink-0"></i>
-                        <span>Automated Statutory Intelligence • Not Formal Legal Advice</span>
-                    </div>
-                    <div class="flex items-center justify-center gap-2">
-                        <button type="button" onclick="openDisclaimerModal()" class="underline underline-offset-2 text-spruce-700 dark:text-spruce-300 hover:text-spruce-900 dark:hover:text-white transition cursor-pointer">Terms & Notice</button>
-                        <span>•</span>
-                        <button type="button" onclick="openFeedbackModal()" class="underline underline-offset-2 text-brass-700 dark:text-amber-400 hover:text-brass-800 dark:hover:text-amber-300 transition font-medium cursor-pointer">Report a Bug</button>
-                    </div>
+                <div class="py-1 text-center shrink-0 text-[10px] text-ink-400 dark:text-gray-400 font-mono">
+                    Automated Statutory Intelligence • Not Formal Legal Advice
                 </div>
             </div>
         </div>
 
         <!-- Library State: Document-First Legal Corpus -->
-        <div id="libraryState" class="hidden flex-1 w-full h-full flex flex-col overflow-hidden bg-[#f8f7f4] dark:bg-[#0e1014]">
+        <div id="libraryState" class="hidden flex-1 w-full h-full flex flex-col overflow-hidden bg-[#fafafa] dark:bg-[#0e1014]">
             
             <!-- SUB-VIEW 1: All Statutes Directory / Catalog -->
             <div id="libraryCatalogView" class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 space-y-5 overflow-y-auto">
-                <div class="border-b border-[#e4dfd5] dark:border-[#262a34] pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div class="border-b border-[#e5e7eb] dark:border-[#262a34] pb-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                     <div>
                         <h1 class="text-2xl font-editorial font-bold tracking-tight text-ink-900 dark:text-white">Federal Statutory Corpus</h1>
                         <p id="librarySubtitle" class="text-xs text-ink-500 dark:text-gray-400 mt-0.5">126 Federal Statutes & Official Gazettes (9,903 indexed sections) compiled from primary enactments.</p>
@@ -496,14 +386,14 @@
                     <!-- Category Filter Pills -->
                     <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-[11px] font-medium select-none" id="categoryPillContainer">
                         <button onclick="setCategoryFilter('all', this)" class="cat-pill px-2.5 py-1 rounded-md bg-spruce-600 text-white font-semibold shrink-0 transition cursor-pointer">All (126)</button>
-                        <button onclick="setCategoryFilter('commercial', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Corporate & CAMA</button>
-                        <button onclick="setCategoryFilter('finance', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Banking & Securities</button>
-                        <button onclick="setCategoryFilter('labor', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Labour & Employment</button>
-                        <button onclick="setCategoryFilter('criminal', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Police & Criminal Law</button>
-                        <button onclick="setCategoryFilter('tax', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Taxation & Revenue</button>
-                        <button onclick="setCategoryFilter('maritime', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Maritime & Ports</button>
-                        <button onclick="setCategoryFilter('courts', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Judicature & Procedure</button>
-                        <button onclick="setCategoryFilter('regional', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Regional Commissions</button>
+                        <button onclick="setCategoryFilter('commercial', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Corporate & CAMA</button>
+                        <button onclick="setCategoryFilter('finance', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Banking & Securities</button>
+                        <button onclick="setCategoryFilter('labor', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Labour & Employment</button>
+                        <button onclick="setCategoryFilter('criminal', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Police & Criminal Law</button>
+                        <button onclick="setCategoryFilter('tax', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Taxation & Revenue</button>
+                        <button onclick="setCategoryFilter('maritime', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Maritime & Ports</button>
+                        <button onclick="setCategoryFilter('courts', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Judicature & Procedure</button>
+                        <button onclick="setCategoryFilter('regional', this)" class="cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer">Regional Commissions</button>
                     </div>
                 </div>
 
@@ -515,15 +405,14 @@
             <div id="libraryActView" class="hidden flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 space-y-5 overflow-y-auto">
                 <!-- Clean Back Navigation -->
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-3">
-                    <button onclick="backToLibraryCatalog()" class="text-xs font-semibold text-spruce-700 dark:text-spruce-400 hover:text-spruce-900 dark:hover:text-white flex items-center gap-1.5 transition cursor-pointer py-1 px-2.5 rounded-md hover:bg-[#f1ede6] dark:hover:bg-[#222630]">
-                        <i class="ph ph-arrow-left text-sm"></i>
-                        <span>All 126 Federal Statutes</span>
+                    <button onclick="backToLibraryCatalog()" class="text-xs font-semibold text-spruce-700 dark:text-spruce-400 hover:text-spruce-900 dark:hover:text-white transition cursor-pointer py-1 px-2.5 rounded-md hover:bg-[#f3f4f6] dark:hover:bg-[#222630]">
+                        <span>← All 126 Federal Statutes</span>
                     </button>
                     <span class="text-[11px] font-mono text-ink-500 dark:text-gray-400 px-1">Laws of the Federation of Nigeria</span>
                 </div>
 
                 <!-- Act Header -->
-                <div class="border-b border-[#e4dfd5] dark:border-[#262a34] pb-4 space-y-1">
+                <div class="border-b border-[#e5e7eb] dark:border-[#262a34] pb-4 space-y-1">
                     <span class="text-[10px] font-bold uppercase tracking-wider text-spruce-700 dark:text-spruce-400 font-mono">Primary Federal Enactment</span>
                     <h1 id="actViewTitle" class="text-2xl sm:text-3xl font-editorial font-bold text-ink-900 dark:text-white leading-tight"></h1>
                     <div class="flex items-center gap-2 text-xs text-ink-500 dark:text-gray-400 font-mono pt-1">
@@ -546,7 +435,7 @@
                 </div>
 
                 <!-- Clean, dignified Arrangement of Sections (Table of Contents) -->
-                <div id="actViewSectionsList" class="divide-y divide-[#e4dfd5] dark:divide-[#262a34] border border-[#e4dfd5] dark:border-[#262a34] rounded-xl bg-white dark:bg-[#181b22] overflow-hidden shadow-xs">
+                <div id="actViewSectionsList" class="divide-y divide-[#e5e7eb] dark:divide-[#262a34] border border-[#e5e7eb] dark:border-[#262a34] rounded-xl bg-white dark:bg-[#181b22] overflow-hidden shadow-xs">
                 </div>
             </div>
         </div>
@@ -554,49 +443,44 @@
 
     <!-- Modal Drawer (Full Section Viewer with Prev / Next Navigation) -->
     <div id="modalBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-end">
-        <div class="bg-[#f8f7f4] dark:bg-[#13161c] border-l border-[#e4dfd5] dark:border-[#262a34] w-full max-w-2xl h-full flex flex-col shadow-2xl transition-colors">
+        <div class="bg-[#fafafa] dark:bg-[#13161c] border-l border-[#e5e7eb] dark:border-[#262a34] w-full max-w-2xl h-full flex flex-col shadow-2xl transition-colors">
             
             <!-- Modal Header (Clean Reading View without Redundant Buttons) -->
-            <div class="p-4 sm:p-5 border-b border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex items-start justify-between gap-3 sm:gap-4 shrink-0">
+            <div class="p-4 sm:p-5 border-b border-[#e5e7eb] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex items-start justify-between gap-3 sm:gap-4 shrink-0">
                 <div class="min-w-0 flex-1">
                     <div id="modalStatute" class="text-xs font-bold uppercase tracking-wider text-spruce-700 dark:text-spruce-300 mb-1 font-mono break-words"></div>
                     <h2 id="modalTitle" class="text-base sm:text-lg font-editorial font-bold text-ink-900 dark:text-white leading-snug break-words"></h2>
                     <div id="modalPart" class="text-xs text-ink-500 dark:text-gray-300 font-mono mt-0.5 break-words"></div>
                 </div>
-                <button onclick="closeModal()" class="text-ink-400 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white p-1.5 rounded-md hover:bg-[#f1ede6] dark:hover:bg-[#222630] transition shrink-0 cursor-pointer">
+                <button onclick="closeModal()" class="text-ink-400 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white p-1.5 rounded-md hover:bg-[#f3f4f6] dark:hover:bg-[#222630] transition shrink-0 cursor-pointer">
                     <i class="ph ph-x text-lg"></i>
                 </button>
             </div>
 
             <!-- Navigation Bar for Adjacent Sections -->
-            <div class="px-3 sm:px-5 py-2 sm:py-2.5 bg-[#f1ede6]/60 dark:bg-[#181b22]/60 border-b border-[#e4dfd5] dark:border-[#262a34] flex items-center justify-between text-xs shrink-0 font-medium gap-2">
-                <button id="modalPrevBtn" onclick="navigateAdjacentSection(-1)" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white dark:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-200 hover:border-spruce-600 shadow-2xs transition disabled:opacity-40 disabled:pointer-events-none cursor-pointer shrink-0">
-                    <i class="ph ph-arrow-left text-xs"></i>
-                    <span class="hidden sm:inline">Previous Section</span>
-                    <span class="sm:hidden font-medium">Prev</span>
+            <div class="px-3 sm:px-5 py-2 sm:py-2.5 bg-[#f3f4f6]/60 dark:bg-[#181b22]/60 border-b border-[#e5e7eb] dark:border-[#262a34] flex items-center justify-between text-xs shrink-0 font-medium gap-2">
+                <button id="modalPrevBtn" onclick="navigateAdjacentSection(-1)" class="px-3 py-1.5 rounded-lg bg-white dark:bg-[#222630] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-200 hover:border-spruce-600 shadow-2xs transition disabled:opacity-40 disabled:pointer-events-none cursor-pointer shrink-0 text-xs font-medium">
+                    Previous Section
                 </button>
-                <div class="flex items-center justify-center px-2 py-1 rounded-md bg-white/60 dark:bg-[#181b22]/60 border border-[#e4dfd5]/60 dark:border-[#262a34] text-[11px] font-mono text-ink-600 dark:text-gray-300 font-semibold text-center min-w-0 truncate">
+                <div class="flex items-center justify-center px-2 py-1 rounded-md bg-white/60 dark:bg-[#181b22]/60 border border-[#e5e7eb]/60 dark:border-[#262a34] text-[11px] font-mono text-ink-600 dark:text-gray-300 font-semibold text-center min-w-0 truncate">
                     <span id="modalSectionCounter" class="truncate"></span>
                 </div>
-                <button id="modalNextBtn" onclick="navigateAdjacentSection(1)" class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white dark:bg-[#222630] border border-[#e4dfd5] dark:border-[#262a34] text-ink-700 dark:text-gray-200 hover:border-spruce-600 shadow-2xs transition disabled:opacity-40 disabled:pointer-events-none cursor-pointer shrink-0">
-                    <span class="hidden sm:inline">Next Section</span>
-                    <span class="sm:hidden font-medium">Next</span>
-                    <i class="ph ph-arrow-right text-xs"></i>
+                <button id="modalNextBtn" onclick="navigateAdjacentSection(1)" class="px-3 py-1.5 rounded-lg bg-white dark:bg-[#222630] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-200 hover:border-spruce-600 shadow-2xs transition disabled:opacity-40 disabled:pointer-events-none cursor-pointer shrink-0 text-xs font-medium">
+                    Next Section
                 </button>
             </div>
 
             <!-- Statutory Text Body -->
-            <div class="p-4 sm:p-6 overflow-y-auto flex-1 bg-[#f8f7f4] dark:bg-[#0e1014]">
+            <div class="p-4 sm:p-6 overflow-y-auto flex-1 bg-[#fafafa] dark:bg-[#0e1014]">
                 <div class="text-[10px] font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-300 mb-2 font-mono">Official Statutory Text</div>
                 <div id="modalBody" class="paper-card rounded-xl p-4 sm:p-6 text-sm sm:text-base leading-relaxed text-ink-900 dark:text-gray-100 font-editorial whitespace-pre-wrap"></div>
             </div>
 
             <!-- Modal Footer -->
-            <div class="p-3.5 sm:p-4 border-t border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex flex-col-reverse sm:flex-row justify-between items-center gap-2.5 sm:gap-4 shrink-0">
+            <div class="p-3.5 sm:p-4 border-t border-[#e5e7eb] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex flex-col-reverse sm:flex-row justify-between items-center gap-2.5 sm:gap-4 shrink-0">
                 <span class="text-[11px] sm:text-xs font-mono text-ink-500 dark:text-gray-400 text-center sm:text-left">Laws of the Federation of Nigeria</span>
-                <button onclick="copyModalText()" id="copyBtn" class="w-full sm:w-auto bg-[#f1ede6] hover:bg-[#e4dfd5] dark:bg-[#222630] dark:hover:bg-[#262a34] text-ink-900 dark:text-gray-200 text-xs px-4 py-2 rounded-md font-semibold transition flex items-center justify-center gap-1.5 border border-[#e4dfd5] dark:border-[#262a34] cursor-pointer shadow-2xs">
-                    <i class="ph ph-copy text-ink-500 dark:text-gray-300"></i>
-                    <span>Copy Full Section</span>
+                <button onclick="copyModalText()" id="copyBtn" class="w-full sm:w-auto bg-[#f3f4f6] hover:bg-[#e5e7eb] dark:bg-[#222630] dark:hover:bg-[#262a34] text-ink-900 dark:text-gray-200 text-xs px-4 py-2 rounded-md font-semibold transition border border-[#e5e7eb] dark:border-[#262a34] cursor-pointer shadow-2xs">
+                    Copy Full Section
                 </button>
             </div>
         </div>
@@ -604,10 +488,10 @@
 
     <!-- Report a Bug Modal Dialog -->
     <div id="feedbackModalBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4" onclick="if(event.target === this) closeFeedbackModal()">
-        <div class="bg-[#f8f7f4] dark:bg-[#13161c] border border-[#e4dfd5] dark:border-[#262a34] w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-colors">
+        <div class="bg-[#fafafa] dark:bg-[#13161c] border border-[#e5e7eb] dark:border-[#262a34] w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] transition-colors">
             
             <!-- Header -->
-            <div class="p-5 border-b border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex items-start justify-between gap-4 shrink-0">
+            <div class="p-5 border-b border-[#e5e7eb] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex items-start justify-between gap-4 shrink-0">
                 <div class="space-y-1">
                     <div class="text-[10px] font-bold uppercase tracking-wider text-spruce-700 dark:text-spruce-300 font-mono flex items-center gap-1.5">
                         <i class="ph ph-bug text-sm text-brass-600 dark:text-amber-400"></i>
@@ -616,7 +500,7 @@
                     <h2 class="text-xl font-editorial font-bold text-ink-900 dark:text-white">Report a Bug</h2>
                     <p class="text-xs text-ink-500 dark:text-gray-400">Found an issue, OCR typo, or have a suggestion? We'll review it immediately.</p>
                 </div>
-                <button type="button" onclick="closeFeedbackModal()" class="text-ink-400 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white p-1.5 rounded-md hover:bg-[#f1ede6] dark:hover:bg-[#222630] transition cursor-pointer">
+                <button type="button" onclick="closeFeedbackModal()" class="text-ink-400 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white p-1.5 rounded-md hover:bg-[#f3f4f6] dark:hover:bg-[#222630] transition cursor-pointer">
                     <i class="ph ph-x text-lg"></i>
                 </button>
             </div>
@@ -634,7 +518,7 @@
                     </label>
                     <select 
                         id="feedbackCategory" 
-                        class="w-full bg-white dark:bg-[#181b22] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs cursor-pointer"
+                        class="w-full bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs cursor-pointer"
                     >
                         <option value="Bug Report" class="bg-white dark:bg-[#181b22] text-ink-900 dark:text-gray-100">Bug / Technical Issue</option>
                         <option value="Statute Text / Typo Issue" class="bg-white dark:bg-[#181b22] text-ink-900 dark:text-gray-100">Statute Text / Typo Error</option>
@@ -654,7 +538,7 @@
                             id="feedbackEmail" 
                             required 
                             placeholder="you@example.com" 
-                            class="w-full bg-white dark:bg-[#181b22] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs"
+                            class="w-full bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs"
                         />
                     </div>
                     <div>
@@ -665,7 +549,7 @@
                             type="text" 
                             id="feedbackName" 
                             placeholder="e.g. Barrister Tunde" 
-                            class="w-full bg-white dark:bg-[#181b22] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs"
+                            class="w-full bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs"
                         />
                     </div>
                 </div>
@@ -679,7 +563,7 @@
                         type="text" 
                         id="feedbackStatuteRef" 
                         placeholder="e.g. Labour Act Sec 56 or CFRN Sec 84" 
-                        class="w-full bg-white dark:bg-[#181b22] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs"
+                        class="w-full bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs"
                     />
                 </div>
 
@@ -696,12 +580,12 @@
                         rows="4" 
                         required 
                         placeholder="Please describe the bug, the query you performed, or what needs fixing..." 
-                        class="w-full bg-white dark:bg-[#181b22] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs resize-y"
+                        class="w-full bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] rounded-lg px-3 py-2 text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-500 focus:border-spruce-600 dark:focus:border-spruce-400 focus:outline-none transition text-xs resize-y"
                     ></textarea>
                 </div>
 
                 <!-- Action Footer -->
-                <div class="pt-2 flex items-center justify-end gap-2 border-t border-[#e4dfd5] dark:border-[#262a34]">
+                <div class="pt-2 flex items-center justify-end gap-2 border-t border-[#e5e7eb] dark:border-[#262a34]">
                     <button type="button" onclick="closeFeedbackModal()" class="px-3.5 py-1.5 text-xs text-ink-600 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white transition font-medium cursor-pointer">
                         Cancel
                     </button>
@@ -716,8 +600,8 @@
 
     <!-- Modal Drawer (Disclaimer & Terms of Use) -->
     <div id="disclaimerModalBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-end">
-        <div class="bg-[#f8f7f4] dark:bg-[#13161c] border-l border-[#e4dfd5] dark:border-[#262a34] w-full max-w-2xl h-full flex flex-col shadow-2xl transition-colors">
-            <div class="p-5 border-b border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex items-start justify-between gap-4 shrink-0">
+        <div class="bg-[#fafafa] dark:bg-[#13161c] border-l border-[#e5e7eb] dark:border-[#262a34] w-full max-w-2xl h-full flex flex-col shadow-2xl transition-colors">
+            <div class="p-5 border-b border-[#e5e7eb] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex items-start justify-between gap-4 shrink-0">
                 <div>
                     <div class="text-xs font-bold uppercase tracking-wider text-brass-700 dark:text-amber-400 mb-1 flex items-center gap-1.5 font-mono">
                         <i class="ph ph-shield-check text-sm"></i>
@@ -726,12 +610,12 @@
                     <h2 class="text-xl font-editorial font-bold text-ink-900 dark:text-white">Legal Disclaimer & Terms of Use</h2>
                     <div class="text-xs text-ink-500 dark:text-gray-300 mt-0.5">Applicable across the Federal Republic of Nigeria</div>
                 </div>
-                <button onclick="closeDisclaimerModal()" class="text-ink-400 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white p-1.5 rounded-md hover:bg-[#f1ede6] dark:hover:bg-[#222630] transition">
+                <button onclick="closeDisclaimerModal()" class="text-ink-400 dark:text-gray-400 hover:text-ink-900 dark:hover:text-white p-1.5 rounded-md hover:bg-[#f3f4f6] dark:hover:bg-[#222630] transition">
                     <i class="ph ph-x text-lg"></i>
                 </button>
             </div>
             
-            <div class="p-6 overflow-y-auto flex-1 bg-[#f8f7f4] dark:bg-[#0e1014] space-y-4 text-xs sm:text-sm text-ink-800 dark:text-gray-200 leading-relaxed font-editorial">
+            <div class="p-6 overflow-y-auto flex-1 bg-[#fafafa] dark:bg-[#0e1014] space-y-4 text-xs sm:text-sm text-ink-800 dark:text-gray-200 leading-relaxed font-editorial">
                 
                 <!-- Key Notice Banner -->
                 <div class="p-4 bg-brass-100/70 dark:bg-amber-950/40 border border-brass-200 dark:border-amber-800/60 rounded-lg text-brass-900 dark:text-amber-200 text-xs font-sans flex items-start gap-2.5">
@@ -788,7 +672,7 @@
 
             </div>
             
-            <div class="p-4 border-t border-[#e4dfd5] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex justify-between items-center shrink-0">
+            <div class="p-4 border-t border-[#e5e7eb] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex justify-between items-center shrink-0">
                 <span class="text-xs text-ink-500 dark:text-gray-300 font-mono">Federal Republic of Nigeria</span>
                 <button onclick="closeDisclaimerModal()" class="bg-spruce-600 hover:bg-spruce-700 text-white text-xs px-5 py-2 rounded-md font-semibold transition shadow-xs">
                     I Understand & Close
@@ -799,7 +683,7 @@
 
     <!-- Onboarding First-Time Agreement Modal (Requires Consent on First Visit) -->
     <div id="onboardingModalBackdrop" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-[#f8f7f4] dark:bg-[#13161c] border border-[#e4dfd5] dark:border-[#262a34] w-full max-w-lg rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
+        <div class="bg-[#fafafa] dark:bg-[#13161c] border border-[#e5e7eb] dark:border-[#262a34] w-full max-w-lg rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
             
             <!-- Crest / Emblem Header -->
             <div class="text-center space-y-2">
@@ -921,7 +805,7 @@
                 return;
             }
             container.innerHTML = list.map((item, idx) => `
-                <div onclick="triggerSearch('${item.replace(/'/g, "\\'")}')" class="group flex items-center justify-between gap-1.5 px-2.5 py-1.5 rounded-md text-ink-700 dark:text-gray-300 hover:text-ink-900 dark:hover:text-white hover:bg-white dark:hover:bg-[#181b22] cursor-pointer transition border border-transparent hover:border-[#e4dfd5] dark:hover:border-[#262a34]">
+                <div onclick="triggerSearch('${item.replace(/'/g, "\\'")}')" class="group flex items-center justify-between gap-1.5 px-2.5 py-1.5 rounded-md text-ink-700 dark:text-gray-300 hover:text-ink-900 dark:hover:text-white hover:bg-white dark:hover:bg-[#181b22] cursor-pointer transition border border-transparent hover:border-[#e5e7eb] dark:hover:border-[#262a34]">
                     <div class="flex items-center gap-2 truncate">
                         <i class="ph ph-clock-counter-clockwise text-xs shrink-0 text-ink-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-300"></i>
                         <span class="truncate text-[11px]">${escapeHtml(item)}</span>
@@ -980,8 +864,14 @@
             document.getElementById('heroInput').value = '';
             document.getElementById('bottomInput').value = '';
             
+            const navHome = document.getElementById('navHomeBtn');
+            if (navHome) navHome.classList.add('hidden');
+
             const navLib = document.getElementById('navLibraryBtn');
-            if (navLib) navLib.className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md text-ink-700 dark:text-gray-300 hover:bg-white/80 dark:hover:bg-[#181b22]/80 text-left transition cursor-pointer text-xs font-medium";
+            if (navLib) {
+                navLib.innerHTML = '<span>Browse Statutory Library</span>';
+                navLib.className = "w-full flex items-center justify-center px-3.5 py-2.5 rounded-lg bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 dark:hover:border-spruce-400 text-ink-900 dark:text-white hover:text-spruce-700 dark:hover:text-spruce-300 transition cursor-pointer text-xs font-semibold shadow-2xs hover:shadow-xs text-center";
+            }
             setTimeout(() => {
                 const heroInp = document.getElementById('heroInput');
                 if (heroInp) heroInp.focus();
@@ -999,8 +889,14 @@
             document.getElementById('threadState').classList.add('hidden');
             document.getElementById('libraryState').classList.remove('hidden');
 
+            const navHome = document.getElementById('navHomeBtn');
+            if (navHome) navHome.classList.remove('hidden');
+
             const navLib = document.getElementById('navLibraryBtn');
-            if (navLib) navLib.className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md bg-white dark:bg-[#181b22] text-spruce-700 dark:text-spruce-300 border border-[#e4dfd5] dark:border-spruce-500/40 shadow-xs text-left transition cursor-pointer text-xs font-semibold";
+            if (navLib) {
+                navLib.innerHTML = '<span>Browse Statutory Library</span>';
+                navLib.className = "w-full flex items-center justify-center px-3.5 py-2 rounded-lg bg-white dark:bg-[#181b22] text-spruce-700 dark:text-spruce-300 border border-spruce-600 dark:border-spruce-500 shadow-xs text-center transition cursor-pointer text-xs font-semibold ring-1 ring-spruce-600/20";
+            }
             
             backToLibraryCatalog();
 
@@ -1099,7 +995,7 @@
                 return `
                 <div id="act_sec_${secSanitized}" 
                      onclick="openSectionFromActView(${idx})" 
-                     class="p-3.5 hover:bg-[#f1ede6]/60 dark:hover:bg-[#222630] transition cursor-pointer flex items-center justify-between gap-3 group">
+                     class="p-3.5 hover:bg-[#f3f4f6]/60 dark:hover:bg-[#222630] transition cursor-pointer flex items-center justify-between gap-3 group">
                     <div class="flex flex-col gap-0.5 min-w-0 flex-1">
                         <span class="font-mono text-[11px] font-bold text-spruce-700 dark:text-spruce-400 tracking-wide uppercase">Section ${escapeHtml(s.section_number)}</span>
                         <span class="text-xs sm:text-sm text-ink-900 dark:text-gray-100 font-editorial leading-snug group-hover:text-spruce-800 dark:group-hover:text-white break-words">${escapeHtml(s.section_title)}</span>
@@ -1174,7 +1070,7 @@
         function setCategoryFilter(category, btn) {
             activeCategoryFilter = category;
             document.querySelectorAll('.cat-pill').forEach(p => {
-                p.className = 'cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e4dfd5] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer';
+                p.className = 'cat-pill px-2.5 py-1 rounded-md bg-white dark:bg-[#181b22] text-ink-700 dark:text-gray-300 border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 shrink-0 transition cursor-pointer';
             });
             if (btn) {
                 btn.className = 'cat-pill px-2.5 py-1 rounded-md bg-spruce-600 text-white font-semibold shrink-0 transition cursor-pointer shadow-xs';
@@ -1200,7 +1096,7 @@
             const citation = `Section ${secNum}, ${statute}`;
             navigator.clipboard.writeText(citation).then(() => {
                 const origHTML = btn.innerHTML;
-                btn.innerHTML = `<i class="ph ph-check text-spruce-600 dark:text-spruce-300 text-xs"></i> <span class="text-spruce-600 dark:text-spruce-300 font-semibold">Copied</span>`;
+                btn.innerHTML = `<span class="text-spruce-600 dark:text-spruce-300 font-semibold">Copied</span>`;
                 setTimeout(() => { btn.innerHTML = origHTML; }, 2000);
             });
         }
@@ -1389,7 +1285,7 @@
             navigator.clipboard.writeText(currentFullText);
             const btn = document.getElementById('copyBtn');
             const orig = btn.innerHTML;
-            btn.innerHTML = `<i class="ph ph-check text-spruce-600 dark:text-spruce-300"></i> <span class="text-spruce-600 dark:text-spruce-300 font-semibold">Copied Section</span>`;
+            btn.innerHTML = `<span class="text-spruce-600 dark:text-spruce-300 font-semibold">Copied Section</span>`;
             setTimeout(() => { btn.innerHTML = orig; }, 2000);
         }
 
@@ -1473,7 +1369,7 @@
             document.getElementById('libraryState').classList.remove('hidden');
 
             const navLib = document.getElementById('navLibraryBtn');
-            if (navLib) navLib.className = "w-full flex items-center gap-2.5 px-3 py-2 rounded-md bg-white dark:bg-[#181b22] text-spruce-700 dark:text-spruce-300 border border-[#e4dfd5] dark:border-spruce-500/40 shadow-xs text-left transition cursor-pointer text-xs font-semibold";
+            if (navLib) navLib.className = "w-full flex items-center justify-between px-3 py-2 rounded-lg bg-white dark:bg-[#181b22] text-spruce-700 dark:text-spruce-300 border border-spruce-600 dark:border-spruce-500 shadow-xs text-left transition cursor-pointer text-xs font-semibold ring-1 ring-spruce-600/20";
 
             if (allStatutesCache.length === 0) {
                 try {
@@ -1503,6 +1399,16 @@
             document.getElementById('homeHeroState').classList.add('hidden');
             document.getElementById('libraryState').classList.add('hidden');
             document.getElementById('threadState').classList.remove('hidden');
+
+            const navHome = document.getElementById('navHomeBtn');
+            if (navHome) navHome.classList.remove('hidden');
+
+            const navLib = document.getElementById('navLibraryBtn');
+            if (navLib) {
+                navLib.innerHTML = '<span>Browse Statutory Library</span>';
+                navLib.className = "w-full flex items-center justify-center px-3.5 py-2 rounded-lg bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] hover:border-spruce-600 dark:hover:border-spruce-400 text-ink-800 dark:text-gray-200 hover:text-spruce-700 dark:hover:text-spruce-300 transition cursor-pointer text-xs font-medium shadow-2xs hover:shadow-xs text-center";
+            }
+
             document.getElementById('threadTitle').textContent = `“${q}”`;
             document.getElementById('answerBody').innerHTML = `<p class="animate-pulse text-ink-500 dark:text-gray-300 flex items-center gap-2 font-mono text-xs"><i class="ph ph-circle-notch animate-spin text-spruce-600 dark:text-spruce-300"></i> Analyzing federal statutory database...</p>`;
             document.getElementById('operativeSections').innerHTML = '';
@@ -1516,7 +1422,7 @@
                     <div class="paper-card rounded-xl p-5 space-y-3">
                         
                         <!-- Top Header Row -->
-                        <div class="flex items-center justify-between gap-3 text-xs border-b border-[#e4dfd5] dark:border-[#262a34] pb-2.5">
+                        <div class="flex items-center justify-between gap-3 text-xs border-b border-[#e5e7eb] dark:border-[#262a34] pb-2.5">
                             <span class="font-bold text-spruce-700 dark:text-spruce-300 uppercase tracking-wider text-[11px] font-mono shrink-0">${escapeHtml(r.statute)}</span>
                             <span class="text-ink-500 dark:text-gray-300 font-mono text-[10px] truncate text-right">${escapeHtml(r.part || '')}</span>
                         </div>
@@ -1525,23 +1431,20 @@
                         <h3 class="font-bold text-base sm:text-lg text-ink-900 dark:text-white leading-snug font-editorial">Section ${escapeHtml(r.section_number)}: ${escapeHtml(r.section_title)}</h3>
                         
                         <!-- Text Snippet -->
-                        <div class="bg-[#f8f7f4] dark:bg-[#0e1014] border border-[#e4dfd5] dark:border-[#262a34] rounded-lg p-4 text-xs sm:text-sm leading-relaxed text-ink-800 dark:text-gray-200 font-editorial">
+                        <div class="bg-[#fafafa] dark:bg-[#0e1014] border border-[#e5e7eb] dark:border-[#262a34] rounded-lg p-4 text-xs sm:text-sm leading-relaxed text-ink-800 dark:text-gray-200 font-editorial">
                             ${escapeHtml(r.snippet || r.full_text || '')}
                         </div>
 
                         <!-- Action Buttons -->
                         <div class="flex items-center justify-end gap-2 pt-1 flex-wrap">
-                            <button onclick="copySearchResultCitation(${idx}, this)" class="text-xs bg-[#f1ede6] hover:bg-[#e4dfd5] dark:bg-[#222630] dark:hover:bg-[#262a34] border border-[#e4dfd5] dark:border-[#262a34] text-ink-900 dark:text-gray-200 px-3 py-1.5 rounded-md font-semibold transition flex items-center gap-1.5 cursor-pointer">
-                                <i class="ph ph-copy text-xs text-ink-500 dark:text-gray-300"></i>
-                                <span>Copy Citation</span>
+                            <button onclick="copySearchResultCitation(${idx}, this)" class="text-xs bg-[#f3f4f6] hover:bg-[#e5e7eb] dark:bg-[#222630] dark:hover:bg-[#262a34] border border-[#e5e7eb] dark:border-[#262a34] text-ink-900 dark:text-gray-200 px-3 py-1.5 rounded-md font-semibold transition cursor-pointer">
+                                Copy Citation
                             </button>
-                            <button onclick="openActInLibrary('${r.statute.replace(/'/g, "\\'")}', '${r.section_number}')" class="text-xs bg-[#f1ede6] hover:bg-[#e4dfd5] dark:bg-[#222630] dark:hover:bg-[#262a34] border border-[#e4dfd5] dark:border-[#262a34] text-ink-900 dark:text-gray-200 px-3 py-1.5 rounded-md font-semibold transition flex items-center gap-1.5 cursor-pointer" title="Explore full Act in Statutory Library">
-                                <i class="ph ph-books text-xs text-ink-500 dark:text-gray-300"></i>
-                                <span>Open Full Act</span>
+                            <button onclick="openActInLibrary('${r.statute.replace(/'/g, "\\'")}', '${r.section_number}')" class="text-xs bg-[#f3f4f6] hover:bg-[#e5e7eb] dark:bg-[#222630] dark:hover:bg-[#262a34] border border-[#e5e7eb] dark:border-[#262a34] text-ink-900 dark:text-gray-200 px-3 py-1.5 rounded-md font-semibold transition cursor-pointer" title="Explore full Act in Statutory Library">
+                                Open Full Act
                             </button>
-                            <button onclick="openSearchResultModal(${idx})" class="text-xs bg-spruce-100 dark:bg-spruce-900/60 hover:bg-spruce-200 dark:hover:bg-spruce-900 border border-spruce-600/30 dark:border-spruce-700 text-spruce-800 dark:text-spruce-200 px-3 py-1.5 rounded-md font-semibold transition flex items-center gap-1.5 cursor-pointer">
-                                <span>Read Full Section</span>
-                                <i class="ph ph-arrow-up-right text-xs"></i>
+                            <button onclick="openSearchResultModal(${idx})" class="text-xs bg-spruce-100 dark:bg-spruce-900/60 hover:bg-spruce-200 dark:hover:bg-spruce-900 border border-spruce-600/30 dark:border-spruce-700 text-spruce-800 dark:text-spruce-200 px-3.5 py-1.5 rounded-md font-semibold transition cursor-pointer">
+                                Read Full Section
                             </button>
                         </div>
                     </div>
