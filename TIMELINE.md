@@ -117,4 +117,29 @@ This document provides a comprehensive, date-stamped chronological history of th
   * **Domain Routing & Semantic Search Expansion:** Enriched `server.py` with `public_officers_limitation_popa`, `food_drugs_pharma_nafdac`, and `firearms_arms_ammunition` ontologies, plus colloquialisms (`sue government`, `sue police`, `fake drug`, `nafdac number`, `vehicle papers`, `vehicle insurance`).
   * **Platform & Metadata Sync:** Updated web application counters, category filters, and structured schema to 134 Acts and 10,115 sections.
 
+---
+
+### Milestone 11: Universal Section Title Remediation — Zero Generic Titles Across Entire Platform (October 14, 2026)
+* **Date:** 14 October 2026
+* **Corpus Size:** 134 Federal Statutes (10,114 verified sections)
+* **What Happened:**
+  * **Capital Gains Tax Act (Cap. C1, LFN 2004):** Restored all 47 official section titles according to the statutory Arrangement of Sections; cleaned out historic marginal note leakage from trailing section lines.
+  * **Systemic Platform-Wide Generic Title Audit:** Audited all 134 statutes and resolved 97 generic fallback titles (`Section X`) across 15 statutes:
+    1. *Legal Practitioners Act:* Restored titles for Sections 2, 3, 4, 5, 16, 17, 18, 19, 20 (including "Conferment of rank of Senior Advocate of Nigeria", "Call to the Bar", "Entitlement to practise").
+    2. *Pension Reform Act:* Restored titles for Sections 43, 47, 48, 49, 98, 102, 105, 109 (PTAD governance, asset transfers, regulatory interventions, and jurisdiction).
+    3. *Merchant Shipping Act, 2007:* Restored titles and populated complete substantive legal text for Sections 15, 235, 321, 338, 406, 432.
+    4. *NSITF Act:* Restored titles for Sections 26–30 ("Estimates", "Expenses to be paid out of the Fund", "Investment of funds", "Accounts and audit", "Annual report").
+    5. *Minerals and Mining Act, 2007:* Restored titles for Sections 118, 162, 164, 165 ("Environmental obligations", "Savings in respect of office holders", "Interpretation", "Short title").
+    6. *Secured Transactions in Movable Assets Act (STMA), 2017:* Restored titles for Sections 8, 16, 41, 50 ("Perfection of Security Interests", "Errors in a Financing Statement", "Mediation Panel", "Reinstatement of Security Agreement").
+    7. *Nigerian Ports Authority (NPA) Act:* Purged dummy Section 0 artifact, restored authoritative legal text for Section 1, and titled Sections 119 ("Offences relating to entry notices") and 120 ("Trial of offences").
+    8. *Failed Banks Act:* Restored titles for Sections 26 ("Forms") and 27 ("Application of Rules of Court").
+    9. *Foreign Exchange (FEMMPA) Act:* Restored titles for Sections 4 ("Sources of foreign currency in the Market") and 28 ("Duty to collect debts").
+    10. *Investments and Securities Act (ISA), 2007:* Restored titles for Sections 174 ("Cancellation of registration of a manager") and 307 ("Change of name of capital market operators").
+    11. *Marine Insurance Act:* Restored titles for Sections 43 ("Implied condition as to commencement of risk") and 49 ("Delay in voyage").
+    12. *Bills of Exchange Act:* Restored title for Section 39 ("When presentment for acceptance is necessary").
+    13. *FAAN Act:* Restored title for Section 31 ("Short title").
+    14. *NBC Act:* Restored title for Section 25 ("Conditions for application for licence (Third Schedule)").
+  * **Automated Regression Prevention:** Upgraded `verify_extraction_fidelity.py` with custom SQLite `is_generic_title` regex functions to continuously enforce zero generic or untitled sections across all 10,114 sections.
+
+
 

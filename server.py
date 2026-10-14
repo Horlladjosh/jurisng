@@ -140,7 +140,7 @@ app = FastAPI(
     version="1.0.0",
     description="""
 ### Nigerian Legal Intelligence & Statutory Retrieval API
-JurisNG indexes 134 certified Federal Statutes and Official Gazettes (10,115 verified sections) across the Federal Republic of Nigeria.
+JurisNG indexes 134 certified Federal Statutes and Official Gazettes (10,114 verified sections) across the Federal Republic of Nigeria.
 
 ---
 **⚠️ LEGAL DISCLAIMER & TERMS OF USE:**
@@ -492,10 +492,10 @@ LEGAL_DOMAINS = [
     },
     {
         'id': 'taxation_revenue',
-        'keywords': ['tax', 'taxes', 'personal income tax', 'paye', 'company income tax', 'vat', 'tax evasion', 'firs', 'withholding tax', 'stamp duty'],
-        'target_statutes': ['Personal Income Tax Act', 'Companies Income Tax Act', 'Value Added Tax Act', 'Stamp Duties Act'],
-        'primary_terms': ['charge of tax', 'deduction of tax', 'payment of tax', 'penalties'],
-        'determination': "Federal and State tax administration in Nigeria is governed by the Personal Income Tax Act (PITA for individuals/PAYE), Companies Income Tax Act (CITA for corporate profits), and the Value Added Tax Act. Arbitrary or double taxation is prohibited, and tax assessments must strictly adhere to statutory notices and appeal tribunals."
+        'keywords': ['tax', 'taxes', 'personal income tax', 'paye', 'company income tax', 'vat', 'tax evasion', 'firs', 'withholding tax', 'stamp duty', 'capital gains', 'capital gains tax', 'disposal of assets', 'chargeable gain'],
+        'target_statutes': ['Capital Gains Tax Act', 'Personal Income Tax Act', 'Companies Income Tax Act', 'Value Added Tax Act', 'Stamp Duties Act'],
+        'primary_terms': ['taxation of capital gains', 'chargeable assets', 'replacement of business assets', 'charge of tax', 'deduction of tax', 'payment of tax', 'penalties'],
+        'determination': "Federal and State tax administration in Nigeria is governed by the Personal Income Tax Act (PITA), Companies Income Tax Act (CITA), Value Added Tax Act, and the Capital Gains Tax Act (Cap. C1 LFN 2004, governing gains accruing from the disposal of chargeable assets). Arbitrary or double taxation is prohibited, and tax assessments must strictly adhere to statutory notices and appeal tribunals."
     },
     {
         'id': 'electoral_law',

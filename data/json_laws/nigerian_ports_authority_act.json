@@ -7,21 +7,14 @@
   "gazette_number": "Laws of the Federation of Nigeria, Cap. N126, LFN 2004",
   "enactment_date": "1999",
   "description": "An Act to provide for the Nigerian Ports Authority and provide for the operation and management of ports in Nigeria.",
-  "total_sections": 125,
+  "total_sections": 124,
   "sections": [
-    {
-      "section_number": "0",
-      "section_title": "Section 0",
-      "part": "General Provisions",
-      "full_text": "Section 0 of the Nigerian Ports Authority Act.",
-      "searchable_chunk": "Nigerian Ports Authority Act - Section 0: Section 0\nGeneral Provisions\nSection 0 of the Nigerian Ports Authority Act."
-    },
     {
       "section_number": "1",
       "section_title": "Establishment of the Nigerian Ports Authority",
       "part": "General Provisions",
-      "full_text": "Section 1 of the Nigerian Ports Authority Act.",
-      "searchable_chunk": "Nigerian Ports Authority Act - Section 1: Establishment of the Nigerian Ports Authority\nGeneral Provisions\nSection 1 of the Nigerian Ports Authority Act."
+      "full_text": "(1) There is hereby established an authority to be known as the Nigerian Ports Authority (in this Act referred to as \"the Authority\").\n(2) The Authority -\n(a) shall be a body corporate with perpetual succession and a common seal; and\n(b) may sue and be sued in its corporate name.",
+      "searchable_chunk": "NPA Act Sec 1: Establishment of the Nigerian Ports Authority. (1) There is hereby established an authority to be known as the Nigerian Ports Authority (in this Act referred to as \"the Authority\").\n(2) The Authority -\n(a) shall be a body corporate with perpetual "
     },
     {
       "section_number": "2",
@@ -816,17 +809,17 @@
     },
     {
       "section_number": "119",
-      "section_title": "Section 119",
+      "section_title": "Offences relating to entry notices",
       "part": "General Provisions",
       "full_text": "(1) If a ship -\n(a) enters any port or any approach to the port without an entry notice having been issued by the Authority in respect of the ship; or\n(b) enters any port or any approach to the port otherwise than as permitted by the entry notice; or\n(c) fails to leave any port or any approach to the port or to leave any berth at the port when required to do so by the harbour master of the port,\nthe master of the ship is guilty of an offence under this section and liable on conviction to imprisonment for a term of two years without the option of a fine.\n(2) Where an offence under subsection (1) of this section is proved to have been committed with the consent or connivance of, or to be attributable to any neglect on the part of the owner of a ship, the owner or agent of the owner shall be deemed to be guilty of the offence and liable on conviction -\n(a) in the case of an individual, to a fine of N10,000 for each day or part of a day during which the offence continues or to imprisonment for a term of 2 years; and\n(b) in the case of a body corporate, to a fine of N50,000 and a further fine of N20,000 for each day or part of a day during which the offence continues.",
-      "searchable_chunk": "Nigerian Ports Authority Act - Section 119: Section 119\nGeneral Provisions\n(1) If a ship -\n(a) enters any port or any approach to the port without an entry notice having been issued by the Authority in respect of the ship; or\n(b) enters any port or any approach to the port otherwise than as permitted by the entry notice; or\n(c) fails to leave any port or any approach to the port or to leave any berth at the port when required to do so by the harbour master of the port,\nthe master of the ship is guilty of an offence under this section and liable on conviction to imprisonment for a term of two years without the option of a fine.\n(2) Where an offence under subsection (1) of this section is proved to have been committed with the consent or connivance of, or to be attributable to any neglect on the part of the owner of a ship, the owner or agent of the owner shall be deemed to be guilty of the offence and liable on conviction -\n(a) in the case of an individual, to a fine of N10,000 for each day or part of a day during which the offence continues or to imprisonment for a term of 2 years; and\n(b) in the case of a body corporate, to a fine of N50,000 and a further fine of N20,000 for each day or part of a day during which the offence continues."
+      "searchable_chunk": "NPA Act Sec 119: Offences relating to entry notices. (1) If a ship -\n(a) enters any port or any approach to the port without an entry notice having been issued by the Authority in respect of the ship; or\n(b) enters any port or any approach to the port o"
     },
     {
       "section_number": "120",
-      "section_title": "Section 120",
+      "section_title": "Trial of offences",
       "part": "General Provisions",
       "full_text": "(An offence under this Decree shall, for the avoidance of doubt, be triable by the Federal High Court.",
-      "searchable_chunk": "Nigerian Ports Authority Act - Section 120: Section 120\nGeneral Provisions\n(An offence under this Decree shall, for the avoidance of doubt, be triable by the Federal High Court."
+      "searchable_chunk": "NPA Act Sec 120: Trial of offences. (An offence under this Decree shall, for the avoidance of doubt, be triable by the Federal High Court."
     },
     {
       "section_number": "121",

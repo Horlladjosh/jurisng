@@ -1,9 +1,12 @@
 import sqlite3
 import json
+import re
 from pathlib import Path
 
 DB_PATH = Path("data/nigerian_law.db")
 JSON_DIR = Path("data/json_laws")
+
+GENERIC_TITLE_REGEX = re.compile(r"^(section\s*\d+|article\s*\d+|\d+|untitled|\s*)$", re.IGNORECASE)
 
 def verify_all_statutes():
     print("=" * 80)
@@ -27,14 +30,15 @@ def verify_all_statutes():
 
         empty_secs = [s for s in sections if len(s.get("full_text", s.get("content", "")).strip()) < 10]
         untitled_secs = [s for s in sections if not s.get("section_title", s.get("title", "")).strip()]
+        generic_secs = [s for s in sections if GENERIC_TITLE_REGEX.match(s.get("section_title", s.get("title", "")).strip())]
 
-        status = "PASSED" if not empty_secs and not untitled_secs else "FAILED"
+        status = "PASSED" if not empty_secs and not untitled_secs and not generic_secs else "FAILED"
         if status == "PASSED":
             passed_statutes += 1
             print(f"  [✓] {title:60s} | {len(sections):4d} sections | 100% Valid")
         else:
             failed_statutes += 1
-            print(f"  [✗] {title:60s} | {len(sections):4d} sections | Empty: {len(empty_secs)}, Untitled: {len(untitled_secs)}")
+            print(f"  [✗] {title:60s} | {len(sections):4d} sections | Empty: {len(empty_secs)}, Untitled: {len(untitled_secs)}, Generic: {len(generic_secs)}")
 
     print("-" * 80)
     print(f"Corpus Summary: {passed_statutes}/{len(json_files)} Statutes Verified (Total Sections: {total_sections_count:,})")
@@ -54,15 +58,21 @@ def verify_all_statutes():
     cursor.execute("SELECT COUNT(*) FROM sections_fts;")
     fts_sections_count = cursor.fetchone()[0]
 
+    conn.create_function("is_generic_title", 1, lambda t: bool(GENERIC_TITLE_REGEX.match((t or "").strip())))
+    cursor.execute("SELECT COUNT(*) FROM sections_fts WHERE is_generic_title(section_title);")
+    generic_in_db = cursor.fetchone()[0]
+
     conn.close()
 
     print(f"  • DB Statutes:      {db_statutes_count}")
     print(f"  • DB Sections:      {db_sections_count}")
     print(f"  • FTS5 Indexed:     {fts_sections_count}")
+    print(f"  • Generic in DB:    {generic_in_db}")
 
     assert db_statutes_count == len(json_files), "Statute count mismatch between JSON corpus and DB"
     assert db_sections_count == total_sections_count, "Section count mismatch between JSON corpus and DB"
     assert fts_sections_count == total_sections_count, "FTS5 index count mismatch"
+    assert generic_in_db == 0, f"Found {generic_in_db} generic section titles in SQLite database"
 
     print("\n" + "=" * 80)
     print("ALL STATUTORY FIDELITY AND SEARCH CHECKS PASSED (100% PRECISION)")
