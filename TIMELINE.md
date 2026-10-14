@@ -100,3 +100,21 @@ This document provides a comprehensive, date-stamped chronological history of th
   * **Domain Ontology & Query Expansion:** Enhanced family law ontology (`family_divorce_custody`) and road traffic ontology (`traffic_road_safety_pedestrian`) in `server.py` with colloquialisms (`court wedding`, `road accident`, `hit and run`).
   * **UI Library Expansion:** Added dedicated "Family & Marriage" category filter pill in `index.html` and synchronized all counters.
 
+---
+
+### Milestone 10: The 134 Statute Milestone — High-Impact Public Law & Regulatory Ingestion (October 14, 2026)
+* **Date:** 14 October 2026
+* **Corpus Size:** 134 Federal Statutes (10,115 sections)
+* **What Happened:**
+  * **Ingestion of 6 Foundational Federal Statutes:**
+    1. **Public Officers Protection Act (Cap. P41, LFN 2004):** 2 sections covering the fundamental 3-month limitation period for civil actions and proceedings against public officers and authorities.
+    2. **Interpretation Act (Cap. I23, LFN 2004):** 39 sections governing statutory rules of construction, statutory definitions, computation of time, service of documents, and exercise of delegated powers.
+    3. **Motor Vehicles (Third Party Insurance) Act (Cap. M22, LFN 2004):** 23 sections establishing mandatory third-party liability insurance against third-party bodily injury and death, policy certificate conditions, and statutory duties.
+    4. **Firearms Act (Cap. F28, LFN 2004):** 38 sections regulating licensing, manufacture, importation, possession, and surrender of prohibited and personal firearms and ammunition.
+    5. **National Agency for Food and Drug Administration and Control (NAFDAC) Act (Cap. N1, LFN 2004):** 32 sections establishing NAFDAC's regulatory mandate, product registration, inspection powers, standards, and forfeiture.
+    6. **Food and Drugs Act (Cap. F32, LFN 2004):** 22 sections governing prohibitions on poisonous, contaminated, adulterated, or misleadingly labeled food, drugs, and cosmetics.
+  * **100% Extraction Fidelity:** Verified with `verify_extraction_fidelity.py` across all 134 statutes and 10,115 sections. Zero empty sections, zero untitled sections, zero placeholders.
+  * **Domain Routing & Semantic Search Expansion:** Enriched `server.py` with `public_officers_limitation_popa`, `food_drugs_pharma_nafdac`, and `firearms_arms_ammunition` ontologies, plus colloquialisms (`sue government`, `sue police`, `fake drug`, `nafdac number`, `vehicle papers`, `vehicle insurance`).
+  * **Platform & Metadata Sync:** Updated web application counters, category filters, and structured schema to 134 Acts and 10,115 sections.
+
+

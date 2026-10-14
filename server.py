@@ -140,7 +140,7 @@ app = FastAPI(
     version="1.0.0",
     description="""
 ### Nigerian Legal Intelligence & Statutory Retrieval API
-JurisNG indexes 128 certified Federal Statutes and Official Gazettes (9,959 verified sections) across the Federal Republic of Nigeria.
+JurisNG indexes 134 certified Federal Statutes and Official Gazettes (10,115 verified sections) across the Federal Republic of Nigeria.
 
 ---
 **⚠️ LEGAL DISCLAIMER & TERMS OF USE:**
@@ -583,15 +583,60 @@ LEGAL_DOMAINS = [
             'road marshal', 'speed limit', 'driving without licence', 'driving without license', 
             'highway safety', 'obstruction of highway', 'federal highway', 'lastma', 'vio',
             'causing death by dangerous driving', 'reckless driving', 'dangerous driving',
-            'highway obstruction', 'damage to federal highway', 'traffic on federal highway'
+            'highway obstruction', 'damage to federal highway', 'traffic on federal highway',
+            'third party insurance', 'vehicle insurance', 'motor insurance', 'insurance certificate', 'uninsured vehicle'
         ],
-        'target_statutes': ['Federal Highways Act', 'FRSC Act', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
+        'target_statutes': ['Federal Highways Act', 'FRSC Act', 'Motor Vehicles (Third Party Insurance) Act', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
         'primary_terms': [
             'causing death by dangerous driving on federal highway', 'reckless driving on federal highway', 
-            'power to regulate traffic', 'highways safe', 'powers of the Corps', 
-            'right to personal liberty', 'freedom of movement', 'written law', 'pedestrian'
+            'users of motor vehicles to be insured against third party risks', 'power to regulate traffic', 
+            'highways safe', 'powers of the Corps', 'right to personal liberty', 'freedom of movement', 'written law', 'pedestrian'
         ],
-        'determination': "Under the Federal Highways Act (Cap. F13 LFN 2004) and Section 11 of the Federal Road Safety Commission (FRSC) Act, the regulation and safety of federal highways are strictly overseen by designated authorities. Causing death or bodily injury by dangerous, reckless, or negligent driving on a federal highway is a serious criminal offence (Sections 5 and 6 of the Federal Highways Act). While traffic laws and regulations mandate designated lane usage and pedestrian overhead bridges, Section 36(12) and Section 35 of the 1999 Constitution guarantee that no citizen may be arrested, penalised, or extorted without formal written legal authority."
+        'determination': "Under the Federal Highways Act (Cap. F13 LFN 2004), Section 3 of the Motor Vehicles (Third Party Insurance) Act (Cap. M22 LFN 2004), and Section 11 of the FRSC Act, all motorists on Nigerian roads must maintain valid third-party risk insurance and obey road safety regulations. Causing death or bodily injury by dangerous, reckless, or negligent driving on a federal highway is a serious criminal offence (Sections 5 and 6 of the Federal Highways Act). Furthermore, Section 36(12) and Section 35 of the 1999 Constitution guarantee that no citizen may be arrested, penalised, or extorted without formal written legal authority."
+    },
+    {
+        'id': 'public_officers_limitation_popa',
+        'keywords': [
+            'sue police', 'sue army', 'sue government', 'public officer', 'three months limitation', 
+            'limitation period', 'statute of limitations', 'popa', 'interpretation act', 
+            'effect of repeal', 'computation of time', 'shall vs may', 'tender of amends'
+        ],
+        'target_statutes': ['Public Officers Protection Act', 'Interpretation Act', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
+        'primary_terms': [
+            'actions against public officers', 'limitation of time', 'effect of repeal, expiration, etc.', 
+            'statutory powers and duties - general', 'time', 'gender and number'
+        ],
+        'determination': "Under Section 2(a) of the Public Officers Protection Act (POPA), any civil action or prosecution against a public officer, ministry, or agency for acts done in the execution of public duty must be instituted within three months next after the act or ceasing of damage. Furthermore, the Interpretation Act (Cap. I23 LFN 2004) governs the construction of enactments, computation of statutory deadlines, effect of repeals (§ 6), and gender/number definitions."
+    },
+    {
+        'id': 'food_drugs_pharma_nafdac',
+        'keywords': [
+            'nafdac', 'nafdac registration', 'fake drugs', 'adulterated food', 'counterfeit medicine', 
+            'expired drugs', 'unwholesome food', 'nafdac number', 'cosmetics registration', 
+            'food inspection', 'adulterated drug', 'substandard drug', 'unregistered medicine'
+        ],
+        'target_statutes': [
+            'National Agency for Food and Drug Administration and Control Act', 
+            'Food and Drugs Act', 
+            'Pharmacy Council of Nigeria (Establishment) Act, 2022', 
+            'Federal Competition and Consumer Protection Act, 2018'
+        ],
+        'primary_terms': [
+            'functions of the Agency', 'prohibition of sale of certain food, drugs, cosmetics and devices', 
+            'powers of inspecting officers', 'offences', 'forfeiture'
+        ],
+        'determination': "Under Section 5 of the NAFDAC Act and Section 1 of the Food and Drugs Act, the manufacture, importation, exportation, distribution, advertisement, or sale of adulterated food, counterfeit drugs, or unregistered cosmetics is strictly prohibited. NAFDAC is statutorily empowered to inspect premises, seize and destroy unwholesome products, and initiate criminal prosecution."
+    },
+    {
+        'id': 'firearms_arms_ammunition',
+        'keywords': [
+            'firearm', 'firearms', 'gun', 'guns', 'ammunition', 'bullets', 'pistol', 
+            'rifle', 'shotgun', 'illegal weapon', 'unlawful possession of firearm', 
+            'gun licence', 'gun license', 'cartridges', 'prohibited firearms'
+        ],
+        'target_statutes': ['Firearms Act', 'Criminal Code Act', 'Penal Code (Northern States) Federal Provisions Act, 1960'],
+        'primary_terms': ['prohibited firearms', 'personal firearms', 'licences and permits not granted as of right', 'penalties', 'seizure of unclaimed arms and ammunition'],
+        'determination': "Under Sections 3 and 4 of the Firearms Act (Cap. F28 LFN 2004), no person may possess or have under their control any prohibited or personal firearm without a valid licence granted by the President or the Inspector-General of Police. Unlawful possession, dealing, or manufacture of firearms constitutes a serious criminal offence punishable by mandatory terms of imprisonment."
     }
 ]
 
@@ -605,7 +650,8 @@ LEGAL_VOCABULARY = [
     'infringement', 'trademark', 'patent', 'counterfeit', 'pension', 'cheque', 
     'bounced', 'defamation', 'cyberstalking', 'extortion', 'bribe', 'bribery', 
     'gratification', 'kidnapping', 'assault', 'admiralty', 'mining', 'witchcraft', 'juju',
-    'pedestrian', 'highway', 'traffic', 'bridge', 'wedding', 'bigamy', 'registry'
+    'pedestrian', 'highway', 'traffic', 'bridge', 'wedding', 'bigamy', 'registry',
+    'firearm', 'firearms', 'ammunition', 'nafdac', 'limitation', 'weapon'
 ]
 
 NIGERIAN_COLLOQUIALISMS = {
@@ -649,7 +695,15 @@ NIGERIAN_COLLOQUIALISMS = {
     'court wedding': 'marriage act celebration of marriage registrar certificate',
     'registry wedding': 'marriage act registrar celebration certificate',
     'road accident': 'federal highways dangerous driving frsc',
-    'hit and run': 'federal highways dangerous reckless driving accident frsc'
+    'hit and run': 'federal highways dangerous reckless driving accident frsc',
+    'sue government': 'public officers protection act limitation period three months',
+    'sue police': 'public officers protection act police act personal liberty limitation',
+    'sue army': 'public officers protection act armed forces act limitation',
+    'fake drug': 'nafdac act food and drugs counterfeit medicine',
+    'fake drugs': 'nafdac act food and drugs counterfeit medicine',
+    'nafdac number': 'nafdac act food and drugs registration',
+    'vehicle papers': 'motor vehicles third party insurance frsc driver licence',
+    'vehicle insurance': 'motor vehicles third party insurance policies'
 }
 
 def normalize_query(query: str) -> str:
