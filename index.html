@@ -146,20 +146,25 @@
 <body class="bg-[#fafafa] dark:bg-[#0e1014] text-ink-900 dark:text-gray-100 h-full flex antialiased selection:bg-spruce-100 selection:text-spruce-800 dark:selection:bg-spruce-900 dark:selection:text-spruce-100 overflow-hidden">
 
     <!-- Sidebar Navigation -->
-    <aside id="sidebar" class="fixed md:static inset-y-0 left-0 -translate-x-full md:translate-x-0 w-64 bg-[#f3f4f6] dark:bg-[#13161c] border-r border-[#e5e7eb] dark:border-[#262a34] flex flex-col justify-between p-4 shrink-0 select-none z-40 transition-transform duration-200 shadow-2xl md:shadow-none">
+    <aside id="sidebar" class="fixed md:static inset-y-0 left-0 -translate-x-full md:translate-x-0 w-[85vw] max-w-[320px] md:w-64 bg-[#f3f4f6] dark:bg-[#13161c] border-r border-[#e5e7eb] dark:border-[#262a34] flex flex-col justify-between p-4 shrink-0 select-none z-40 transition-transform duration-200 shadow-2xl md:shadow-none">
         <div class="space-y-4 flex flex-col min-h-0 flex-1">
             
-            <!-- Brand Header with Nigerian Coat/Scales Emblem -->
-            <div class="flex items-center gap-2.5 px-1 py-1 cursor-pointer" onclick="showSearchHome()">
-                <div class="w-8 h-8 rounded-md bg-spruce-600 text-white flex items-center justify-center shadow-xs shrink-0">
-                    <i class="ph ph-scales text-lg"></i>
-                </div>
-                <div>
-                    <div class="font-bold text-sm tracking-tight text-ink-900 dark:text-white flex items-center gap-0.5">
-                        <span>Juris</span><span class="text-spruce-600 dark:text-spruce-400 font-bold">NG</span>
+            <!-- Brand Header with Nigerian Coat/Scales Emblem & Mobile Close -->
+            <div class="flex items-center justify-between px-1 py-1">
+                <div class="flex items-center gap-2.5 cursor-pointer" onclick="showSearchHome()">
+                    <div class="w-8 h-8 rounded-md bg-spruce-600 text-white flex items-center justify-center shadow-xs shrink-0">
+                        <i class="ph ph-scales text-lg"></i>
                     </div>
-                    <div class="text-[10px] uppercase font-semibold tracking-wider text-brass-700 dark:text-brass-400 font-mono">Federal Law Engine</div>
+                    <div>
+                        <div class="font-bold text-sm tracking-tight text-ink-900 dark:text-white flex items-center gap-0.5">
+                            <span>Juris</span><span class="text-spruce-600 dark:text-spruce-400 font-bold">NG</span>
+                        </div>
+                        <div class="text-[10px] uppercase font-semibold tracking-wider text-brass-700 dark:text-brass-400 font-mono">Federal Law Engine</div>
+                    </div>
                 </div>
+                <button onclick="closeMobileSidebar()" aria-label="Close Menu" class="md:hidden p-1.5 rounded-lg text-ink-500 hover:text-ink-900 dark:text-gray-400 dark:hover:text-white hover:bg-white dark:hover:bg-[#181b22] transition cursor-pointer">
+                    <i class="ph ph-x text-lg"></i>
+                </button>
             </div>
 
             <!-- Navigation Actions -->
@@ -176,7 +181,7 @@
             <div class="flex flex-col flex-1 min-h-0 pt-3 border-t border-[#e5e7eb] dark:border-[#262a34]">
                 <div class="flex items-center justify-between px-2 pb-1.5 shrink-0">
                     <span class="text-[10px] font-semibold tracking-wider text-ink-500 dark:text-gray-400 uppercase font-mono">Recent History</span>
-                    <button onclick="clearAllHistory()" class="text-[10px] text-ink-500 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 transition cursor-pointer">Clear</button>
+                    <button id="historyClearBtn" onclick="clearAllHistory()" class="hidden text-[10px] text-ink-500 dark:text-gray-400 hover:text-rose-600 dark:hover:text-rose-400 transition cursor-pointer">Clear</button>
                 </div>
                 <div id="historyList" class="flex-1 overflow-y-auto space-y-1 pr-0.5 text-xs"></div>
             </div>
@@ -230,18 +235,13 @@
                 </div>
                 <span class="font-bold text-xs tracking-tight">Juris<span class="text-spruce-600 dark:text-spruce-400 font-bold">NG</span></span>
             </div>
-            <div class="flex items-center gap-2">
-                <button onclick="showLibraryView()" title="Browse Statutory Library" class="px-3 py-1.5 rounded-lg bg-white dark:bg-[#181b22] text-spruce-800 dark:text-spruce-200 border border-[#e5e7eb] dark:border-[#262a34] text-xs font-semibold shadow-2xs hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer">
-                    <span>Library</span>
-                </button>
-                <button onclick="toggleMobileSidebar()" aria-label="Open Menu" class="p-1.5 rounded-lg text-ink-700 dark:text-gray-200 hover:bg-white dark:hover:bg-[#181b22] transition cursor-pointer">
-                    <i class="ph ph-list text-xl"></i>
-                </button>
-            </div>
+            <button onclick="toggleMobileSidebar()" aria-label="Open Menu" class="p-1.5 rounded-lg text-ink-700 dark:text-gray-200 hover:bg-white dark:hover:bg-[#181b22] transition cursor-pointer">
+                <i class="ph ph-list text-xl"></i>
+            </button>
         </div>
         
         <!-- Mobile Backdrop -->
-        <div id="sidebarBackdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/40 z-30 hidden md:hidden"></div>
+        <div id="sidebarBackdrop" onclick="closeMobileSidebar()" class="fixed inset-0 bg-black/50 z-30 hidden md:hidden"></div>
         
         <!-- Home State (Search Input) -->
         <div id="homeHeroState" class="flex-1 flex flex-col justify-between max-w-3xl w-full mx-auto px-4 sm:px-6 overflow-y-auto">
@@ -301,7 +301,7 @@
 
             <!-- Clean Legal Notice at Viewport Bottom -->
             <div class="py-3 sm:py-4 text-center shrink-0 text-[11px] text-ink-400 dark:text-gray-400 font-mono">
-                Automated Statutory Intelligence • Not Formal Legal Advice
+                <span class="block sm:inline">Automated Statutory Intelligence</span><span class="hidden sm:inline"> • </span><span class="block sm:inline">Not Formal Legal Advice</span>
             </div>
         </div>
 
@@ -343,7 +343,7 @@
                 
                 <!-- Legal Summary Block -->
                 <div class="space-y-2">
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-wrap items-center justify-between gap-1.5">
                         <div class="text-xs font-semibold uppercase tracking-wider text-spruce-700 dark:text-spruce-300 font-mono flex items-center gap-1.5">
                             <i class="ph ph-scales text-xs"></i>
                             <span>Statutory Determination & Analysis</span>
@@ -355,7 +355,7 @@
 
                 <!-- Applicable Provisions (Clean Ranked List) -->
                 <div class="space-y-2.5 pt-1 pb-4">
-                    <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-400 font-mono border-b border-[#e5e7eb] dark:border-[#262a34] pb-2">
+                    <div class="flex flex-wrap items-baseline justify-between gap-1 border-b border-[#e5e7eb] dark:border-[#262a34] pb-2 text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-400 font-mono">
                         <span>Governing Statutory Provisions</span>
                         <span class="text-[10px] font-normal lowercase opacity-75">click to read full section in drawer</span>
                     </div>
@@ -365,7 +365,7 @@
 
             <!-- Clean Bottom Legal Notice -->
             <div class="py-2.5 text-center shrink-0 text-[11px] text-ink-400 dark:text-gray-400 font-mono border-t border-[#e5e7eb] dark:border-[#262a34]">
-                Automated Statutory Intelligence • Not Formal Legal Advice
+                <span class="block sm:inline">Automated Statutory Intelligence</span><span class="hidden sm:inline"> • </span><span class="block sm:inline">Not Formal Legal Advice</span>
             </div>
         </div>
 
@@ -417,8 +417,9 @@
             <div id="libraryActView" class="hidden flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-6 space-y-5 overflow-y-auto">
                 <!-- Clean Back Navigation -->
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-3">
-                    <button onclick="backToLibraryCatalog()" class="text-xs font-semibold text-spruce-700 dark:text-spruce-400 hover:text-spruce-900 dark:hover:text-white transition cursor-pointer py-1 px-2.5 rounded-md hover:bg-[#f3f4f6] dark:hover:bg-[#222630]">
-                        <span>← All 134 Federal Statutes</span>
+                    <button onclick="backToLibraryCatalog()" class="inline-flex items-center gap-1.5 text-xs font-semibold text-spruce-700 dark:text-spruce-400 hover:text-spruce-900 dark:hover:text-white transition cursor-pointer py-1 px-2.5 rounded-md hover:bg-[#f3f4f6] dark:hover:bg-[#222630]">
+                        <i class="ph ph-arrow-left text-xs"></i>
+                        <span>All 134 Federal Statutes</span>
                     </button>
                     <span class="text-[11px] font-mono text-ink-500 dark:text-gray-400 px-1">Laws of the Federation of Nigeria</span>
                 </div>
@@ -471,14 +472,16 @@
 
             <!-- Navigation Bar for Adjacent Sections -->
             <div class="px-3 sm:px-5 py-2 sm:py-2.5 bg-[#f3f4f6]/60 dark:bg-[#181b22]/60 border-b border-[#e5e7eb] dark:border-[#262a34] flex items-center justify-between text-xs shrink-0 font-medium gap-2">
-                <button id="modalPrevBtn" onclick="navigateAdjacentSection(-1)" class="px-3 py-1.5 rounded-lg bg-white dark:bg-[#222630] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-200 hover:border-spruce-600 shadow-2xs transition disabled:opacity-40 disabled:pointer-events-none cursor-pointer shrink-0 text-xs font-medium">
-                    Previous Section
+                <button id="modalPrevBtn" onclick="navigateAdjacentSection(-1)" class="px-3 py-1.5 rounded-lg bg-white dark:bg-[#222630] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-200 hover:border-spruce-600 shadow-2xs transition disabled:opacity-40 disabled:pointer-events-none cursor-pointer shrink-0 text-xs font-medium flex items-center gap-1">
+                    <i class="ph ph-caret-left text-xs"></i>
+                    <span>Previous</span>
                 </button>
                 <div class="flex items-center justify-center px-2 py-1 rounded-md bg-white/60 dark:bg-[#181b22]/60 border border-[#e5e7eb]/60 dark:border-[#262a34] text-[11px] font-mono text-ink-600 dark:text-gray-300 font-semibold text-center min-w-0 truncate">
                     <span id="modalSectionCounter" class="truncate"></span>
                 </div>
-                <button id="modalNextBtn" onclick="navigateAdjacentSection(1)" class="px-3 py-1.5 rounded-lg bg-white dark:bg-[#222630] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-200 hover:border-spruce-600 shadow-2xs transition disabled:opacity-40 disabled:pointer-events-none cursor-pointer shrink-0 text-xs font-medium">
-                    Next Section
+                <button id="modalNextBtn" onclick="navigateAdjacentSection(1)" class="px-3 py-1.5 rounded-lg bg-white dark:bg-[#222630] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-200 hover:border-spruce-600 shadow-2xs transition disabled:opacity-40 disabled:pointer-events-none cursor-pointer shrink-0 text-xs font-medium flex items-center gap-1">
+                    <span>Next</span>
+                    <i class="ph ph-caret-right text-xs"></i>
                 </button>
             </div>
 
@@ -818,8 +821,13 @@
 
         function renderHistoryUI() {
             const container = document.getElementById('historyList');
+            const clearBtn = document.getElementById('historyClearBtn');
             if (!container) return;
             const list = getSearchHistory();
+            if (clearBtn) {
+                if (list.length === 0) clearBtn.classList.add('hidden');
+                else clearBtn.classList.remove('hidden');
+            }
             if (list.length === 0) {
                 container.innerHTML = `<div class="text-[11px] text-ink-500 dark:text-gray-300 px-2 py-2 italic font-mono">No search history yet</div>`;
                 return;
@@ -1546,10 +1554,10 @@
                     return `
                     <div onclick="openSearchResultModal(${idx})" class="paper-card rounded-xl px-4 py-3 sm:py-3.5 flex items-center justify-between gap-3 hover:border-spruce-600 dark:hover:border-spruce-500 transition cursor-pointer group select-none shadow-2xs hover:shadow-xs">
                         <div class="min-w-0 flex-1">
-                            <h3 class="text-xs sm:text-sm font-bold text-ink-900 dark:text-white group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition truncate">
+                            <h3 class="text-xs sm:text-sm font-bold text-ink-900 dark:text-white group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition break-words sm:truncate">
                                 Section ${escapeHtml(r.section_number)} of ${escapeHtml(displayStatute)}
                             </h3>
-                            <p class="text-xs text-ink-500 dark:text-gray-400 font-normal truncate mt-0.5">
+                            <p class="text-xs text-ink-500 dark:text-gray-400 font-normal break-words sm:truncate mt-0.5">
                                 ${escapeHtml(r.section_title)}
                             </p>
                         </div>
