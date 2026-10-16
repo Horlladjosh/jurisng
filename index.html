@@ -1432,18 +1432,25 @@
             });
         }
 
-        function formatSynthesisWithCitations(legalIssueText, results) {
-            if (!legalIssueText) return '';
-            let formatted = escapeHtml(legalIssueText);
+        function formatSynthesisWithCitations(rawText, results) {
+            if (!rawText) return '';
             
-            // Capture full statutory citations: e.g. "Section 54 of the Labour Act", "Section 84 of Evidence Act, 2011", "Section 6 of ACJA 2015"
-            // or standalone "Section 5"
-            const citationRegex = /\b(Sections?\s+(\d+[a-zA-Z]*(?:\([0-9a-zA-Z]+\))*)(?:\s+(?:of|under)\s+(?:the\s+)?(?:[A-Za-z0-9\x27\u2019&.,\s\(\)\-–]*?\s+)?(?:Act|Code|Constitution|Regulations?|Rules?|ACJA|BOFIA|EFCC|CRA|NDLEA|NAFDAC)(?:\s*\([^)]+\))?(?:,?\s*\d{4})?)?)\b/gi;
+            // Match complete citations: "Section X of the Y Act, 2020", "Section X of ACJA 2015", or standalone "Section X"
+            const citationRegex = /\b(Sections?\s+(\d+[a-zA-Z]*(?:\([0-9a-zA-Z]+\))*)(?:\s+(?:of|under)\s+(?:the\s+)?((?:(?!Section|(?:\.\s+[A-Z]))[A-Za-z0-9\x27\u2019&/(),\s.–-])*?\b(?:Act|Code(?:\s+Act)?|Constitution|Regulations?|Rules?|Order|ACJA|BOFIA|EFCC|CRA|NDLEA|NAFDAC)\b(?:\s*\([^)]+\))?(?:,?\s*(?:Cap\s+[A-Z0-9]+,?\s*)?(?:LFN\s*)?\d{4})?))?)\b/gi;
 
-            formatted = formatted.replace(citationRegex, (fullMatch, p1, secNum) => {
-                let matchIdx = -1;
+            let lastIndex = 0;
+            let parts = [];
+            let match;
+
+            while ((match = citationRegex.exec(rawText)) !== null) {
+                // Text before the citation
+                parts.push(escapeHtml(rawText.substring(lastIndex, match.index)));
+                
+                const fullMatch = match[1];
+                const secNum = match[2];
                 const cleanFull = fullMatch.toLowerCase();
                 
+                let matchIdx = -1;
                 if (results && results.length > 0) {
                     // Priority 1: Match both section number and statute keywords
                     matchIdx = results.findIndex(r => {
@@ -1457,23 +1464,15 @@
                         matchIdx = results.findIndex(r => String(r.section_number).trim().toLowerCase() === String(secNum).trim().toLowerCase());
                     }
                 }
-                
                 if (matchIdx === -1) matchIdx = 0;
-                const matchedStatute = results && results[matchIdx] ? results[matchIdx].statute : '';
                 
-                // If the phrase already includes the statute name (e.g. "Section 54 of the Labour Act"), keep it natural and complete
-                // If it was just a standalone "Section 5", enrich it with the statute: "Section 5 (Labour Act)"
-                let label = fullMatch;
-                const hasStatuteWord = /(?:Act|Code|Constitution|Regulations?|Rules?|ACJA|BOFIA|EFCC|CRA|NDLEA|NAFDAC)/i.test(fullMatch);
-                if (!hasStatuteWord && matchedStatute) {
-                    const shortStatute = matchedStatute.split(',')[0].trim();
-                    label = `${fullMatch} (${shortStatute})`;
-                }
-
-                return `<button type="button" onclick="openSearchResultModal(${matchIdx})" class="inline-flex items-center gap-1.5 font-semibold text-xs sm:text-sm px-2.5 py-0.5 rounded-md bg-spruce-50 hover:bg-spruce-100 dark:bg-spruce-950/80 dark:hover:bg-spruce-900 text-spruce-800 dark:text-spruce-200 border border-spruce-300 dark:border-spruce-700/80 transition cursor-pointer shadow-2xs hover:scale-[1.02] align-baseline my-0.5" title="Read full statutory text in Drawer"><span>${label}</span><i class="ph ph-arrow-up-right text-xs text-spruce-600 dark:text-spruce-400"></i></button>`;
-            });
+                parts.push(`<button type="button" onclick="openSearchResultModal(${matchIdx})" class="text-spruce-700 dark:text-spruce-300 font-semibold underline decoration-spruce-300 dark:decoration-spruce-700 underline-offset-4 decoration-1 hover:decoration-spruce-600 dark:hover:decoration-spruce-300 hover:text-spruce-900 dark:hover:text-white transition cursor-pointer inline bg-transparent p-0 border-0 align-baseline group" title="Read full statutory text in Drawer"><span>${escapeHtml(fullMatch)}</span><i class="ph ph-arrow-up-right text-[11px] ml-0.5 inline-block opacity-80 group-hover:opacity-100"></i></button>`);
+                
+                lastIndex = citationRegex.lastIndex;
+            }
             
-            return `<div class="leading-relaxed text-ink-900 dark:text-gray-100">${formatted}</div>`;
+            parts.push(escapeHtml(rawText.substring(lastIndex)));
+            return `<div class="leading-relaxed text-ink-900 dark:text-gray-100">${parts.join('')}</div>`;
         }
 
         async function triggerSearch(query) {
@@ -1536,28 +1535,26 @@
                     return;
                 }
 
-                document.getElementById('operativeSections').innerHTML = window.searchResultsStore.slice(0, 3).map((r, idx) => `
-                    <div onclick="openSearchResultModal(${idx})" class="paper-card rounded-xl p-3.5 sm:p-4 flex items-center justify-between gap-3 sm:gap-4 hover:border-spruce-600 dark:hover:border-spruce-500 transition cursor-pointer group select-none shadow-2xs hover:shadow-xs">
-                        <div class="flex items-center gap-3.5 min-w-0 flex-1">
-                            <div class="shrink-0 font-mono text-xs font-bold px-2.5 py-1.5 rounded-md bg-spruce-50 dark:bg-spruce-950/70 text-spruce-800 dark:text-spruce-300 border border-spruce-200 dark:border-spruce-800/80 group-hover:bg-spruce-100 dark:group-hover:bg-spruce-900/60 transition flex items-center gap-1">
-                                <i class="ph ph-file-text text-xs opacity-75"></i>
-                                <span>Section ${escapeHtml(r.section_number)}</span>
-                            </div>
-                            <div class="min-w-0 flex-1">
-                                <h3 class="text-xs sm:text-sm font-semibold text-ink-900 dark:text-white truncate group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition">
-                                    ${escapeHtml(r.section_title)}
-                                </h3>
-                                <p class="text-[11px] text-ink-500 dark:text-gray-400 truncate mt-0.5">
-                                    ${escapeHtml(r.statute)}${r.part ? ' • ' + escapeHtml(r.part) : ''}
-                                </p>
-                            </div>
+                document.getElementById('operativeSections').innerHTML = window.searchResultsStore.slice(0, 3).map((r, idx) => {
+                    const cleanStatute = (r.statute || '').split(',')[0].trim();
+                    const displayStatute = /^the\b/i.test(cleanStatute) ? cleanStatute : `the ${cleanStatute}`;
+                    return `
+                    <div onclick="openSearchResultModal(${idx})" class="paper-card rounded-xl px-4 py-3 sm:py-3.5 flex items-center justify-between gap-3 hover:border-spruce-600 dark:hover:border-spruce-500 transition cursor-pointer group select-none shadow-2xs hover:shadow-xs">
+                        <div class="min-w-0 flex-1">
+                            <h3 class="text-xs sm:text-sm font-bold text-ink-900 dark:text-white group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition truncate">
+                                Section ${escapeHtml(r.section_number)} of ${escapeHtml(displayStatute)}
+                            </h3>
+                            <p class="text-xs text-ink-600 dark:text-gray-400 font-editorial italic truncate mt-0.5">
+                                ${escapeHtml(r.section_title)}
+                            </p>
                         </div>
                         <div class="shrink-0 flex items-center gap-1.5 text-xs font-semibold text-ink-400 dark:text-gray-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-400 transition">
-                            <span class="hidden sm:inline">Read Full Section</span>
+                            <span class="hidden sm:inline">Read Section</span>
                             <i class="ph ph-arrow-up-right text-sm"></i>
                         </div>
                     </div>
-                `).join('');
+                `;
+                }).join('');
             } catch (err) {
                 document.getElementById('answerBody').innerHTML = `<p class="text-rose-600 text-xs font-mono">Error executing statutory search.</p>`;
             }
