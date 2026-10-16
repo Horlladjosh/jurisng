@@ -342,7 +342,7 @@
             <div id="threadScrollArea" class="flex-1 overflow-y-auto pt-4 pb-6 space-y-5 pr-1">
                 
                 <!-- Legal Summary Block -->
-                <div class="space-y-2">
+                <div class="space-y-2" id="determinationBlock">
                     <div class="flex flex-wrap items-center justify-between gap-1.5">
                         <div class="text-xs font-semibold uppercase tracking-wider text-spruce-700 dark:text-spruce-300 font-mono flex items-center gap-1.5">
                             <i class="ph ph-scales text-xs"></i>
@@ -354,12 +354,30 @@
                 </div>
 
                 <!-- Applicable Provisions (Clean Ranked List) -->
-                <div class="space-y-2.5 pt-1 pb-4">
+                <div class="space-y-2.5 pt-1 pb-4" id="operativeProvisionsBlock">
                     <div class="flex flex-wrap items-baseline justify-between gap-1 border-b border-[#e5e7eb] dark:border-[#262a34] pb-2 text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-400 font-mono">
                         <span>Governing Statutory Provisions</span>
                         <span class="text-[10px] font-normal lowercase opacity-75">click to read full section in drawer</span>
                     </div>
                     <div id="operativeSections" class="space-y-2"></div>
+                </div>
+
+                <!-- Clean Editorial Zero-Result Card (Pure Typography, No Magnifying Glass) -->
+                <div id="searchEmptyState" class="hidden">
+                    <div class="paper-card rounded-2xl p-8 sm:p-12 text-center space-y-3.5 max-w-lg mx-auto my-6 shadow-xs border border-[#e5e7eb] dark:border-[#262a34]">
+                        <h3 class="text-base sm:text-lg font-bold text-ink-900 dark:text-white leading-snug">
+                            No primary enactments directly matched your specific keywords.
+                        </h3>
+                        <p class="text-xs sm:text-sm text-ink-500 dark:text-gray-400 max-w-md mx-auto leading-relaxed">
+                            Try rephrasing with broader legal terms or browse by act in the Statutory Library.
+                        </p>
+                        <div class="pt-2">
+                            <button onclick="showLibraryView()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-spruce-600 hover:bg-spruce-700 text-white text-xs font-semibold shadow-xs transition cursor-pointer">
+                                <i class="ph ph-books text-sm"></i>
+                                <span>Browse Statutory Library</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1513,6 +1531,13 @@
                 if (clearBtn) clearBtn.classList.remove('hidden');
             }
 
+            const detBlock = document.getElementById('determinationBlock');
+            const provBlock = document.getElementById('operativeProvisionsBlock');
+            const emptyState = document.getElementById('searchEmptyState');
+            if (emptyState) emptyState.classList.add('hidden');
+            if (detBlock) detBlock.classList.remove('hidden');
+            if (provBlock) provBlock.classList.remove('hidden');
+
             const countBadge = document.getElementById('resultCountBadge');
             if (countBadge) countBadge.textContent = '';
 
@@ -1527,26 +1552,23 @@
                 const data = await res.json();
                 window.searchResultsStore = data.results || [];
                 
+                if (window.searchResultsStore.length === 0) {
+                    if (detBlock) detBlock.classList.add('hidden');
+                    if (provBlock) provBlock.classList.add('hidden');
+                    if (emptyState) emptyState.classList.remove('hidden');
+                    return;
+                }
+
+                if (detBlock) detBlock.classList.remove('hidden');
+                if (provBlock) provBlock.classList.remove('hidden');
+                if (emptyState) emptyState.classList.add('hidden');
+
                 if (countBadge) {
                     const count = window.searchResultsStore.length;
-                    countBadge.textContent = count > 0 ? `${count} provision${count === 1 ? '' : 's'} identified` : 'No direct matches';
+                    countBadge.textContent = `${count} provision${count === 1 ? '' : 's'} identified`;
                 }
 
                 document.getElementById('answerBody').innerHTML = formatSynthesisWithCitations(data.legal_issue || "Statutory retrieval complete.", window.searchResultsStore);
-
-                if (window.searchResultsStore.length === 0) {
-                    document.getElementById('operativeSections').innerHTML = `
-                        <div class="paper-card rounded-xl p-8 text-center space-y-3">
-                            <i class="ph ph-magnifying-glass text-2xl text-ink-400 dark:text-gray-500"></i>
-                            <p class="text-sm font-editorial text-ink-700 dark:text-gray-300">No primary enactments directly matched your specific keywords.</p>
-                            <p class="text-xs font-mono text-ink-400 dark:text-gray-400">Try rephrasing with broader legal terms or browse by act in the Statutory Library.</p>
-                            <button onclick="showLibraryView()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-spruce-600 hover:bg-spruce-700 text-white text-xs font-semibold shadow-xs transition cursor-pointer">
-                                <i class="ph ph-books"></i> Browse Statutory Library
-                            </button>
-                        </div>
-                    `;
-                    return;
-                }
 
                 document.getElementById('operativeSections').innerHTML = window.searchResultsStore.slice(0, 3).map((r, idx) => {
                     const cleanStatute = (r.statute || '').split(',')[0].trim();

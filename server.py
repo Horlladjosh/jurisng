@@ -843,34 +843,40 @@ def retrieve_candidate_pool(conn, plan: dict, raw_query: str) -> list:
     # 2. Search title matches across all non-peripheral statutes if needed
     if len(scored) < 3 and tokens:
         for tk in tokens[:3]:
-            cursor.execute(
-                "SELECT statute_title, section_number, section_title, full_text FROM sections_fts WHERE section_title LIKE ? LIMIT 15;",
-                (f"%{tk}%",)
-            )
-            for r in cursor.fetchall():
-                if r[0] in PERIPHERAL_STATUTES:
-                    continue
-                title_low = r[2].lower()
-                text_low = r[3].lower()
-                if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations']:
-                    continue
-                # Systemic homonym barrier: if query contains 2+ keywords, a match on an isolated word
-                # in a section title MUST have at least one other query keyword in the section text or title
-                if len(tokens) >= 2:
-                    other_tokens = [ot for ot in tokens if ot != tk]
-                    if not any(ot in title_low or ot in text_low for ot in other_tokens):
+            clean_tk = re.sub(r'[^a-zA-Z0-9]', '', tk)
+            if len(clean_tk) < 3:
+                continue
+            try:
+                cursor.execute(
+                    "SELECT statute_title, section_number, section_title, full_text FROM sections_fts WHERE section_title MATCH ? LIMIT 15;",
+                    (f'"{clean_tk}"',)
+                )
+                for r in cursor.fetchall():
+                    if r[0] in PERIPHERAL_STATUTES:
                         continue
-                # Disambiguate financial cheque crossings from pedestrian/physical road crossings
-                if ('crossing' in title_low or 'crossings' in title_low) and (r[0] == 'Bills of Exchange Act' or 'cheque' in title_low or 'check' in title_low):
-                    financial_terms = {'cheque', 'check', 'bank', 'banking', 'bill', 'drawer', 'payee', 'account', 'finance', 'payment', 'endorse', 'negotiable', 'funds', 'credit'}
-                    if not any(ft in raw_query.lower() for ft in financial_terms):
+                    title_low = r[2].lower()
+                    text_low = r[3].lower()
+                    if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations']:
                         continue
-                score = 35 + sum(15 for other in tokens if other in title_low)
-                title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
-                key = (title, str(r[1]))
-                if key not in scored or scored[key][0] < score:
-                    clean_snip = make_clean_snippet(r[3], 260)
-                    scored[key] = (score, title, r[1], r[2], clean_snip, r[3])
+                    # Systemic homonym barrier: if query contains 2+ keywords, a match on an isolated word
+                    # in a section title MUST have at least one other query keyword in the section text or title
+                    if len(tokens) >= 2:
+                        other_tokens = [ot for ot in tokens if ot != tk]
+                        if not any(ot in title_low or ot in text_low for ot in other_tokens):
+                            continue
+                    # Disambiguate financial cheque crossings from pedestrian/physical road crossings
+                    if ('crossing' in title_low or 'crossings' in title_low) and (r[0] == 'Bills of Exchange Act' or 'cheque' in title_low or 'check' in title_low):
+                        financial_terms = {'cheque', 'check', 'bank', 'banking', 'bill', 'drawer', 'payee', 'account', 'finance', 'payment', 'endorse', 'negotiable', 'funds', 'credit'}
+                        if not any(ft in raw_query.lower() for ft in financial_terms):
+                            continue
+                    score = 35 + sum(15 for other in tokens if other in title_low)
+                    title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
+                    key = (title, str(r[1]))
+                    if key not in scored or scored[key][0] < score:
+                        clean_snip = make_clean_snippet(r[3], 260)
+                        scored[key] = (score, title, r[1], r[2], clean_snip, r[3])
+            except Exception:
+                pass
                     
     # 3. FTS fallback if still under 3 results
     if len(scored) < 3 and tokens:
@@ -925,6 +931,8 @@ def api_search(q: str = Query(...)):
     combined_query = f"{q} {norm_q}"
     candidates = retrieve_candidate_pool(conn, plan, combined_query)
     conn.close()
+    if not candidates:
+        return {"query": q, "legal_issue": "No primary enactments directly matched your specific keywords.", "results": []}
     return {"query": q, "legal_issue": plan.get("legal_answer", "Governing statutory provisions retrieved."), "results": candidates[:3]}
 
 @app.get("/api/statutes")
