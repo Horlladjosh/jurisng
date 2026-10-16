@@ -1305,11 +1305,16 @@
         });
 
         function copyModalText() { 
-            navigator.clipboard.writeText(currentFullText);
-            const btn = document.getElementById('copyBtn');
-            const orig = btn.innerHTML;
-            btn.innerHTML = `<span class="text-spruce-600 dark:text-spruce-300 font-semibold">Copied Section</span>`;
-            setTimeout(() => { btn.innerHTML = orig; }, 2000);
+            const textToCopy = currentFullText || (document.getElementById('modalBody') ? document.getElementById('modalBody').textContent : '');
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const btn = document.getElementById('copyBtn');
+                if (!btn) return;
+                const orig = btn.innerHTML;
+                btn.innerHTML = `<i class="ph ph-check text-white text-xs"></i><span class="text-white font-semibold">Copied Section</span>`;
+                setTimeout(() => { btn.innerHTML = orig; }, 2000);
+            }).catch(err => {
+                console.warn('Clipboard copy failed', err);
+            });
         }
 
         window.searchResultsStore = [];
