@@ -307,50 +307,39 @@
 
         <!-- Thread State (Results Viewer) -->
         <div id="threadState" class="hidden flex-1 flex flex-col h-full max-w-3xl w-full mx-auto px-4 sm:px-6 overflow-hidden">
-            <!-- Persistent Sticky Top Search Refinement Bar (Item #1) -->
+            <!-- Persistent Sticky Top Search Refinement Bar -->
             <div class="pt-4 pb-3 border-b border-[#e5e7eb] dark:border-[#262a34] bg-[#fafafa] dark:bg-[#0e1014] shrink-0 z-10">
-                <div class="flex items-center gap-2 sm:gap-3">
-                    <div class="paper-card rounded-xl p-1.5 sm:p-2 flex-1 flex items-center gap-2 focus-within:border-spruce-600 dark:bg-[#181b22] shadow-2xs transition">
-                        <i class="ph ph-magnifying-glass text-ink-400 dark:text-gray-400 text-sm ml-1.5 shrink-0"></i>
-                        <input 
-                            type="text" 
-                            id="threadInput" 
-                            placeholder="Refine statutory query or section citation..." 
-                            class="w-full bg-transparent border-0 text-xs sm:text-sm text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-400 focus:ring-0 focus:outline-none px-1 font-sans"
-                            autocomplete="off"
-                        />
-                        <button 
-                            type="button" 
-                            id="threadClearBtn" 
-                            onclick="clearThreadInput()" 
-                            class="hidden text-ink-400 hover:text-ink-600 dark:hover:text-gray-200 p-1 rounded-md transition cursor-pointer shrink-0" 
-                            title="Clear query"
-                        >
-                            <i class="ph ph-x text-xs"></i>
-                        </button>
-                        <button 
-                            type="button" 
-                            id="threadSubmitBtn" 
-                            class="bg-spruce-600 hover:bg-spruce-700 text-white font-semibold px-3 py-1.5 rounded-lg text-xs transition shrink-0 cursor-pointer flex items-center gap-1 shadow-2xs"
-                        >
-                            <span>Search</span>
-                            <i class="ph ph-arrow-right text-xs"></i>
-                        </button>
-                    </div>
+                <div class="paper-card rounded-xl p-1.5 sm:p-2 flex items-center gap-2 focus-within:border-spruce-600 dark:bg-[#181b22] shadow-2xs transition">
+                    <i class="ph ph-magnifying-glass text-ink-400 dark:text-gray-400 text-sm ml-1.5 shrink-0"></i>
+                    <input 
+                        type="text" 
+                        id="threadInput" 
+                        placeholder="Search legal scenario, keyword, or section citation..." 
+                        class="w-full bg-transparent border-0 text-xs sm:text-sm text-ink-900 dark:text-white placeholder-ink-400 dark:placeholder-gray-400 focus:ring-0 focus:outline-none px-1 font-sans"
+                        autocomplete="off"
+                    />
                     <button 
                         type="button" 
-                        onclick="showSearchHome()" 
-                        class="px-3 py-2 rounded-xl bg-white dark:bg-[#181b22] hover:bg-[#f3f4f6] dark:hover:bg-[#222630] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-300 hover:text-spruce-700 dark:hover:text-spruce-300 text-xs font-semibold shadow-2xs transition cursor-pointer shrink-0 flex items-center gap-1.5"
-                        title="Start a new search on clean home screen"
+                        id="threadClearBtn" 
+                        onclick="clearThreadInput()" 
+                        class="hidden text-ink-400 hover:text-ink-600 dark:hover:text-gray-200 p-1 rounded-md transition cursor-pointer shrink-0" 
+                        title="Clear query"
                     >
-                        <i class="ph ph-plus text-xs"></i>
-                        <span class="hidden sm:inline">New Search</span>
+                        <i class="ph ph-x text-xs"></i>
+                    </button>
+                    <button 
+                        type="button" 
+                        id="threadSubmitBtn" 
+                        class="bg-spruce-600 hover:bg-spruce-700 text-white font-semibold px-3.5 py-1.5 rounded-lg text-xs transition shrink-0 cursor-pointer flex items-center gap-1.5 shadow-2xs"
+                    >
+                        <span>Search</span>
+                        <i class="ph ph-arrow-right text-xs"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Scrollable Results Feed -->
-            <div id="threadScrollArea" class="flex-1 overflow-y-auto pt-4 pb-6 space-y-6 pr-1">
+            <div id="threadScrollArea" class="flex-1 overflow-y-auto pt-4 pb-6 space-y-5 pr-1">
                 
                 <!-- Legal Summary Block -->
                 <div class="space-y-2">
@@ -361,23 +350,20 @@
                         </div>
                         <span id="resultCountBadge" class="text-[11px] font-mono text-ink-400 dark:text-gray-400"></span>
                     </div>
-                    <div id="answerBody" class="text-sm sm:text-base leading-relaxed text-ink-900 dark:text-gray-100 font-editorial paper-card rounded-lg p-5"></div>
+                    <div id="answerBody" class="text-sm sm:text-base leading-relaxed text-ink-900 dark:text-gray-100 font-editorial paper-card rounded-xl p-5 sm:p-6 shadow-2xs"></div>
                 </div>
 
-                <!-- Governing Provisions & Scope Filter Pills (Item #4) -->
-                <div class="space-y-3 pt-1 pb-4">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-[#e5e7eb] dark:border-[#262a34] pb-2.5">
-                        <div class="text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-400 font-mono">
-                            Primary Statutory Enactments
-                        </div>
-                        <!-- Instant statute scope filter pills (Item #4) -->
-                        <div id="statutePillsFilter" class="flex items-center gap-1.5 flex-wrap"></div>
+                <!-- Applicable Provisions (Clean Ranked List) -->
+                <div class="space-y-2.5 pt-1 pb-4">
+                    <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-gray-400 font-mono border-b border-[#e5e7eb] dark:border-[#262a34] pb-2">
+                        <span>Governing Statutory Provisions</span>
+                        <span class="text-[10px] font-normal lowercase opacity-75">click to read full section in drawer</span>
                     </div>
-                    <div id="operativeSections" class="space-y-3"></div>
+                    <div id="operativeSections" class="space-y-2"></div>
                 </div>
             </div>
 
-            <!-- Clean Bottom Legal Notice (bottom input eliminated, satisfying Item #1) -->
+            <!-- Clean Bottom Legal Notice -->
             <div class="py-2.5 text-center shrink-0 text-[11px] text-ink-400 dark:text-gray-400 font-mono border-t border-[#e5e7eb] dark:border-[#262a34]">
                 Automated Statutory Intelligence • Not Formal Legal Advice
             </div>
@@ -505,9 +491,16 @@
             <!-- Modal Footer -->
             <div class="p-3.5 sm:p-4 border-t border-[#e5e7eb] dark:border-[#262a34] bg-white dark:bg-[#181b22] flex flex-col-reverse sm:flex-row justify-between items-center gap-2.5 sm:gap-4 shrink-0">
                 <span class="text-[11px] sm:text-xs font-mono text-ink-500 dark:text-gray-400 text-center sm:text-left">Laws of the Federation of Nigeria</span>
-                <button onclick="copyModalText()" id="copyBtn" class="w-full sm:w-auto bg-[#f3f4f6] hover:bg-[#e5e7eb] dark:bg-[#222630] dark:hover:bg-[#262a34] text-ink-900 dark:text-gray-200 text-xs px-4 py-2 rounded-md font-semibold transition border border-[#e5e7eb] dark:border-[#262a34] cursor-pointer shadow-2xs">
-                    Copy Full Section
-                </button>
+                <div class="flex items-center gap-2 w-full sm:w-auto">
+                    <button onclick="copyModalCitation(this)" id="modalCopyCitationBtn" class="flex-1 sm:flex-initial bg-[#f3f4f6] hover:bg-[#e5e7eb] dark:bg-[#222630] dark:hover:bg-[#262a34] text-ink-900 dark:text-gray-200 text-xs px-3.5 py-2 rounded-md font-semibold transition border border-[#e5e7eb] dark:border-[#262a34] cursor-pointer shadow-2xs flex items-center justify-center gap-1.5" title="Copy court-ready citation">
+                        <i class="ph ph-copy text-xs"></i>
+                        <span>Copy Citation</span>
+                    </button>
+                    <button onclick="copyModalText()" id="copyBtn" class="flex-1 sm:flex-initial bg-spruce-600 hover:bg-spruce-700 text-white text-xs px-3.5 py-2 rounded-md font-semibold transition cursor-pointer shadow-2xs flex items-center justify-center gap-1.5" title="Copy verbatim statutory section text">
+                        <i class="ph ph-file-text text-xs"></i>
+                        <span>Copy Full Section</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -1424,121 +1417,19 @@
             if (clearBtn) clearBtn.classList.add('hidden');
         }
 
-        function copyCourtCitation(idx, btn) {
-            const r = window.searchResultsStore && window.searchResultsStore[idx];
-            if (!r) return;
-            const citation = `Section ${r.section_number}, ${r.statute} — ${r.section_title}`;
+        function copyModalCitation(btn) {
+            if (!currentActiveStatute || !currentActiveSecNum) return;
+            const titleEl = document.getElementById('modalTitle');
+            const rawTitle = titleEl ? titleEl.textContent : '';
+            const cleanTitle = rawTitle.replace(/^Section\s+[^:]+:\s*/, '').trim();
+            const citation = `Section ${currentActiveSecNum}, ${currentActiveStatute}${cleanTitle ? ' — ' + cleanTitle : ''}`;
             navigator.clipboard.writeText(citation).then(() => {
-                const origHTML = btn.innerHTML;
-                btn.innerHTML = `<i class="ph ph-check text-spruce-600 dark:text-spruce-300 text-xs"></i><span class="text-spruce-700 dark:text-spruce-300">Copied Citation</span>`;
-                setTimeout(() => { btn.innerHTML = origHTML; }, 2000);
+                const targetBtn = btn || document.getElementById('modalCopyCitationBtn');
+                if (!targetBtn) return;
+                const orig = targetBtn.innerHTML;
+                targetBtn.innerHTML = `<i class="ph ph-check text-spruce-600 dark:text-spruce-300 text-xs"></i><span class="text-spruce-700 dark:text-spruce-300">Copied!</span>`;
+                setTimeout(() => { targetBtn.innerHTML = orig; }, 2000);
             });
-        }
-
-        function toggleQuickPeek(idx) {
-            const container = document.getElementById(`peek_container_${idx}`);
-            const icon = document.getElementById(`peek_icon_${idx}`);
-            const label = document.getElementById(`peek_label_${idx}`);
-            if (!container) return;
-            const isHidden = container.classList.contains('hidden');
-            if (isHidden) {
-                container.classList.remove('hidden');
-                if (icon) icon.className = "ph ph-caret-up text-xs transition-transform duration-200";
-                if (label) label.textContent = "Close Peek";
-            } else {
-                container.classList.add('hidden');
-                if (icon) icon.className = "ph ph-caret-down text-xs transition-transform duration-200";
-                if (label) label.textContent = "Quick Peek Text";
-            }
-        }
-
-        function scrollToResultCard(idx) {
-            filterResultsByStatute('ALL');
-            const card = document.getElementById(`result_card_${idx}`);
-            if (!card) return;
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            const container = document.getElementById(`peek_container_${idx}`);
-            if (container && container.classList.contains('hidden')) {
-                toggleQuickPeek(idx);
-            }
-            
-            card.classList.add('ring-2', 'ring-spruce-500', 'shadow-md', 'dark:ring-spruce-400');
-            setTimeout(() => {
-                card.classList.remove('ring-2', 'ring-spruce-500', 'shadow-md', 'dark:ring-spruce-400');
-            }, 2000);
-        }
-
-        function renderStatuteFilterPills(results) {
-            const container = document.getElementById('statutePillsFilter');
-            if (!container) return;
-            if (!results || results.length === 0) {
-                container.innerHTML = '';
-                return;
-            }
-            
-            const counts = {};
-            results.forEach(r => {
-                counts[r.statute] = (counts[r.statute] || 0) + 1;
-            });
-            
-            const statutes = Object.keys(counts);
-            if (statutes.length <= 1) {
-                const statuteName = statutes[0];
-                container.innerHTML = `
-                    <span class="inline-flex items-center gap-1 text-[11px] font-mono text-ink-500 dark:text-gray-400 bg-[#f3f4f6] dark:bg-[#1f232d] px-2 py-0.5 rounded border border-[#e5e7eb] dark:border-[#262a34]">
-                        <i class="ph ph-check-circle text-spruce-600 dark:text-spruce-400 text-xs"></i>
-                        <span class="truncate max-w-[200px] sm:max-w-xs">${escapeHtml(statuteName)}</span>
-                        <span class="font-bold">(${counts[statuteName]})</span>
-                    </span>
-                `;
-                return;
-            }
-            
-            let pillsHTML = `
-                <button type="button" onclick="filterResultsByStatute('ALL', this)" class="statute-filter-pill active-pill px-2.5 py-1 rounded-md text-xs font-semibold bg-spruce-600 text-white transition cursor-pointer shrink-0">
-                    All (${results.length})
-                </button>
-            `;
-            
-            statutes.forEach(s => {
-                let shortName = s.replace(/,?\s*\d{4}.*$/, '').trim();
-                if (shortName.length > 26) shortName = shortName.slice(0, 24) + '…';
-                pillsHTML += `
-                    <button type="button" onclick="filterResultsByStatute('${s.replace(/'/g, "\\'")}', this)" class="statute-filter-pill px-2.5 py-1 rounded-md text-xs font-semibold bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-300 hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer shrink-0" title="${escapeHtml(s)} (${counts[s]})">
-                        ${escapeHtml(shortName)} (${counts[s]})
-                    </button>
-                `;
-            });
-            
-            container.innerHTML = pillsHTML;
-        }
-
-        function filterResultsByStatute(statuteName, pillBtn) {
-            const cards = document.querySelectorAll('#operativeSections > [data-statute]');
-            cards.forEach(card => {
-                const cardStatute = card.getAttribute('data-statute');
-                if (statuteName === 'ALL' || cardStatute === statuteName) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
-            
-            if (pillBtn) {
-                document.querySelectorAll('.statute-filter-pill').forEach(btn => {
-                    btn.className = "statute-filter-pill px-2.5 py-1 rounded-md text-xs font-semibold bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-300 hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer shrink-0";
-                });
-                pillBtn.className = "statute-filter-pill active-pill px-2.5 py-1 rounded-md text-xs font-semibold bg-spruce-600 text-white transition cursor-pointer shrink-0";
-            } else if (statuteName === 'ALL') {
-                const firstPill = document.querySelector('.statute-filter-pill');
-                if (firstPill) {
-                    document.querySelectorAll('.statute-filter-pill').forEach(btn => {
-                        btn.className = "statute-filter-pill px-2.5 py-1 rounded-md text-xs font-semibold bg-white dark:bg-[#181b22] border border-[#e5e7eb] dark:border-[#262a34] text-ink-700 dark:text-gray-300 hover:border-spruce-600 dark:hover:border-spruce-400 transition cursor-pointer shrink-0";
-                    });
-                    firstPill.className = "statute-filter-pill active-pill px-2.5 py-1 rounded-md text-xs font-semibold bg-spruce-600 text-white transition cursor-pointer shrink-0";
-                }
-            }
         }
 
         function formatSynthesisWithCitations(legalIssueText, results) {
@@ -1554,25 +1445,9 @@
                     const pattern = new RegExp(`\\b(Sections?\\s+${escapedSec})\\b`, 'gi');
                     
                     formatted = formatted.replace(pattern, (match) => {
-                        return `<button type="button" onclick="scrollToResultCard(${idx})" class="inline-flex items-center gap-1 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-spruce-50 hover:bg-spruce-100 dark:bg-spruce-950/70 dark:hover:bg-spruce-900/80 text-spruce-800 dark:text-spruce-200 border border-spruce-300 dark:border-spruce-700/80 transition-all cursor-pointer shadow-2xs hover:scale-102 align-baseline my-0.5" title="Jump to Section ${secNum} card below"><span>${match}</span><i class="ph ph-arrow-down-right text-[10px] text-spruce-600 dark:text-spruce-400"></i></button>`;
+                        return `<button type="button" onclick="openSearchResultModal(${idx})" class="inline-flex items-center gap-1 font-mono text-xs font-semibold px-2 py-0.5 rounded bg-spruce-50 hover:bg-spruce-100 dark:bg-spruce-950/70 dark:hover:bg-spruce-900/80 text-spruce-800 dark:text-spruce-200 border border-spruce-300 dark:border-spruce-700/80 transition cursor-pointer shadow-2xs hover:scale-102 align-baseline my-0.5" title="Read Section ${secNum} in Drawer"><span>${match}</span><i class="ph ph-arrow-up-right text-[10px] text-spruce-600 dark:text-spruce-400"></i></button>`;
                     });
                 });
-
-                const pills = results.map((r, i) => `
-                    <button type="button" onclick="scrollToResultCard(${i})" class="inline-flex items-center gap-1 font-mono text-[11px] font-semibold px-2.5 py-1 rounded bg-spruce-50 hover:bg-spruce-100 dark:bg-spruce-950/70 dark:hover:bg-spruce-900/80 text-spruce-800 dark:text-spruce-200 border border-spruce-300 dark:border-spruce-700/80 transition cursor-pointer shadow-2xs hover:border-spruce-600" title="Jump to Section ${escapeHtml(r.section_number)}">
-                        <span>Sec. ${escapeHtml(r.section_number)}: ${escapeHtml((r.statute || '').split(',')[0].slice(0, 24))}</span>
-                        <i class="ph ph-arrow-down-right text-[10px] text-spruce-600 dark:text-spruce-400"></i>
-                    </button>
-                `).join('');
-                
-                formatted += `
-                    <div class="mt-4 pt-3 border-t border-[#e5e7eb] dark:border-[#262a34] flex items-center gap-1.5 flex-wrap">
-                        <span class="text-[10px] font-mono uppercase font-bold text-spruce-700 dark:text-spruce-300 tracking-wider flex items-center gap-1 mr-1">
-                            <i class="ph ph-bookmark-simple text-xs"></i> Key Provisions:
-                        </span>
-                        ${pills}
-                    </div>
-                `;
             }
             
             return `<div class="leading-relaxed text-ink-900 dark:text-gray-100">${formatted}</div>`;
@@ -1605,8 +1480,6 @@
 
             const countBadge = document.getElementById('resultCountBadge');
             if (countBadge) countBadge.textContent = '';
-            const pillsFilter = document.getElementById('statutePillsFilter');
-            if (pillsFilter) pillsFilter.innerHTML = '';
 
             document.getElementById('answerBody').innerHTML = `<p class="animate-pulse text-ink-500 dark:text-gray-300 flex items-center gap-2 font-mono text-xs"><i class="ph ph-circle-notch animate-spin text-spruce-600 dark:text-spruce-300"></i> Analyzing federal statutory database...</p>`;
             document.getElementById('operativeSections').innerHTML = '';
@@ -1621,12 +1494,10 @@
                 
                 if (countBadge) {
                     const count = window.searchResultsStore.length;
-                    countBadge.textContent = count > 0 ? `${count} provision${count === 1 ? '' : 's'} matched` : 'No direct matches';
+                    countBadge.textContent = count > 0 ? `${count} provision${count === 1 ? '' : 's'} identified` : 'No direct matches';
                 }
 
                 document.getElementById('answerBody').innerHTML = formatSynthesisWithCitations(data.legal_issue || "Statutory retrieval complete.", window.searchResultsStore);
-                
-                renderStatuteFilterPills(window.searchResultsStore);
 
                 if (window.searchResultsStore.length === 0) {
                     document.getElementById('operativeSections').innerHTML = `
@@ -1642,83 +1513,24 @@
                     return;
                 }
 
-                document.getElementById('operativeSections').innerHTML = window.searchResultsStore.map((r, idx) => `
-                    <div id="result_card_${idx}" data-statute="${escapeHtml(r.statute)}" class="paper-card rounded-xl p-5 space-y-3 transition-all duration-300">
-                        
-                        <!-- Top Header Row -->
-                        <div class="flex items-center justify-between gap-3 text-xs border-b border-[#e5e7eb] dark:border-[#262a34] pb-2.5">
-                            <span class="font-bold text-spruce-700 dark:text-spruce-300 uppercase tracking-wider text-[11px] font-mono shrink-0">${escapeHtml(r.statute)}</span>
-                            <span class="text-ink-500 dark:text-gray-300 font-mono text-[10px] truncate text-right">${escapeHtml(r.part || '')}</span>
-                        </div>
-
-                        <!-- Section Title -->
-                        <h3 class="font-bold text-base sm:text-lg text-ink-900 dark:text-white leading-snug font-editorial">Section ${escapeHtml(r.section_number)}: ${escapeHtml(r.section_title)}</h3>
-                        
-                        <!-- Text Snippet (always visible) -->
-                        <div class="bg-[#fafafa] dark:bg-[#0e1014] border border-[#e5e7eb] dark:border-[#262a34] rounded-lg p-3.5 text-xs sm:text-sm leading-relaxed text-ink-800 dark:text-gray-200 font-editorial">
-                            ${escapeHtml(r.snippet || r.full_text || '')}
-                        </div>
-
-                        <!-- Quick Peek Expandable Area (Hidden by default, smooth slide down) -->
-                        <div id="peek_container_${idx}" class="hidden space-y-1.5 transition-all duration-200">
-                            <div class="flex items-center justify-between text-[11px] font-mono text-ink-500 dark:text-gray-400 px-0.5">
-                                <span class="font-semibold uppercase tracking-wider text-spruce-700 dark:text-spruce-300">Full Verbatim Enactment</span>
-                                <span class="text-[10px] opacity-75">Section ${escapeHtml(r.section_number)}</span>
+                document.getElementById('operativeSections').innerHTML = window.searchResultsStore.slice(0, 3).map((r, idx) => `
+                    <div onclick="openSearchResultModal(${idx})" class="paper-card rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 sm:gap-4 hover:border-spruce-600 dark:hover:border-spruce-500 transition cursor-pointer group select-none shadow-2xs hover:shadow-xs">
+                        <div class="flex items-center gap-3 min-w-0 flex-1">
+                            <div class="shrink-0 font-mono text-xs font-bold px-2.5 py-1 rounded-md bg-spruce-50 dark:bg-spruce-950/70 text-spruce-800 dark:text-spruce-300 border border-spruce-200 dark:border-spruce-800/80 group-hover:bg-spruce-100 dark:group-hover:bg-spruce-900/60 transition">
+                                Sec. ${escapeHtml(r.section_number)}
                             </div>
-                            <div class="bg-white dark:bg-[#12151c] border border-spruce-200 dark:border-spruce-900/60 rounded-lg p-4 text-xs sm:text-sm leading-relaxed text-ink-900 dark:text-gray-100 font-editorial max-h-96 overflow-y-auto whitespace-pre-wrap select-text shadow-inner">
-                                ${escapeHtml(r.full_text || r.snippet || '')}
+                            <div class="min-w-0 flex-1">
+                                <h3 class="text-xs sm:text-sm font-semibold text-ink-900 dark:text-white truncate group-hover:text-spruce-700 dark:group-hover:text-spruce-300 transition">
+                                    ${escapeHtml(r.section_title)}
+                                </h3>
+                                <p class="text-[11px] text-ink-500 dark:text-gray-400 truncate mt-0.5">
+                                    ${escapeHtml(r.statute)}${r.part ? ' • ' + escapeHtml(r.part) : ''}
+                                </p>
                             </div>
                         </div>
-
-                        <!-- Action Buttons Row -->
-                        <div class="flex items-center justify-between gap-2 pt-1 flex-wrap">
-                            <!-- Left: Quick Peek Toggle (Item #3) -->
-                            <button 
-                                type="button" 
-                                id="peek_btn_${idx}" 
-                                onclick="toggleQuickPeek(${idx})" 
-                                class="text-xs inline-flex items-center gap-1.5 font-semibold text-spruce-700 dark:text-spruce-300 hover:text-spruce-900 dark:hover:text-white bg-spruce-50 hover:bg-spruce-100 dark:bg-spruce-950/60 dark:hover:bg-spruce-900/80 border border-spruce-200 dark:border-spruce-800/80 px-3 py-1.5 rounded-md transition cursor-pointer select-none"
-                                title="Expand verbatim statutory text directly inside this card"
-                            >
-                                <i id="peek_icon_${idx}" class="ph ph-caret-down text-xs transition-transform duration-200"></i>
-                                <span id="peek_label_${idx}">Quick Peek Text</span>
-                            </button>
-
-                            <!-- Right: Actions (Copy Citation, Open Full Act, Read in Drawer) -->
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <!-- Item #5: Copy Court Citation -->
-                                <button 
-                                    type="button" 
-                                    onclick="copyCourtCitation(${idx}, this)" 
-                                    class="text-xs bg-[#f3f4f6] hover:bg-[#e5e7eb] dark:bg-[#222630] dark:hover:bg-[#262a34] border border-[#e5e7eb] dark:border-[#262a34] text-ink-900 dark:text-gray-200 px-3 py-1.5 rounded-md font-semibold transition cursor-pointer flex items-center gap-1.5" 
-                                    title="Copy formal citation: Section ${escapeHtml(r.section_number)}, ${escapeHtml(r.statute)} — ${escapeHtml(r.section_title)}"
-                                >
-                                    <i class="ph ph-copy text-xs"></i>
-                                    <span>Copy Citation</span>
-                                </button>
-
-                                <!-- Open Full Act in Library -->
-                                <button 
-                                    type="button" 
-                                    onclick="openActInLibrary('${r.statute.replace(/'/g, "\\'")}', '${r.section_number}')" 
-                                    class="text-xs bg-[#f3f4f6] hover:bg-[#e5e7eb] dark:bg-[#222630] dark:hover:bg-[#262a34] border border-[#e5e7eb] dark:border-[#262a34] text-ink-900 dark:text-gray-200 px-3 py-1.5 rounded-md font-semibold transition cursor-pointer flex items-center gap-1.5" 
-                                    title="Explore full Act in Statutory Library"
-                                >
-                                    <i class="ph ph-book-open text-xs"></i>
-                                    <span class="hidden sm:inline">Open Full Act</span>
-                                </button>
-
-                                <!-- Read in Drawer (Preserved!) -->
-                                <button 
-                                    type="button" 
-                                    onclick="openSearchResultModal(${idx})" 
-                                    class="text-xs bg-spruce-600 hover:bg-spruce-700 text-white px-3.5 py-1.5 rounded-md font-semibold transition cursor-pointer flex items-center gap-1.5 shadow-2xs"
-                                    title="Open section in sliding drawer with adjacent sections context"
-                                >
-                                    <span>Read in Drawer</span>
-                                    <i class="ph ph-arrow-up-right text-xs"></i>
-                                </button>
-                            </div>
+                        <div class="shrink-0 flex items-center gap-1.5 text-xs font-semibold text-ink-400 dark:text-gray-400 group-hover:text-spruce-600 dark:group-hover:text-spruce-400 transition">
+                            <span class="hidden sm:inline">Read Section</span>
+                            <i class="ph ph-arrow-up-right text-sm"></i>
                         </div>
                     </div>
                 `).join('');
