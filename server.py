@@ -389,10 +389,15 @@ def check_direct_citation(query: str, conn) -> list:
 
 STOP_WORDS = {
     'can', 'could', 'what', 'is', 'are', 'the', 'for', 'in', 'to', 'my', 'without', 
-    'under', 'law', 'nigeria', 'nigerian', 'does', 'have', 'has', 'please', 'tell', 
+    'under', 'law', 'nigeria', 'nigerian', 'does', 'have', 'has', 'had', 'please', 'tell', 
     'me', 'about', 'and', 'with', 'from', 'a', 'an', 'that', 'this', 'there', 'who', 
     'whom', 'whose', 'why', 'when', 'where', 'how', 'any', 'all', 'you', 'your', 'be',
-    'which', 'should', 'would', 'will', 'say', 'says', 'into', 'over', 'been'
+    'which', 'should', 'would', 'will', 'say', 'says', 'into', 'over', 'been',
+    'not', 'no', 'do', 'did', 'get', 'got', 'give', 'take', 'want', 'need',
+    'like', 'just', 'more', 'some', 'such', 'only', 'other', 'than', 'also', 'very',
+    'much', 'their', 'them', 'his', 'her', 'our', 'out', 'up', 'down', 'off', 'on',
+    'at', 'by', 'of', 'i', 'we', 'they', 'he', 'she', 'it', 'was', 'were', 'am',
+    'being', 'having', 'see', 'seeing', 'know', 'thing', 'things', 'person', 'people', 'place', 'someone', 'anyone'
 }
 
 PERIPHERAL_STATUTES = {
@@ -419,20 +424,21 @@ LEGAL_DOMAINS = [
     {
         'id': 'family_divorce_custody',
         'keywords': [
-            'divorce', 'custody', 'child custody', 'dissolution of marriage', 'maintenance', 
+            'child', 'children', 'access to child', 'access to my child', 'see my child', 'child access',
+            'visitation', 'child custody', 'custody of child', 'custody', 'guardianship', 'parental responsibility',
+            'parent', 'parents', 'father', 'mother', 'divorce', 'dissolution of marriage', 'maintenance', 
             'alimony', 'matrimonial', 'separation', 'child support', 'wife custody', 
             'father custody', 'marriage', 'marry', 'marriage registry', 'marriage certificate', 
             'celebration of marriage', 'licensed place of worship', 'court wedding', 'bigamy', 
             'caveat', 'banns of marriage', 'special licence'
         ],
-        'target_statutes': ['Marriage Act', 'Matrimonial Causes Act', "Child's Rights Act"],
+        'target_statutes': ["Child's Rights Act", 'Matrimonial Causes Act', 'Marriage Act'],
         'primary_terms': [
-            'celebration of marriage', 'marriage in place of worship', 'caveat', 
-            'marriage certificate', 'bigamy', 'powers of court in custody', 
-            'ground for dissolution of marriage', 'custody', 'dissolution of marriage', 
-            'welfare of children', 'paramount consideration'
+            'custody or rights of access to a child', 'orders as to custody', 'guardianship of a child',
+            'welfare of children', 'paramount consideration', 'celebration of marriage', 'marriage certificate',
+            'powers of court in custody', 'ground for dissolution of marriage', 'custody', 'dissolution of marriage'
         ],
-        'determination': "Under the Marriage Act (Cap. M6 LFN 2004), a statutory marriage in Nigeria must be celebrated in a registered registrar's office or a licensed place of worship after due notice or grant of special licence, with issuance of a certified certificate of marriage; contracting a second marriage while married under the Act constitutes criminal bigamy. For dissolution of marriage, Section 15 of the Matrimonial Causes Act requires establishing that the marriage has broken down irretrievably. In all proceedings concerning child custody, guardianship, or maintenance (Section 71 of the Matrimonial Causes Act and Section 1 of the Child's Rights Act), Nigerian courts are statutorily mandated to treat the best interests and welfare of the child as the paramount consideration."
+        'determination': "Under Section 69 and Section 70 of the Child's Rights Act, a parent who is denied access to their child can apply to the Family Court or High Court for an order granting custody and defined rights of access. In all matters concerning children, Nigerian law statutorily mandates that the best interests and welfare of the child are the paramount consideration (Section 1), and neither parent has an absolute right to unilaterally withhold a child from the other."
     },
     {
         'id': 'labour_employment_wages',
@@ -799,8 +805,9 @@ def retrieve_candidate_pool(conn, plan: dict, raw_query: str) -> list:
     target_stats = plan.get("target_statutes", [])
     primary_terms = plan.get("legal_phrases", []) or tokens
     scored = {}
+    top_statute = None
     
-    # 1. Search within target statutes if identified
+    # 1. Search within target statutes if identified (Domain-Constrained Retrieval)
     if target_stats:
         for stat in target_stats:
             short = stat.split(',')[0].split('(')[0].strip()
@@ -813,97 +820,98 @@ def retrieve_candidate_pool(conn, plan: dict, raw_query: str) -> list:
                 text_low = r[3].lower()
                 score = 0
                 
-                # Penalize administrative sections
+                # Penalize administrative boilerplate
                 if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations', 'savings']:
-                    score -= 40
+                    continue
                 if 're-registration' in title_low and not any('re-registration' in tk for tk in tokens):
-                    score -= 25
+                    continue
                     
                 # High boost for exact key phrases in section title
                 for pt in primary_terms:
                     pt_low = pt.lower()
                     if pt_low in title_low:
-                        score += 70
+                        score += 90
                     elif pt_low in text_low:
-                        score += 15
+                        score += 25
                         
-                # Boost for query tokens in section title
+                # Boost for query tokens
+                matched_tokens = 0
                 for tk in tokens:
                     tk_low = tk.lower()
                     if tk_low in title_low:
-                        score += 30
+                        score += 45
+                        matched_tokens += 1
                     elif tk_low in text_low:
-                        score += 4
+                        score += 6
+                        matched_tokens += 1
                         
-                if score > 15:
+                # Bonus for co-occurrence of multiple query tokens
+                if len(tokens) >= 2 and matched_tokens >= 2:
+                    score += 35
+                    
+                if score > 30:
                     title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
                     clean_snip = make_clean_snippet(r[3], 260)
                     scored[(title, str(r[1]))] = (score, title, r[1], r[2], clean_snip, r[3])
-                    
-    # 2. Search title matches across all non-peripheral statutes if needed
-    if len(scored) < 3 and tokens:
-        for tk in tokens[:3]:
-            clean_tk = re.sub(r'[^a-zA-Z0-9]', '', tk)
-            if len(clean_tk) < 3:
-                continue
+                    if not top_statute:
+                        top_statute = title
+                        
+    # 2. Sibling Section Affinity (Domain-Clustered Candidates)
+    # If we already have a top statute matching the context, fill remaining slots from the SAME statute or target domain!
+    # NEVER cross into unrelated statutes (like Bills of Exchange or Admiralty) when a legal domain is established!
+    if len(scored) < 3 and top_statute:
+        search_terms = [pt for pt in primary_terms if len(pt) >= 3] or [tk for tk in tokens if len(tk) >= 3]
+        search_fts = " OR ".join(f'"{t}"' for t in search_terms[:4])
+        if search_fts:
             try:
                 cursor.execute(
-                    "SELECT statute_title, section_number, section_title, full_text FROM sections_fts WHERE section_title MATCH ? LIMIT 15;",
-                    (f'"{clean_tk}"',)
+                    "SELECT statute_title, section_number, section_title, full_text FROM sections_fts WHERE statute_title = ? AND sections_fts MATCH ? ORDER BY rank LIMIT 10;",
+                    (top_statute, search_fts)
                 )
                 for r in cursor.fetchall():
-                    if r[0] in PERIPHERAL_STATUTES:
-                        continue
                     title_low = r[2].lower()
-                    text_low = r[3].lower()
-                    if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations']:
+                    if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations', 'savings']:
                         continue
-                    # Systemic homonym barrier: if query contains 2+ keywords, a match on an isolated word
-                    # in a section title MUST have at least one other query keyword in the section text or title
-                    if len(tokens) >= 2:
-                        other_tokens = [ot for ot in tokens if ot != tk]
-                        if not any(ot in title_low or ot in text_low for ot in other_tokens):
-                            continue
-                    # Disambiguate financial cheque crossings from pedestrian/physical road crossings
-                    if ('crossing' in title_low or 'crossings' in title_low) and (r[0] == 'Bills of Exchange Act' or 'cheque' in title_low or 'check' in title_low):
-                        financial_terms = {'cheque', 'check', 'bank', 'banking', 'bill', 'drawer', 'payee', 'account', 'finance', 'payment', 'endorse', 'negotiable', 'funds', 'credit'}
-                        if not any(ft in raw_query.lower() for ft in financial_terms):
-                            continue
-                    score = 35 + sum(15 for other in tokens if other in title_low)
-                    title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
-                    key = (title, str(r[1]))
-                    if key not in scored or scored[key][0] < score:
+                    key = (r[0], str(r[1]))
+                    if key not in scored:
                         clean_snip = make_clean_snippet(r[3], 260)
-                        scored[key] = (score, title, r[1], r[2], clean_snip, r[3])
+                        scored[key] = (40, r[0], r[1], r[2], clean_snip, r[3])
+                        if len(scored) >= 3:
+                            break
             except Exception:
                 pass
-                    
-    # 3. FTS fallback if still under 3 results
-    if len(scored) < 3 and tokens:
-        fts_query = " AND ".join(tokens[:2]) if len(tokens) >= 2 else (tokens[0] if tokens else f'"{raw_query}"')
+                
+    # 3. Global Joint Co-Occurrence (ONLY when NO target statutes were identified)
+    # CRITICAL: Requires at least 2 distinct semantic tokens to co-occur.
+    # Single-token global matching is STRICTLY FORBIDDEN to prevent fragmented keyword pollution.
+    if not scored and len(tokens) >= 2:
+        joint_fts = " AND ".join(f'"{tk}"' for tk in tokens[:2])
         try:
             cursor.execute(
                 "SELECT statute_title, section_number, section_title, full_text FROM sections_fts WHERE sections_fts MATCH ? ORDER BY rank LIMIT 10;",
-                (fts_query,)
+                (joint_fts,)
             )
             for r in cursor.fetchall():
                 if r[0] in PERIPHERAL_STATUTES:
                     continue
                 title_low = r[2].lower()
-                # Disambiguate financial cheque crossings from pedestrian/physical road crossings
-                if ('crossing' in title_low or 'crossings' in title_low) and (r[0] == 'Bills of Exchange Act' or 'cheque' in title_low or 'check' in title_low):
-                    financial_terms = {'cheque', 'check', 'bank', 'banking', 'bill', 'drawer', 'payee', 'account', 'finance', 'payment', 'endorse', 'negotiable', 'funds', 'credit'}
-                    if not any(ft in raw_query.lower() for ft in financial_terms):
-                        continue
-                title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
-                key = (title, str(r[1]))
-                if key not in scored:
-                    clean_snip = make_clean_snippet(r[3], 260)
-                    scored[key] = (10, title, r[1], r[2], clean_snip, r[3])
+                text_low = r[3].lower()
+                if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations', 'savings']:
+                    continue
+                # Hard co-occurrence check: must have at least 2 query tokens in title or text
+                matched = sum(1 for tk in tokens if tk in title_low or tk in text_low)
+                if matched >= 2:
+                    title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
+                    key = (title, str(r[1]))
+                    if key not in scored:
+                        clean_snip = make_clean_snippet(r[3], 260)
+                        scored[key] = (35, title, r[1], r[2], clean_snip, r[3])
         except Exception:
             pass
             
     ranked = sorted(scored.values(), key=lambda x: x[0], reverse=True)
+    # Strictly require minimum relevance score of 25. Never pad with irrelevant garbage!
+    filtered = [item for item in ranked if item[0] >= 25]
     return [
         {
             "statute": item[1],
@@ -913,7 +921,7 @@ def retrieve_candidate_pool(conn, plan: dict, raw_query: str) -> list:
             "snippet": item[4],
             "full_text": item[5]
         }
-        for item in ranked[:3]
+        for item in filtered[:3]
     ]
 
 @app.get("/api/search")
