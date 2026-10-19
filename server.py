@@ -393,7 +393,8 @@ STOP_WORDS = {
     'me', 'about', 'and', 'with', 'from', 'a', 'an', 'that', 'this', 'there', 'who', 
     'whom', 'whose', 'why', 'when', 'where', 'how', 'any', 'all', 'you', 'your', 'be',
     'which', 'should', 'would', 'will', 'say', 'says', 'into', 'over', 'been',
-    'not', 'no', 'do', 'did', 'get', 'got', 'give', 'take', 'want', 'need',
+    'not', 'no', 'do', 'did', 'get', 'got', 'give', 'take', 'want', 'wants', 'wanted',
+    'need', 'needs', 'ask', 'asking', 'asked', 'make', 'makes', 'made',
     'like', 'just', 'more', 'some', 'such', 'only', 'other', 'than', 'also', 'very',
     'much', 'their', 'them', 'his', 'her', 'our', 'out', 'up', 'down', 'off', 'on',
     'at', 'by', 'of', 'i', 'we', 'they', 'he', 'she', 'it', 'was', 'were', 'am',
@@ -442,10 +443,20 @@ LEGAL_DOMAINS = [
     },
     {
         'id': 'labour_employment_wages',
-        'keywords': ['boss', 'sack', 'sacked', 'fire', 'fired', 'dismiss', 'dismissal', 'salary', 'wages', 'unpaid', 'employment', 'severance', 'resignation', 'redundancy', 'worker', 'contract of employment'],
-        'target_statutes': ['Labour Act, 1971', "Employees' Compensation Act, 2010"],
-        'primary_terms': ['termination of contracts by notice', 'contracts general', 'written particulars of terms of employment', 'wages', 'redundancy', 'maternity leave'],
-        'determination': "Under Section 11 of the Labour Act 1971, contracts of employment may only be terminated by giving statutory notice or payment in lieu of notice proportional to tenure. Furthermore, Section 5 strictly prohibits arbitrary salary deductions without formal consent or statutory authorization, and Section 54 renders dismissal during maternity leave null and void."
+        'keywords': [
+            'employer', 'work', 'pay', 'work without pay', 'boss', 'sack', 'sacked', 'fire', 'fired', 
+            'dismiss', 'dismissal', 'salary', 'wages', 'unpaid', 'unpaid salary', 'unpaid wages',
+            'withhold salary', 'withholding pay', 'forced labour', 'compulsory labour', 'slave labour',
+            'employment', 'severance', 'resignation', 'redundancy', 'worker', 'contract of employment',
+            'salary deduction', 'deduct', 'deduction'
+        ],
+        'target_statutes': ['Labour Act, 1971', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
+        'primary_terms': [
+            'prohibition of forced labour', 'duty of employer to provide work', 'manner of payment',
+            'periodicity of payment of wages', 'deductions', 'termination of contracts by notice',
+            'contracts general', 'maternity protection', 'redundancy'
+        ],
+        'determination': "Under Section 73 of the Labour Act and Section 34(1)(c) of the 1999 Constitution, forced or compulsory labour is strictly prohibited in Nigeria; an employer cannot lawfully compel an employee to work without wages. Furthermore, under Section 1 and Section 15 of the Labour Act, wages must be paid in legal tender at agreed periodic intervals, and Section 17 imposes a statutory duty on an employer to provide work and pay the agreed remuneration."
     },
     {
         'id': 'landlord_tenant_premises',
