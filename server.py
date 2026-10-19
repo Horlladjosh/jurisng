@@ -109,6 +109,7 @@ DETERMINISTIC_RULES = [
 ]
 LEGAL_THESAURUS = {
     'boss': 'employer',
+    'oga': 'employer',
     'fired': 'termination dismissal',
     'sacked': 'termination dismissal',
     'sack': 'termination',
@@ -120,7 +121,35 @@ LEGAL_THESAURUS = {
     'jail': 'custody detention',
     'lockup': 'custody detention',
     'bribe': 'gratification corrupt',
-    'stole': 'stealing theft'
+    'stole': 'stealing theft',
+    'kid': 'child custody',
+    'kids': 'children child custody',
+    'son': 'child custody welfare',
+    'daughter': 'child custody welfare',
+    'baby': 'child infant welfare',
+    'wife': 'spouse matrimonial marriage custody',
+    'husband': 'spouse matrimonial marriage custody',
+    'airline': 'flight passenger civil aviation',
+    'flight': 'airline passenger civil aviation',
+    'plane': 'airline aircraft civil aviation',
+    'luggage': 'baggage carrier civil aviation',
+    'baggage': 'luggage carrier civil aviation',
+    'doctor': 'medical practitioner healthcare negligence',
+    'hospital': 'medical clinic healthcare treatment',
+    'nurse': 'medical healthcare treatment',
+    'landlord': 'premises tenant rent eviction',
+    'tenant': 'premises landlord rent eviction',
+    'rent': 'tenancy premises landlord lease',
+    'will': 'probate succession inheritance estate',
+    'wills': 'probate succession inheritance estate',
+    'inherit': 'inheritance succession probate estate',
+    'estate': 'probate succession inheritance estate',
+    'customs': 'cema border smuggling tariff',
+    'gun': 'firearm arms weapon ammunition',
+    'guns': 'firearms arms weapon ammunition',
+    'weapon': 'firearm arms ammunition',
+    'phone': 'privacy communications personal data search',
+    'laptop': 'privacy computer system search'
 }
 
 def expand_query_stems(query: str) -> list:
@@ -425,11 +454,13 @@ LEGAL_DOMAINS = [
     {
         'id': 'family_divorce_custody',
         'keywords': [
-            'child', 'children', 'access to child', 'access to my child', 'see my child', 'child access',
-            'visitation', 'child custody', 'custody of child', 'custody', 'guardianship', 'parental responsibility',
-            'parent', 'parents', 'father', 'mother', 'divorce', 'dissolution of marriage', 'maintenance', 
-            'alimony', 'matrimonial', 'separation', 'child support', 'wife custody', 
-            'father custody', 'marriage', 'marry', 'marriage registry', 'marriage certificate', 
+            'child', 'children', 'kid', 'kids', 'son', 'daughter', 'baby', 'access to child', 'access to my child',
+            'access to my son', 'access to my daughter', 'access to my kid', 'access to my kids', 'see my child',
+            'see my son', 'see my daughter', 'see my kids', 'child access', 'visitation', 'child custody', 
+            'custody of child', 'custody', 'guardianship', 'parental responsibility', 'parent', 'parents', 
+            'father', 'mother', 'wife', 'husband', 'spouse', 'withhold child', 'divorce', 'dissolution of marriage',
+            'maintenance', 'alimony', 'matrimonial', 'separation', 'child support', 'wife custody', 
+            'father custody', 'mother custody', 'marriage', 'marry', 'marriage registry', 'marriage certificate', 
             'celebration of marriage', 'licensed place of worship', 'court wedding', 'bigamy', 
             'caveat', 'banns of marriage', 'special licence'
         ],
@@ -444,11 +475,12 @@ LEGAL_DOMAINS = [
     {
         'id': 'labour_employment_wages',
         'keywords': [
-            'employer', 'work', 'pay', 'work without pay', 'boss', 'sack', 'sacked', 'fire', 'fired', 
+            'employer', 'work', 'pay', 'work without pay', 'boss', 'oga', 'sack', 'sacked', 'fire', 'fired', 
             'dismiss', 'dismissal', 'salary', 'wages', 'unpaid', 'unpaid salary', 'unpaid wages',
             'withhold salary', 'withholding pay', 'forced labour', 'compulsory labour', 'slave labour',
             'employment', 'severance', 'resignation', 'redundancy', 'worker', 'contract of employment',
-            'salary deduction', 'deduct', 'deduction'
+            'salary deduction', 'deduct', 'deduction', 'gratuity', 'pension', 'probation', 'maternity leave',
+            'unlawful dismissal'
         ],
         'target_statutes': ['Labour Act, 1971', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
         'primary_terms': [
@@ -506,6 +538,52 @@ LEGAL_DOMAINS = [
         'target_statutes': ['Federal Competition and Consumer Protection Act, 2018'],
         'primary_terms': ['consumer rights', 'misleading representations', 'liability for defective goods', 'refund', 'unfair trade'],
         'determination': "Under the Federal Competition and Consumer Protection Act (FCCPA) 2018, consumers possess an enforceable statutory right to goods of merchantable quality, honest labeling, and immediate refund or replacement for defective products. Sections 130 and 136 strictly prohibit unfair trade practices and misleading representations."
+    },
+    {
+        'id': 'aviation_passenger_rights',
+        'keywords': ['airline', 'flight', 'flight cancelled', 'cancelled flight', 'flight delayed', 'delayed flight', 'lost luggage', 'baggage', 'boarding denied', 'air ticket', 'flight refund', 'air passenger', 'ncaa', 'airport'],
+        'target_statutes': ['Civil Aviation Act', 'Federal Competition and Consumer Protection Act, 2018'],
+        'primary_terms': ['passenger rights', 'cancellation of flights', 'compensation', 'consumer protection', 'liability of carrier'],
+        'determination': "Under Part 19 of the Nigerian Civil Aviation Regulations and Section 117 of the Civil Aviation Act 2022, passengers have statutory rights in the event of flight delays, cancellations, or lost luggage. For domestic cancellations, airlines must provide immediate refreshments, reimbursement or re-routing, and formal statutory compensation unless due to extraordinary meteorological conditions."
+    },
+    {
+        'id': 'succession_wills_probate',
+        'keywords': [
+            'will', 'wills', 'die without will', 'died without will', 'without a will', 
+            'without leaving a will', 'died without leaving a will', 'father died', 'mother died',
+            'parent died', 'died intestate', 'die intestate', 'intestate', 'inheritance', 'inherit', 
+            'letters of administration', 'probate', 'estate', 'family estate', 'deceased father', 
+            'deceased mother', 'next of kin', 'heir', 'sharing property', 'sharing of property'
+        ],
+        'target_statutes': ['Constitution of the Federal Republic of Nigeria 1999 (as amended)', 'Companies and Allied Matters Act, 2020', 'Marriage Act'],
+        'primary_terms': ['right to freedom from discrimination', 'right to acquire and own immovable property anywhere in Nigeria', 'compulsory acquisition of property', 'probate', 'evidence of grant'],
+        'determination': "Under Nigerian succession jurisprudence, where a person dies intestate (without a valid will), their estate is distributed according to applicable statutory law or customary law depending on the form of marriage contracted. Surviving spouses and children possess statutory rights to apply for Letters of Administration at the High Court Probate Registry, and disinheriting legitimate children or female offspring has been declared unconstitutional by the Supreme Court of Nigeria under Section 42 of the 1999 Constitution."
+    },
+    {
+        'id': 'medical_negligence_health',
+        'keywords': [
+            'doctor', 'doctors', 'hospital', 'hospitals', 'nurse', 'nurses', 'medical negligence', 
+            'medical malpractice', 'wrong prescription', 'patient rights', 'patient', 'patients', 
+            'surgery went wrong', 'surgery', 'surgical', 'operation', 'mistake during surgery', 
+            'blood transfusion', 'emergency medical treatment', 'refused emergency', 'medical mistake', 
+            'killed patient', 'killed the patient', 'died in hospital', 'surgeon', 'physician', 
+            'clinic', 'medical treatment', 'treatment of patient', 'medical duty', 'rash or negligent', 
+            'medical care'
+        ],
+        'target_statutes': ['Criminal Code Act', 'National Health Act, 2014', 'Constitution of the Federal Republic of Nigeria 1999 (as amended)'],
+        'primary_terms': [
+            'duty of persons doing dangerous acts', 'surgical or medical treatment', 
+            'emergency medical treatment', 'killing of a human being unlawful', 
+            'reckless and negligent acts', 'duties of healthcare providers', 'right to life'
+        ],
+        'determination': "Under Section 303 of the Criminal Code Act, any person undertaking to administer surgical or medical treatment owes a strict legal duty to have reasonable skill and use reasonable care, and is criminally liable for resulting death or harm caused by negligence. Furthermore, Section 20 of the National Health Act 2014 mandates that healthcare providers must never refuse emergency medical treatment, and Section 33 of the 1999 Constitution guarantees the fundamental right to life."
+    },
+    {
+        'id': 'customs_smuggling_contraband',
+        'keywords': ['customs', 'customs officer', 'seized goods', 'smuggling', 'contraband', 'import duty', 'clearing goods', 'border seizure', 'cema', 'customs checkpoint'],
+        'target_statutes': ['Customs and Excise Management Act (CEMA)', 'Criminal Code Act'],
+        'primary_terms': ['forfeiture of goods', 'smuggling', 'unlawful importation', 'powers of customs officers', 'import duty'],
+        'determination': "Under the Customs and Excise Management Act (CEMA), the Nigeria Customs Service possesses statutory power to inspect, detain, and seize uncustomed, prohibited, or undervalued goods imported across Nigerian borders. Importers have the right to challenge wrongful forfeiture by issuing a statutory Notice of Claim within one month under Section 146 of CEMA."
     },
     {
         'id': 'taxation_revenue',
@@ -659,6 +737,44 @@ LEGAL_DOMAINS = [
 
 import difflib
 
+COMMON_TYPOS = {
+    'polce': 'police',
+    'polic': 'police',
+    'tenent': 'tenant',
+    'landloard': 'landlord',
+    'divorse': 'divorce',
+    'salry': 'salary',
+    'copright': 'copyright',
+    'checkue': 'cheque',
+    'dudcheque': 'dud cheque',
+    'arresst': 'arrest',
+    'mariage': 'marriage',
+    'costody': 'custody',
+    'negligance': 'negligence',
+    'surgry': 'surgery',
+    'hospitl': 'hospital',
+    'docter': 'doctor',
+    'patirnt': 'patient'
+}
+
+COMMON_ENGLISH_WORDS = {
+    'patient', 'patients', 'parent', 'parents', 'doctor', 'doctors', 'nurse', 'nurses',
+    'surgery', 'surgical', 'hospital', 'clinic', 'medical', 'medicine', 'health', 'treatment',
+    'child', 'children', 'father', 'mother', 'son', 'daughter', 'baby', 'kid', 'kids',
+    'family', 'wife', 'husband', 'spouse', 'worker', 'employee', 'employer', 'work', 'working',
+    'salary', 'wages', 'money', 'unpaid', 'paid', 'hours', 'overtime', 'dismissal', 'sacked',
+    'fired', 'contract', 'airline', 'flight', 'airport', 'plane', 'luggage', 'baggage', 'delay',
+    'delayed', 'cancel', 'cancelled', 'ticket', 'passenger', 'customs', 'border', 'goods',
+    'smuggling', 'contraband', 'import', 'export', 'clearing', 'cargo', 'estate', 'probate',
+    'will', 'wills', 'inherit', 'inheritance', 'heir', 'deceased', 'death', 'died', 'kill',
+    'killed', 'killing', 'dead', 'murder', 'landlord', 'tenant', 'rent', 'lease', 'evict',
+    'eviction', 'property', 'premises', 'house', 'apartment', 'police', 'arrest', 'arrested',
+    'warrant', 'cell', 'bail', 'detain', 'detained', 'court', 'judge', 'lawyer', 'counsel',
+    'charge', 'trial', 'rights', 'violation', 'assault', 'beaten', 'injury', 'stolen', 'steal',
+    'theft', 'fraud', 'scam', 'bribe', 'bribery', 'extortion', 'traffic', 'highway', 'road',
+    'driver', 'driving', 'vehicle', 'car', 'accident', 'speeding', 'pedestrian', 'bridge'
+}
+
 LEGAL_VOCABULARY = [
     'police', 'arrest', 'detain', 'warrant', 'bail', 'freeze', 'freezing', 
     'bank', 'account', 'divorce', 'custody', 'marriage', 'steal', 'stealing', 
@@ -668,7 +784,8 @@ LEGAL_VOCABULARY = [
     'bounced', 'defamation', 'cyberstalking', 'extortion', 'bribe', 'bribery', 
     'gratification', 'kidnapping', 'assault', 'admiralty', 'mining', 'witchcraft', 'juju',
     'pedestrian', 'highway', 'traffic', 'bridge', 'wedding', 'bigamy', 'registry',
-    'firearm', 'firearms', 'ammunition', 'nafdac', 'limitation', 'weapon'
+    'firearm', 'firearms', 'ammunition', 'nafdac', 'limitation', 'weapon',
+    'patient', 'patients', 'doctor', 'doctors', 'surgery', 'hospital', 'medical'
 ]
 
 NIGERIAN_COLLOQUIALISMS = {
@@ -733,10 +850,12 @@ def normalize_query(query: str) -> str:
     words = re.findall(r'[a-zA-Z]{4,}', q_low)
     corrected = []
     for w in words:
-        if w in LEGAL_VOCABULARY:
+        if w in COMMON_TYPOS:
+            corrected.append(COMMON_TYPOS[w])
+        elif w in COMMON_ENGLISH_WORDS or w in LEGAL_VOCABULARY:
             corrected.append(w)
         else:
-            close = difflib.get_close_matches(w, LEGAL_VOCABULARY, n=1, cutoff=0.75)
+            close = difflib.get_close_matches(w, LEGAL_VOCABULARY, n=1, cutoff=0.88)
             corrected.append(close[0] if close else w)
             
     norm_q = ' '.join(corrected)
@@ -758,7 +877,14 @@ def classify_legal_intent(scenario: str) -> Optional[dict]:
                     score += 6
             else:
                 if re.search(r'\b' + re.escape(kw) + r'\b', search_text):
-                    if kw in ['bribe', 'bribery', 'extortion', 'gratification', 'steal', 'stealing', 'theft', 'divorce', 'custody', 'freeze', 'pnd', 'evict', 'landlord', 'tenant', 'copyright', 'juju', 'witchcraft', 'cheque', 'pension', 'pedestrian', 'frsc', 'highway']:
+                    if kw in [
+                        'bribe', 'bribery', 'extortion', 'gratification', 'steal', 'stealing', 'theft', 
+                        'divorce', 'custody', 'freeze', 'pnd', 'evict', 'landlord', 'tenant', 'copyright', 
+                        'juju', 'witchcraft', 'cheque', 'pension', 'pedestrian', 'frsc', 'highway',
+                        'will', 'wills', 'probate', 'intestate', 'inheritance', 'airline', 'flight',
+                        'customs', 'smuggling', 'contraband', 'doctor', 'surgery', 'patient', 'hospital',
+                        'firearm', 'firearms', 'ammunition', 'nafdac'
+                    ]:
                         score += 8
                     else:
                         score += 3
@@ -794,7 +920,8 @@ def analyze_and_route(scenario: str) -> dict:
                     answer = gemini_ans
                 gemini_stats = parsed.get("target_statutes", [])
                 if isinstance(gemini_stats, list) and gemini_stats:
-                    target_stats = list(dict.fromkeys(target_stats + gemini_stats))
+                    if not target_stats:
+                        target_stats = gemini_stats
                 gemini_phrases = parsed.get("legal_phrases", [])
                 if isinstance(gemini_phrases, list) and gemini_phrases:
                     phrases = list(dict.fromkeys(phrases + gemini_phrases))
@@ -892,10 +1019,36 @@ def retrieve_candidate_pool(conn, plan: dict, raw_query: str) -> list:
             except Exception:
                 pass
                 
-    # 3. Global Joint Co-Occurrence (ONLY when NO target statutes were identified)
+    # 2.5 Domain Fallback: If target statutes were identified but no section hit > 30, retrieve operative sections from target statutes
+    if target_stats and not scored:
+        for stat in target_stats[:2]:
+            short = stat.split(',')[0].split('(')[0].strip()
+            search_terms = [pt for pt in primary_terms if len(pt) >= 3]
+            search_fts = " OR ".join(f'"{t}"' for t in search_terms[:4])
+            if search_fts:
+                try:
+                    cursor.execute(
+                        "SELECT statute_title, section_number, section_title, full_text FROM sections_fts WHERE statute_title LIKE ? AND sections_fts MATCH ? ORDER BY rank LIMIT 3;",
+                        (f"%{short}%", search_fts)
+                    )
+                    for r in cursor.fetchall():
+                        title_low = r[2].lower()
+                        if title_low in ['interpretation', 'short title', 'citation', 'repeals', 'regulations', 'savings']:
+                            continue
+                        title = "Constitution of the Federal Republic of Nigeria 1999 (as amended)" if "Constitution" in r[0] else r[0]
+                        key = (title, str(r[1]))
+                        if key not in scored:
+                            clean_snip = make_clean_snippet(r[3], 260)
+                            scored[key] = (45, title, r[1], r[2], clean_snip, r[3])
+                            if len(scored) >= 3:
+                                break
+                except Exception:
+                    pass
+
+    # 3. Global Joint Co-Occurrence (STRICTLY ONLY when NO target statutes were identified)
     # CRITICAL: Requires at least 2 distinct semantic tokens to co-occur.
-    # Single-token global matching is STRICTLY FORBIDDEN to prevent fragmented keyword pollution.
-    if not scored and len(tokens) >= 2:
+    # Cross-domain global matching is NEVER permitted when a target domain exists.
+    if not target_stats and not scored and len(tokens) >= 2:
         joint_fts = " AND ".join(f'"{tk}"' for tk in tokens[:2])
         try:
             cursor.execute(
