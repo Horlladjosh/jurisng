@@ -264,6 +264,159 @@ def execute_rule_provisions(rule: dict, query: str, conn) -> dict:
             if title not in target_stats: target_stats.append(title)
             results.append({"statute": title, "section_number": row[1], "section_title": row[2], "part": row[3], "snippet": make_clean_snippet(row[4]), "full_text": row[4]})
     return {"query": query, "legal_issue": rule["answer"], "target_statutes": target_stats, "statutory_concepts": ["Direct Statutory Match"], "results": results}
+def check_statute_overview(query: str, conn) -> Optional[dict]:
+    cursor = conn.cursor()
+    q_clean = query.strip().lower()
+    q_alt = q_clean[4:].strip() if q_clean.startswith('the ') else q_clean
+    
+    STATUTE_MAP = {
+        'constitution': 'cfrn_1999',
+        'cfrn': 'cfrn_1999',
+        'cfrn 1999': 'cfrn_1999',
+        'nigerian constitution': 'cfrn_1999',
+        'constitution of nigeria': 'cfrn_1999',
+        'the constitution': 'cfrn_1999',
+        '1999 constitution': 'cfrn_1999',
+        'constitution of the federal republic of nigeria': 'cfrn_1999',
+        'constitution of the federal republic of nigeria 1999': 'cfrn_1999',
+        'constitution of the federal republic of nigeria 1999 (as amended)': 'cfrn_1999',
+        'cama': 'cama_2020',
+        'cama 2020': 'cama_2020',
+        'companies and allied matters act': 'cama_2020',
+        'companies and allied matters act 2020': 'cama_2020',
+        'labour act': 'labour_act_1971',
+        'evidence act': 'evidence_act_2011',
+        'evidence act 2011': 'evidence_act_2011',
+        'criminal code': 'criminal_code_act',
+        'criminal code act': 'criminal_code_act',
+        'penal code': 'penal_code_1960',
+        'penal code act': 'penal_code_1960',
+        'police act': 'police_act_2020',
+        'police act 2020': 'police_act_2020',
+        'nigeria police act': 'police_act_2020',
+        'nigeria police act 2020': 'police_act_2020',
+        'frsc act': 'frsc_act',
+        'fccpa': 'fccpa_2018',
+        'fccpa 2018': 'fccpa_2018',
+        'consumer protection act': 'fccpa_2018',
+        'child rights act': 'child_rights_act_2003',
+        'child\'s rights act': 'child_rights_act_2003',
+        'cra': 'child_rights_act_2003',
+        'efcc act': 'efcc_act_2004',
+        'ndlea act': 'ndlea_act',
+        'cybercrimes act': 'cybercrimes_act_2015',
+        'matrimonial causes act': 'matrimonial_causes_act',
+        'marriage act': 'marriage_act',
+        'land use act': 'land_use_act_1978',
+        'pension reform act': 'pension_reform_act',
+        'arbitration act': 'arbitration_conciliation_act',
+        'admiralty jurisdiction act': 'admiralty_jurisdiction_act',
+        'customs act': 'customs_management_act',
+        'cema': 'customs_management_act',
+        'civil aviation act': 'civil_aviation_act_2022',
+        'electricity act': 'electricity_act_2023',
+        'petroleum industry act': 'petroleum_industry_act_2021',
+        'pia': 'petroleum_industry_act_2021',
+        'legal practitioners act': 'legal_practitioners_act',
+        'lpa': 'legal_practitioners_act',
+        'national health act': 'national_health_act_2014',
+        'dishonoured cheques act': 'dishonoured_cheques_act',
+        'firearms act': 'firearms_act',
+        'food and drugs act': 'food_and_drugs_act',
+        'nafdac act': 'nafdac_act',
+        'public officers protection act': 'public_officers_protection_act',
+        'popa': 'public_officers_protection_act',
+        'student loans act': 'student_loans_act_2023',
+        'student loan act': 'student_loans_act_2023',
+        'students loans act': 'student_loans_act_2023',
+        'nlrc act': 'nlrc_act_2022',
+        'national lottery act': 'nlrc_act_2022',
+        'nsipa': 'nsipa_act_2023',
+        'nsipa act': 'nsipa_act_2023',
+        'acts authentication act': 'acts_authentication_act_1961',
+        'trustee investments act': 'trustee_investments_act'
+    }
+    
+    target_id = STATUTE_MAP.get(q_clean) or STATUTE_MAP.get(q_alt)
+    if not target_id:
+        cursor.execute("SELECT statute_id, short_title FROM statutes;")
+        all_stats = cursor.fetchall()
+        q_norm = re.sub(r'[^\w\s]', '', q_alt)
+        q_no_year = re.sub(r'\b\d{4}\b', '', q_norm).strip()
+        
+        for sid, title in all_stats:
+            clean_t = title.lower()
+            clean_t_norm = re.sub(r'[^\w\s]', '', clean_t)
+            clean_t_no_year = re.sub(r'\b\d{4}\b', '', clean_t_norm).strip()
+            
+            if (clean_t == q_alt or 
+                clean_t_norm == q_norm or
+                (clean_t_no_year and clean_t_no_year == q_no_year) or
+                f'{clean_t_no_year} act' == q_no_year or
+                clean_t_no_year == f'{q_no_year} act'):
+                target_id = sid
+                break
+                
+        if not target_id:
+            q_words = set(w for w in q_no_year.split() if w not in ('act', 'the', 'of', 'and', 'for', 'in', 'to'))
+            if len(q_words) >= 2:
+                for sid, title in all_stats:
+                    t_words = set(re.findall(r'\b\w+\b', title.lower()))
+                    if q_words.issubset(t_words):
+                        target_id = sid
+                        break
+                
+    if not target_id:
+        return None
+        
+    cursor.execute("SELECT statute_id, short_title, total_sections, year FROM statutes WHERE statute_id = ?;", (target_id,))
+    row = cursor.fetchone()
+    if not row:
+        return None
+        
+    stat_id, short_title, total_secs, year = row
+    
+    cursor.execute("""
+        SELECT section_number, section_title, part, full_text 
+        FROM sections 
+        WHERE statute_id = ? AND section_number IN ('1', '2', '3', '4', '5', '6')
+        ORDER BY CAST(section_number AS INTEGER)
+        LIMIT 4;
+    """, (stat_id,))
+    sec_rows = cursor.fetchall()
+    if not sec_rows:
+        cursor.execute("SELECT section_number, section_title, part, full_text FROM sections WHERE statute_id = ? LIMIT 4;", (stat_id,))
+        sec_rows = cursor.fetchall()
+        
+    results = [
+        {
+            "statute": short_title,
+            "section_number": r[0],
+            "section_title": r[1],
+            "part": r[2] or "",
+            "snippet": make_clean_snippet(r[3], 260),
+            "full_text": r[3]
+        }
+        for r in sec_rows
+    ]
+    
+    if stat_id == 'cfrn_1999':
+        issue = (
+            f"{short_title} is the supreme law of the Federal Republic of Nigeria ({total_secs} total sections). "
+            "Its provisions possess binding legal supremacy over all authorities and persons throughout the Federation, "
+            "guaranteeing Fundamental Human Rights under Chapter IV and governing the distribution of governmental powers."
+        )
+    else:
+        issue = f"Overview and foundational statutory provisions of {short_title} ({total_secs} total sections, Federal Republic of Nigeria)."
+        
+    return {
+        "query": query,
+        "legal_issue": issue,
+        "target_statutes": [short_title],
+        "statutory_concepts": ["Statute Overview", "Foundational Enactment"],
+        "results": results
+    }
+
 
 def check_direct_citation(query: str, conn) -> list:
     match = re.search(r'(?:section|sec\.?|s\.)\s*(\d+[a-zA-Z]?)', query, re.IGNORECASE)
@@ -1096,6 +1249,9 @@ def api_search(q: str = Query(...)):
     if direct := (check_direct_citation(q, conn) or check_direct_citation(norm_q, conn)):
         conn.close()
         return {"query": q, "legal_issue": f"Direct statutory match verified for Section {direct[0]['section_number']} of {direct[0]['statute']}.", "results": direct}
+    if overview := (check_statute_overview(q, conn) or check_statute_overview(norm_q, conn)):
+        conn.close()
+        return overview
     if rule := (check_deterministic_heuristics(q, conn) or check_deterministic_heuristics(norm_q, conn)):
         conn.close()
         return rule

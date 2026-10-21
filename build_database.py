@@ -6,11 +6,26 @@ from pathlib import Path
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent))
 from engine.cleaner import clean_statute_dict
+from engine.lint_corpus import lint_statute
 
 DB_PATH = Path("data/nigerian_law.db")
 JSON_DIR = Path("data/json_laws")
 
 def init_db():
+    json_files = sorted(list(JSON_DIR.glob("*.json")))
+    print(f"[*] Running automated Quality Assurance Gate across {len(json_files)} statutory files...")
+    all_errors = []
+    for jf in json_files:
+        errors = lint_statute(jf)
+        if errors:
+            all_errors.extend(errors)
+    if all_errors:
+        print(f"[x] ERROR: Database rebuild aborted! {len(all_errors)} Corpus Invariant violations detected:")
+        for err in all_errors[:15]:
+            print(f"    - {err}")
+        sys.exit(1)
+    print(f"[+] QA Gate Passed: All {len(json_files)} statutes meet 100% Corpus Invariants.")
+
     if DB_PATH.exists():
         DB_PATH.unlink()
         print(f"[*] Rebuilding database at {DB_PATH}...")

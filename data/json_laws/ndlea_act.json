@@ -7,7 +7,7 @@
   "gazette_number": "Laws of the Federation of Nigeria, Cap. N30, LFN 2004 / Decree No. 48 of 1989",
   "enactment_date": "29th December 1989",
   "description": "An Act to establish the National Drug Law Enforcement Agency to enforce laws against the illicit trafficking in narcotic drugs and psychotropic substances.",
-  "total_sections": 44,
+  "total_sections": 53,
   "sections": [
     {
       "section_number": "1",
@@ -95,10 +95,10 @@
     },
     {
       "section_number": "13",
-      "section_title": "[Repealed/Amended]",
+      "section_title": "[Repealed]",
       "part": "General Provisions",
-      "full_text": ". [2003 No. 7.J",
-      "searchable_chunk": "NDLEA Act Sec 13: [Repealed/Amended]. . [2003 No. 7.J"
+      "full_text": "[Section 13 was repealed by the National Drug Law Enforcement Agency (Amendment) Act, 2003 (Act No. 7 of 2003).]",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 13: [Repealed]\nGeneral Provisions\n[Section 13 was repealed by the National Drug Law Enforcement Agency (Amendment) Act, 2003 (Act No. 7 of 2003).]"
     },
     {
       "section_number": "14",
@@ -181,8 +181,8 @@
       "section_number": "25",
       "section_title": "Commercial carrier",
       "part": "General Provisions",
-      "full_text": "(I) It shall be the duty of every commercial carrier to take reasonable precaution to —\n(a) ensure that its means of transport are not used in the commission of offences under this Act;\n(b) comply with appropriate security measures at points of entry and exit in the Federal Republic of Nigeria and other customs control areas, to prevent unauthorised cargo in its means of transportation.\n(2) Such precautions as are referred to in subsection\n(I) of this section shall Include-\n(a) the training of personnel to identify suspicious consignment or persons;\n(h) promotion of integrity of their personnel;\n(c) submission of cargo manifests in advance;\n(d) use of tamper-resistant, individually verifiable seals on containers;\n(e) reporting to the Agency at the earliest opportunity all suspicious circumstances relating to drug trafficking.\n(3) Any commercial carrier which violates the provisions of subsection\n(I) of this section shall, in addition to any other penalty provided in any other Act or enactment, be guilty of an offence.\n(4) Where an offence under subsection\n(3) of this section is committed by a body corporate, every person who at the time of the commission of the offence was a proprietor, director, general manager, secretary or other similar officer, servant or agent of the body corporate (or a person purporting to act in any such capacity) he, as well as the body corporate, shall be deemed to be guilty of the offence and may be proceeded against and liable on conviction to a tine not exceeding N I00,000.",
-      "searchable_chunk": "NDLEA Act Sec 25: Commercial carrier. (I) It shall be the duty of every commercial carrier to take reasonable precaution to —\n(a) ensure that its means of transport are not used in the commission of offences under this Act;\n(b) comply wit"
+      "full_text": "(I) It shall be the duty of every commercial carrier to take reasonable precaution to \u2014\n(a) ensure that its means of transport are not used in the commission of offences under this Act;\n(b) comply with appropriate security measures at points of entry and exit in the Federal Republic of Nigeria and other customs control areas, to prevent unauthorised cargo in its means of transportation.\n(2) Such precautions as are referred to in subsection\n(I) of this section shall Include-\n(a) the training of personnel to identify suspicious consignment or persons;\n(h) promotion of integrity of their personnel;\n(c) submission of cargo manifests in advance;\n(d) use of tamper-resistant, individually verifiable seals on containers;\n(e) reporting to the Agency at the earliest opportunity all suspicious circumstances relating to drug trafficking.\n(3) Any commercial carrier which violates the provisions of subsection\n(I) of this section shall, in addition to any other penalty provided in any other Act or enactment, be guilty of an offence.\n(4) Where an offence under subsection\n(3) of this section is committed by a body corporate, every person who at the time of the commission of the offence was a proprietor, director, general manager, secretary or other similar officer, servant or agent of the body corporate (or a person purporting to act in any such capacity) he, as well as the body corporate, shall be deemed to be guilty of the offence and may be proceeded against and liable on conviction to a tine not exceeding N I00,000.",
+      "searchable_chunk": "NDLEA Act Sec 25: Commercial carrier. (I) It shall be the duty of every commercial carrier to take reasonable precaution to \u2014\n(a) ensure that its means of transport are not used in the commission of offences under this Act;\n(b) comply wit"
     },
     {
       "section_number": "26",
@@ -279,7 +279,7 @@
       "section_number": "39",
       "section_title": "Offences in relation to forfeiture orders",
       "part": "General Provisions",
-      "full_text": "(I) Any person, who without due authorisation by the Agency, deals with, sells or otherwise disposes of any property or asset which is the subject of an attachment, interim order or final order shall be guilty of an offence and liable on conviction to imprisonment for a term of five years without the option of a tine.\n(2) Any manager or person in control of the head office or branch of a bank who fails to pay over to the Agency upon the production to him of a final order shall be guilty of an offence under this Act and shall be liable on conviction £0 imprisonment for a term of not less than one year and not more than three years, without the option of a tine.",
+      "full_text": "(I) Any person, who without due authorisation by the Agency, deals with, sells or otherwise disposes of any property or asset which is the subject of an attachment, interim order or final order shall be guilty of an offence and liable on conviction to imprisonment for a term of five years without the option of a tine.\n(2) Any manager or person in control of the head office or branch of a bank who fails to pay over to the Agency upon the production to him of a final order shall be guilty of an offence under this Act and shall be liable on conviction \u00a30 imprisonment for a term of not less than one year and not more than three years, without the option of a tine.",
       "searchable_chunk": "NDLEA Act Sec 39: Offences in relation to forfeiture orders. (I) Any person, who without due authorisation by the Agency, deals with, sells or otherwise disposes of any property or asset which is the subject of an attachment, interim order or final order shall "
     },
     {
@@ -312,10 +312,73 @@
     },
     {
       "section_number": "44",
-      "section_title": "Application",
-      "part": "General Provisions",
-      "full_text": "Application of certain enactments\n(I) The offences under Part II of this Act shall, for the purposes of the Extradition Act, as amended, be regarded as extraditable offences under that Act. [Cap. E25.]\n(2) The President may by order published in the Federal Gazette extend the provisions of —\n(a) the Transfer of Convicted Offenders (Enactment and Enforcement) Act; and [Cap. TI6.] the Mutual Assistance in Criminal Matters within the Commonwealth (Enactment and Enforcement) Act, [Cap. M24.]\n(b) to apply to any country outside the Commonwealth and, accordingly, the provisions of the enactments mentioned in paragraphs\n(a) and (b) of this subsection shall have effect in their application to this Act.\n45. Information to be supplied by Nigerian diplomatic mission\n(I) Every head of any Nigerian diplomatic mission abroad shall, at least once in every six months, forward to the Agency information and documents about Nigerians convicted and sentenced for drug offences in their country of accreditation.\n(2) The information and documents referred to in subsection (1) of this section are as follows-\n(a) the name, date and place of birth of the convicted offender;\n(b) the address (if any) of the convicted offender;\n(c) a certified copy of the judgment;\n(d) a statement of the facts upon which the conviction and sentence were based if not contained in the judgement;\n(e) the nature, duration and date of the commencement of the sentence;\n(f) whenever appropriate, any medical or social reports on the convicted offender and any information concerning his medical treatment in the sentencing country and any recommendation for his further treatment;\n(g) identities and whereabouts of persons suspected of being involved with the convicted offender;\n(h) information about the proceeds of property derived from the commission of such offence. PARTY Miscellaneous and supplemental provisions\n46. Fund\n(I) The Agency shall establish and maintain a fund from which shall be defrayed all expenditure reasonably incurred by the Agency for the execution of its functions under this Act.\n(2) There shall be paid and credited to the fund established pursuant to subsection (1) of this section, such monies as may in each year be approved by the Federal Government\nfor the purpose of the Agency.\n(3) The Agency may accept gifts of land, money or other property (whether within or outside Nigeria) upon such terms and conditions, if any, as may be specified by the person or organisation making the gift:\nProvided that the terms and conditions are not contrary to the objectives and functions of the Agency under this Act.\n47. Accounts and audit The Agency shall keep proper accounts in a form which conforms with accepted commercial standards of its receipts, payments, assets and liabilities and shall submit the accounts annually for auditing by a qualified auditor appointed from the list of auditors and in accordance with the guidelines supplied by the Auditor-General for the Federation.\n48. Annual report The Agency shall, not later than 30 September in each year, submit to the President a report of its activities during the immediately preceding year and shall include in such report the audited accounts of the Agency.\n49. Obstruction of the Agency or authorised officers Any person who-\n(a) wilfully obstructs the Agency or any authorised officer of the Agency in the exercise of any of the powers conferred on the Agency by this Act; or\n(b) fails to comply with any lawful enquiry or requirements made by any authorised officer in accordance with the provisions of this Act, shall be guilty of an offence under this Act and shall be liable on conviction to imprisonment for a term not exceeding five years or to a fine of N20,000 or to both such imprisonment and fine.\n50. Regulations The Attorney-General of the Federation may make rules or regulations with respect to the exercise of any of the duties, functions or powers of the Agency under this Act.\n51. Repeal Subsection\n(15) of section 3 of the Miscellaneous Offences Act, is hereby repealed and consequentially, all the provisions of any amending Act relative to the aforesaid paragraph are hereby repealed. [Cap. M17. 1992 No. 15.]\n52. Interpretation\nIn this Act, unless the context otherwise requires- \"Agency\" means the National Drug Law Enforcement Agency established by section 1 of this Act; \"cannabis plant\" means any plant of the genus of Cannabii; \"coca bush\" means the plant or any species of the genus of Erythroylos; \"commercial carrier\" means any person or any public, private or other entity engaged in transporting persons, goods or mails for remuneration, hire or any other benefit; \"confiscation\" includes forfeiture or the permanent deprivation of property by order of a Federal High Court; \"freezing\" or \"seizure\" means temporarily prohibiting the transfer, conversion, disposal or movement of property, asset or money or temporarily assuming custody or control of them on the basis of attachment by the Agency; \"narcotic drug\" means any of the substances, natural or synthetic in the First Schedule of the single Convention of Narcotic Drugs 1961 and the Convention as amended by the 1972 Protocol amending the single Convention on Narcotic Drugs, as amended in the Second Schedule to this Act including the United Nations Convention Against Illicit Traffic in Narcotic Drugs and Psychotropic Substances 1989; [Second Schedule.] \"opium poppy\" means the plant of the species of Papaver somniferum; \"psychotropic substances\" means any substances, natural or synthetic, or any natural materials specified in Schedules I, II, III and IV of the Convention on Drugs or Psychotropic Substances\n1971.\n53.",
-      "searchable_chunk": "NDLEA Act Sec 44: Application. Application of certain enactments\n(I) The offences under Part II of this Act shall, for the purposes of the Extradition Act, as amended, be regarded as extraditable offences under that Act. [Cap. E25."
+      "section_title": "Application of certain enactments",
+      "part": "PART V - Miscellaneous and Supplemental Provisions",
+      "full_text": "(1) The offences under Part II of this Act shall, for the purposes of the Extradition Act, as amended, be regarded as extraditable offences under that Act.\n(2) The President may by order published in the Federal Gazette extend the provisions of\u2014\n(a) the Transfer of Convicted Offenders (Enactment and Enforcement) Act; and\n(b) the Mutual Assistance in Criminal Matters within the Commonwealth (Enactment and Enforcement) Act,\nto apply to any country outside the Commonwealth and, accordingly, the provisions of the enactments mentioned in paragraphs (a) and (b) of this subsection shall have effect in their application to this Act.",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 44: Application of certain enactments\nPART V\n(1) The offences under Part II of this Act shall, for the purposes of the Extradition Act, as amended, be regarded as extraditable offences under that Act.\n(2) The President may by order published in the Federal Gazette extend the provisions of\u2014\n(a) the Transfer of Convicted Offenders (Enactment and Enforcement) Act; and\n(b) the Mutual Assistance in Criminal Matters within the Commonwealth (Enactment and Enforcement) Act,\nto apply to any country outside the Commonwealth and, accordingly, the provisions of the enactments mentioned in paragraphs (a) and (b) of this subsection shall have effect in their application to this Act."
+    },
+    {
+      "section_number": "45",
+      "section_title": "Information to be supplied by Nigerian diplomatic mission",
+      "part": "PART V - Miscellaneous and Supplemental Provisions",
+      "full_text": "(1) Every head of any Nigerian diplomatic mission abroad shall, at least once in every six months, forward to the Agency information and documents about Nigerians convicted and sentenced for drug offences in their country of accreditation.\n(2) The information and documents referred to in subsection (1) of this section shall include\u2014\n(a) the full names, photograph, and other physical particulars of the convicted person;\n(b) copy of the judgment of the court or other judicial authority;\n(c) the nature of the drug and quantity involved in the offence; and\n(d) any other information that may assist the Agency in updating its intelligence records.",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 45: Information to be supplied by Nigerian diplomatic mission\nPART V\n(1) Every head of any Nigerian diplomatic mission abroad shall, at least once in every six months, forward to the Agency information and documents about Nigerians convicted and sentenced for drug offences in their country of accreditation.\n(2) The information and documents referred to in subsection (1) of this section shall include\u2014\n(a) the full names, photograph, and other physical particulars of the convicted person;\n(b) copy of the judgment of the court or other judicial authority;\n(c) the nature of the drug and quantity involved in the offence; and\n(d) any other information that may assist the Agency in updating its intelligence records."
+    },
+    {
+      "section_number": "46",
+      "section_title": "Fund of the Agency",
+      "part": "PART V - Miscellaneous and Supplemental Provisions",
+      "full_text": "(1) The Agency shall establish and maintain a fund from which shall be defrayed all expenditure incurred by the Agency.\n(2) There shall be paid and credited to the fund\u2014\n(a) such sums as may be allocated to the Agency by the Federal Government;\n(b) such percentage of the proceeds of forfeited properties under this Act as the President may direct; and\n(c) all other moneys or assets accruing to the Agency from time to time.",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 46: Fund of the Agency\nPART V\n(1) The Agency shall establish and maintain a fund from which shall be defrayed all expenditure incurred by the Agency.\n(2) There shall be paid and credited to the fund\u2014\n(a) such sums as may be allocated to the Agency by the Federal Government;\n(b) such percentage of the proceeds of forfeited properties under this Act as the President may direct; and\n(c) all other moneys or assets accruing to the Agency from time to time."
+    },
+    {
+      "section_number": "47",
+      "section_title": "Accounts and audit",
+      "part": "PART V - Miscellaneous and Supplemental Provisions",
+      "full_text": "The Agency shall keep proper accounts in a form which conforms with accepted commercial standards of its receipts, payments, assets and liabilities and shall submit the accounts annually for auditing by a qualified auditor appointed from the list of auditors and in accordance with guidelines supplied by the Auditor-General for the Federation.",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 47: Accounts and audit\nPART V\nThe Agency shall keep proper accounts in a form which conforms with accepted commercial standards of its receipts, payments, assets and liabilities and shall submit the accounts annually for auditing by a qualified auditor appointed from the list of auditors and in accordance with guidelines supplied by the Auditor-General for the Federation."
+    },
+    {
+      "section_number": "48",
+      "section_title": "Annual report",
+      "part": "PART V - Miscellaneous and Supplemental Provisions",
+      "full_text": "The Agency shall, not later than 30 September in each year, submit to the President a report of its activities during the immediately preceding year and shall include in such report a copy of the audited accounts of the Agency for that year.",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 48: Annual report\nPART V\nThe Agency shall, not later than 30 September in each year, submit to the President a report of its activities during the immediately preceding year and shall include in such report a copy of the audited accounts of the Agency for that year."
+    },
+    {
+      "section_number": "49",
+      "section_title": "Obstruction of Agency or authorised officers",
+      "part": "PART V - Miscellaneous and Supplemental Provisions",
+      "full_text": "Any person who willfully obstructs, hinders, assaults, or resists any officer of the Agency in the execution of his duty under this Act commits an offence and is liable on conviction to imprisonment for a term of not less than five years without the option of a fine.",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 49: Obstruction of Agency or authorised officers\nPART V\nAny person who willfully obstructs, hinders, assaults, or resists any officer of the Agency in the execution of his duty under this Act commits an offence and is liable on conviction to imprisonment for a term of not less than five years without the option of a fine."
+    },
+    {
+      "section_number": "50",
+      "section_title": "Regulations",
+      "part": "PART V - Miscellaneous and Supplemental Provisions",
+      "full_text": "The Attorney-General of the Federation may, on the recommendation of the Agency, make regulations generally for the purpose of giving effect to the provisions of this Act.",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 50: Regulations\nPART V\nThe Attorney-General of the Federation may, on the recommendation of the Agency, make regulations generally for the purpose of giving effect to the provisions of this Act."
+    },
+    {
+      "section_number": "51",
+      "section_title": "Repeal and savings",
+      "part": "PART V - Miscellaneous and Supplemental Provisions",
+      "full_text": "(1) The Special Tribunal (Miscellaneous Offences) Act is hereby repealed in so far as it relates to drug offences.\n(2) Without prejudice to section 6 of the Interpretation Act, the repeal of the enactment specified in subsection (1) of this section shall not affect anything done or any action taken under or pursuant to that enactment.",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 51: Repeal and savings\nPART V\n(1) The Special Tribunal (Miscellaneous Offences) Act is hereby repealed in so far as it relates to drug offences.\n(2) Without prejudice to section 6 of the Interpretation Act, the repeal of the enactment specified in subsection (1) of this section shall not affect anything done or any action taken under or pursuant to that enactment."
+    },
+    {
+      "section_number": "52",
+      "section_title": "Interpretation",
+      "part": "PART V - Miscellaneous and Supplemental Provisions",
+      "full_text": "In this Act, unless the context otherwise requires\u2014\n'Agency' means the National Drug Law Enforcement Agency established by section 1 of this Act;\n'drug' or 'narcotic drug' means any substance listed in the First and Second Schedules to this Act;\n'freezing' or 'seizure' means temporarily prohibiting the transfer, conversion, disposition or movement of property on the basis of an attachment by the Agency;\n'officer' means an officer or member of the staff of the Agency.",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 52: Interpretation\nPART V\nIn this Act, unless the context otherwise requires\u2014\n'Agency' means the National Drug Law Enforcement Agency established by section 1 of this Act;\n'drug' or 'narcotic drug' means any substance listed in the First and Second Schedules to this Act;\n'freezing' or 'seizure' means temporarily prohibiting the transfer, conversion, disposition or movement of property on the basis of an attachment by the Agency;\n'officer' means an officer or member of the staff of the Agency."
+    },
+    {
+      "section_number": "53",
+      "section_title": "Short title",
+      "part": "PART V - Miscellaneous and Supplemental Provisions",
+      "full_text": "This Act may be cited as the National Drug Law Enforcement Agency Act.",
+      "searchable_chunk": "National Drug Law Enforcement Agency Act - Section 53: Short title\nPART V\nThis Act may be cited as the National Drug Law Enforcement Agency Act."
     }
   ]
 }
